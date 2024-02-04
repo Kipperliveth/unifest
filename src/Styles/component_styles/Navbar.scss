@@ -1,0 +1,291 @@
+.navigation{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    }
+
+.navbar{
+    width: 95vw;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    border: 0.5px solid #e8d9cd;
+    border-radius: 25px;
+    margin-top: .5rem;
+    margin-bottom: 2em;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    background: #fff;
+
+    .mobile-view{
+        display: none;
+    }
+
+    .active-link{
+
+        &::after{
+            position: absolute;
+            bottom: -30%;
+            left: 35%;
+            margin: 0 auto;
+            content: "";
+            width: 20px;
+            height: 2px;
+            border-radius: 25px;
+            transform: scaleX(1);
+            background:#e8d9cd;
+            transform-origin: center;
+            opacity: 1;
+            transition: 0.3s ease-in-out, visibility ease-in;
+        }
+
+
+    }
+
+    .logo-container{
+        display: flex;
+        text-decoration: none;
+        color: #523d35;
+        margin-left: 1rem;
+        align-items: center;
+        
+        img{
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo{
+            letter-spacing: 4px;
+            
+            span{
+                font-weight: 700;
+            }
+        }
+    }
+
+    .page-links{
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+        
+        li{
+
+            position: relative;
+
+            &::after{
+                position: absolute;
+                bottom: -30%;
+                left: 35%;
+                margin: 0 auto;
+                content: "";
+                width: 20px;
+                height: 2px;
+                border-radius: 25px;
+                transform: scaleX(0);
+                background: #bba58f;
+                transform-origin: center;
+                opacity: 0;
+                transition: 0.3s ease-in-out, visibility ease-in;
+            }
+
+            &:hover::after{
+                transform: scaleX(1);
+                transform-origin: center;
+                opacity: 1;
+            }
+        }
+        
+        a{
+            color: black;
+            text-decoration: none;
+            padding: 2px;
+
+
+        }
+
+    }
+
+    .app{
+        display: flex;
+        gap: .7rem;
+        font-weight: 3rem;
+        align-items: center;
+        margin-right: 2rem; 
+
+        .app-icon{
+            font-size: 1.5rem;
+          cursor: pointer;
+          padding:  0.6rem;
+          user-select: none;
+        }
+
+        .menu{
+            user-select: none;
+        }
+        
+        .notifs{
+            transition: 0.3s ease-in-out;
+            
+            &:hover{
+                animation: shake 0.4s ;
+            }
+        }
+
+        .cart{
+            transition: 0.3s ease-in-out;
+
+            &:hover{
+                animation: shake 0.4s ;
+            }
+        }
+        
+        @keyframes shake {
+            0% { transform: translateX(0); } /* Start position */
+            25% { transform: translateX(-2px); } /* Move left */
+            50% { transform: translateX(2px); } /* Move right */
+            75% { transform: translateX(-2px); } /* Move left again */
+            100% { transform: translateX(0); } /* Return to original position */
+          }
+
+        .login-btn{
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: .5rem;
+            border: 1px solid transparent;
+            transition: 0.7s ease-in-out;
+            padding: 5px 8px;
+            border-radius: 15px;
+            border: 1px solid #e8d9cd;
+            user-select: none;
+            outline: none;
+
+
+            &:hover{
+            border: 1px solid #523d35;
+
+            }
+        }
+    }
+
+
+}
+
+.mobile-menu-container{
+
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.1);
+    display: none;
+    transform-origin: center;
+    transition: .4s ease-in-out;
+
+    
+    .mobile-menu{
+        position: absolute;
+        top: 5rem;
+        right: 1.5rem;
+        height: 23rem;
+        background: #fff;
+        border-radius: 30px;  
+        width: 300px;
+        box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+        overflow: hidden;
+        
+        .menu-content{
+            margin: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: 100%;
+
+            .cancel-btn{
+                font-size: 30px;
+                position: relative;
+                left: 70%;
+                cursor: pointer;
+                transition: .3s ease-in-out;
+                user-select: none;
+                
+                &:hover{
+                    transform: scale(1.1);
+                }
+            }
+
+            span{
+                margin-top: 2rem;
+                font-size: 30px;
+                display: flex;
+                gap: 1rem;
+
+                .span-icon{
+                    cursor: pointer;
+                    &:hover{
+                        animation: shake 0.4s ;
+                    }
+                }
+            }
+
+            .mobilepage-links{
+                margin-top: 2rem;
+                display: flex;
+                flex-direction: column;
+                list-style: none;
+                gap: 1.5rem;
+                font-size: 18px;
+
+            
+                a{
+                    text-decoration: none;
+
+                    &:hover{
+                        color: #e8d9cd;
+
+                    }
+                }
+            }
+        }
+    
+}
+
+
+}
+.mobile-menu-container.is-visible{
+    display: block;
+    transform-origin: center;
+    transition: .4s ease-in-out;
+
+}
+
+@media screen and (max-width: 1080px) {
+.navbar{
+    border-radius: 50px;
+
+    .mobile-view{
+        display: block;
+    }
+    .desktop-view{
+        display: none;
+    }
+
+    .logo-container{
+        margin-left: 0;
+        font-size: smaller;
+    }
+    
+    .page-links{
+        display: none;
+    }
+
+    .app{
+        gap: 0.3rem;
+        margin-right: 1rem;
+    }
+}
+}
