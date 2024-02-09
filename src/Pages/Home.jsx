@@ -3,7 +3,6 @@ import { FaAngleRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-
 function Home() {
   return (
     <div className="pagewidth ">
@@ -59,6 +58,36 @@ function Home() {
             <FaArrowRightLong className="ctaArrow special-icon" />
           </button>
         </div>
+
+        <div className="masterclass-section">
+          <div className="m-container">
+            <div className="m-sec-left"></div>
+
+            <div className="m-sec-right">
+              <h3>Join our Masterclass</h3>
+
+              <h1>
+                <span> Unlock </span>Your Interior Design Potential and Master
+                the Art from certified experts
+              </h1>
+
+              <p>
+                Discover the secrets to stunning interiors with our exclusive
+                Masterclass. From basics to advanced techniques, our expert
+                instructors guide you every step of the way. Elevate your skills
+                and unleash your creativity. Enroll now and transform your space
+                today.
+              </p>
+
+              <NavLink to="/masterclass" className="masterclass-cta">
+                <p>Enroll Now</p>
+                <FaArrowRightLong />
+              </NavLink>
+            </div>
+          </div>
+        </div>
+
+        
       </div>
     </div>
   );
