@@ -61,10 +61,10 @@ function Navbar() {
               </span>
 
               <div className="mobilepage-links">
-            <li><NavLink to='/shop' > Shop</NavLink></li>
-            <li><NavLink to='/masterclass'> Masterclass</NavLink></li>
-            <li><NavLink to='/about'> About</NavLink></li>
-            <li><NavLink to='/contact'> Contact</NavLink></li>
+            <li><NavLink to='/shop'  onClick={toggleVisibilty} > Shop</NavLink></li>
+            <li><NavLink to='/masterclass'  onClick={toggleVisibilty}> Masterclass</NavLink></li>
+            <li><NavLink to='/about'  onClick={toggleVisibilty}> About</NavLink></li>
+            <li><NavLink to='/contact'  onClick={toggleVisibilty}> Contact</NavLink></li>
                </div>
 
             </div>

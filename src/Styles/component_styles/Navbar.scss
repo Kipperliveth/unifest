@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     position: relative;
+    // display: none;
     }
 
 .navbar{
@@ -20,6 +21,7 @@
     top: 0;
     z-index: 5;
     background: #fff;
+
 
     .mobile-view{
         display: none;
@@ -124,7 +126,12 @@
         }
 
         .menu{
-            user-select: none;
+            transition: .5s ease-in-out;
+            
+            &:hover{
+                transform: scale(1.1);
+            }
+
         }
         
         .notifs{
@@ -175,8 +182,6 @@
 }
 
 .mobile-menu-container{
-
-    position: absolute;
     width: 100vw;
     height: 100vh;
     overflow-x: hidden;
@@ -185,6 +190,10 @@
     display: none;
     transform-origin: center;
     transition: .4s ease-in-out;
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    position: fixed;
 
     
     .mobile-menu{
@@ -243,10 +252,10 @@
             
                 a{
                     text-decoration: none;
+                    transition: .2s ease-in-out;
 
                     &:hover{
                         color: #e8d9cd;
-
                     }
                 }
             }

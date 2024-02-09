@@ -19,6 +19,7 @@ function Footer() {
           <img src={logo} alt="evanis-interior-logo" />
           <p className='logo'> <span>EVANIS</span> INTERIORS</p>
         </NavLink>
+        
 
         <div className="footer-links">
 
