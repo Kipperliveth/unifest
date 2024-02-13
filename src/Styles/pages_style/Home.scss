@@ -1,7 +1,7 @@
 .home{
-// position: relative;
-overflow-x: hidden;
-width: 100vw;
+    overflow-x: hidden;
+    width: 100vw;
+    // position: relative;
 // top: 5rem;
 // top: 0;
 
@@ -62,10 +62,12 @@ width: 100vw;
     }
 
     .shop-section,
-    .masterclass-section{
+    .masterclass-section,
+    .about-section, 
+    .newsletter-section{
         width: 90vw;
         margin: 0 auto;
-        margin-top: 3rem;
+        margin-top: 5rem;
     }
 
     .shop-section{
@@ -84,7 +86,8 @@ width: 100vw;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
-                width: 200px;
+                min-width: 200px;
+                max-width: 200px;
                 height: 350px;
                 text-decoration: none;
                 border-radius: 5px;
@@ -217,7 +220,6 @@ width: 100vw;
      
     }
 
-
     .masterclass-section{
 
         .m-container{
@@ -232,6 +234,7 @@ width: 100vw;
                 width: 90%;
                 justify-content: center;
                 height: 25em;
+                box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 
                 background: url('../../stock/master2.jpg')no-repeat;
                 background-size: cover;
@@ -281,7 +284,180 @@ width: 100vw;
                 }
             }
         }
+    }
+
+    .about-section{
+
+        .abt-sec-container{
+
+            display: grid;
+            grid-template-columns: 50% 50%;
+            place-items: center;
+            justify-content: space-between;
+
+
+            .abt-sec-left{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+
+                h1{
+                    span{
+                        color: #523d35;
+                    }
+                }
+
+                p{
+                    line-height: 1.5;
+                }
+
+                a{
+                    text-decoration: none;
+                    color: #523d35;
+                    padding-bottom: .5rem;
+                    border-bottom:1px solid #523d35;
+                    width: fit-content;
+                    font-weight: 600;
+                    transition: 0.3s ease-in-out;
+
+                    &:hover{
+                        border-bottom: 1px solid #bba58f;
+                        color: hsl(17, 21%, 46%);
+                        
+                    }
+                }
+            }
+
+            .abt-sec-right{
+                width: 90%;
+                justify-content: center;
+                height: 25em;
+
+                background: url('../../stock/master.jpg')no-repeat;
+                background-size: cover;
+                background-position: center;
+                background-blend-mode: overlay;
+                border-radius: 5px;
+            }
+        }
+
+    }
+
+    .newsletter-section{
+        text-align: center;
+        margin-bottom: 3rem;
+
+        .newsletter-container{
+            width: 70%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            
+                span{
+                    color: #523d35;
+                }
+            
+
+            p{
+                margin-bottom: 1rem;
+                line-height: 1.5;
+            }
+
+            .sub-container{
+                position: relative;
+                border: 1px solid #523d35;
+                padding: .7rem 1rem;
+                border-radius: 5.5rem;
+                display: flex;
+                margin: 0 auto;
+                gap: 4rem;
+                width: fit-content;
+                box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+            
+                input{
+                    // padding: 1rem 0;
+                    outline: none;
+                    border: none;
+                }
+
+                button{
+                    padding: 8px 15px;
+                    border: none;
+                    background: #523d35;
+                    border-radius: 20px;
+                    color: white;
+                    cursor: pointer;
+                }
+            }
+        }
+
+    }
+
 }
 
+@media screen and (max-width: 1080px) {
+.home{
 
+    .landing{
+        
+        .landing-content-container{
+            width: 90%;
+            
+            p{
+                line-height: 1.5;
+            }
+        }
+    }
+
+    .shop-items{
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            display: none; /* Or width: 0; or height: 0; */
+          }
+    }
+
+    .masterclass-section{
+
+        .m-container{
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+
+            .m-sec-left{
+                width: 100%;
+            }
+        }
+    }
+
+    .about-section{
+
+        .abt-sec-container{
+            display: flex;
+            flex-direction:column-reverse;
+            gap: 3rem;
+
+            .abt-sec-right{
+                width: 100%;
+            }
+        }
+    }
+} 
+}
+
+@media screen and (max-width: 720px) {
+  .newsletter-section{
+    position: relative;
+      
+      .newsletter-container{
+        min-width: 100%;
+
+        .sub-container{
+            gap: 2rem!important;
+        }
+    } 
+    
+}
 }

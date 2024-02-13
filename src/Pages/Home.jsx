@@ -87,7 +87,54 @@ function Home() {
           </div>
         </div>
 
-        
+        <div className="about-section">
+          <div className="abt-sec-container">
+            <div className="abt-sec-left">
+              <h3>Get to know us</h3>
+
+              <h1>
+                <span>See</span> what we're about and how we can design
+                interiors for you
+              </h1>
+
+              <p>
+                Explore our company's essence and gain insight into how our
+                tailored designs can cater to your unique needs.
+              </p>
+
+              <NavLink to="/about">Learn More</NavLink>
+            </div>
+
+            <div className="abt-sec-right"></div>
+          </div>
+        </div>
+
+        <div className="newsletter-section">
+          <div className="newsletter-container">
+            <h3>
+              <span>Stay</span> in the loop!
+            </h3>
+
+            <h1>
+              Subscribe to our newsletter for the <span>latest updates</span>,
+              offers, and design inspiration.
+            </h1>
+            <span></span>
+
+            <p>
+              Join our community and get access to special offers and early bird
+              discounts,expert tips, industry news, and product updates straight
+              from our team.
+            </p>
+
+            <div className="sub-container">
+              <input type="text" placeholder="Enter email address" />
+              <button>Subscribe</button>
+            </div>
+
+            <h6>We promise not to spam you</h6>
+          </div>
+        </div>
       </div>
     </div>
   );
