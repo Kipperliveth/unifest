@@ -36,8 +36,6 @@ function Footer() {
         <FaWhatsapp className='footer-icon'/>
         <MdMailOutline className='footer-icon' />
 
-
-
         </div>
 
         </div>
