@@ -6,6 +6,7 @@ import Shop from './Shop'
 import Masterclass from './Masterclass'
 import About from './About'
 import Contact from './Contact'
+import Login from '../App/App-pages/Login'
 
 
 function AnimatedRoutes() {
@@ -25,6 +26,7 @@ function AnimatedRoutes() {
                     <Route path='/masterclass' element={<Masterclass />}/>
                     <Route path='/about' element={<About />}/>
                     <Route path='/contact' element={<Contact />}/>
+                    <Route path='/login' element={<Login />}/>
             </Routes>
     </AnimatePresence>
   )

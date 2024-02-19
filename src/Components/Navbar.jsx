@@ -34,9 +34,9 @@ function Navbar() {
         <div className="app">
         <IoIosNotificationsOutline className='app-icon desktop-view notifs'/>
         <AiOutlineShoppingCart className='app-icon desktop-view cart' />
-        <span className='login-btn'>
+        <NavLink to='/login' className='login-btn'>
           Login
-        </span>
+        </NavLink>
 
         <RiMenu4Fill className='app-icon mobile-view menu' onClick={toggleVisibilty}/>
 
