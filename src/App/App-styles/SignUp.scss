@@ -1,0 +1,161 @@
+.signup-page{
+    width: 100%;
+
+    .signup-page-container{
+        width: 95%;
+        display: grid;
+        grid-template-columns: 50% 46%;
+        justify-content: space-between;
+        margin: 0 auto;
+        margin-top: 6rem;
+
+        .sign-left{
+            background: url('../../stock/signup.jpg')no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            position: relative;
+            border-radius:20px;
+            border-bottom-right-radius: 8rem;
+        }
+
+        .sign-right{
+            padding: 5rem 3rem;
+
+
+            .head{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: .5rem;
+
+                .sign-icon{
+                    color: hsl(46, 99%, 46%);
+                    font-size: 25px;
+                }
+                margin-bottom: .5rem;
+            }
+
+            .head-p{
+                letter-spacing: 1px;
+            }
+
+            .signup-form{
+                margin-top: 1.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+
+                .emailnpassword{
+                    display: inherit;
+                    flex-direction: inherit;
+                    gap: .7rem;
+
+
+                    h2{
+                        font-weight: 500;
+                    }
+
+                    input{
+                        padding: 1rem;
+                        border-radius: 10px;
+                        border: 1px solid #888;
+                        outline: none;
+                        transition: .2s ease-in-out;
+
+                        &:focus{
+                            transform: scale(.97)
+                        }
+
+                    }
+
+                    .email-input{
+                        margin-bottom: 1.5rem;
+                    }
+
+                }
+
+                .sign-up-btn{
+                    background: black;
+                    color: white;
+                    padding: 1rem;
+                    border-radius: 10px;
+                    border: none;
+                    cursor: pointer;
+                    transition: .3s ease-in-out;
+                    margin-top: 1rem;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+
+                    &:hover{
+                        transform: scale(.95)
+                    }
+
+                    .signup-spinner{
+                        animation: spin 2s linear infinite;
+                    }
+
+                    @keyframes spin {
+                        from {
+                          transform: rotate(0deg);
+                        }
+                        to {
+                          transform: rotate(360deg);
+                        }
+                      }
+                }
+
+                .error-msg{
+                    text-align: center;
+                    color: red;
+                }
+
+                .login-link{
+                    text-align: center;
+                    
+                    a{
+                        text-decoration: none;
+                    }
+                }
+            }
+
+        }
+
+        
+    }
+
+
+}
+
+@media screen and (max-width: 1080px) {
+.signup-page{
+    width: 90vw;
+    margin: 0 auto;
+
+    .signup-page-container{
+        display: flex;
+        justify-content: center;
+        width: 90vw;
+        position: relative;
+
+        .sign-left{
+            display: none;
+        }
+
+        .sign-right{
+            padding: 0;
+            width: 60%;
+        }
+    }
+}
+}
+
+@media screen and (max-width: 780px) {
+.signup-page{
+    .signup-page-container{
+        .sign-right{
+            width: 90%;
+        }
+    }
+}
+}

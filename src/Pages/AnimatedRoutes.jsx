@@ -6,7 +6,11 @@ import Shop from './Shop'
 import Masterclass from './Masterclass'
 import About from './About'
 import Contact from './Contact'
-import Login from '../App/App-pages/Login'
+import Login from '../App/App-auth/Login'
+import SignUp from '../App/App-auth/SignUp';
+import Marketplace from '../App/App-pages/Marketplace';
+import ProtectedRoute from '../App/App-auth/AuthGuard';
+import AdminDashboard from '../Admin/Admin-pages/AdminDashboard';
 
 
 function AnimatedRoutes() {
@@ -27,6 +31,14 @@ function AnimatedRoutes() {
                     <Route path='/about' element={<About />}/>
                     <Route path='/contact' element={<Contact />}/>
                     <Route path='/login' element={<Login />}/>
+                    <Route path='/signup' element={<SignUp />}/>
+{/* proteted routes */}
+                    {/* <Route path='/marketplace' element={<ProtectedRoute>
+                      <Marketplace />
+                    </ProtectedRoute> }/> */}
+                    <Route path='/marketplace' element={<Marketplace />}/>
+
+                   <Route path='/adminDashboard' element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}/>
             </Routes>
     </AnimatePresence>
   )
