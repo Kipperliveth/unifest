@@ -45,7 +45,7 @@ function Login() {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     const result = await signInWithPopup(auth, provider);
-    navigate("/marketplace");
+    navigate("/userDashboard");
   };
 
   return (

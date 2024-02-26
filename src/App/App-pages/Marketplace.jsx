@@ -7,21 +7,24 @@ import UserNav from "../App-components/UserNav";
 function Marketplace() {
   const [user, setUser] = useState({});
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, [auth]);
+  
 
   const navigate = useNavigate();
 
   const logout = async () => {
     await signOut(auth);
-      navigate('/login')
+    navigate("/login");
   };
 
   return (
     <div className="marketplace">
+      <UserNav />
       <div className="market-container">
-        <UserNav />
         <h1>Marketplace</h1>
         <h2>{user?.email}</h2>
         <button onClick={logout}>log out</button>

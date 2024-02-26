@@ -1,0 +1,31 @@
+.userDash{
+    // margin-top: 6rem;
+
+    .userDash-container{
+        width: 90%;
+        margin: 0 auto;
+
+        .userDash-header{
+            margin-bottom: 3rem;
+            h1{
+              border-left: 2px solid #bba58f;
+              padding-left: .5rem;
+              letter-spacing: 1px;
+              margin-bottom: .9rem;
+            }
+
+            .userNameGreeting{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                text-wrap: wrap;
+                gap: .5rem;
+
+                p{
+                    font-size: larger;
+                }
+            }
+        }
+    }
+    
+}

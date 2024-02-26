@@ -105,24 +105,60 @@
             color: black;
             text-decoration: none;
             padding: 2px;
-
-
         }
+
+
 
     }
 
     .app{
         display: flex;
         gap: .7rem;
-        font-weight: 3rem;
+        // font-weight: 3rem;
         align-items: center;
         margin-right: 2rem; 
+        position: relative;
 
         .app-icon{
             font-size: 1.5rem;
           cursor: pointer;
           padding:  0.6rem;
           user-select: none;
+        }
+
+        .notif-bar{
+            position: absolute;
+            margin-top: 120%;
+            background: white;
+            width: 11.5rem;
+            height: 10rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: all .4s ease-in-out;
+            transform-origin: center;
+
+            a{
+                text-decoration: none;
+                padding-right: 3px;
+            }
+
+        }
+
+     
+
+        .bar1, .bar2{
+      opacity: 0;
+      transition: opacity 0.5s;
+      transition-delay: 1s;
+        }
+        .notifs:hover + .bar1,
+        .cart:hover + .bar2
+        {
+            opacity: 1;
+            transition-delay: 0s
         }
 
         .menu{

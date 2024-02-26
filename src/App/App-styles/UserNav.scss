@@ -1,3 +1,123 @@
 .userNavbar{
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
+    width: 99.5%;
+    overflow-x: hidden;
+    
+    .userNav-container{
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+        border: 0.5px solid #8888;
+        border-radius: 25px;
+        margin-top: .5rem;
+
+        .active-link{
+
+            &::after{
+                position: absolute;
+                bottom: -30%;
+                left: 35%;
+                margin: 0 auto;
+                content: "";
+                width: 20px;
+                height: 2px;
+                border-radius: 25px;
+                transform: scaleX(1);
+                background:#e8d9cd;
+                transform-origin: center;
+                opacity: 1;
+                transition: 0.3s ease-in-out, visibility ease-in;
+            }
+    
+    
+        }
+
+        .logo-container{
+            display: flex;
+            text-decoration: none;
+            color: #523d35;
+            margin-left: 1rem;
+            align-items: center;
+            
+            img{
+                width: 50px;
+                height: 50px;
+            }
+    
+            .logo{
+                letter-spacing: 4px;
+                
+                span{
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .userNavLinks{
+            display: flex;
+            gap: 2rem;
+
+            li{
+                list-style: none;
+                position: relative;
+                
+                &::after{
+                    position: absolute;
+                    bottom: -30%;
+                    left: 35%;
+                    margin: 0 auto;
+                    content: "";
+                    width: 20px;
+                    height: 2px;
+                    border-radius: 25px;
+                    transform: scaleX(0);
+                    background: #bba58f;
+                    transform-origin: center;
+                    opacity: 0;
+                    transition: 0.3s ease-in-out, visibility ease-in;
+                }
+    
+                &:hover::after{
+                    transform: scaleX(1);
+                    transform-origin: center;
+                    opacity: 1;
+                }
+            }
+
+            a{
+                color: #333;
+                text-decoration: none;
+            }
+        }
+
+        .userControls{
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-right: 2rem;
+
+            .app-icon{
+                font-size: 25px;
+                cursor: pointer;
+            }
+        }
+
+
+     
+    }
+}
+
+@media screen and (max-width: 1080px) {
+.userNavbar{
+
+    .userNav-container{
+
+        .logo-container{
+            font-size: smaller;
+        }
+    }
+}
 }
