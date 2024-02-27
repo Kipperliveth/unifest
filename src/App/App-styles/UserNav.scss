@@ -1,7 +1,8 @@
 .userNavbar{
     margin-bottom: 3rem;
     width: 99.5%;
-    overflow-x: hidden;
+    // overflow-x: hidden;
+    z-index: 10;
     
     .userNav-container{
         width: 95%;
@@ -98,11 +99,100 @@
             align-items: center;
             gap: 2rem;
             margin-right: 2rem;
+            position: relative;
 
             .app-icon{
                 font-size: 25px;
                 cursor: pointer;
             }
+
+            .notifs, .cart{
+                transition: 0.3s ease-in-out;
+            
+                &:hover{
+                    animation: shake 0.4s ;
+                }
+            }
+
+
+            @keyframes shake {
+                0% { transform: translateX(0); } /* Start position */
+                25% { transform: translateX(-2px); } /* Move left */
+                50% { transform: translateX(2px); } /* Move right */
+                75% { transform: translateX(-2px); } /* Move left again */
+                100% { transform: translateX(0); } /* Return to original position */
+              }
+
+              .user{
+                border: 1px solid transparent;
+                border-radius: 50%;
+                padding: 5px;
+                transition: .3s ease-in-out;
+
+                &:hover{
+                    transform: scale(.8);
+                    border: 1px solid #888;
+                }
+              }
+
+              .currentUserInfo{
+                  position: absolute;
+                  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                  width: 10rem;
+                  margin-top: 160%;
+                  height: 10.5rem;
+                  border-radius: 10px;
+                  z-index: 9;
+                  background: white; 
+
+                  .currentUserInfo-content{
+                    padding: 1rem;
+                    display: flex;
+                    gap: 1rem;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    a{
+                        text-decoration: none;
+                        color: #333;
+                        padding: 8px 1px;
+                        transition: .3s ease-in-out;
+                        width: 100%;
+                        text-align: center;
+                        border-radius: 5px;
+                        display: flex;
+                        align-items: center;
+                        gap: .7rem;
+                        padding: .5rem;
+
+                        &:hover{
+                            background: hsl(17, 21%, 95%);
+
+                        }
+
+                        .icon{
+                            font-size: 18px;
+                        }
+                    }
+
+                    button{
+                        width: 100%;
+                        padding: 8px 1px;
+                        border: none;
+                        background: hsl(17, 21%, 95%);
+                        border-radius: 5px;
+                        cursor: pointer;
+                        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+                        font-weight: 500;
+                        transition: all .2s ease-in-out;
+
+                        &:hover{
+                            transform: scale(.9);
+                        }
+                    }
+                    }
+              }
         }
 
 

@@ -139,7 +139,7 @@
             flex-direction: column;
             transition: all .4s ease-in-out;
             transform-origin: center;
-
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
             a{
                 text-decoration: none;
                 padding-right: 3px;
@@ -293,7 +293,7 @@
                     color: #333;
 
                     &:hover{
-                        color: #e8d9cd;
+                        font-size: medium;
                     }
                 }
             }

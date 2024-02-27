@@ -45,7 +45,6 @@ function UserDashboard() {
           <p>{greeting},</p> <p>{user?.email}</p>
           </div>
         </div>
-        <button onClick={logout}>log out</button>
       </div>
     </div>
   );
