@@ -11,5 +11,36 @@
         letter-spacing: 1px;
         margin-bottom: .9rem;
     }
+
+    .empty-cart{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 3rem;
+        margin-bottom: 5rem;
+
+        .cart-icon{
+            font-size: 50px;
+        }
+
+        a{
+            text-decoration: none;
+            color: #333;
+            background: #bba58f;
+            padding: 15px 17.5px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 700;
+            transition: .2s ease-in-out;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+            &:hover{
+                transform: scale(.9);
+            }
+        }
+    }
     }
 }

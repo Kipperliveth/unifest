@@ -15,6 +15,7 @@ import MasterclassMain from "../App/App-pages/MasterclassMain";
 import Store from "../App/App-pages/Store";
 import UserDashboard from "../App/App-pages/UserDashboard";
 import Cart from "../App/App-pages/Cart";
+import UserProfile from "../App/App-pages/UserProfile";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -41,6 +42,7 @@ function AnimatedRoutes() {
         {/* <Route path="/marketplace" element={<Marketplace />} /> */}
         <Route path="/userDashboard" element={<UserDashboard />}/>
         <Route path="/cart" element={<Cart />}/>
+        <Route path='/userProfile' element={<UserProfile />}/>
 
         <Route
           path="/userMasterclass"

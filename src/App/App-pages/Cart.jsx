@@ -12,10 +12,13 @@ function Cart() {
           <h1>My Cart</h1>
 
           <div className="empty-cart">
-            <MdOutlineShoppingCart />
+            <MdOutlineShoppingCart className="cart-icon" />
             <h3>Your cart is empty</h3>
-            <p>Explore our wide selection of products and find the perfect fit for you.</p>
-            <NavLink>Start Shopping</NavLink>
+            <p>
+              Explore our wide selection of products and find the perfect fit
+              for you.
+            </p>
+            <NavLink to="/store">Start Shopping</NavLink>
           </div>
         </div>
       </div>
