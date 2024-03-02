@@ -20,6 +20,7 @@ function Navbar() {
     "/store",
     "/userMasterclass",
     "/userDashboard",
+    "/adminHome",
     "/cart", "/userProfile"
   ];
 

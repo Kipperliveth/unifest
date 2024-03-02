@@ -8,14 +8,15 @@ import About from "./About";
 import Contact from "./Contact";
 import Login from "../App/App-auth/Login";
 import SignUp from "../App/App-auth/SignUp";
-import Marketplace from "../App/App-pages/Marketplace";
+// import Marketplace from "../App/App-pages/Marketplace";
+// import AdminDashboard from "../Admin/AdminComponents/AdminDashboard";
 import ProtectedRoute from "../App/App-auth/AuthGuard";
-import AdminDashboard from "../Admin/Admin-pages/AdminDashboard";
 import MasterclassMain from "../App/App-pages/MasterclassMain";
 import Store from "../App/App-pages/Store";
 import UserDashboard from "../App/App-pages/UserDashboard";
 import Cart from "../App/App-pages/Cart";
 import UserProfile from "../App/App-pages/UserProfile";
+import AdminHome from "../Admin/AdminPages/AdminHome";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -40,9 +41,10 @@ function AnimatedRoutes() {
                       <Marketplace />
                     </ProtectedRoute> }/> */}
         {/* <Route path="/marketplace" element={<Marketplace />} /> */}
-        <Route path="/userDashboard" element={<UserDashboard />}/>
-        <Route path="/cart" element={<Cart />}/>
-        <Route path='/userProfile' element={<UserProfile />}/>
+        <Route path="/userDashboard" element={<UserDashboard />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/adminHome" element={<AdminHome />} />
 
         <Route
           path="/userMasterclass"
@@ -55,14 +57,14 @@ function AnimatedRoutes() {
 
         <Route path="/store" element={<Store />} />
 
-        <Route
+        {/* <Route
           path="/adminDashboard"
           element={
             <ProtectedRoute>
               <AdminDashboard />
             </ProtectedRoute>
           }
-        />
+        /> */}
       </Routes>
     </AnimatePresence>
   );

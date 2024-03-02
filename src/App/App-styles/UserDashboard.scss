@@ -77,3 +77,19 @@
     }
     
 }
+@media screen and (max-width: 1080px) {
+.userDash{
+
+    .userDash-container{
+
+        .dash-links{
+            flex-wrap: wrap;
+            justify-content: center;
+
+            a{
+                width: 20rem;
+            }
+        }
+    }
+}
+}
