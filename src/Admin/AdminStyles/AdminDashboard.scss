@@ -1,0 +1,33 @@
+.adminDash{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    border: 1px solid #888;
+    border-radius: 15px;
+    padding: .5rem;
+
+
+    .logo-container{
+        display: flex;
+        text-decoration: none;
+        color: #523d35;
+        align-items: center;
+        
+        img{
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo{
+            letter-spacing: 4px;
+            
+            span{
+                font-weight: 700;
+            }
+        }
+    }
+
+    .adminDash-links{
+        margin-top: 4rem;
+    }
+}
