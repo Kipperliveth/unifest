@@ -21,6 +21,7 @@ function Navbar() {
     "/userMasterclass",
     "/userDashboard",
     "/adminHome",
+    "/adminNotifications",
     "/cart", "/userProfile"
   ];
 

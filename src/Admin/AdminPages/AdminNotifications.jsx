@@ -1,16 +1,16 @@
 import React from "react";
 import AdminDashboard from "../AdminComponents/AdminDashboard";
 
-function AdminHome() {
+function AdminNotifications() {
   return (
     <div className="adminHome">
       <AdminDashboard />
 
-      <div className="adminHome-content adminContent">
-        <h1>Welcome Back Admin</h1>
+      <div className="adminNotifications-content">
+        <h1>AdminNotifications</h1>
       </div>
     </div>
   );
 }
 
-export default AdminHome;
+export default AdminNotifications;

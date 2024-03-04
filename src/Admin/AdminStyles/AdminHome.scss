@@ -6,3 +6,15 @@
     gap: 1rem;
     margin-top: 1rem;
 }
+
+
+@media screen and (max-width: 1080px) {
+.adminHome{
+    display: flex;
+    flex-direction: column;
+
+    .adminContent{
+        margin-top: 5rem;
+    }
+}
+}
