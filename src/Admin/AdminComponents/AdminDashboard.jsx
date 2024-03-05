@@ -26,47 +26,61 @@ function AdminDashboard() {
         </p>
       </NavLink>
 
-      <div className="mobile-content" onClick={toggleMenu}>
+      {/* <div className="mobile-content" onClick={toggleMenu}>
         <AiOutlineMenu className="mobile-admin-menu" />
+      </div> */}
+
+      <div className="adminDash-links desktop">
+        <NavLink to="/adminHome">
+          <MdOutlineDashboard className="dash-icon" /> <h3>Dashboard</h3>
+        </NavLink>
+        <NavLink to="/adminNotifications">
+          <IoIosNotificationsOutline className="dash-icon" />{" "}
+          <h3>Notifications</h3>
+        </NavLink>
+
+        <div className="adminDash-shop">
+          <h2>Shop</h2>
+          <NavLink>
+            <IoCloudUploadOutline className="admin-shop-icon" /> <h3>Orders</h3>
+          </NavLink>
+          <NavLink>
+            <CiCircleList className="admin-shop-icon" /> <h3>Post</h3>
+          </NavLink>
+          <NavLink>
+            <IoMdCloudOutline className="admin-shop-icon" /> <h3>Uploads</h3>
+          </NavLink>
+        </div>
+
+        <div className="adminDash-masterclass">
+          <h2>Masterclass</h2>
+          <NavLink>
+            <LiaChalkboardTeacherSolid className="admin-masterclass-icon" />{" "}
+            <h3>Start a Class</h3>
+          </NavLink>
+          <NavLink>
+            <MdOutlineSchedule className="admin-masterclass-icon" />
+            <h3>Schedules</h3>
+          </NavLink>
+        </div>
       </div>
 
-      {/* {isOpen && ( */}
-        <div className={`adminDash-links ${isOpen ? 'open' : ''}`}>
-          <NavLink to="/adminHome">
-            <MdOutlineDashboard className="dash-icon" /> <h3>Dashboard</h3>
-          </NavLink>
-          <NavLink to="/adminNotifications">
-            <IoIosNotificationsOutline className="dash-icon" />{" "}
-            <h3>Notifications</h3>
-          </NavLink>
+      <div className={`menu-container ${isOpen ? "open" : ""}`}>
+        <div className="menu-icon" onClick={toggleMenu}>
 
-          <div className="adminDash-shop">
-            <h2>Shop</h2>
-            <NavLink>
-              <IoCloudUploadOutline className="admin-shop-icon" />{" "}
-              <h3>Orders</h3>
-            </NavLink>
-            <NavLink>
-              <CiCircleList className="admin-shop-icon" /> <h3>Post</h3>
-            </NavLink>
-            <NavLink>
-              <IoMdCloudOutline className="admin-shop-icon" /> <h3>Uploads</h3>
-            </NavLink>
+          <AiOutlineMenu className="mobile-admin-menu" />
+
+          <div className="menu-border">
+
+          <div className="menu-links">
+            {/* Your menu links with icons */}
+            <a href="/">Link 1</a>
+            <a href="/">Link 2</a>
+            <a href="/">Link 3</a>
           </div>
-
-          <div className="adminDash-masterclass">
-            <h2>Masterclass</h2>
-            <NavLink>
-              <LiaChalkboardTeacherSolid className="admin-masterclass-icon" />{" "}
-              <h3>Start a Class</h3>
-            </NavLink>
-            <NavLink>
-              <MdOutlineSchedule className="admin-masterclass-icon" />
-              <h3>Schedules</h3>
-            </NavLink>
           </div>
         </div>
-      {/* )} */}
+      </div>
     </div>
   );
 }
