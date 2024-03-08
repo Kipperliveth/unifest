@@ -98,31 +98,100 @@
     .menu-container{
         display: block;
         position: relative;
-
-
+        justify-content: center;
+        border-radius: 15px;
     }
 
     .menu-icon {
-        width: 50px; /* Adjust as needed */
+        width: fit-content; 
         cursor: pointer;
+        display: inherit;
+        justify-content: center;
+        align-items: center;
+        padding: .5rem;
+        padding-bottom: .3rem;
+      }
+
+      .mobile-admin-menu{
+        font-size: 25px;
+        padding: .5rem;
+        transition: .3s ease-in-out;
+
+        &:hover{
+            transform: scale(.85);
+        }
       }
       
       .menu-border {
         height: 0;
-        border: 2px solid black;
         transition: height 0.5s ease;
       }
       
       .menu-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
         opacity: 0;
         transition: opacity 0.5s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        a{
+            text-decoration: none;
+            color: #000;
+            margin-bottom: .5rem;
+            padding: .5rem;
+            border-radius: 10px;
+            transition: .3s ease-in-out;
+            position: relative;
+
+
+            h3{
+                background: hsl(17, 21%, 90%);
+                position: absolute;
+                left: 0%;
+                top: 50%;
+                transform: translateY(-50%);
+               display: inline-block;
+               white-space: nowrap;
+               width: fit-content;
+              margin-left: 150%;
+              padding: 5px;
+              border-radius: 8px;
+              font-weight: 700;
+              font-size: 13px;
+                display: none;                
+            }
+
+            .admin-shop-icon,
+            .admin-masterclass-icon{
+                font-size: 25px;
+            }
+
+            &:nth-child(1){
+                margin-top: 1rem;
+            }
+
+            &:hover{
+                background: hsl(17, 21%, 90%);
+                transform: scale(.85);
+            }
+
+            &:hover h3{
+                display: block;
+            }
+        }
+
+
       }
       
       .menu-container.open .menu-border {
-        height: 100px; /* Adjust to desired expanded height */
+        height: 17rem; /* Adjust to desired expanded height */
+      }
+
+      .menu-container.open{
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
       }
       
       .menu-container.open .menu-links {

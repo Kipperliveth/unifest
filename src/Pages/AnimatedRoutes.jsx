@@ -18,6 +18,7 @@ import Cart from "../App/App-pages/Cart";
 import UserProfile from "../App/App-pages/UserProfile";
 import AdminHome from "../Admin/AdminPages/AdminHome";
 import AdminNotifications from "../Admin/AdminPages/AdminNotifications";
+import Post from "../Admin/AdminPages/Post";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function AnimatedRoutes() {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/adminNotifications" element={<AdminNotifications />} />
+        <Route path="/post" element={<Post />}/>
 
         <Route
           path="/userMasterclass"

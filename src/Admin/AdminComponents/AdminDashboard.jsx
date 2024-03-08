@@ -9,6 +9,8 @@ import { IoMdCloudOutline } from "react-icons/io";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { MdOutlineSchedule } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
+import { MdCancel } from "react-icons/md";
+import { FaUserCircle } from "react-icons/fa";
 
 function AdminDashboard() {
   const [isOpen, setIsOpen] = useState(false); // State to track open/closed state
@@ -26,10 +28,6 @@ function AdminDashboard() {
         </p>
       </NavLink>
 
-      {/* <div className="mobile-content" onClick={toggleMenu}>
-        <AiOutlineMenu className="mobile-admin-menu" />
-      </div> */}
-
       <div className="adminDash-links desktop">
         <NavLink to="/adminHome">
           <MdOutlineDashboard className="dash-icon" /> <h3>Dashboard</h3>
@@ -41,11 +39,11 @@ function AdminDashboard() {
 
         <div className="adminDash-shop">
           <h2>Shop</h2>
-          <NavLink>
-            <IoCloudUploadOutline className="admin-shop-icon" /> <h3>Orders</h3>
+          <NavLink to="/post">
+            <IoCloudUploadOutline className="admin-shop-icon" /> <h3> Post</h3>
           </NavLink>
           <NavLink>
-            <CiCircleList className="admin-shop-icon" /> <h3>Post</h3>
+            <CiCircleList className="admin-shop-icon" /> <h3>Orders</h3>
           </NavLink>
           <NavLink>
             <IoMdCloudOutline className="admin-shop-icon" /> <h3>Uploads</h3>
@@ -62,22 +60,46 @@ function AdminDashboard() {
             <MdOutlineSchedule className="admin-masterclass-icon" />
             <h3>Schedules</h3>
           </NavLink>
+
+          <NavLink>
+            <FaUserCircle className="admin-masterclass-icon" />
+            <h3>Admin Name</h3>
+          </NavLink>
         </div>
       </div>
 
       <div className={`menu-container ${isOpen ? "open" : ""}`}>
         <div className="menu-icon" onClick={toggleMenu}>
-
-          <AiOutlineMenu className="mobile-admin-menu" />
+          {isOpen ? (
+            <MdCancel className="mobile-admin-menu" />
+          ) : (
+            <AiOutlineMenu className="mobile-admin-menu" />
+          )}
 
           <div className="menu-border">
+            <div className="menu-links">
+              {/* Your menu links with icons */}
+              <NavLink>
+                <IoCloudUploadOutline className="admin-shop-icon" />{" "}
+                <h3>Orders</h3>
+              </NavLink>
+              <NavLink>
+                <CiCircleList className="admin-shop-icon" /> <h3>Post</h3>
+              </NavLink>
+              <NavLink>
+                <IoMdCloudOutline className="admin-shop-icon" />{" "}
+                <h3>Uploads</h3>
+              </NavLink>
 
-          <div className="menu-links">
-            {/* Your menu links with icons */}
-            <a href="/">Link 1</a>
-            <a href="/">Link 2</a>
-            <a href="/">Link 3</a>
-          </div>
+              <NavLink>
+                <LiaChalkboardTeacherSolid className="admin-masterclass-icon" />
+                <h3>Start Class</h3>
+              </NavLink>
+              <NavLink>
+                <MdOutlineSchedule className="admin-masterclass-icon" />
+                <h3>Schedules</h3>
+              </NavLink>
+            </div>
           </div>
         </div>
       </div>
