@@ -5,6 +5,10 @@
     border: 1px solid #888;
     border-radius: 15px;
     padding: .5rem;
+    height: fit-content;
+    top:0;
+    position: sticky;
+    background: white;
 
     .mobile-content, 
     .menu-container{
