@@ -1,9 +1,11 @@
 .home{
-    overflow-x: hidden;
+    overflow: hidden;
     width: 100vw;
     // position: relative;
-// top: 5rem;
-// top: 0;
+
+    // &::-webkit-scrollbar {
+    //     display: none;
+    //   }
 
 .landing{
     background: rgba(0, 0, 0, 0.5) url('../../stock/homeLanding.jpg')no-repeat;
@@ -389,6 +391,11 @@
                     border-radius: 20px;
                     color: white;
                     cursor: pointer;
+                    transition: .3s ease-in-out;
+
+                    &:hover{
+                        transform: scale(.95);
+                    }
                 }
             }
         }
