@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { PiReadCvLogoFill } from "react-icons/pi";
 import { ImSpinner8 } from "react-icons/im";
+import { PuffLoader } from "react-spinners";
 
 
 function SignUp() {
@@ -18,7 +19,6 @@ function SignUp() {
   const [error, setError] = useState("");
   //
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -58,13 +58,30 @@ function SignUp() {
         }
         console.log(error.message);
       }
-     
     }
   };
 
+   //loader
+   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    document.title = "Create Account-Evanis interiors";
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="signup-page">
+
+           {isLoading ? (
+        <div className="spinner-container">
+          <PuffLoader color=" #888" size={25} />
+        </div>
+      ) : (
       <div className="signup-page-container">
         <div className="sign-left">
           <h1>Left</h1>
@@ -110,7 +127,7 @@ function SignUp() {
             </div>
 
             <button onClick={handleSubmit} className="sign-up-btn">
-            {isLoggedIn ? (
+              {isLoggedIn ? (
                 <ImSpinner8 className="signup-spinner" />
               ) : (
                 "Sign In"
@@ -123,6 +140,8 @@ function SignUp() {
           </form>
         </div>
       </div>
+      )}
+
     </div>
   );
 }

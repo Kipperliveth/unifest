@@ -35,7 +35,6 @@ function Navbar() {
           <NavLink to="/" className="logo-container">
             <img src={logo} alt="evanis-interior-logo" />
             <p className="logo">
-              {" "}
               <span>EVANIS</span> INTERIORS
             </p>
           </NavLink>

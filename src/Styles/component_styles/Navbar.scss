@@ -150,11 +150,11 @@
      
 
         .bar1, .bar2{
-      opacity: 0;
-      transition: opacity 0.5s;
-      transition-delay: 1s;
-      
+            opacity: 0;
+            transition: opacity 0.5s;
+            transition-delay: 1s;
         }
+        
         .notifs:hover + .bar1,
         .cart:hover + .bar2
         {
