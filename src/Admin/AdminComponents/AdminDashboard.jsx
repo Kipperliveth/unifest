@@ -78,16 +78,24 @@ function AdminDashboard() {
 
           <div className="menu-border">
             <div className="menu-links">
+              <NavLink to="/adminHome">
+                <MdOutlineDashboard className="admin-shop-icon" />
+                <h3>Dashboard</h3>
+              </NavLink>
+              <NavLink>
+                <IoIosNotificationsOutline className="admin-shop-icon" />
+                <h3>Notifications</h3>
+              </NavLink>
               {/* Your menu links with icons */}
-              <NavLink>
-                <IoCloudUploadOutline className="admin-shop-icon" />{" "}
-                <h3>Orders</h3>
+              <NavLink to='/post'>
+                <IoCloudUploadOutline className="admin-shop-icon" />
+                <h3>Post</h3>
               </NavLink>
-              <NavLink>
-                <CiCircleList className="admin-shop-icon" /> <h3>Post</h3>
+              <NavLink to="/orders">
+                <CiCircleList className="admin-shop-icon" /> <h3>Orders</h3>
               </NavLink>
-              <NavLink>
-                <IoMdCloudOutline className="admin-shop-icon" />{" "}
+              <NavLink to="/uploads">
+                <IoMdCloudOutline className="admin-shop-icon" />
                 <h3>Uploads</h3>
               </NavLink>
 

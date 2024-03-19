@@ -1,60 +1,43 @@
 import React, { useEffect, useState } from "react";
 import AdminDashboard from "../AdminComponents/AdminDashboard";
-import { storage } from "../../firebase-config";
-import {
-  ref,
-  uploadBytes,
-  listAll,
-  getDownloadURL,
-  deleteObject,
-} from "firebase/storage";
+import { imgdb, txtdb } from "../../firebase-config";
 import { v4 } from "uuid";
-// import Store from "../../App/App-pages/Store";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 function Post() {
-  const [imageUpload, setImageUpload] = useState(null);
-  const [imageList, setImageList] = useState([]);
-  const [imageDescription, setImageDescription] = useState("");
+  const [txt, setTxt] = useState("");
+  const [img, setImg] = useState("");
 
-  const imageListRef = ref(storage, "images/");
+  //
+  const [data, setData] = useState([]);
 
-  const uploadImage = () => {
-    if (imageUpload == null) return;
-
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    uploadBytes(imageRef, imageUpload).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setImageList((prev) => [
-          ...prev,
-          { url, description: imageDescription, ref: snapshot.ref },
-        ]);
-        setImageDescription("");
+  const handleUpload = (e) => {
+    console.log(e.target.files[0]);
+    const imgs = ref(imgdb, `imgs/${v4()}`);
+    uploadBytes(imgs, e.target.files[0]).then((data) => {
+      console.log(data, "imgs");
+      getDownloadURL(data.ref).then((val) => {
+        setImg(val);
       });
     });
   };
 
-  const deleteImage = (index, imageRef) => {
-    deleteObject(imageRef)
-      .then(() => {
-        setImageList((prev) => {
-          const updatedList = [...prev];
-          updatedList.splice(index, 1);
-          return updatedList;
-        });
-      })
-      .catch((error) => {
-        console.log("Error deleting image:", error);
-      });
+  const handleClick = async () => {
+    const valRef = collection(txtdb, "txtData");
+    await addDoc(valRef, { txtVal: txt, imgUrl: img });
+    alert("data added");
+  };
+
+  const getData = async () => {
+    const valRef = collection(txtdb, "txtData");
+    const dataDb = await getDocs(valRef);
+    const allData = dataDb.docs.map((val) => ({ ...val.data(), id: val.id }));
+    setData(allData);
   };
 
   useEffect(() => {
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageList((prev) => [...prev, { url, ref: item }]);
-        });
-      });
-    });
+    getData();
   }, []);
 
   return (
@@ -63,34 +46,26 @@ function Post() {
 
       <div className="adminContent adminPost">
         <div className="post-container">
-          <input
-            type="file"
-            onChange={(event) => {
-              setImageUpload(event.target.files[0]);
-            }}
-          />
+          <input type="file" onChange={(e) => handleUpload(e)} />
+
           <input
             type="text"
             name="description"
             placeholder="image description"
-            onChange={(event) => {
-              setImageDescription(event.target.value);
-            }}
+            onChange={(e) => setTxt(e.target.value)}
           />
-          <button onClick={uploadImage}>Upload Image</button>
+
+          <button onClick={handleClick}>Upload</button>
         </div>
 
-        <div>
-          {imageList.map((image, index) => (
-            <div key={index}>
-              <img src={image.url} alt="market" />
-              <p>{image.description}</p>
-              <button onClick={() => deleteImage(index, image.ref)}>
-                Delete
-              </button>
+        {/* <div>
+          {data.map((value) => (
+            <div key={value.id}>
+              <img src={value.imgUrl} height="200px" width="200px" />
+              <h1>{value.txtVal}</h1>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

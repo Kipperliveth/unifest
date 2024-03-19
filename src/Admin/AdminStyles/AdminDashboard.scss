@@ -98,12 +98,15 @@
     position: fixed;
     background: white;
     z-index: 10;
+    margin-top: 1rem;
+
 
     .menu-container{
         display: block;
         position: relative;
         justify-content: center;
         border-radius: 15px;
+        
     }
 
     .menu-icon {
@@ -133,12 +136,13 @@
       
       .menu-links {
         opacity: 0;
+        pointer-events: none;
         transition: opacity 0.5s ease;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
+        
 
         a{
             text-decoration: none;
@@ -190,7 +194,7 @@
       }
       
       .menu-container.open .menu-border {
-        height: 17rem; /* Adjust to desired expanded height */
+        height: 23.69rem; /* Adjust to desired expanded height */
       }
 
       .menu-container.open{
@@ -200,6 +204,7 @@
       
       .menu-container.open .menu-links {
         opacity: 1;
+        pointer-events:  auto;
       }
 
    

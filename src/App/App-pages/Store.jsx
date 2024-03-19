@@ -1,7 +1,7 @@
 import {useState, useEffect } from "react";
 import React from "react";
 import UserNav from "../App-components/UserNav";
-import { storage } from "../../firebase-config";
+// import { storage } from "../../firebase-config";
 import {
   ref,
   listAll,
@@ -15,18 +15,18 @@ function Store() {
   const [imageList, setImageList] = useState([]);
 
 
-  const imageListRef = ref(storage, "images/");
+  // const imageListRef = ref(storage, "images/");
 
 
-  useEffect(() => {
-    listAll(imageListRef).then((response) => {
-      response.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImageList((prev) => [...prev, { url, ref: item }]);
-        });
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   listAll(imageListRef).then((response) => {
+  //     response.items.forEach((item) => {
+  //       getDownloadURL(item).then((url) => {
+  //         setImageList((prev) => [...prev, { url, ref: item }]);
+  //       });
+  //     });
+  //   });
+  // }, []);
 
   return (
     <div className="theStore">
