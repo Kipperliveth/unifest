@@ -4,6 +4,7 @@
 @import url('./UserDashboard.scss');
 @import url('./Cart.scss');
 @import url('./Store.scss');
+@import url('./Onboarding.scss');
 
 .spinner-container{
     width: 100%;
@@ -23,3 +24,16 @@
         border-bottom-left-radius: 8rem;
     }
 
+    .load-spinner{
+        animation: spin 2s linear infinite;
+        padding: 1px 15px;
+    }
+
+    @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }

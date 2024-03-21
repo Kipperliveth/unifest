@@ -23,7 +23,7 @@ function Navbar() {
     "/adminHome",
     "/adminNotifications", 
     "/post",
-    "/cart", "/userProfile"
+    "/cart", "/userProfile",'/uploads', '/onboarding'
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname);

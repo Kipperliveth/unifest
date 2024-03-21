@@ -4,29 +4,52 @@ import { imgdb, txtdb } from "../../firebase-config";
 import { v4 } from "uuid";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { addDoc, collection, getDocs } from "firebase/firestore";
+import { ImSpinner8 } from "react-icons/im";
+import { FaCloud } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import { FaCheckDouble } from "react-icons/fa6";
 
 function Post() {
   const [txt, setTxt] = useState("");
   const [img, setImg] = useState("");
+  const [desc, setDescTxt] = useState("");
+  const [category, setCategory] = useState("");
+  const [price, setPrice] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [uploadSuccess, setUploadSuccess] = useState(false);
   //
   const [data, setData] = useState([]);
 
   const handleUpload = (e) => {
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     const imgs = ref(imgdb, `imgs/${v4()}`);
     uploadBytes(imgs, e.target.files[0]).then((data) => {
       console.log(data, "imgs");
       getDownloadURL(data.ref).then((val) => {
         setImg(val);
+        // setUploadSuccess(true);
       });
     });
   };
 
   const handleClick = async () => {
+    setIsLoggedIn(true);
+    setTimeout(() => {
+      setIsLoggedIn(false);
+    }, 2000);
+
+    if (!txt || !desc || !category || !price || !img) {
+      setErrorMessage("Please fill in all fields before uploading.");
+      return;
+    }
+    // Clear any previous error message
+    setErrorMessage("");
+
     const valRef = collection(txtdb, "txtData");
-    await addDoc(valRef, { txtVal: txt, imgUrl: img });
-    alert("data added");
+    await addDoc(valRef, { txtVal: txt, desc, category, price, imgUrl: img });
+    // alert("data added");
+    setUploadSuccess(true);
   };
 
   const getData = async () => {
@@ -40,35 +63,99 @@ function Post() {
     getData();
   }, []);
 
+  //validation
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="adminHome">
       <AdminDashboard />
 
       <div className="adminContent adminPost">
-        <div className="post-container">
-          <input type="file" onChange={(e) => handleUpload(e)} />
+        <h2>Upload a Product</h2>
 
-          <input
-            type="text"
-            name="description"
-            placeholder="image description"
-            onChange={(e) => setTxt(e.target.value)}
-          />
+        <div style={{ display: uploadSuccess ? "none" : "block" }}>
+          <div className="post-container">
+            <input
+              type="file"
+              onChange={(e) => handleUpload(e)}
+              placeholder="browse"
+            />
 
-          <button onClick={handleClick}>Upload</button>
+            <input
+              type="text"
+              name="name"
+              placeholder="product name"
+              onChange={(e) => setTxt(e.target.value)}
+              required
+            />
+
+            <input
+              type="text"
+              name="description"
+              placeholder="product description"
+              onChange={(e) => setDescTxt(e.target.value)}
+              required
+            />
+
+            <input
+              type="text"
+              name="cateogory"
+              placeholder="product category"
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            />
+
+            <input
+              type="text"
+              name="price"
+              placeholder="product price"
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
+
+            <span>
+              <button onClick={handleClick}>
+                {" "}
+                {isLoggedIn ? (
+                  <ImSpinner8 className="load-spinner" />
+                ) : (
+                  "Sign In"
+                )}
+              </button>{" "}
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
+            </span>
+          </div>
         </div>
 
-        {/* <div>
-          {data.map((value) => (
-            <div key={value.id}>
-              <img src={value.imgUrl} height="200px" width="200px" />
-              <h1>{value.txtVal}</h1>
-            </div>
-          ))}
-        </div> */}
+        {uploadSuccess && (
+        <div className="success-message">
+          <FaCloud className="success-icon" />
+
+          <div className="msg">
+            <p>Product Successfully uploaded!</p>
+            <FaCheckDouble />
+          </div>
+
+          <NavLink to='/uploads'>Go to Uploads</NavLink>
+        </div>
+        )}
       </div>
     </div>
   );
 }
 
 export default Post;
+
+{
+  /* <div>
+  {data.map((value) => (
+    <div key={value.id}>
+      <img src={value.imgUrl} height="200px" width="200px" />
+      <h1>{value.txtVal}</h1>
+      <h1>{value.desc}</h1>
+      <h1>{value.price}</h1>
+      <p>{value.category}</p>
+    </div>
+  ))}
+</div> */
+}

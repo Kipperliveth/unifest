@@ -45,7 +45,7 @@ function UserDashboard() {
         <div className="userDash-header">
           <h1>Dashboard</h1>
           <div className="userNameGreeting">
-            <p>{greeting},</p> <p>{user?.email}</p>
+            <p>{greeting},</p> <p>{user?.email} {user.displayName} {user.address}</p>
           </div>
         </div>
 

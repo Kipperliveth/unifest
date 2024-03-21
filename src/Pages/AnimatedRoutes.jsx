@@ -19,6 +19,9 @@ import UserProfile from "../App/App-pages/UserProfile";
 import AdminHome from "../Admin/AdminPages/AdminHome";
 import AdminNotifications from "../Admin/AdminPages/AdminNotifications";
 import Post from "../Admin/AdminPages/Post";
+import Uploads from "../Admin/AdminPages/Uploads";
+import Onboarding from "../App/App-auth/Onboarding";
+
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -49,6 +52,8 @@ function AnimatedRoutes() {
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/adminNotifications" element={<AdminNotifications />} />
         <Route path="/post" element={<Post />}/>
+        <Route path='/uploads' element={<Uploads />}/>
+        <Route path='/onboarding' element={<Onboarding />}/>
 
         <Route
           path="/userMasterclass"

@@ -45,7 +45,7 @@ function AdminDashboard() {
           <NavLink>
             <CiCircleList className="admin-shop-icon" /> <h3>Orders</h3>
           </NavLink>
-          <NavLink>
+          <NavLink to='/uploads'>
             <IoMdCloudOutline className="admin-shop-icon" /> <h3>Uploads</h3>
           </NavLink>
         </div>
