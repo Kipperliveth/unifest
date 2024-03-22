@@ -18,12 +18,16 @@ function Navbar() {
   const hiddenPaths = [
     "/marketplace",
     "/store",
+    "/address",
     "/userMasterclass",
     "/userDashboard",
     "/adminHome",
-    "/adminNotifications", 
+    "/adminNotifications",
     "/post",
-    "/cart", "/userProfile",'/uploads', '/onboarding'
+    "/cart",
+    "/userProfile",
+    "/uploads",
+    "/onboarding",
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname);
@@ -86,14 +90,18 @@ function Navbar() {
           </ul>
 
           <div className="app">
+            <div className='notif-bars'>
+
             <IoIosNotificationsOutline className="app-icon desktop-view notifs" />
-            <div className="notif-bar bar1">
+            <div className="notif-bar bar1 desktop-view">
               <NavLink to="/login">Login</NavLink> to see notifications
             </div>
             <AiOutlineShoppingCart className="app-icon desktop-view cart" />
-            <div className="notif-bar bar2">
+            <div className="notif-bar bar2 desktop-view">
               <NavLink to="/login">Login</NavLink> to see cart
             </div>
+            
+          </div>
 
             <NavLink to="/login" className="login-btn">
               Login

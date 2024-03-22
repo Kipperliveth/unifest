@@ -34,21 +34,26 @@ function Home() {
             <h1 data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
               Transform Your Space to a Place of Beauty and Comfort
             </h1>
-            <p data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
+            <p
+              data-aos-delay="300"
+              data-aos="fade-up" data-aos-duration="800" data-aos-once="true" 
+             >
               Conceptual. Custom. Yours. We design interiors that tell your
               story through unique details and bespoke furniture
             </p>
 
-            <button
-              className="cta"
+            <div
+              className="button"
               data-aos="fade-up"
               data-aos-duration="1000"
               data-aos-once="true"
-              data-aos-delay="100"
+              data-aos-delay="400"
             >
-              <span>Get Started</span>
-              <FaAngleRight />
-            </button>
+              <button className="cta">
+                <span>Get Started</span>
+                <FaAngleRight />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -168,7 +173,7 @@ function Home() {
               </p>
 
               <div
-                 data-aos="fade-up"
+                data-aos="fade-up"
                 data-aos-duration="800"
                 data-aos-once="true"
                 data-aos-delay="400"
@@ -215,21 +220,13 @@ function Home() {
               </p>
 
               <div
-              data-aos="fade-up"
-              data-aos-duration="1000"
-              data-aos-delay="600"
-              data-aos-once="true"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+                data-aos-delay="600"
+                data-aos-once="true"
               >
-                
-              <NavLink
-                to="/about"
-                >
-                Learn More
-              </NavLink>
-                </div>
-
-
-              
+                <NavLink to="/about">Learn More</NavLink>
+              </div>
             </div>
 
             <div

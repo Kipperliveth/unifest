@@ -51,7 +51,7 @@ function SignUp() {
           confirmPassword
         );
         console.log(user);
-        navigate("/userDashboard");
+        navigate("/onboarding");
       } catch (error) {
         if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
           setError("Email is already in use");

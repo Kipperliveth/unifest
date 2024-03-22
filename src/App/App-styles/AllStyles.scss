@@ -6,6 +6,11 @@
 @import url('./Store.scss');
 @import url('./Onboarding.scss');
 
+.appContainer{
+  margin: 0 auto;
+  width: 90vw;
+}
+
 .spinner-container{
     width: 100%;
     height: 100vh;

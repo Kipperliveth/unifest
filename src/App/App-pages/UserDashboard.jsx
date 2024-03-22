@@ -45,7 +45,10 @@ function UserDashboard() {
         <div className="userDash-header">
           <h1>Dashboard</h1>
           <div className="userNameGreeting">
-            <p>{greeting},</p> <p>{user?.email} {user.displayName} {user.address}</p>
+            <p>{greeting},</p>{" "}
+            <p>
+              {user?.email} {user.displayName} {user.address}
+            </p>
           </div>
         </div>
 
@@ -68,9 +71,7 @@ function UserDashboard() {
           <NavLink to="/userProfile" className="link userProfile">
             <MdOutlineManageAccounts className="dashLinks-icon" />
             <h1>Account</h1>
-            <p>
-              Edit and update your profile and address.
-            </p>
+            <p>Edit and update your profile and address.</p>
           </NavLink>
         </div>
       </div>

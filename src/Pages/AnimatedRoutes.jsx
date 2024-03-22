@@ -21,6 +21,7 @@ import AdminNotifications from "../Admin/AdminPages/AdminNotifications";
 import Post from "../Admin/AdminPages/Post";
 import Uploads from "../Admin/AdminPages/Uploads";
 import Onboarding from "../App/App-auth/Onboarding";
+import Address from "../App/App-auth/Address";
 
 
 function AnimatedRoutes() {
@@ -54,6 +55,7 @@ function AnimatedRoutes() {
         <Route path="/post" element={<Post />}/>
         <Route path='/uploads' element={<Uploads />}/>
         <Route path='/onboarding' element={<Onboarding />}/>
+        <Route path="/address" element={<Address />}/>
 
         <Route
           path="/userMasterclass"
