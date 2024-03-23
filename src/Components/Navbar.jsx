@@ -28,6 +28,7 @@ function Navbar() {
     "/userProfile",
     "/uploads",
     "/onboarding",
+    '/profilePic'
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname);

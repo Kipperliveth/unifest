@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { doc, collection, setDoc } from "firebase/firestore";
 import { auth, txtdb } from "../../firebase-config";
+import { IoIosCheckmarkCircle } from "react-icons/io";
+
 
 function Address() {
   const [addressData, setAddressData] = useState({
@@ -41,6 +43,43 @@ function Address() {
 
   return (
     <div className="onboarding">
+      <div className="uploadAddress">
+
+      <div className="progress">
+          <div className="signUpPage">
+            <span>
+              <p>
+                <IoIosCheckmarkCircle className="completed-icon" />
+              </p>
+              <h4>Email/Password</h4>
+            </span>
+          </div>
+          <div className="userNamePage">
+            <span>
+              <p>
+                <IoIosCheckmarkCircle className="completed-icon" />
+              </p>
+              <h4>Username</h4>
+            </span>
+          </div>
+          <div className="profilePicture">
+            <span>
+              <p >
+              <IoIosCheckmarkCircle className="completed-icon" />
+              </p>
+              <h4>Display Photo</h4>
+            </span>
+          </div>
+          <div className="addressPage">
+            <span>
+              <p className="current-page">4</p>
+              <h4>Shipping Address</h4>
+            </span>
+          </div>
+
+          <div className="bar"></div>
+        </div>
+
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
@@ -52,6 +91,9 @@ function Address() {
         {/* Add similar input fields for other address components */}
         <button type="submit">Save Address</button>
       </form>
+
+      </div>
+
     </div>
   );
 }

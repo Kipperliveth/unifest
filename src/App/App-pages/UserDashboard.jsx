@@ -11,6 +11,7 @@ function UserDashboard() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
+    document.title = "User Dashboard-Evanis interiors"
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
@@ -45,9 +46,15 @@ function UserDashboard() {
         <div className="userDash-header">
           <h1>Dashboard</h1>
           <div className="userNameGreeting">
-            <p>{greeting},</p>{" "}
+            <p>{greeting},</p>
             <p>
-              {user?.email} {user.displayName} {user.address}
+              {user?.email ? (
+                <span>
+                  {user.email} {user.displayName}
+                </span>
+              ) : (
+                <span>Loading user information...</span>
+              )}
             </p>
           </div>
         </div>

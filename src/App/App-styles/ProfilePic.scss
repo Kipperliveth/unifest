@@ -1,17 +1,15 @@
 .onboarding{
-    width: 90vw;
-    margin: 0 auto;
-    margin-block: 3rem;
 
-    .upload-username{
+    .uploadProfilePicture{
         display: flex;
         justify-content: center;
         flex-direction: column;
         width: 100%;
         align-items: center;
 
+
         .progress{
-            position: relative;
+        position: relative;
         display: flex;
         gap: 3rem;
         margin-bottom: 3rem;
@@ -62,27 +60,27 @@
 }
 
 @media screen and (max-width: 767px) {
-.onboarding{
-
-    .upload-username{
-
-        .progress{
-            width: 95vw;
-            overflow-x: hidden;
-
-            .bar{
-                width: 70%;
-            }
-
-            span{
-
-                h4{
-                    font-size: 10px;
-                    text-align: center;
+    .onboarding{
+    
+        .uploadProfilePicture{
+    
+            .progress{
+                width: 95vw;
+                overflow-x: hidden;
+    
+                .bar{
+                    width: 70%;
+                }
+    
+                span{
+    
+                    h4{
+                        font-size: 10px;
+                        text-align: center;
+                    }
                 }
             }
         }
     }
-}
-
-}
+    
+    }

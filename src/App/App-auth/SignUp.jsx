@@ -7,7 +7,6 @@ import { PiReadCvLogoFill } from "react-icons/pi";
 import { ImSpinner8 } from "react-icons/im";
 import { PuffLoader } from "react-spinners";
 
-
 function SignUp() {
   const navigate = useNavigate();
 
@@ -61,8 +60,8 @@ function SignUp() {
     }
   };
 
-   //loader
-   const [isLoading, setIsLoading] = useState(true);
+  //loader
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     document.title = "Create Account-Evanis interiors";
@@ -76,72 +75,68 @@ function SignUp() {
 
   return (
     <div className="signup-page">
-
-           {isLoading ? (
+      {isLoading ? (
         <div className="spinner-container">
           <PuffLoader color=" #888" size={25} />
         </div>
       ) : (
-      <div className="signup-page-container">
-        <div className="sign-left">
-          <h1>Left</h1>
-        </div>
-        <div className="sign-right">
-          <div className="head">
-            <h1>Get Started!</h1> <PiReadCvLogoFill className="sign-icon" />
+        <div className="signup-page-container">
+          <div className="sign-left">{/* <h1>Left</h1> */}</div>
+          <div className="sign-right">
+            <div className="head">
+              <h1>Get Started!</h1> <PiReadCvLogoFill className="sign-icon" />
+            </div>
+            <p className="head-p">Learn. Shop. Design.</p>
+
+            <form className="signup-form">
+              <div className="emailnpassword">
+                <h2>Email</h2>
+                <input
+                  type="email"
+                  placeholder="example@gmail.com"
+                  onChange={(event) => {
+                    setRegisterEmail(event.target.value);
+                  }}
+                  required
+                />
+              </div>
+              <div className="emailnpassword">
+                <h2>Password</h2>
+                <input
+                  type="password"
+                  placeholder="your password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  required
+                />
+              </div>
+
+              <div className="emailnpassword">
+                <h2>Re-enter Password</h2>
+                <input
+                  type="password"
+                  placeholder="confirm password"
+                  value={confirmPassword}
+                  onChange={handleConfirmPasswordChange}
+                  required
+                />
+              </div>
+
+              <button onClick={handleSubmit} className="sign-up-btn">
+                {isLoggedIn ? (
+                  <ImSpinner8 className="signup-spinner" />
+                ) : (
+                  "Sign In"
+                )}
+              </button>
+              {error && <p className="error-msg">{error}</p>}
+              <p className="login-link">
+                Already have an account? <NavLink to="/login">Login</NavLink>
+              </p>
+            </form>
           </div>
-          <p className="head-p">Learn. Shop. Design.</p>
-
-          <form className="signup-form">
-            <div className="emailnpassword">
-              <h2>Email</h2>
-              <input
-                type="email"
-                placeholder="example@gmail.com"
-                onChange={(event) => {
-                  setRegisterEmail(event.target.value);
-                }}
-                required
-              />
-            </div>
-            <div className="emailnpassword">
-              <h2>Password</h2>
-              <input
-                type="password"
-                placeholder="your password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
-            </div>
-
-            <div className="emailnpassword">
-              <h2>Re-enter Password</h2>
-              <input
-                type="password"
-                placeholder="confirm password"
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                required
-              />
-            </div>
-
-            <button onClick={handleSubmit} className="sign-up-btn">
-              {isLoggedIn ? (
-                <ImSpinner8 className="signup-spinner" />
-              ) : (
-                "Sign In"
-              )}
-            </button>
-            {error && <p className="error-msg">{error}</p>}
-            <p className="login-link">
-              Already have an account? <NavLink to="/login">Login</NavLink>
-            </p>
-          </form>
         </div>
-      </div>
       )}
-
     </div>
   );
 }
