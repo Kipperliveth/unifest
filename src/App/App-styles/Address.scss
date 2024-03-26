@@ -1,12 +1,63 @@
 .onboarding{
-
+    
+    
     .uploadAddress{
         display: flex;
         justify-content: center;
         flex-direction: column;
         width: 100%;
         align-items: center;
+        position: relative;
 
+        .popup{
+            position: absolute;
+            z-index: 10;
+            background: white;
+            padding: 5rem;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+    
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+
+            
+
+            .completed-icon{
+                font-size: 45px;
+                color: white;
+                padding: 1rem;
+                background: #4EDB42;
+                border-radius: 50%;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            }
+
+            p{
+                text-align: center;
+            }
+
+            button{
+                margin-top: 1rem;
+                width: fit-content;
+                background: black;
+                color: white;
+                border: none;
+                padding: 10px ;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: .2s ease-in-out;
+
+                &:hover{
+                    transform: scale(.95);
+                }
+            }
+        }
 
         .progress{
             position: relative;
@@ -56,13 +107,90 @@
                 }
             }
             }
+
+            .upload-address-container{
+                display: inherit;
+                flex-direction: inherit;
+                justify-content: center;
+                align-items: center;
+    
+                h2{
+                    font-weight: 400;
+                    margin: 2rem 0;
+                }
+
+                form{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 1rem;
+
+                    input{
+                        padding: 1rem;
+                        border-radius: 8px;
+                        outline: none;
+                        border: none;
+                        background: hsl(0, 0%, 93%);
+                    }
+
+                select{
+                            width: 100%;
+                            padding: 9px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            font-size: 16px;
+                            outline: none;
+                            border: none;
+                            background: hsl(0, 0%, 93%);
+
+                            &:focus {
+                              border-color: #007bff; /* Change border color when focused */
+                            }
+
+                 }
+
+                 button{
+                    width: fit-content;
+                    background: black;
+                    color: white;
+                    border: none;
+                    padding: 10px 8px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: .2s ease-in-out;
+                    grid-column: span 2; /* Span the button across both columns */
+                    place-self: center;
+    
+                    &:hover{
+                        transform: scale(.95);
+                    }
+                 }
+                          
+                    
+                }
+
+                .error-message {
+                    color: red; /* Set text color to red */
+                    margin-top: 1rem; /* Add some space above the error message */
+                  }
+            }
     }
 }
 
 @media screen and (max-width: 767px) {
     .onboarding{
     
-        .uploadAddress{
+        .uploadAddress{ 
+
+            .popup{
+              width: 50vw;
+              padding: 5rem ;
+              margin-top: 3rem;
+
+              p{
+                width: 90vw;
+                line-height: 1.5;
+              }
+            }
     
             .progress{
                 width: 95vw;
@@ -80,7 +208,20 @@
                     }
                 }
             }
+            
+            .upload-address-container{
+        
+                form{
+                   display: flex;
+                   flex-direction: column;
+                }
+            
+            }
+
         }
     }
+   
     
     }
+
+    

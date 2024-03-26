@@ -3,6 +3,22 @@
     margin: 0 auto;
     margin-block: 3rem;
 
+        .onboarding-spinner{
+        padding: 1px 1rem;
+        margin: 0 1rem;
+        animation: spin 2s linear infinite;
+
+
+        @keyframes spin {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(360deg);
+            }
+          }
+    }
+
     .upload-username{
         display: flex;
         justify-content: center;
@@ -57,6 +73,47 @@
                     border-radius: 50%;
             }
         }
+        }
+
+        .upload-Username-container{
+            display: inherit;
+            flex-direction: inherit;
+            justify-content: center;
+            align-items: center;
+
+            h2{
+                font-weight: 400;
+                margin: 2rem 0;
+                // font-size: 18px;
+            }
+
+            input{
+                padding: 1rem;
+                border-radius: 8px;
+                outline: none;
+                border: none;
+                background: hsl(0, 0%, 93%);
+            }
+
+            button{
+                margin: 1rem 0;
+                width: fit-content;
+                background: black;
+                color: white;
+                border: none;
+                padding: 10px 8px;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: .2s ease-in-out;
+
+                &:hover{
+                    transform: scale(.95);
+                }
+            }
+
+            p{
+                font-size: 16px;
+            }
         }
     }
 }

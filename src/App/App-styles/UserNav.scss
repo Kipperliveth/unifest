@@ -97,7 +97,7 @@
         .userControls{
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
             margin-right: 2rem;
             position: relative;
 
@@ -128,6 +128,7 @@
                 border-radius: 50%;
                 padding: 5px;
                 transition: .3s ease-in-out;
+                width: 35px;
 
                 &:hover{
                     transform: scale(.8);
@@ -139,11 +140,12 @@
                   position: absolute;
                   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
                   width: 10rem;
-                  margin-top: 160%;
+                  margin-top: 135%;
                   height: 10.5rem;
                   border-radius: 10px;
                   z-index: 9;
                   background: white; 
+                  right: 0;
 
                   .currentUserInfo-content{
                     padding: 1rem;
@@ -195,6 +197,17 @@
               }
         }
 
+        .app-icon{
+         font-size: 1.5rem;
+          cursor: pointer;
+          padding:  0.6rem;
+          user-select: none;
+        }
+
+        .mobile-view{
+            display: none;
+        }
+
 
      
     }
@@ -207,6 +220,28 @@
 
         .logo-container{
             font-size: smaller;
+        }
+
+    }
+}
+}
+
+
+@media screen and (max-width: 950px) {
+.userNavbar{
+
+    .userNav-container{
+
+        .desktop-content{
+            display: none;
+        }
+
+        .mobile-view{
+            display: block;
+        }
+
+        .app-icon{
+          margin-right: 1rem;
         }
     }
 }

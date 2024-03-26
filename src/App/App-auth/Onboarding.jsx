@@ -1,19 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, updateProfile, onAuthStateChanged } from "firebase/auth";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import { ImSpinner8 } from "react-icons/im";
 
 const auth = getAuth();
 
 function Onboarding() {
   const [username, setUsername] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleProfileUpdate = () => {
+    setIsLoggedIn(true);
+    setTimeout(() => {
+      setIsLoggedIn(false);
+    }, 2000);
+
+    if (!username) {
+      setErrorMessage("Field cannot be empty");
+      return;
+    }
+
+    if (username.length < 3) {
+      setErrorMessage("Username must be at least 3 characters long");
+      return;
+    }
+
     updateProfile(auth.currentUser, {
       displayName: username,
     })
       .then(() => {
         // Profile updated successfully
         console.log("Profile updated!");
+        navigate("/profilePic");
         // You can navigate to the next page or perform any other action here
       })
       .catch((error) => {
@@ -71,16 +93,28 @@ function Onboarding() {
           <div className="bar"></div>
         </div>
 
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <div className="upload-Username-container">
+          <h2>What should we call you?</h2>
 
-        <br />
-        <button onClick={handleProfileUpdate}>Save User</button>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+
+          <button onClick={handleProfileUpdate}>
+            {isLoggedIn ? (
+              <ImSpinner8 className="onboarding-spinner" />
+            ) : (
+              "Save Username"
+            )}
+          </button>
+
+          {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+        </div>
       </div>
 
       {/* <div>

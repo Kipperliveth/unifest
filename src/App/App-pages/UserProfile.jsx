@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { doc, collection, getDoc } from "firebase/firestore";
 import { auth, txtdb } from "../../firebase-config";
-import { setPersistence, browserSessionPersistence } from "firebase/auth";
+import {
+  setPersistence,
+  browserSessionPersistence,
+  onAuthStateChanged,
+} from "firebase/auth";
 
 import UserNav from "../App-components/UserNav";
 
 function UserProfile() {
+  const [user, setUser] = useState({});
+
   const [addressData, setAddressData] = useState({
     addressLine1: "",
   });
@@ -13,12 +19,12 @@ function UserProfile() {
   const [loading, setLoading] = useState(true);
 
   setPersistence(auth, browserSessionPersistence)
-  .then(() => {
-    // Session persistence successfully enabled
-  })
-  .catch((error) => {
-    console.error("Error enabling session persistence:", error);
-  });
+    .then(() => {
+      // Session persistence successfully enabled
+    })
+    .catch((error) => {
+      console.error("Error enabling session persistence:", error);
+    });
 
   useEffect(() => {
     document.title = "My Profile-Evanis enteriors";
@@ -56,30 +62,77 @@ function UserProfile() {
       fetchAddressData();
     }
   }, []);
-  
+
   useEffect(() => {
     if (!loading) {
       localStorage.setItem("addressData", JSON.stringify(addressData));
     }
   }, [addressData, loading]);
-  
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, [auth]);
 
   return (
     <div className="">
       <UserNav />
 
       <div className="appContainer">
-        {loading ? ( // Render loading indicator while data is being fetched
-          <p>Loading...</p>
-        ) : addressData ? ( // Render address data if available
-          <>
-            <h2>Your Address:</h2>
-            <p>Address Line 1: {addressData.addressLine1}</p>
-          </>
-        ) : (
-          // Render message if no address data is found
-          <p>No address data found for the current user.</p>
-        )}
+        <div className="info">
+          <div className="profilePic-info">
+            <img src={user?.photoURL} alt="displayPicture" />
+
+            <div className="user-details-info">
+              <p className="user-email">{user.email}</p>
+              <p className="username-info"> {user?.displayName}</p>
+            </div>
+          </div>
+
+          <div className="address-info-header">
+            <h2>My Shipping Information</h2>
+          </div>
+
+          <div className="address-info">
+            {loading ? ( // Render loading indicator while data is being fetched
+              <p>Loading...</p>
+            ) : addressData ? ( // Render address data if available
+              <>
+              <span>
+              <h3>Address:</h3>
+               <p>{addressData.addressLine1}</p>
+              </span>
+
+              <span>
+                <h3>
+                Your Number:
+                </h3>
+                <p> {addressData.addressPhone}</p>
+              </span>
+
+              <span>
+                <h3>
+                State:
+                </h3>
+                <p> {addressData.state}</p>
+              </span>
+
+              <span>
+                <h3>
+                  City:
+                </h3>
+                <p> {addressData.city}</p>
+              </span>
+              </>
+            ) : (
+              // Render message if no address data is found
+              <p>No address data found for the current user.</p>
+            )}
+          </div>
+
+          <button>Log Out</button>
+        </div>
       </div>
     </div>
   );

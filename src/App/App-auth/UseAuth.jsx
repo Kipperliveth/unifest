@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { auth } from "../../firebase-config";
 import { imgdb } from "../../firebase-config";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 export function useAuth() {
   const [currentUser, setCurrentUser] = useState();
@@ -14,7 +15,11 @@ export function useAuth() {
   return currentUser;
 }
 
-export async function upload(file, currentUser, setLoading) {
+export function useUpload() {
+  const navigate = useNavigate();
+
+
+return async function upload(file, currentUser, setLoading) {
   if (!currentUser) {
     console.error("User not authenticated.");
     return;
@@ -30,5 +35,9 @@ export async function upload(file, currentUser, setLoading) {
   updateProfile(currentUser, { photoURL });
 
   setLoading(false);
-  alert("file uploaded!");
+  // alert("file uploaded!");
+  navigate('/address');
 }
+
+}
+

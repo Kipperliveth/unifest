@@ -40,7 +40,7 @@ function Login() {
         loginPassword
       );
       console.log(user);
-      navigate("/marketplace");
+      navigate("/userDashboard");
     } catch (error) {
       console.log(error.message);
       setError(error.message);

@@ -50,7 +50,7 @@ function UserDashboard() {
             <p>
               {user?.email ? (
                 <span>
-                  {user.email} {user.displayName}
+                 {user.displayName}
                 </span>
               ) : (
                 <span>Loading user information...</span>

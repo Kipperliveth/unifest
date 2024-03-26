@@ -1,0 +1,129 @@
+.appContainer{
+    
+
+    .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+
+        .profilePic-info{
+            display: inherit;
+            // flex-direction: inherit;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            
+            img{
+                width: 150px;
+                border-radius: 50%;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            }
+
+            .user-details-info{
+                display: inherit;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .user-email{
+                font-weight: 600;
+            }
+
+            .username-info{
+                font-size: 16px;
+                // font-weight: 500;
+            }
+        }
+
+        .address-info-header{
+            h2{
+                font-weight: 400;
+                border: 1px solid  hsl(0, 0%, 93%);
+                padding: 1rem 4rem ;
+                border-radius: 5px;
+                
+            }
+        }
+        .address-info{
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            padding: 2rem;
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+
+            span{
+                background: hsl(0, 0%, 93%);
+                padding: 1rem ;
+                padding-right: 2.5rem;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                h3{
+                    font-weight: 400;
+                    font-size: 14px;
+                }
+
+                p{
+                    font-weight: 600;
+                }
+            }
+        }
+
+        button{
+            width: fit-content;
+            background: black;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: .2s ease-in-out;
+            grid-column: span 2; /* Span the button across both columns */
+            place-self: center;
+
+            &:hover{
+                transform: scale(.95);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+.appContainer{
+
+    .info{
+
+        .profilePic-info{
+            flex-direction: column;
+
+            .user-details-info{
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .address-info-header{
+            h2{
+                font-weight: 400;
+                border: 1px solid  hsl(0, 0%, 93%);
+                padding: 1rem;
+                font-size: 16px;
+                border-radius: 5px;
+                
+            }
+        }
+
+        .address-info{
+            display: flex;
+            flex-direction: column;
+            width: 70vw;
+            overflow-x: hidden;
+        }
+    }
+}
+}

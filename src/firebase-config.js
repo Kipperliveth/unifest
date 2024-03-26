@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { useAuth } from "./App/App-auth/UseAuth";
+// import { useAuth } from "./App/App-auth/UseAuth";
 
 // const currentUser = useAuth();
 

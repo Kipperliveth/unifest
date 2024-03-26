@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../../stock/logomain.png";
 import { MdOutlineDashboard } from "react-icons/md";
@@ -11,13 +11,23 @@ import { MdOutlineSchedule } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../firebase-config";
 
 function AdminDashboard() {
+  const [user, setUser] = useState({});
+
   const [isOpen, setIsOpen] = useState(false); // State to track open/closed state
 
   const toggleMenu = () => {
     setIsOpen(!isOpen); // Toggle open/closed state
   };
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, [auth]);
 
   return (
     <div className="adminDash">
@@ -45,7 +55,7 @@ function AdminDashboard() {
           <NavLink>
             <CiCircleList className="admin-shop-icon" /> <h3>Orders</h3>
           </NavLink>
-          <NavLink to='/uploads'>
+          <NavLink to="/uploads">
             <IoMdCloudOutline className="admin-shop-icon" /> <h3>Uploads</h3>
           </NavLink>
         </div>
@@ -62,8 +72,12 @@ function AdminDashboard() {
           </NavLink>
 
           <NavLink>
-            <FaUserCircle className="admin-masterclass-icon" />
-            <h3>Admin Name</h3>
+            <img
+              src={user?.photoURL}
+              alt="adminDisplayPicture"
+              className="admin-masterclass-icon"
+            />
+            <h3>{user?.displayName}</h3>
           </NavLink>
         </div>
       </div>
@@ -87,7 +101,7 @@ function AdminDashboard() {
                 <h3>Notifications</h3>
               </NavLink>
               {/* Your menu links with icons */}
-              <NavLink to='/post'>
+              <NavLink to="/post">
                 <IoCloudUploadOutline className="admin-shop-icon" />
                 <h3>Post</h3>
               </NavLink>
@@ -106,6 +120,15 @@ function AdminDashboard() {
               <NavLink>
                 <MdOutlineSchedule className="admin-masterclass-icon" />
                 <h3>Schedules</h3>
+              </NavLink>
+
+              <NavLink>
+                <img
+                  src={user?.photoURL}
+                  alt="adminDisplayPicture"
+                  className="admin-masterclass-icon adminPic"
+                />
+                <h3>{user?.displayName}</h3>
               </NavLink>
             </div>
           </div>

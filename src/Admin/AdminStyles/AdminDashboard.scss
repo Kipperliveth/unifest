@@ -60,6 +60,7 @@
             .admin-shop-icon,
             .admin-masterclass-icon{
                 font-size: 25px;
+                border-radius: 50%;
             }
 
             h3{
@@ -85,6 +86,10 @@
 
         .adminDash-masterclass{
             margin-bottom: 1rem;
+
+            .admin-masterclass-icon{
+                width: 30px;
+            }
         }
     }
 
@@ -123,6 +128,8 @@
         font-size: 25px;
         padding: .5rem;
         transition: .3s ease-in-out;
+        justify-content: center;
+        align-items: center;
 
         &:hover{
             transform: scale(.85);
@@ -172,8 +179,13 @@
             }
 
             .admin-shop-icon,
-            .admin-masterclass-icon{
+            .admin-masterclass-icon {
                 font-size: 25px;
+            }
+
+            .adminPic{
+                width: 25px;
+                border-radius: 50%;
             }
 
             &:nth-child(1){
@@ -194,7 +206,7 @@
       }
       
       .menu-container.open .menu-border {
-        height: 23.69rem; /* Adjust to desired expanded height */
+        height: 27.69rem; /* Adjust to desired expanded height */
       }
 
       .menu-container.open{
@@ -206,7 +218,6 @@
         opacity: 1;
         pointer-events:  auto;
       }
-
    
 
     .desktop{
@@ -217,54 +228,5 @@
         display: none;
     }
 
-    // .mobile-content{
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     margin-top: .5rem;
-
-    //     .mobile-admin-menu{
-    //         font-size: 25px;
-    //         cursor: pointer;
-    //         transition: .2s ease-in-out;
-    //         padding: .5rem;
-    //         margin: .5rem;
-    //         margin-top: 0;
-    //         border-radius: 10px;
-    //         transition: .2s ease-in-out;
-
-    //         &:hover{
-    //             transform: scale(.9);
-    //             background: hsl(17, 21%, 90%);
-    //         }
-    //     }
-    // }
-
-    // h2{
-    //     display: none;
-    // }
-
-    // .adminDash-links{
-    //     padding: 0;
-       
-    //     transition: opacity 0.9s ease-in-out;
-    //     display: none; 
-    //     opacity: .1;
-        
-            
-    //     a{
-    //         padding: .5rem;
-    //         margin: .5rem;
-
-    //         h3{
-    //             display: none;
-    //         }
-    //     }
-    // }
-
-    // .adminDash-links.open{
-    //     display: block;
-    //     opacity: 1; 
-    // }
 }
 }
