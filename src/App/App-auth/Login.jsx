@@ -2,8 +2,9 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  fetchSignInMethodsForEmail,
 } from "firebase/auth";
-import React, { useState, useEffect, lazy, Suspense} from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 import { auth } from "../../firebase-config";
@@ -12,10 +13,8 @@ import { PiHandWavingFill } from "react-icons/pi";
 import { ImSpinner8 } from "react-icons/im";
 import { PuffLoader } from "react-spinners";
 
-
 function Login() {
   //skeleton loading
-
 
   //
   const navigate = useNavigate();
@@ -47,11 +46,38 @@ function Login() {
     }
   };
 
+  //checking if user exists
+
+  const checkIfEmailExists = async (email) => {
+    try {
+      // Call fetchSignInMethodsForEmail with the email address
+      const methods = await fetchSignInMethodsForEmail(auth, email);
+      
+      // If the methods array has length > 0, it means the email exists
+      return methods.length > 0;
+    } catch (error) {
+      console.error("Error checking if email exists:", error);
+      // Handle error (e.g., display an error message)
+      return false;
+    }
+  };
+
   //google auth
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-    navigate("/userDashboard");
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      const emailExists = await checkIfEmailExists(user.email);
+      if (emailExists) {
+        navigate("/userDashboard");
+      } else {
+        navigate("/onboarding");
+      }
+    } catch (error) {
+      console.error("Error signing in with Google:", error);
+      // Handle error (e.g., display an error message)
+    }
   };
 
   //loader

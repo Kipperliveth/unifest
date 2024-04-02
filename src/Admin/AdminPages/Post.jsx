@@ -119,7 +119,7 @@ function Post() {
                 {isLoggedIn ? (
                   <ImSpinner8 className="load-spinner" />
                 ) : (
-                  "Sign In"
+                  "Upload Product"
                 )}
               </button>{" "}
               {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -128,16 +128,16 @@ function Post() {
         </div>
 
         {uploadSuccess && (
-        <div className="success-message">
-          <FaCloud className="success-icon" />
+          <div className="success-message">
+            <FaCloud className="success-icon" />
 
-          <div className="msg">
-            <p>Product Successfully uploaded!</p>
-            <FaCheckDouble />
+            <div className="msg">
+              <p>Product Successfully uploaded!</p>
+              <FaCheckDouble />
+            </div>
+
+            <NavLink to="/uploads">Go to Uploads</NavLink>
           </div>
-
-          <NavLink to='/uploads'>Go to Uploads</NavLink>
-        </div>
         )}
       </div>
     </div>

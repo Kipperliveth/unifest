@@ -24,8 +24,15 @@ function UserNav() {
   };
 
   const logout = async () => {
-    await signOut(auth);
-    navigate("/login");
+    if (auth.currentUser) {
+      await signOut(auth);
+      navigate("/login");
+    } else {
+      // Handle the scenario where the user is not logged in
+      // For example, you might display an error message or redirect the user to the login page
+      console.log("User is not logged in");
+      navigate("/login");
+    }
   };
 
   //bar display
@@ -91,7 +98,7 @@ function UserNav() {
             onClick={cartLink}
           />
           <img
-            src={user?.photoURL}
+            src={user && user.email ? user.photoURL : ''}
             alt="displayPicture"
             className="app-icon user"
             onClick={toggleUserInfo}

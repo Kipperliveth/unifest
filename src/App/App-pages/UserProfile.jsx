@@ -5,11 +5,14 @@ import {
   setPersistence,
   browserSessionPersistence,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
-
+import { useNavigate } from "react-router-dom";
 import UserNav from "../App-components/UserNav";
 
 function UserProfile() {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({});
 
   const [addressData, setAddressData] = useState({
@@ -25,6 +28,18 @@ function UserProfile() {
     .catch((error) => {
       console.error("Error enabling session persistence:", error);
     });
+
+  const logout = async () => {
+    if (auth.currentUser) {
+      await signOut(auth);
+      navigate("/login");
+    } else {
+      // Handle the scenario where the user is not logged in
+      // For example, you might display an error message or redirect the user to the login page
+      console.log("User is not logged in");
+      navigate("/login");
+    }
+  };
 
   useEffect(() => {
     document.title = "My Profile-Evanis enteriors";
@@ -85,8 +100,8 @@ function UserProfile() {
             <img src={user?.photoURL} alt="displayPicture" />
 
             <div className="user-details-info">
-              <p className="user-email">{user.email}</p>
-              <p className="username-info"> {user?.displayName}</p>
+              <p className="user-email">{user && user.email}</p>
+              <p className="username-info"> {user && user.displayName}</p>
             </div>
           </div>
 
@@ -99,31 +114,25 @@ function UserProfile() {
               <p>Loading...</p>
             ) : addressData ? ( // Render address data if available
               <>
-              <span>
-              <h3>Address:</h3>
-               <p>{addressData.addressLine1}</p>
-              </span>
+                <span>
+                  <h3>Address:</h3>
+                  <p>{addressData.addressLine1}</p>
+                </span>
 
-              <span>
-                <h3>
-                Your Number:
-                </h3>
-                <p> {addressData.addressPhone}</p>
-              </span>
+                <span>
+                  <h3>Your Number:</h3>
+                  <p> {addressData.addressPhone}</p>
+                </span>
 
-              <span>
-                <h3>
-                State:
-                </h3>
-                <p> {addressData.state}</p>
-              </span>
+                <span>
+                  <h3>State:</h3>
+                  <p> {addressData.state}</p>
+                </span>
 
-              <span>
-                <h3>
-                  City:
-                </h3>
-                <p> {addressData.city}</p>
-              </span>
+                <span>
+                  <h3>City:</h3>
+                  <p> {addressData.city}</p>
+                </span>
               </>
             ) : (
               // Render message if no address data is found
@@ -131,7 +140,7 @@ function UserProfile() {
             )}
           </div>
 
-          <button>Log Out</button>
+          <button onClick={logout}>Log Out</button>
         </div>
       </div>
     </div>
