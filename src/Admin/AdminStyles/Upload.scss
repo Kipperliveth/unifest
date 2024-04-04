@@ -1,0 +1,172 @@
+.adminHome{
+
+
+    .adminUploads{
+
+        .admin-current-page{
+            margin-block: 2rem;
+        }
+
+        .search-container{
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: row;
+            gap: .7rem;
+
+            span{
+                display: flex;
+                align-items: center;
+                background-color: hsl(0, 0%, 95%);
+                padding-inline: .7rem;
+                border-radius: 30px;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+                input{
+                    border-radius: 30px;
+                    padding: .7rem;
+                    padding-right: 2rem;
+                    border: none;
+                    outline: none;
+                    background-color: hsl(0, 0%, 95%);
+
+                }
+                .search-icon{
+                    font-size: 18px;
+                }
+            }
+
+
+            button{
+                padding-inline: 1rem;
+                border-radius: 50px;
+                border: none;
+                cursor: pointer;
+                color: white;
+                background: hsl(0, 0%, 10%);
+                transition: .2s ease-in-out;
+
+                &:hover{
+                    transform: scale(.95);
+                    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                }
+            }
+        }
+
+        .categories-container{
+            margin-bottom: 2rem;
+        }
+
+        .uploads-container{
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+
+            .product{
+             position: relative;
+            background: hsl(0, 0%, 97%);
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 12em;
+
+            img{
+                border-radius: 5px;
+                max-width: 100%;
+                max-height: 150px;
+                object-fit: cover;
+            }
+
+            .product-info{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .product-name{
+                    font-weight: 500;
+                }
+
+                .product-description{
+                    line-height: 1.5;
+                    overflow: hidden; 
+                    text-overflow: ellipsis;
+                    white-space: nowrap; /* Prevent line breaks */
+                }
+
+
+                .prodiuct-category{
+                    display: none;
+                }
+    
+                span{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+    
+                    .product-price{
+                        font-weight: bold;
+                    }
+    
+                    button{
+                    border: none;
+                    background: #BBA58F;
+                    cursor: pointer;
+                    padding: 8px 15px;
+                    border-radius: 10px;
+                    color: white;
+                    font-weight: bold;
+                    transition: .2s ease-in-out;
+    
+                    &:hover{
+                        transform: scale(.95);
+                    }
+                    }
+                }
+            }
+
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 768px) {
+.adminHome{
+
+    .adminUploads{
+
+        .uploads-container{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: .75rem;
+            justify-content: center;
+            
+
+            .product{
+                font-size: 0.8em;
+                width: 10em;
+
+                span{
+                    flex-direction: column;
+                    gap: 10px;
+
+
+                    button{
+                        width: 100%;
+                    }
+
+                    .product-price{
+                        width: 100%
+                    }
+                }
+            }
+        }
+    }
+}
+}

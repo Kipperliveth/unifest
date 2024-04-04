@@ -19,7 +19,12 @@
 
     
     .adminContent{
+        width: 100%;
         overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 }
 
@@ -31,6 +36,11 @@
 
     .adminContent{
         margin-top: 5rem;
+    }
+
+    &::-webkit-scrollbar {
+        overflow-x: hidden; 
+        display: none;
     }
 }
 }
