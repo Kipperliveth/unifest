@@ -1,11 +1,13 @@
 .adminHome{
 
 
+   
     .adminUploads{
 
         .admin-current-page{
-            margin-block: 2rem;
+            margin-block: 2rem;;
         }
+
 
         .search-container{
             margin-bottom: 2rem;
@@ -102,12 +104,72 @@
             }
         }
 
+        .loading-message{
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+
+
+            .loading-card{
+                width: 12em;
+                display: flex;
+                flex-direction: column;
+                padding: 1rem;
+                border-radius: 10px;
+                gap: 1rem;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+
+                .loading-img{
+                    height: 150px;
+                    width: 100%;
+                    border-radius: 10px;
+                }
+
+                .loading-text{
+                    height: 25px;
+                    width: 80%;
+                    border-radius: 10px;
+                }
+
+                .loading-text-II{
+                    height: 20px;
+                    width: 60%;
+                    border-radius: 10px;
+                }
+
+                .loading-img,
+                .loading-text,
+                .loading-text-II{
+                    background-color: #ededed;
+                    background: linear-gradient(
+                        100deg,
+                        rgba(255,255,255,0) 40%,
+                        rgba(255,255,255, .5) 50%,
+                        rgba(255,255,255,0) 60%
+                    ) #ededed;
+                    background-size: 200% 100%;
+                    background-position-x: 100%;
+                    animation: 1s loading ease-in-out infinite;
+                }
+                @keyframes loading {
+                    to{
+                         background-position-x: -20%;
+                    }
+                }
+
+            }
+        }
+
         .uploads-container{
             margin-bottom: 3rem;
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             gap: 2rem;
+
 
             .product{
              position: relative;
@@ -186,7 +248,47 @@
 @media screen and (max-width: 768px) {
 .adminHome{
 
+    .admin-current-page{
+        text-align: right;
+        padding-right: 2rem;
+    }
+
     .adminUploads{
+
+        .search-container{
+            position: relative;
+
+            span{
+                padding-right: 0;
+            }
+        }
+
+        .categories-container{
+            
+
+            .categories{
+                overflow-x: auto;
+                white-space: nowrap;
+
+                &::-webkit-scrollbar{
+                    display: none;
+                  }
+                  
+            }
+        }
+
+        .loading-message{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: .75rem;
+            justify-content: center;
+
+            .loading-card{
+                font-size: 0.8em;
+                width: 11em;
+
+            }
+        }
 
         .uploads-container{
             display: grid;
@@ -197,7 +299,7 @@
 
             .product{
                 font-size: 0.8em;
-                width: 10em;
+                width: 11em;
 
                 span{
                     flex-direction: column;

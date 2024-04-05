@@ -11,10 +11,10 @@ import room from "../../stock/roomicon.png";
 import lights from "../../stock/lighticon.png";
 import tables from "../../stock/tableicon.png";
 import storageicon from "../../stock/storageicon.png";
-import SkeletonLoader from "../AdminComponents/SkeletonLoader";
 
 function Uploads() {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
@@ -63,26 +63,21 @@ function Uploads() {
   };
   //
 
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-
   useEffect(() => {
-    // Simulating data fetching delay
-    const fetchData = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setProducts([{ id: 1, name: "Product 1" }, { id: 2, name: "Product 2" }]);
-      setLoading(false);
-    };
-
-    fetchData();
+    setIsLoading(true); // Start loading before fetching data
+    getData().then(() => {
+      setIsLoading(false); // Stop loading after data is fetched
+    });
   }, []);
 
   return (
     <div className="adminHome">
       <AdminDashboard />
 
+      <h2 className="admin-current-page mobile-content">Uploads</h2>
+
       <div className="adminUploads adminContent">
-        <h2 className="admin-current-page">Uploads</h2>
+        <h2 className="admin-current-page desktop-content">Uploads</h2>
 
         <div className="search-container">
           <span>
@@ -154,30 +149,70 @@ function Uploads() {
           </div>
         </div>
 
-        <div className="uploads-container">
-          {filteredData.map((value) => (
-            <div className="product" key={value.id}>
-              <img
-                src={value.imgUrl}
-                height="200px"
-                width="200px"
-                alt="product"
-              />
-
-              <div className="product-info">
-                <h2 className="product-name">{value.txtVal}</h2>
-
-                <p className="product-description">{value.desc}</p>
-
-                <p className="product-category">{value.category}</p>
-                <span>
-                  <p className="product-price"> &#8358;{value.price}</p>
-                  <button onClick={() => deleteItem(value.id)}>Delete</button>
-                </span>
-              </div>
+        {isLoading ? (
+          <div className="loading-message">
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+              <div className="loading-text-II"></div>
             </div>
-          ))}
-        </div>
+
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+              <div className="loading-text-II"></div>
+            </div>
+
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+              <div className="loading-text-II"></div>
+            </div>
+
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+              <div className="loading-text-II"></div>
+            </div>
+
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+              <div className="loading-text-II"></div>
+            </div>
+
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+              <div className="loading-text-II"></div>
+            </div>
+          </div>
+        ) : (
+          <div className="uploads-container">
+            {filteredData.map((value) => (
+              <div className="product" key={value.id}>
+                <img
+                  src={value.imgUrl}
+                  height="200px"
+                  width="200px"
+                  alt="product"
+                />
+
+                <div className="product-info">
+                  <h2 className="product-name">{value.txtVal}</h2>
+
+                  <p className="product-description">{value.desc}</p>
+
+                  <p className="product-category">{value.category}</p>
+                  <span>
+                    <p className="product-price"> &#8358;{value.price}</p>
+                    <button onClick={() => deleteItem(value.id)}>Delete</button>
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

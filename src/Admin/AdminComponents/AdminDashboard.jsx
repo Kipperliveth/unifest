@@ -125,7 +125,7 @@ function AdminDashboard() {
               <NavLink>
                 <img
                   src={user?.photoURL}
-                  alt="adminDisplayPicture"
+                  alt=""
                   className="admin-masterclass-icon adminPic"
                 />
                 <h3>{user?.displayName}</h3>
