@@ -30,6 +30,14 @@
             cursor: pointer; 
           }
 
+          select{
+            border: none;
+            outline: none;
+            padding: .8em;
+            border-radius: 5px;
+
+          }
+
           span{
             display: flex;
             align-items: center;

@@ -18,6 +18,8 @@ function Post() {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [uploadInProgress, setUploadInProgress] = useState(false);
+
   //
   const [data, setData] = useState([]);
 
@@ -39,6 +41,8 @@ function Post() {
       setIsLoggedIn(false);
     }, 2000);
 
+    setUploadInProgress(true);
+
     if (!txt || !desc || !category || !price || !img) {
       setErrorMessage("Please fill in all fields before uploading.");
       return;
@@ -46,10 +50,16 @@ function Post() {
     // Clear any previous error message
     setErrorMessage("");
 
-    const valRef = collection(txtdb, "txtData");
-    await addDoc(valRef, { txtVal: txt, desc, category, price, imgUrl: img });
-    // alert("data added");
-    setUploadSuccess(true);
+    try {
+      const valRef = collection(txtdb, "txtData");
+      await addDoc(valRef, { txtVal: txt, desc, category, price, imgUrl: img });
+      setUploadSuccess(true);
+    } catch (error) {
+      console.error("Error uploading data: ", error);
+      setErrorMessage("An error occurred while uploading. Please try again.");
+    }
+
+    setUploadInProgress(false);
   };
 
   const getData = async () => {
@@ -96,14 +106,27 @@ function Post() {
               onChange={(e) => setDescTxt(e.target.value)}
               required
             />
-
+            {/* 
             <input
               type="text"
               name="cateogory"
               placeholder="product category"
               onChange={(e) => setCategory(e.target.value)}
               required
-            />
+            /> */}
+            <select
+              name="category"
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">Select Category</option>
+              <option value="Sitting">Sitting</option>
+              <option value="Curtains">Curtains</option>
+              <option value="Room">Room</option>
+              <option value="Tables">Tables</option>
+              <option value="Lights">Lights</option>
+              <option value="Storage">storage</option>
+            </select>
 
             <input
               type="text"
@@ -115,13 +138,12 @@ function Post() {
 
             <span>
               <button onClick={handleClick}>
-                {" "}
-                {isLoggedIn ? (
+                {uploadInProgress ? (
                   <ImSpinner8 className="load-spinner" />
                 ) : (
                   "Upload Product"
                 )}
-              </button>{" "}
+              </button>
               {errorMessage && <p className="error-message">{errorMessage}</p>}
             </span>
           </div>

@@ -18,6 +18,7 @@
                 align-items: center;
                 background-color: hsl(0, 0%, 95%);
                 padding-inline: .7rem;
+                padding-right: 10rem;
                 border-radius: 30px;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
@@ -52,8 +53,53 @@
             }
         }
 
+
         .categories-container{
             margin-bottom: 2rem;
+
+            .categories{
+                margin-top: 1rem;
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+
+
+                .category-name{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: center;
+                    gap: .7rem;
+                    align-items: center;
+
+                    button{
+                        background: none;
+                        border: none;
+                        border-radius: 50%;
+                        cursor: pointer;
+                        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                    }
+                    
+                    img{
+                        width: 35px;
+                        transition: transform .3s ease-in-out;
+                        // padding: 10px;
+
+                        &:hover{
+                            transform: scale(1.05);
+                        }
+                    }
+
+                    p{
+                        font-size: 12px;
+                        font-weight: 500;
+                    }
+
+                }
+            }
         }
 
         .uploads-container{
@@ -65,7 +111,8 @@
 
             .product{
              position: relative;
-            background: hsl(0, 0%, 97%);
+            background: hsl(0, 0%, 99%);
+            // background: white;
             border-radius: 10px;
             padding: 1rem;
             box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -98,7 +145,7 @@
                 }
 
 
-                .prodiuct-category{
+                .product-category{
                     display: none;
                 }
     
