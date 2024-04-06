@@ -174,7 +174,6 @@
             .product{
              position: relative;
             background: hsl(0, 0%, 99%);
-            // background: white;
             border-radius: 10px;
             padding: 1rem;
             box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -186,7 +185,7 @@
             img{
                 border-radius: 5px;
                 max-width: 100%;
-                max-height: 150px;
+                // max-height: 150px;
                 object-fit: cover;
             }
 
@@ -292,9 +291,8 @@
 
         .uploads-container{
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: .75rem;
-            justify-content: center;
             
 
             .product{
