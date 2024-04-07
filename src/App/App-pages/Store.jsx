@@ -117,8 +117,8 @@ function Store() {
           <button onClick={handleSearchClick}>Search</button>
         </div>
 
-        <div className="categories-container">
           <h3 className="categories-header">Categories</h3>
+        <div className="categories-container">
           <div className="categories">
             <span className="category-name">
               <button onClick={() => handleCategoryClick("All")}>
