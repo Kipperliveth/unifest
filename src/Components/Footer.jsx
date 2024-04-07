@@ -9,7 +9,7 @@ import logo from "../stock/logomain.png";
 function Footer() {
   const location = useLocation();
 
-  const hiddenPaths = ["/adminHome", "/post", '/uploads'];
+  const hiddenPaths = ["/adminHome", "/post", '/uploads', "/orders"];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname);
 

@@ -219,15 +219,3 @@ function Uploads() {
 }
 
 export default Uploads;
-
-// .filter((value) => {
-//   if (searchTerm.trim() === " ") {
-//     return true;
-//   } else if (
-//     value.txtVal && value.txtVal.toLowerCase().includes(searchTerm.toLowerCase())
-//   ) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// })

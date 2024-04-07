@@ -23,7 +23,7 @@ function Navbar() {
     "/userDashboard",
     "/adminHome",
     "/adminNotifications",
-    "/post",
+    "/post", "/orders",
     "/cart",
     "/userProfile",
     "/uploads",

@@ -13,6 +13,7 @@ import { MdCancel } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
+import { CiDeliveryTruck } from "react-icons/ci";
 
 function AdminDashboard() {
   const [user, setUser] = useState({});
@@ -52,8 +53,8 @@ function AdminDashboard() {
           <NavLink to="/post">
             <IoCloudUploadOutline className="admin-shop-icon" /> <h3> Post</h3>
           </NavLink>
-          <NavLink>
-            <CiCircleList className="admin-shop-icon" /> <h3>Orders</h3>
+          <NavLink to='/orders'>
+            <CiDeliveryTruck className="admin-shop-icon" /> <h3>Orders</h3>
           </NavLink>
           <NavLink to="/uploads">
             <IoMdCloudOutline className="admin-shop-icon" /> <h3>Uploads</h3>
@@ -106,7 +107,7 @@ function AdminDashboard() {
                 <h3>Post</h3>
               </NavLink>
               <NavLink to="/orders">
-                <CiCircleList className="admin-shop-icon" /> <h3>Orders</h3>
+                <CiDeliveryTruck className="admin-shop-icon" /> <h3>Orders</h3>
               </NavLink>
               <NavLink to="/uploads">
                 <IoMdCloudOutline className="admin-shop-icon" />

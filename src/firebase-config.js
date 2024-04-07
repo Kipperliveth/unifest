@@ -6,7 +6,6 @@ import { getStorage } from "firebase/storage";
 
 // const currentUser = useAuth();
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyCVcMVKUF9pF_qovkb-vHtmcsrPYB1kUiU",
   authDomain: "evanis-interiors-a09b0.firebaseapp.com",
@@ -23,4 +22,3 @@ export const imgdb = getStorage(app);
 export const auth = getAuth(app);
 
 //profile pic
-

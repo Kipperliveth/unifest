@@ -13,6 +13,7 @@ import room from "../../stock/roomicon.png";
 import lights from "../../stock/lighticon.png";
 import tables from "../../stock/tableicon.png";
 import storageicon from "../../stock/storageicon.png";
+import { MdCancel } from "react-icons/md";
 
 function Store() {
   const [imageList, setImageList] = useState([]);
@@ -243,17 +244,23 @@ function Store() {
 
         <div className={`product-modal ${isProductModalOpen ? "open" : ""}`}>
           {selectedProductData && (
-            <div>
+            <div className="popup-details">
+              <div className="closeIcon">
+                <MdCancel className="close" onClick={handleCloseModal} />
+              </div>
+              <img src={selectedProductData.imgUrl} alt="Product" />
               <h2>{selectedProductData.txtVal}</h2>
-              <img src={selectedProductData.imgUrl} alt="Product" />{" "}
               {/* Add image */}
               <p>{selectedProductData.desc}</p>
-              <p>Category: {selectedProductData.category}</p>
-              <p>Price: &#8358;{selectedProductData.price}</p>
+
+              <p className="price"> &#8358;{selectedProductData.price}</p>
               {/* ... other product details ... */}
+              <div className="buy-now">
+                <button>Buy Now</button>
+                <button>Add to Cart</button>
+              </div>
             </div>
           )}
-          <button onClick={handleCloseModal}>Close</button>
         </div>
       </div>
     </div>
