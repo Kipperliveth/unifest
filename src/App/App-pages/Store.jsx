@@ -61,15 +61,7 @@ function Store() {
   };
   //
 
-  const deleteItem = async (itemId) => {
-    try {
-      await deleteDoc(doc(txtdb, "txtData", itemId));
-      setData(data.filter((item) => item.id !== itemId));
-      setFilteredData(filteredData.filter((item) => item.id !== itemId)); // Update filteredData after deletion
-    } catch (error) {
-      console.error("Error deleting document: ", error);
-    }
-  };
+
   //
 
   const handleCategoryClick = (category) => {
@@ -232,7 +224,7 @@ function Store() {
                   <p className="product-category">{value.category}</p>
                   <span>
                     <p className="product-price"> &#8358;{value.price}</p>
-                    <button onClick={() => deleteItem(value.id)}>
+                    <button>
                       Add to Cart
                     </button>
                   </span>

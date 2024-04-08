@@ -12,23 +12,25 @@
             flex-direction: row;
             gap: .7rem;
             justify-content: center;
-
+            width: 100%;
+            position: relative;
 
             span{
                 display: flex;
                 align-items: center;
-                background-color: hsl(0, 0%, 95%);
+                background-color: hsl(0, 0%, 97%);
                 padding-inline: .7rem;
                 border-radius: 30px;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                width: 40%;
 
                 input{
                     border-radius: 30px;
                     padding: .7rem;
-                    width: 30rem;
+                    width: 100%;
                     outline: none;
                     border: none;
-                    background-color: hsl(0, 0%, 95%);
+                    background-color: hsl(0, 0%, 97%);
 
                 }
                 .search-icon{
@@ -355,9 +357,10 @@
             position: relative;
 
             span{
+                width: 100%;
                
                 input{
-                    width: auto;
+                    width: 100%;
                 }
             }
         }
