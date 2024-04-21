@@ -135,7 +135,7 @@ function UserNav() {
 
             <span>
               <IoIosNotificationsOutline className="span-icon" />
-              <AiOutlineShoppingCart className="span-icon" />
+              <AiOutlineShoppingCart className="span-icon" onClick={cartLink} />
             </span>
 
             <div className="mobilepage-links">

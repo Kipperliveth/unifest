@@ -3,8 +3,14 @@ import React from "react";
 import UserNav from "../App-components/UserNav";
 // import { storage } from "../../firebase-config";
 import { ref, listAll, getDownloadURL } from "firebase/storage";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { txtdb } from "../../firebase-config";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  deleteDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import { CiSearch } from "react-icons/ci";
 import all from "../../stock/allmain.png";
 import sitting from "../../stock/couchicon.png";
@@ -14,6 +20,9 @@ import lights from "../../stock/lighticon.png";
 import tables from "../../stock/tableicon.png";
 import storageicon from "../../stock/storageicon.png";
 import { MdCancel } from "react-icons/md";
+import { auth } from "../../firebase-config";
+import { txtdb } from "../../firebase-config";
+
 
 function Store() {
   const [imageList, setImageList] = useState([]);
@@ -26,7 +35,40 @@ function Store() {
 
   const [data, setData] = useState([]);
 
-  //pop
+  //getting current user
+  const currentUser = auth.currentUser;
+
+  //cart logic
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (product) => {
+    setCartItems((prevCartItems) => [...prevCartItems, product]);
+
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
+    
+      addDoc(productRef, {
+        productId: product.id,
+        imgUrl: product.imgUrl,
+        txtVal: product.txtVal,
+        desc: product.desc,
+        category: product.category,
+        price: product.price,
+        // Other product details
+      })
+      .then(() => {
+        console.log("Product added to user cart");
+      })
+      .catch((error) => {
+        console.error("Error adding product:", error);
+      });
+    } else {
+      // Implement logic for temporary cart (optional)
+    }
+  }
+
+  //popup
 
   const [isProductModalOpen, setIsProductModalOpen] = useState(false);
   const [selectedProductData, setSelectedProductData] = useState(null);
@@ -60,7 +102,6 @@ function Store() {
     setFilteredData(filtered);
   };
   //
-
 
   //
 
@@ -109,7 +150,7 @@ function Store() {
           <button onClick={handleSearchClick}>Search</button>
         </div>
 
-          <h3 className="categories-header">Categories</h3>
+        <h3 className="categories-header">Categories</h3>
         <div className="categories-container">
           <div className="categories">
             <span className="category-name">
@@ -203,28 +244,25 @@ function Store() {
           </div>
         ) : (
           <div className="uploaded-posts">
-            {filteredData.map((value) => (
-              <div
-                className="product"
-                key={value.id}
-                onClick={() => handleProductClick(value)}
-              >
+            {filteredData.map((product) => (
+              <div className="product" key={product.id}>
                 <img
-                  src={value.imgUrl}
+                  src={product.imgUrl}
+                  onClick={() => handleProductClick(product)}
                   height="200px"
                   width="200px"
                   alt="product"
                 />
 
                 <div className="product-info">
-                  <h2 className="product-name">{value.txtVal}</h2>
+                  <h2 className="product-name">{product.txtVal}</h2>
 
-                  <p className="product-description">{value.desc}</p>
+                  <p className="product-description">{product.desc}</p>
 
-                  <p className="product-category">{value.category}</p>
+                  <p className="product-category">{product.category}</p>
                   <span>
-                    <p className="product-price"> &#8358;{value.price}</p>
-                    <button>
+                    <p className="product-price"> &#8358;{product.price}</p>
+                    <button onClick={() => addToCart(product)}>
                       Add to Cart
                     </button>
                   </span>

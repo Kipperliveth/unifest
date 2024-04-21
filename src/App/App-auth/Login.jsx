@@ -2,20 +2,22 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
-  fetchSignInMethodsForEmail,
+  onAuthStateChanged
 } from "firebase/auth";
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
-import { auth } from "../../firebase-config";
+import { auth, txtdb } from "../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { PiHandWavingFill } from "react-icons/pi";
 import { ImSpinner8 } from "react-icons/im";
 import { PuffLoader } from "react-spinners";
+import { doc, collection, getDoc } from "firebase/firestore";
+ 
 
 function Login() {
-  //skeleton loading
-
+  //error state
+  const [errorMessage, setErrorMessage] = useState("");
   //
   const navigate = useNavigate();
 
@@ -48,37 +50,71 @@ function Login() {
 
   //checking if user exists
 
-  const checkIfEmailExists = async (email) => {
-    try {
-      // Call fetchSignInMethodsForEmail with the email address
-      const methods = await fetchSignInMethodsForEmail(auth, email);
-      
-      // If the methods array has length > 0, it means the email exists
-      return methods.length > 0;
-    } catch (error) {
-      console.error("Error checking if email exists:", error);
-      // Handle error (e.g., display an error message)
-      return false;
-    }
-  };
-
   //google auth
+  // const signInWithGoogle = async () => {
+  //   const provider = new GoogleAuthProvider();
+  //   try {
+  //     const result = await signInWithPopup(auth, provider);
+  //     const email = result.user.email;
+  //     // Check if the email is registered
+  //     const methods = await fetchSignInMethodsForEmail(auth, email);
+  //     console.log(methods)
+  //     if (methods.length > 0){
+  //       navigate("/userDashboard");
+  //       console.log('exists')
+  //     } else {
+  //       navigate("/onboarding");
+  //       console.log('doesnt')
+  //     }
+  //   } catch (error) {
+  //     console.error("Error signing in with Google:", error);
+  //     // Handle error (e.g., display an error message)
+  //     if (error.code === "auth/popup-closed-by-user") {
+  //       // User closed the popup
+  //       setErrorMessage("Sign-in canceled by user"); // Set the error message
+  //     } else {
+  //       console.error("Error signing in with Google:", error);
+  //       setErrorMessage("An error occurred. Please try again."); // Set a generic error message
+  //     }
+  //   }
+  // };
+
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      const emailExists = await checkIfEmailExists(user.email);
-      if (emailExists) {
-        navigate("/userDashboard");
+    const result = await signInWithPopup(auth, provider);
+}
+
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+          await fetchAddressData(user);
       } else {
-        navigate("/onboarding");
+          console.log("No authenticated user found.");
       }
-    } catch (error) {
-      console.error("Error signing in with Google:", error);
-      // Handle error (e.g., display an error message)
-    }
-  };
+  });
+
+  return () => unsubscribe(); // Clean up the subscription
+
+}, []);
+
+const fetchAddressData = async (user) => {
+  const userId = user.uid;
+  const userRef = doc(collection(txtdb, "users"), userId);
+  const userSnap = await getDoc(userRef);
+  if (userSnap.exists()) {
+      const userData = userSnap.data();
+      if (userData.address) {
+          navigate('/userDashboard'); // Redirect to dashboard if address exists
+      } else {
+          navigate('/onboarding'); // Redirect to onboarding if address doesn't exist
+      }
+  } else {
+      console.log("No address data found for the current user.");
+      navigate('/onboarding');
+  }
+};
+
+
 
   //loader
   const [isLoading, setIsLoading] = useState(true);
@@ -156,6 +192,8 @@ function Login() {
               {error && (
                 <p className="passcheck">{`invalid email or password`}</p>
               )}
+
+              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
               <p className="sign-up-link">
                 Don't have an account? <NavLink to="/signup">Sign Up</NavLink>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { doc, collection, getDoc } from "firebase/firestore";
+
 import { auth, txtdb } from "../../firebase-config";
 import {
   setPersistence,
@@ -89,7 +90,7 @@ function UserProfile() {
       setUser(currentUser);
     });
   }, [auth]);
-
+ 
   return (
     <div className="">
       <UserNav />
