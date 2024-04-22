@@ -83,7 +83,9 @@ useEffect(() => {
       <div className="cart-page">
         <div className="cart-container">
           <h1>My Cart</h1>
-          {/* <div className="empty-cart">
+
+          {fetchedProducts.length === 0 ? (
+          <div className="empty-cart">
             <MdOutlineShoppingCart className="cart-icon" />
             <h3>Your cart is empty</h3>
             <p>
@@ -91,9 +93,10 @@ useEffect(() => {
               for you.
             </p>
             <NavLink to="/store">Start Shopping</NavLink>
-          </div> */}
+          </div>
+          ) : (
 
-
+<div>
         {isLoading ? (
           <div className="loading-message">
             <div className="loading-card">
@@ -183,6 +186,8 @@ useEffect(() => {
 
         </div>
         )}
+</div>
+)}
          
           
         </div>
