@@ -92,11 +92,22 @@ function UserNav() {
         </div>
 
         <div className="userControls desktop-content">
+          <div className="notif-cont">
+
           <IoIosNotificationsOutline className="app-icon desktop-view notifs" />
+          </div>
+
+          <div className="cart-cont">
+            <div className="cart-container">
+
+            <div className="cart-total">11</div>
           <AiOutlineShoppingCart
             className="app-icon desktop-view cart"
             onClick={cartLink}
           />
+            </div>
+
+          </div>
           <img
             src={user && user.email ? user.photoURL : ''}
             alt="displayPicture"
