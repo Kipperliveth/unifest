@@ -11,6 +11,13 @@ import { BsBox2 } from "react-icons/bs";
 import { LiaUserEditSolid } from "react-icons/lia";
 import { RiMenu4Fill } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  onSnapshot
+} from "firebase/firestore";
+import { txtdb } from "../../firebase-config";
 
 function UserNav() {
   const [user, setUser] = useState({});
@@ -46,6 +53,56 @@ function UserNav() {
     navigate("/cart");
   };
 
+  //cart lenghth
+  const [cartItemCount, setCartItemCount] = useState(0); // State variable for cart item count
+  const [fetchedProducts, setFetchedProducts] = useState([]);
+
+
+  const currentUser = auth.currentUser;
+
+  const fetchProducts = async () => {
+    console.log("Fetching products...");
+
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
+
+      try {
+        const querySnapshot = await getDocs(productRef);
+        const products = querySnapshot.docs.map((doc) => doc.data());
+        setFetchedProducts(products);
+        console.log("Products fetched:", products);
+        // Calculate total cart item count
+        const totalCount = products.length; 
+        setCartItemCount(totalCount);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        // setLoading(false); // Set loading state to false after fetching
+        // setIsLoading(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.title = "Cart Evanis-Interiors";
+    if (currentUser) {
+      fetchProducts();
+  
+      // Listen for changes to the cart collection in real-time
+      const unsubscribe = onSnapshot(collection(txtdb, `userCart/${currentUser.uid}/products`), (snapshot) => {
+        const updatedProducts = snapshot.docs.map((doc) => doc.data());
+        const totalCount = updatedProducts.length;
+        setCartItemCount(totalCount);
+      });
+  
+      return () => unsubscribe(); // Cleanup function to unsubscribe from the snapshot listener
+    }
+  }, [currentUser]); // Fetch products whenever currentUser changes
+
+
+
+  //
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -97,10 +154,10 @@ function UserNav() {
           <IoIosNotificationsOutline className="app-icon desktop-view notifs" />
           </div>
 
-          <div className="cart-cont">
+          <div className="cart-cont" onClick={cartLink}>
             <div className="cart-container">
 
-            <div className="cart-total">11</div>
+            <div className="cart-total">{cartItemCount}</div>
           <AiOutlineShoppingCart
             className="app-icon desktop-view cart"
             onClick={cartLink}

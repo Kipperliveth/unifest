@@ -7,7 +7,7 @@ import { auth } from "../../firebase-config";
 import {
   getFirestore,
   collection,
-  getDocs,
+  getDocs, doc, deleteDoc,
   onSnapshot
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
@@ -32,8 +32,7 @@ function Cart() {
 
 
   const fetchProducts = async () => {
-    console.log("Fetching products...");
-  setIsLoading(true);
+    setIsLoading(true);
 
     if (currentUser) {
         const userId = currentUser.uid;
@@ -52,6 +51,13 @@ function Cart() {
         }
     }
 };
+
+
+//
+
+
+
+
 
 useEffect(() => {
   document.title ="Cart Evanis-Interiors"
@@ -80,8 +86,8 @@ useEffect(() => {
   return (
     <div>
       <UserNav />
-      <div className="cart-page">
-        <div className="cart-container">
+      <div className="cart-page ">
+        <div className="cart-container page">
           <h1>My Cart</h1>
 
           {fetchedProducts.length === 0 ? (

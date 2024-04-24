@@ -42,7 +42,7 @@ function UserDashboard() {
     <div className="userDash">
       <UserNav />
       {/*  */}
-      <div className="userDash-container">
+      <div className="userDash-container page">
         <div className="userDash-header">
           <h1>Dashboard</h1>
           <div className="userNameGreeting">

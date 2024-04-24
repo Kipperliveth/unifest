@@ -3,6 +3,10 @@
     width: 99.5%;
     // overflow-x: hidden;
     z-index: 10;
+    position: fixed;
+    background: white;
+    padding-bottom: 1rem;
+
     
     .userNav-container{
         width: 95%;
@@ -14,6 +18,7 @@
         border: 0.5px solid #8888;
         border-radius: 25px;
         margin-top: .5rem;
+        background: white;
 
         .active-link{
 

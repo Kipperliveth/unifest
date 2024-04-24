@@ -118,6 +118,7 @@ function Store() {
 
   //display data onload
   useEffect(() => {
+    document.title = "Store Evanis-Interiors"
     getData();
   }, []);
 
@@ -130,10 +131,10 @@ function Store() {
   }, []);
 
   return (
-    <div className="theStore">
+    <div className="theStore ">
       <UserNav />
 
-      <div className="uploaded-posts-container">
+      <div className="uploaded-posts-container page">
         <div className="search-container">
           <span>
             <CiSearch className="search-icon" />
