@@ -9,7 +9,7 @@ import {
   getDocs,
   deleteDoc,
   doc,
-  setDoc,
+  setDoc, onSnapshot
 } from "firebase/firestore";
 import { CiSearch } from "react-icons/ci";
 import all from "../../stock/allmain.png";
@@ -67,6 +67,52 @@ function Store() {
       // Implement logic for temporary cart (optional)
     }
   }
+
+
+  //listening for changes for butuuon switch
+  useEffect(() => {
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const cartRef = collection(txtdb, `userCart/${userId}/products`);
+      const unsubscribe = onSnapshot(cartRef, (querySnapshot) => {
+        const cartItems = querySnapshot.docs.map((doc) => doc.data());
+        setCartItems(cartItems);
+      });
+      return () => unsubscribe(); // Unsubscribe when component unmounts
+    }
+  }, [currentUser]);
+  //
+
+    // Function to handle item deletion from the cart
+    const removeFromCart = async (productId) => {
+      if (currentUser) {
+        const userId = currentUser.uid;
+        const cartRef = collection(txtdb, `userCart/${userId}/products`); // Reference the collection of products in the user's cart
+        try {
+          // Query the cart collection to find the document that contains the product with the given ID
+          const querySnapshot = await getDocs(cartRef);
+          querySnapshot.forEach((doc) => {
+            const productData = doc.data();
+            if (productData.productId === productId) {
+              // If the product ID matches, delete the document
+              deleteDoc(doc.ref);
+            }
+          });
+    
+          // Update the cart items in the local state after deletion
+          const updatedCartItems = cartItems.filter((item) => item.productId !== productId);
+          setCartItems(updatedCartItems);
+          
+          console.log("Product deletion completed");
+        } catch (error) {
+          console.error("Error removing product:", error);
+        }
+      } else {
+        // Implement logic for temporary cart (optional)
+      }
+    }
+    
+    
 
   //popup
 
@@ -207,6 +253,7 @@ function Store() {
 
         {isLoading ? (
           <div className="loading-message">
+            <div className="loading-message">
             <div className="loading-card">
               <div className="loading-img"></div>
               <div className="loading-text"></div>
@@ -243,33 +290,50 @@ function Store() {
               <div className="loading-text-II"></div>
             </div>
           </div>
+          </div>
         ) : (
           <div className="uploaded-posts">
-            {filteredData.map((product) => (
-              <div className="product" key={product.id}>
-                <img
-                  src={product.imgUrl}
-                  onClick={() => handleProductClick(product)}
-                  height="200px"
-                  width="200px"
-                  alt="product"
-                />
+            {filteredData.map((product) => {
+              const isInCart = cartItems.some(
+                (item) => item.productId === product.id
+              );
+              return (
+                <div className="product" key={product.id}>
+                  <img
+                    src={product.imgUrl}
+                    onClick={() => handleProductClick(product)}
+                    height="200px"
+                    width="200px"
+                    alt="product"
+                  />
 
-                <div className="product-info">
-                  <h2 className="product-name">{product.txtVal}</h2>
+                  <div className="product-info">
+                    <h2 className="product-name">{product.txtVal}</h2>
 
-                  <p className="product-description">{product.desc}</p>
+                    <p className="product-description">{product.desc}</p>
 
-                  <p className="product-category">{product.category}</p>
-                  <span>
-                    <p className="product-price"> &#8358;{product.price}</p>
-                    <button onClick={() => addToCart(product)}>
-                      Add to Cart
-                    </button>
-                  </span>
+                    <p className="product-category">{product.category}</p>
+                    <span>
+                      <p className="product-price">
+                        &#8358;{product.price}
+                      </p>
+
+                      {isInCart ? (
+                        <button
+                        onClick={() => removeFromCart(product.id)}
+                        >
+                          Delete
+                        </button>
+                      ) : (
+                        <button onClick={() => addToCart(product)}>
+                          Add to Cart
+                        </button>
+                      )}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 

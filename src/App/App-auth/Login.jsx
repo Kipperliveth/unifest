@@ -48,36 +48,7 @@ function Login() {
     }
   };
 
-  //checking if user exists
-
-  //google auth
-  // const signInWithGoogle = async () => {
-  //   const provider = new GoogleAuthProvider();
-  //   try {
-  //     const result = await signInWithPopup(auth, provider);
-  //     const email = result.user.email;
-  //     // Check if the email is registered
-  //     const methods = await fetchSignInMethodsForEmail(auth, email);
-  //     console.log(methods)
-  //     if (methods.length > 0){
-  //       navigate("/userDashboard");
-  //       console.log('exists')
-  //     } else {
-  //       navigate("/onboarding");
-  //       console.log('doesnt')
-  //     }
-  //   } catch (error) {
-  //     console.error("Error signing in with Google:", error);
-  //     // Handle error (e.g., display an error message)
-  //     if (error.code === "auth/popup-closed-by-user") {
-  //       // User closed the popup
-  //       setErrorMessage("Sign-in canceled by user"); // Set the error message
-  //     } else {
-  //       console.error("Error signing in with Google:", error);
-  //       setErrorMessage("An error occurred. Please try again."); // Set a generic error message
-  //     }
-  //   }
-  // };
+ 
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();

@@ -40,7 +40,6 @@
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
-                // justify-content: center;
                 align-items: center;
                 padding: 2rem;
                 transition: .2s ease-in-out;
@@ -52,14 +51,30 @@
                 }
 
                 &:nth-child(1){
-                    background: hsl(152, 58%, 90%);
+                    background: rgba(0, 0, 0, 0.5) url('../../stock/storeback.jpg') no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    background-blend-mode: overlay;
+                    position: relative;
+                    overflow: hidden;
                 }
 
                 &:nth-child(2){
-                    background: hsl(247, 97%, 90%);
+                    background:rgba(0, 0, 0, 0.5) url('../../stock/masterback.jpg') no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    background-blend-mode: overlay;
+                    position: relative;
+                    overflow: hidden;
                 }
+
                 &:nth-child(3){
-                    background: hsl(204, 94%, 90%);
+                    background:rgba(0, 0, 0, 0.5) url('../../stock/accback.jpeg') no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    background-blend-mode: overlay;
+                    position: relative;
+                    overflow: hidden;
                 }
 
                 .dashLinks-icon{
@@ -69,10 +84,19 @@
                     padding: 1.5rem;
                 }
 
+                h1{
+                    color: white;
+                }
+
                 p{
+                    font-weight: 500;
                     line-height: 1.5;
+                    color: white;
+
                 }
             }
+
+    
         }
     }
     
@@ -97,3 +121,4 @@
     }
 }
 }
+
