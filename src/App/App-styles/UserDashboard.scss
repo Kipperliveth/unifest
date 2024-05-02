@@ -42,39 +42,52 @@
                 text-align: center;
                 align-items: center;
                 padding: 2rem;
-                transition: .2s ease-in-out;
                 border-radius: 10px;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
-                &:hover{
-                    transform: scale(.9);
-                }
+              
 
                 &:nth-child(1){
                     background: rgba(0, 0, 0, 0.5) url('../../stock/storeback.jpg') no-repeat;
                     background-position: center;
-                    background-size: cover;
+                    background-size: 130%;
                     background-blend-mode: overlay;
                     position: relative;
                     overflow: hidden;
+                    
+                    transition: background-size .3s ease-in-out;
+
+                    &:hover{
+                       background-size: 150%;
+                    }
                 }
 
                 &:nth-child(2){
                     background:rgba(0, 0, 0, 0.5) url('../../stock/masterback.jpg') no-repeat;
                     background-position: center;
-                    background-size: cover;
+                    background-size: 130%;
                     background-blend-mode: overlay;
                     position: relative;
                     overflow: hidden;
+                    transition: background-size .3s ease-in-out;
+
+                    &:hover{
+                       background-size: 150%;
+                    }
                 }
 
                 &:nth-child(3){
                     background:rgba(0, 0, 0, 0.5) url('../../stock/accback.jpeg') no-repeat;
                     background-position: center;
-                    background-size: cover;
+                    background-size: 130%;
                     background-blend-mode: overlay;
                     position: relative;
                     overflow: hidden;
+                    transition: background-size .3s ease-in-out;
+
+                    &:hover{
+                       background-size: 150%;
+                    }
                 }
 
                 .dashLinks-icon{

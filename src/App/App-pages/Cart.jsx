@@ -5,10 +5,9 @@ import { NavLink } from "react-router-dom";
 import { txtdb } from "../../firebase-config";
 import { auth } from "../../firebase-config";
 import {
-  getFirestore,
   collection,
   getDocs, doc, deleteDoc,
-  onSnapshot
+  onSnapshot, query, where
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { CiTrash } from "react-icons/ci";
@@ -54,6 +53,21 @@ function Cart() {
 
 
 //
+const handleDeleteProduct = async (productId) => {
+  const userId = currentUser.uid;
+  const productRef = collection(txtdb, `userCart/${userId}/products`);
+  const querySnapshot = await getDocs(query(productRef, where("productId", "==", productId)));
+
+  try {
+    querySnapshot.forEach((doc) => {
+      deleteDoc(doc.ref); // Delete the document from the database
+    });
+    const updatedProducts = fetchedProducts.filter(product => product.productId !== productId);
+    setFetchedProducts(updatedProducts); // Update the state without the deleted product
+  } catch (error) {
+    console.error("Error deleting product:", error);
+  }
+};
 
 
 
@@ -169,7 +183,7 @@ useEffect(() => {
                 </div>
 
                 <div className="cart-control">
-                <button className="delete-btn"> <CiTrash className="delete-icon"/> <p>Remove</p></button>
+                <button className="delete-btn"  onClick={() => handleDeleteProduct(product.productId)}> <CiTrash className="delete-icon"/> <p>Remove</p></button>
 
                 <div className="quantity-counter">
                   <button><FiMinus className="count-icon" /></button>
