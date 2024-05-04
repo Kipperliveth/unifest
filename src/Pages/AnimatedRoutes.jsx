@@ -24,6 +24,7 @@ import Onboarding from "../App/App-auth/Onboarding";
 import Address from "../App/App-auth/Address";
 import ProfilePicture from "../App/App-auth/ProfilePicture";
 import Orders from "../Admin/AdminPages/Orders";
+import Editaddress from "../App/App-auth/Editaddress";
 
 
 function AnimatedRoutes() {
@@ -58,6 +59,7 @@ function AnimatedRoutes() {
         <Route path='/uploads' element={<Uploads />}/>
         <Route path='/onboarding' element={<Onboarding />}/>
         <Route path="/address" element={<Address />}/>
+        <Route path='/editAddress' element={<Editaddress />} />
         <Route path='/profilePic'  element={<ProfilePicture />}/>
         <Route path='/orders' element={<Orders />}/>
 

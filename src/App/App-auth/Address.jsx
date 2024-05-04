@@ -22,9 +22,7 @@ function Address() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsLoggedIn(true);
-    setTimeout(() => {
-      setIsLoggedIn(false);
-    }, 2000);
+    
 
     if (
       !addressData.addressLine1 ||
@@ -40,8 +38,10 @@ function Address() {
       await saveAddressToFirestore(addressData); // Call function to save data
       // Navigate to another page upon successful submission
       setShowPopup(true);
+      setIsLoggedIn(false);
     } catch (error) {
       console.error("Error saving address to Firestore:", error);
+      setIsLoggedIn(false);
       // Handle error, if any
     }
   };
@@ -54,12 +54,16 @@ function Address() {
 
   const saveAddressToFirestore = async (addressData) => {
     const user = auth.currentUser; // Get current user
+    setIsLoggedIn(true);
+
 
     if (user) {
       const userId = user.uid; // Get user ID if user exists
       const userRef = doc(collection(txtdb, "users"), userId);
       await setDoc(userRef, { address: addressData }, { merge: true }); // Update user doc with address
+      setIsLoggedIn(false);
       return addressData; // Return the saved address data (optional)
+
     } else {
       // Handle the scenario when there's no authenticated user
       console.error("No authenticated user found.");
