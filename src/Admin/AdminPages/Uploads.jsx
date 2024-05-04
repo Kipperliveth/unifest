@@ -205,7 +205,7 @@ function Uploads() {
 
                   <p className="product-category">{value.category}</p>
                   <span>
-                    <p className="product-price"> &#8358;{value.price}</p>
+                    <p className="product-price">&#8358;&nbsp;{parseFloat(value.price).toLocaleString('en-US')}</p>
                     <button onClick={() => deleteItem(value.id)}>Delete</button>
                   </span>
                 </div>

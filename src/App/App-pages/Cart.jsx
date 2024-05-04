@@ -69,6 +69,15 @@ const handleDeleteProduct = async (productId) => {
   }
 };
 
+  // Calculate total price of products in the cart
+  // Calculate total price of products in the cart
+const getTotalPrice = () => {
+  let totalPrice = 0;
+  fetchedProducts.forEach((product) => {
+    totalPrice += parseFloat(product.price);
+  });
+  return totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'NGN' });
+};
 
 
 
@@ -177,7 +186,7 @@ useEffect(() => {
                   </div>
 
                 <div className="price">
-                <p> &#8358;&nbsp;{product.price}</p>
+               <p>&#8358;&nbsp;{parseFloat(product.price).toLocaleString('en-US')}</p>
                 </div>
 
                 </div>
@@ -199,13 +208,16 @@ useEffect(() => {
         </div>
 
         <div className="cart-summary">
-          <h2>Cart summary</h2>
+          <h2>Order summary</h2>
+          <p>Total Price: &#8358; {getTotalPrice()}</p>
         </div>
 
 
 
         </div>
         )}
+
+        
 </div>
 )}
          

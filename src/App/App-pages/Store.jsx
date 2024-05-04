@@ -315,7 +315,7 @@ function Store() {
                     <p className="product-category">{product.category}</p>
                     <span>
                       <p className="product-price">
-                        &#8358;{product.price}
+                      &#8358;&nbsp;{parseFloat(product.price).toLocaleString('en-US')}
                       </p>
 
                       {isInCart ? (

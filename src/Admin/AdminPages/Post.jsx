@@ -129,9 +129,9 @@ function Post() {
             </select>
 
             <input
-              type="text"
+              type="number"
               name="price"
-              placeholder="product price"
+              placeholder="product price (without commas)"
               onChange={(e) => setPrice(e.target.value)}
               required
             />
@@ -167,17 +167,3 @@ function Post() {
 }
 
 export default Post;
-
-{
-  /* <div>
-  {data.map((value) => (
-    <div key={value.id}>
-      <img src={value.imgUrl} height="200px" width="200px" />
-      <h1>{value.txtVal}</h1>
-      <h1>{value.desc}</h1>
-      <h1>{value.price}</h1>
-      <p>{value.category}</p>
-    </div>
-  ))}
-</div> */
-}

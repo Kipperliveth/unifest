@@ -102,12 +102,14 @@
     }
 
     .cart{
+        position: relative;
         margin-block: 3rem;
         width: 98%;
         display: grid;
         grid-template-columns: 65% 30%;
         gap: 4rem;
         margin: 0 auto;
+        align-items: start;
         
         .cart-container{
             padding: 1.5rem;
@@ -219,6 +221,12 @@
                     }
                 }
             }
+        }
+
+         .cart-summary{
+        position: sticky;
+         top: 5rem;
+        max-width:250px
         }
     }
     }
