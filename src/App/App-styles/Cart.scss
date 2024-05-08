@@ -126,6 +126,7 @@
           padding-block: 1.5rem;
           border-bottom: 1px solid hsl(0, 0%, 90%);
 
+
             .product-info{
                 display: flex;
                 gap: 2rem;
@@ -223,6 +224,8 @@
             }
         }
 
+      
+
          .cart-summary{
         position: sticky;
          top: 5rem;
@@ -259,3 +262,20 @@
     }
 
     }
+
+@media screen and (max-width: 999px) {
+.cart-page{
+
+    .cart-container{
+
+        .cart{
+            display: flex;
+            flex-direction: column;
+
+            .cart-container{
+                width: 90%;
+            }
+        }
+    }
+}
+}

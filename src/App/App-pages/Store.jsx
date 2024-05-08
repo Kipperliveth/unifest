@@ -55,6 +55,7 @@ function Store() {
         desc: product.desc,
         category: product.category,
         price: product.price,
+        quantity: 1
         // Other product details
       })
       .then(() => {

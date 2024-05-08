@@ -7,7 +7,7 @@ import { auth } from "../../firebase-config";
 import {
   collection,
   getDocs, doc, deleteDoc,
-  onSnapshot, query, where
+  onSnapshot, query, where, setDoc, getDoc
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { CiTrash } from "react-icons/ci";
@@ -32,24 +32,50 @@ function Cart() {
 
   const fetchProducts = async () => {
     setIsLoading(true);
-
+  
     if (currentUser) {
-        const userId = currentUser.uid;
-        const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
-
-        try {
-            const querySnapshot = await getDocs(productRef);
-            const products = querySnapshot.docs.map((doc) => doc.data());
-            setFetchedProducts(products);
-            console.log("Products fetched:", products);
-        } catch (error) {
-            console.error("Error fetching products:", error);
-        } finally {
-            setLoading(false); // Set loading state to false after fetching
-           setIsLoading(false); 
-        }
+      const userId = currentUser.uid;
+      const productRef = collection(txtdb, `userCart/${userId}/products`);
+      try {
+        const querySnapshot = await getDocs(productRef);
+        const products = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          return { ...data, id: doc.id };
+        });
+        setFetchedProducts(products);
+        // Update product quantities in the local state
+        const quantities = {};
+        products.forEach((product) => {
+          quantities[product.id] = product.quantity || 1;
+        });
+        setProductQuantities(quantities);
+        console.log("Products fetched:", products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false); // Set loading state to false after fetching
+        setIsLoading(false);
+      }
     }
-};
+  };
+
+  // Inside the fetchProducts function
+useEffect(() => {
+  if (currentUser) {
+    fetchProducts();
+
+  const unsubscribe = onSnapshot(collection(txtdb, `userCart/${currentUser.uid}/products`), (snapshot) => {
+    const updatedProducts = [];
+    snapshot.forEach((doc) => {
+      updatedProducts.push({ id: doc.id, ...doc.data() });
+    });
+    setFetchedProducts(updatedProducts);
+  });
+
+  return () => unsubscribe();
+}
+}, [currentUser]);
+
 
 
 //
@@ -70,14 +96,15 @@ const handleDeleteProduct = async (productId) => {
 };
 
   // Calculate total price of products in the cart
-  // Calculate total price of products in the cart
 const getTotalPrice = () => {
   let totalPrice = 0;
   fetchedProducts.forEach((product) => {
-    totalPrice += parseFloat(product.price);
+    totalPrice += parseFloat(product.price) *
+    (productQuantities[product.productId] || product.quantity).toLocaleString('en-US');
   });
   return totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'NGN' });
 };
+//
 
 
 
@@ -85,6 +112,7 @@ const getTotalPrice = () => {
 useEffect(() => {
   document.title ="Cart Evanis-Interiors"
     fetchProducts();
+    // getTotalPrice();
 }, [currentUser]); // Fetch products whenever currentUser changes
 
 
@@ -101,6 +129,72 @@ useEffect(() => {
     setIsLoading(false); 
   });
 }, []);
+
+//
+// Define state to track the quantity of each product in the cart
+const [productQuantities, setProductQuantities] = useState({});
+
+useEffect(() =>{
+setProductQuantities(productQuantities)
+}, [])
+
+// Inside the handleIncreaseQuantity function
+const handleIncreaseQuantity = async (productId) => {
+  try {
+    const userId = currentUser.uid;
+    const productQuery = query(collection(txtdb, `userCart/${userId}/products`), where("productId", "==", productId));
+    const querySnapshot = await getDocs(productQuery);
+
+    if (!querySnapshot.empty) {
+      // If a document with the matching product ID is found, update its quantity
+      const docSnapshot = querySnapshot.docs[0];
+      const productData = docSnapshot.data();
+      const newQuantity = (productData.quantity || 0) + 1;
+      await setDoc(docSnapshot.ref, { ...productData, quantity: newQuantity });
+
+      // Update the local state
+      setProductQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [productId]: newQuantity,
+      }));
+    } else {
+      console.error("Product not found in the cart.");
+    }
+  } catch (error) {
+    console.error("Error increasing quantity:", error);
+  }
+};
+
+
+// Inside the handleDecreaseQuantity function
+const handleDecreaseQuantity = async (productId) => {
+  try {
+    const userId = currentUser.uid;
+    const productRef = collection(txtdb, `userCart/${userId}/products`);
+    const querySnapshot = await getDocs(query(productRef, where("productId", "==", productId)));
+
+    if (!querySnapshot.empty) {
+      // If a document with the matching product ID is found, update its quantity
+      const docSnapshot = querySnapshot.docs[0];
+      const productData = docSnapshot.data();
+      const newQuantity = Math.max((productData.quantity || 0) - 1, 0);
+      await setDoc(docSnapshot.ref, { ...productData, quantity: newQuantity });
+
+      // Update the local state
+      setProductQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [productId]: newQuantity,
+      }));
+    } else {
+      console.error("Product not found in the cart.");
+    }
+  } catch (error) {
+    console.error("Error decreasing quantity:", error);
+  }
+};
+
+// Inside the Cart component
+
 
 
  
@@ -181,12 +275,16 @@ useEffect(() => {
                 <div className="name-desc">
                 <h3>{product.txtVal}</h3>
                 <p>{product.desc}</p>
+                <p>{product.quantity}</p>
                 </div>
 
                   </div>
 
                 <div className="price">
-               <p>&#8358;&nbsp;{parseFloat(product.price).toLocaleString('en-US')}</p>
+                <p>
+              &#8358;&nbsp;
+                {(parseFloat(product.price) * product.quantity).toLocaleString("en-US")}
+              </p>
                 </div>
 
                 </div>
@@ -195,9 +293,9 @@ useEffect(() => {
                 <button className="delete-btn"  onClick={() => handleDeleteProduct(product.productId)}> <CiTrash className="delete-icon"/> <p>Remove</p></button>
 
                 <div className="quantity-counter">
-                  <button><FiMinus className="count-icon" /></button>
-                  <p>1</p>
-                  <button><FaPlus  className="count-icon" /></button>
+                  <button  onClick={() => handleDecreaseQuantity(product.productId)}><FiMinus className="count-icon" /></button>
+                  <p>{product.quantity}</p>
+                  <button onClick={() => handleIncreaseQuantity(product.productId)}><FaPlus  className="count-icon" /></button>
                 </div>
                 </div>
 
