@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import { txtdb } from "../../firebase-config";
 import { auth } from "../../firebase-config";
 import {
-  collection,
+  collection, addDoc,
   getDocs, doc, deleteDoc,
   onSnapshot, query, where, setDoc, getDoc
 } from "firebase/firestore";
@@ -106,17 +106,10 @@ const getTotalPrice = () => {
 };
 //
 
-//shipping lagos
-const lagosShipping = () => {
-  let shippingCost = 15000;
-
-  return shippingCost.toLocaleString('en-US', { style: 'currency', currency: 'NGN' });
-}
 
 const getTotalPriceNumeric = parseFloat(getTotalPrice().replace(/[^\d.-]/g, ''));
-const lagosShippingNumeric = parseFloat(lagosShipping().replace(/[^\d.-]/g, ''));
 
-const totalPriceWithShipping = getTotalPriceNumeric + lagosShippingNumeric;
+const totalPriceWithShipping = getTotalPriceNumeric;
 
 const formattedTotalPriceWithShipping = totalPriceWithShipping.toLocaleString('en-US', { style: 'currency', currency: 'NGN' });
 
@@ -278,6 +271,52 @@ const options = { day: 'numeric', month: 'short' };
 const formattedDate15DaysFromNow = date15DaysFromNow.toLocaleDateString('en-US', options);
 const formattedDate20DaysFromNow = date20DaysFromNow.toLocaleDateString('en-US', options);
 
+//shipping state
+const [selectedShipping, setSelectedShipping] = useState('');
+
+const handleShippingChange = (e) => {
+  setSelectedShipping(e.target.value);
+
+};
+
+useEffect(() => {
+  console.log(selectedShipping);
+}, [selectedShipping]);
+
+//spinner
+const [showPopup, setShowPopup] = useState(false);
+
+
+//checkout logic
+
+const handleCheckout = async () => {
+setShowPopup(true);
+
+  try {
+    // Get the current user's ID
+    const userId = currentUser.uid;
+
+    // Create a new order document in the "orders" collection
+    const orderRef = await addDoc(collection(txtdb, "orders"), {
+      userId: userId, // Store the user's ID in the order document
+      cartItems: fetchedProducts, // Store the contents of the user's cart
+      totalPrice: getTotalPriceNumeric, // Store the total price of the order
+      shippingOption: selectedShipping, // Store the selected shipping option
+      address: addressData.addressLine1,
+      callLine: addressData.addressPhone,
+      city: addressData.city,
+      state: addressData.state,
+      createdAt: new Date(), // Store the current date and time as the creation date
+    });
+
+    console.log("Order created with ID: ", orderRef.id);
+  } catch (error) {
+    console.error("Error creating order:", error);
+    setShowPopup(false);
+
+  }
+};
+
   
 
   return (
@@ -355,7 +394,7 @@ const formattedDate20DaysFromNow = date20DaysFromNow.toLocaleDateString('en-US',
                 <div className="name-desc">
                 <h3>{product.txtVal}</h3>
                 <p>{product.desc}</p>
-                <p>{product.quantity}</p>
+                {/* <p>{product.quantity}</p> */}
                 </div>
 
                   </div>
@@ -391,7 +430,7 @@ const formattedDate20DaysFromNow = date20DaysFromNow.toLocaleDateString('en-US',
           <p>Items(+QTY): <span>{totalItems}</span></p>
 
           <div className="address">
-          <h6>CUSTOMER ADDRESS <NavLink to='/editAddress'>EDIT</NavLink></h6>
+          <h6>DELIVERY ADDRESS <NavLink to='/editAddress'>EDIT</NavLink></h6>
 
           <p>{addressData.addressLine1}</p>
 
@@ -404,17 +443,45 @@ const formattedDate20DaysFromNow = date20DaysFromNow.toLocaleDateString('en-US',
             <p>Delivery between <span>{formattedDate15DaysFromNow}</span> and <span>{formattedDate20DaysFromNow}</span></p>
           </div>
 
-          <p>Shipping(LAGOS): <span>+{lagosShipping()}</span></p>
-          <p>Shipping: <NavLink>GET QUOTE</NavLink></p>
+         <div className="shipping-state">
+
+         <div className="state">
+        <input
+          type="radio"
+          id="lagos"
+          name="shipping"
+          value="LAGOS"
+        checked={selectedShipping === 'LAGOS'}
+        onChange={handleShippingChange}
+        />
+        <label htmlFor="lagos">Shipping(LAGOS)</label>
+         </div>
+         
+
+        <div className="state">
+        <input
+          type="radio"
+          id="others"
+          name="shipping"
+          value="OTHERS"
+            checked={selectedShipping === 'OTHERS'}
+        onChange={handleShippingChange}
+        />
+        <label htmlFor="others">Shipping(OTHERS)</label>
+        </div>
+
+      </div>
+
 
 
           </div>
 
           <div className="total">
             <p>Total <span>{formattedTotalPriceWithShipping}</span></p>
+          <li>Shipping not included</li>
           </div>
 
-          <button className='checkout'>Checkout</button>
+          <button className='checkout' onClick={handleCheckout}>Checkout</button>
 
 
         </div>
@@ -430,6 +497,26 @@ const formattedDate20DaysFromNow = date20DaysFromNow.toLocaleDateString('en-US',
          
           
         </div>
+
+            {showPopup && (
+        <div className="popup">
+
+          <div class="spinner">
+            <div></div>   
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+          </div>
+
+
+        </div>
+      )}
       </div>
     </div>
   );
