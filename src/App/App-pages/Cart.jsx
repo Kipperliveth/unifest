@@ -100,12 +100,25 @@ const getTotalPrice = () => {
   let totalPrice = 0;
   fetchedProducts.forEach((product) => {
     totalPrice += parseFloat(product.price) *
-    (productQuantities[product.productId] || product.quantity).toLocaleString('en-US');
+    ( product.quantity).toLocaleString('en-US');
   });
   return totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'NGN' });
 };
 //
 
+//shipping lagos
+const lagosShipping = () => {
+  let shippingCost = 15000;
+
+  return shippingCost.toLocaleString('en-US', { style: 'currency', currency: 'NGN' });
+}
+
+const getTotalPriceNumeric = parseFloat(getTotalPrice().replace(/[^\d.-]/g, ''));
+const lagosShippingNumeric = parseFloat(lagosShipping().replace(/[^\d.-]/g, ''));
+
+const totalPriceWithShipping = getTotalPriceNumeric + lagosShippingNumeric;
+
+const formattedTotalPriceWithShipping = totalPriceWithShipping.toLocaleString('en-US', { style: 'currency', currency: 'NGN' });
 
 
 
@@ -194,10 +207,77 @@ const handleDecreaseQuantity = async (productId) => {
 };
 
 // Inside the Cart component
+const totalItems = fetchedProducts.reduce((total, product) => total + product.quantity, 0);
 
-
-
+//address
+ const [addressData, setAddressData] = useState({
+    addressLine1: "",
+  });
  
+   useEffect(() => {
+
+    const fetchAddressData = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const userRef = doc(collection(txtdb, "users"), userId);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          const userData = userSnap.data();
+          setAddressData(userData.address);
+        } else {
+          console.log("No address data found for the current user.");
+        }
+      } else {
+        console.log("No authenticated user found.");
+      }
+      setLoading(false);
+    };
+
+    fetchAddressData();
+  }, []);
+
+  useEffect(() => {
+    const cachedAddressData = localStorage.getItem("addressData");
+    if (cachedAddressData) {
+      setAddressData(JSON.parse(cachedAddressData));
+      setLoading(false);
+    } else {
+      const fetchAddressData = async () => {
+        // Fetch address data from Firestore as before
+      };
+      fetchAddressData();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!loading) {
+      localStorage.setItem("addressData", JSON.stringify(addressData));
+    }
+  }, [addressData, loading]);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, [auth]);
+
+// Get the current date
+const currentDate = new Date();
+
+// Calculate the date 15 days from now
+const date15DaysFromNow = new Date(currentDate);
+date15DaysFromNow.setDate(currentDate.getDate() + 15);
+
+// Calculate the date 20 days from now
+const date20DaysFromNow = new Date(currentDate);
+date20DaysFromNow.setDate(currentDate.getDate() + 20);
+
+// Format the dates as "day month"
+const options = { day: 'numeric', month: 'short' };
+const formattedDate15DaysFromNow = date15DaysFromNow.toLocaleDateString('en-US', options);
+const formattedDate20DaysFromNow = date20DaysFromNow.toLocaleDateString('en-US', options);
+
   
 
   return (
@@ -306,8 +386,37 @@ const handleDecreaseQuantity = async (productId) => {
         </div>
 
         <div className="cart-summary">
-          <h2>Order summary</h2>
-          <p>Total Price: &#8358; {getTotalPrice()}</p>
+          <h3>Order summary</h3>
+          <p>Subtotal: <span>{getTotalPrice()}</span></p>
+          <p>Items(+QTY): <span>{totalItems}</span></p>
+
+          <div className="address">
+          <h6>CUSTOMER ADDRESS <NavLink to='/editAddress'>EDIT</NavLink></h6>
+
+          <p>{addressData.addressLine1}</p>
+
+          </div>
+
+          <div className="delivery">
+          <h6>DELIVERY DETAILS</h6>
+
+          <div className="estimate">
+            <p>Delivery between <span>{formattedDate15DaysFromNow}</span> and <span>{formattedDate20DaysFromNow}</span></p>
+          </div>
+
+          <p>Shipping(LAGOS): <span>+{lagosShipping()}</span></p>
+          <p>Shipping: <NavLink>GET QUOTE</NavLink></p>
+
+
+          </div>
+
+          <div className="total">
+            <p>Total <span>{formattedTotalPriceWithShipping}</span></p>
+          </div>
+
+          <button className='checkout'>Checkout</button>
+
+
         </div>
 
 

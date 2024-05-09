@@ -22,13 +22,13 @@ function UserProfile() {
 
   const [loading, setLoading] = useState(true);
 
-  setPersistence(auth, browserSessionPersistence)
-    .then(() => {
-      // Session persistence successfully enabled
-    })
-    .catch((error) => {
-      console.error("Error enabling session persistence:", error);
-    });
+  // setPersistence(auth, browserSessionPersistence)
+  //   .then(() => {
+  //     // Session persistence successfully enabled
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error enabling session persistence:", error);
+  //   });
 
   const logout = async () => {
     if (auth.currentUser) {
