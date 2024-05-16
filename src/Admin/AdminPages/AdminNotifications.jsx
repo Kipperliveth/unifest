@@ -42,8 +42,12 @@ function AdminNotifications() {
     <div className="adminHome">
       <AdminDashboard />
 
+      <h2 className="admin-current-page mobile-content">Admin Notifications</h2>
+
       <div className="adminNotifications-content">
-        <h1>AdminNotifications</h1>
+
+      <h2 className="admin-current-page desktop-content">Admin Notifications</h2>
+
 
         <div>
           <ul>

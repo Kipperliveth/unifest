@@ -13,12 +13,15 @@ import { onAuthStateChanged } from "firebase/auth";
 import { CiTrash } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
 import { FiMinus } from "react-icons/fi";
+import emailjs from 'emailjs-com';
+emailjs.init("0AYqWDKbnCvVpNyW6");
 
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
-  const [user, setUser] =useState({})
+  const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true); // New loading state
+  const [errorMessage, setErrorMessage] = useState(''); // State for error message
 
   //skeleton loading
   const [isLoading, setIsLoading] = useState(true);
@@ -283,13 +286,38 @@ useEffect(() => {
   console.log(selectedShipping);
 }, [selectedShipping]);
 
-//spinner
+// pop up spinner
 const [showPopup, setShowPopup] = useState(false);
 
+
+
+
+// order email
+const userEmail = auth.currentUser?.email;
+const userName = user.displayName;
+
+//admin notification 
+// const sendAdminNotification = async () => {
+//   try {
+//     const timestamp = new Date().toISOString();
+//     await addDoc(collection(txtdb, 'notifications'), {
+//       message: 'new message',
+//       timestamp: timestamp
+//     });
+//     console.log("Notification added");
+//   } catch (error) {
+//     console.error("Error adding notification:", error);
+//   }
+// };
 
 //checkout logic
 
 const handleCheckout = async () => {
+  
+if (!selectedShipping) {
+  setErrorMessage('Please choose a shipping option');
+  return;
+}
 setShowPopup(true);
 
   try {
@@ -308,7 +336,77 @@ setShowPopup(true);
       state: addressData.state,
       createdAt: new Date(), // Store the current date and time as the creation date
     });
+  
 
+   // Get the email content
+let emailContent = `
+Order Details:
+- Order ID: ${orderRef.id}
+
+- Items:
+`;
+// Loop through fetchedProducts array to include product name and quantity
+fetchedProducts.forEach((product, index) => {
+emailContent += `\n    - ${product.txtVal} (x ${product.quantity})`;
+});
+
+// Add the total price and shipping address to the email content
+emailContent += `
+- Total: ${getTotalPriceNumeric} (including Tax tax)
+- Shipping Address:
+  ${addressData.addressLine1}
+  ${addressData.addressPhone}
+  ${addressData.city}
+  ${addressData.state}
+
+estimated delivery between ${formattedDate15DaysFromNow} and ${formattedDate20DaysFromNow}
+
+If you have any questions or need assistance, please don't hesitate to contact our customer support team at [Customer Support Email Address] or visit our FAQs page: [FAQs Link].
+`;
+
+         
+
+    //  await sendEmailNotification(userEmail, orderRef.id);
+    emailjs.send("service_w7spb28", "template_od7teag", {
+  to_email: userEmail,
+  userEmail: userEmail,
+  message: emailContent,
+  orderRefId: orderRef.id,
+  to_name: userName,
+  from_name: "Evanis Interiors"
+  // other variables you want to include in your email template
+})
+.then((response) => {
+  console.log('Email sent successfully:', response);
+  //user app notifications
+
+  try {
+    const timestamp = new Date().toISOString();
+     addDoc(collection(txtdb, `userNotifications/${userId}/inbox`), {
+      orderRefId: orderRef.id,
+      state: addressData.state,
+      formattedDate15DaysFromNow: formattedDate15DaysFromNow,
+      formattedDate20DaysFromNow: formattedDate20DaysFromNow,
+      timestamp: timestamp
+    });
+     addDoc(collection(txtdb, 'notifications'), {
+      orderRefId: orderRef.id,
+      timestamp: timestamp,
+      userEmail: userEmail,
+      username: userName,
+
+    });
+    console.log("Notification added");
+  } catch (error) {
+    console.error("Error adding notification:", error);
+  }
+setShowPopup(false);
+
+
+})
+.catch((error) => {
+  console.error('Email send error:', error);
+});
     console.log("Order created with ID: ", orderRef.id);
   } catch (error) {
     console.error("Error creating order:", error);
@@ -316,6 +414,9 @@ setShowPopup(true);
 
   }
 };
+
+
+
 
   
 
@@ -469,6 +570,8 @@ setShowPopup(true);
         />
         <label htmlFor="others">Shipping(OTHERS)</label>
         </div>
+
+         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
       </div>
 

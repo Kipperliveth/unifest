@@ -26,6 +26,7 @@ function Navbar() {
     "/post", "/orders",
     "/cart",
     "/userProfile",
+    '/notifications',
     "/uploads",
     "/onboarding",
     '/profilePic',

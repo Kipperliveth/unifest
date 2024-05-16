@@ -16,6 +16,7 @@ import Store from "../App/App-pages/Store";
 import UserDashboard from "../App/App-pages/UserDashboard";
 import Cart from "../App/App-pages/Cart";
 import UserProfile from "../App/App-pages/UserProfile";
+import UserNotifications from '../App/App-pages/UserNotifications';
 import AdminHome from "../Admin/AdminPages/AdminHome";
 import AdminNotifications from "../Admin/AdminPages/AdminNotifications";
 import Post from "../Admin/AdminPages/Post";
@@ -53,6 +54,7 @@ function AnimatedRoutes() {
         <Route path="/userDashboard" element={<UserDashboard />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/notifications" element={<UserNotifications />}/>
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/adminNotifications" element={<AdminNotifications />} />
         <Route path="/post" element={<Post />}/>

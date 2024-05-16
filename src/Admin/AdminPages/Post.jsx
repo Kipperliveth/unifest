@@ -80,8 +80,12 @@ function Post() {
     <div className="adminHome">
       <AdminDashboard />
 
+      <h2 className="admin-current-page mobile-content">Upload a Product</h2>
+
       <div className="adminContent adminPost">
-        <h2>Upload a Product</h2>
+
+      <h2 className="admin-current-page desktop-content">Upload a Product</h2>
+
 
         <div style={{ display: uploadSuccess ? "none" : "block" }}>
           <div className="post-container">
@@ -162,6 +166,7 @@ function Post() {
           </div>
         )}
       </div>
+      
     </div>
   );
 }

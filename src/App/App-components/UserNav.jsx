@@ -13,16 +13,18 @@ import { RiMenu4Fill } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import {
   getFirestore,
-  collection,
+  collection, query, orderBy,
   getDocs,
   onSnapshot
 } from "firebase/firestore";
 import { txtdb } from "../../firebase-config";
+import { useLocation } from "react-router-dom";
 
 function UserNav() {
   const [user, setUser] = useState({});
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isVisible, SetIsVisible] = useState(false);
 
@@ -48,11 +50,14 @@ function UserNav() {
   const toggleUserInfo = () => {
     setShowUserInfo(!showUserInfo);
   };
-
+//
   const cartLink = () => {
     navigate("/cart");
   };
-
+  const notifLink = () => {
+    navigate('/notifications')
+  }
+  //
   //cart lenghth
   const [cartItemCount, setCartItemCount] = useState(0); // State variable for cart item count
   const [fetchedProducts, setFetchedProducts] = useState([]);
@@ -85,7 +90,6 @@ function UserNav() {
   };
 
   useEffect(() => {
-    document.title = "Cart Evanis-Interiors";
     if (currentUser) {
       fetchProducts();
   
@@ -108,6 +112,64 @@ function UserNav() {
       setUser(currentUser);
     });
   }, [auth]);
+
+  // user notification count
+  const [notifications, setNotifications] = useState([]);
+  const [unreadCount, setUnreadCount] = useState(0); 
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []); // Run only once when the component mounts
+
+  useEffect(() => {
+    if (!user) return; // Return early if user is null
+
+    const userId = user.uid;
+    const q = query(
+      collection(txtdb, `userNotifications/${userId}/inbox`),
+      orderBy("timestamp", "desc")
+    );
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const newNotifications = snapshot.docs.map((doc) => {
+        let timestamp;
+        if (doc.data().timestamp instanceof Date) {
+          timestamp = doc.data().timestamp;
+        } else {
+          timestamp = new Date(doc.data().timestamp);
+        }
+        return {
+          id: doc.id,
+          ...doc.data(),
+          timestamp: timestamp.toLocaleString([], {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          }),
+        };
+      });
+
+   // Check if a new document has been added
+   if (newNotifications.length > notifications.length) {
+    // Calculate the count of unread notifications
+    const unreadNotifications = newNotifications.filter((notification) => !notification.read);
+    setUnreadCount(unreadNotifications.length);
+  }
+
+      // Update notifications
+      setNotifications(newNotifications);
+    });
+
+    return () => unsubscribe();
+  }, [user, location, notifications]); // Run whenever the user object or notifications change
+
+  
 
   return (
     <div className="userNavbar">
@@ -149,9 +211,17 @@ function UserNav() {
         </div>
 
         <div className="userControls desktop-content">
-          <div className="notif-cont">
+       
+          <div className="cart-cont" onClick={notifLink}>
+            <div className="cart-container">
 
-          <IoIosNotificationsOutline className="app-icon desktop-view notifs" />
+            <div className="cart-total">{unreadCount}</div>
+          <IoIosNotificationsOutline
+            className="app-icon desktop-view cart"
+            onClick={cartLink}
+          />
+            </div>
+
           </div>
 
           <div className="cart-cont" onClick={cartLink}>
@@ -202,7 +272,7 @@ function UserNav() {
             <MdCancel onClick={toggleVisibilty} className="cancel-btn" />
 
             <span>
-              <IoIosNotificationsOutline className="span-icon" />
+              <IoIosNotificationsOutline className="span-icon" onClick={notifLink} />
               <AiOutlineShoppingCart className="span-icon" onClick={cartLink} />
             </span>
 

@@ -50,7 +50,7 @@ function AdminDashboard() {
 
         <div className="adminDash-shop">
           <h2>Shop</h2>
-          <NavLink to="/post">
+          <NavLink to="/post" >
             <IoCloudUploadOutline className="admin-shop-icon" /> <h3> Post</h3>
           </NavLink>
           <NavLink to='/orders'>
@@ -97,7 +97,7 @@ function AdminDashboard() {
                 <MdOutlineDashboard className="admin-shop-icon" />
                 <h3>Dashboard</h3>
               </NavLink>
-              <NavLink>
+              <NavLink to='/adminNotifications'>
                 <IoIosNotificationsOutline className="admin-shop-icon" />
                 <h3>Notifications</h3>
               </NavLink>
