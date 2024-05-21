@@ -26,6 +26,7 @@ import Address from "../App/App-auth/Address";
 import ProfilePicture from "../App/App-auth/ProfilePicture";
 import Orders from "../Admin/AdminPages/Orders";
 import Editaddress from "../App/App-auth/Editaddress";
+import Myorders from "../App/App-pages/Myorders";
 
 
 function AnimatedRoutes() {
@@ -64,6 +65,7 @@ function AnimatedRoutes() {
         <Route path='/editAddress' element={<Editaddress />} />
         <Route path='/profilePic'  element={<ProfilePicture />}/>
         <Route path='/orders' element={<Orders />}/>
+        <Route path="/myorders" element={<Myorders />} />
 
         <Route
           path="/userMasterclass"

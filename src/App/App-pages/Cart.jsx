@@ -7,7 +7,7 @@ import { auth } from "../../firebase-config";
 import {
   collection, addDoc,
   getDocs, doc, deleteDoc,
-  onSnapshot, query, where, setDoc, getDoc
+  onSnapshot, query, where, setDoc, getDoc, updateDoc
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { CiTrash } from "react-icons/ci";
@@ -296,20 +296,6 @@ const [showPopup, setShowPopup] = useState(false);
 const userEmail = auth.currentUser?.email;
 const userName = user.displayName;
 
-//admin notification 
-// const sendAdminNotification = async () => {
-//   try {
-//     const timestamp = new Date().toISOString();
-//     await addDoc(collection(txtdb, 'notifications'), {
-//       message: 'new message',
-//       timestamp: timestamp
-//     });
-//     console.log("Notification added");
-//   } catch (error) {
-//     console.error("Error adding notification:", error);
-//   }
-// };
-
 //checkout logic
 
 const handleCheckout = async () => {
@@ -334,6 +320,10 @@ setShowPopup(true);
       callLine: addressData.addressPhone,
       city: addressData.city,
       state: addressData.state,
+      userEmail: userEmail,
+      username: userName,
+      formattedDate15DaysFromNow: formattedDate15DaysFromNow,
+      formattedDate20DaysFromNow: formattedDate20DaysFromNow,
       createdAt: new Date(), // Store the current date and time as the creation date
     });
   
@@ -361,7 +351,7 @@ emailContent += `
 
 estimated delivery between ${formattedDate15DaysFromNow} and ${formattedDate20DaysFromNow}
 
-If you have any questions or need assistance, please don't hesitate to contact our customer support team at [Customer Support Email Address] or visit our FAQs page: [FAQs Link].
+If you have any questions or need assistance, please don't contact our customer support team at [Customer Support Email Address] or visit our FAQs page: [FAQs Link].
 `;
 
          
@@ -389,6 +379,17 @@ If you have any questions or need assistance, please don't hesitate to contact o
       formattedDate20DaysFromNow: formattedDate20DaysFromNow,
       timestamp: timestamp
     });
+    // addDoc(collection(txtdb, `userNotifications/${userId}/myorders`), {
+    //   orderRefId: orderRef.id,
+    //   state: addressData.state,
+    //   cartItems: fetchedProducts, // Store the contents of the user's cart
+    //   totalPrice: getTotalPriceNumeric, // Store the total price of the order
+    //   shippingOption: selectedShipping, // Store the selected shipping option
+    //   formattedDate15DaysFromNow: formattedDate15DaysFromNow,
+    //   formattedDate20DaysFromNow: formattedDate20DaysFromNow,
+    //   timestamp: timestamp,
+    //   satus: "pending delivery"
+    // });
      addDoc(collection(txtdb, 'notifications'), {
       orderRefId: orderRef.id,
       timestamp: timestamp,
@@ -396,6 +397,33 @@ If you have any questions or need assistance, please don't hesitate to contact o
       username: userName,
 
     });
+
+    const orderData = {
+      status: "Pending delivery",
+      date: timestamp,
+         orderRefId: orderRef.id,
+      state: addressData.state,
+      cartItems: fetchedProducts, // Store the contents of the user's cart
+      totalPrice: getTotalPriceNumeric, // Store the total price of the order
+      shippingOption: selectedShipping, // Store the selected shipping option
+      formattedDate15DaysFromNow: formattedDate15DaysFromNow,
+      formattedDate20DaysFromNow: formattedDate20DaysFromNow,
+      address: addressData.addressLine1,
+      callLine: addressData.addressPhone,
+      delivery: 'Ordered on'
+    };
+    const neworder = collection(txtdb, `userNotifications/${userId}/deliveredOrders`)
+    addDoc(neworder, orderData)
+  .then((docRef) => {
+    const documentId = docRef.id; // Access the automatically generated ID
+    console.log('Document successfully added with ID:', documentId);
+    // You can now use the documentId for further operations
+    updateDoc(doc(txtdb, `userNotifications/${userId}/deliveredOrders/${documentId}`), {
+     docRef: docRef.id,
+   });
+  })
+ 
+
     console.log("Notification added");
   } catch (error) {
     console.error("Error adding notification:", error);
@@ -406,6 +434,8 @@ setShowPopup(false);
 })
 .catch((error) => {
   console.error('Email send error:', error);
+  setShowPopup(false);
+
 });
     console.log("Order created with ID: ", orderRef.id);
   } catch (error) {
@@ -417,9 +447,6 @@ setShowPopup(false);
 
 
 
-
-  
-
   return (
     <div>
       <UserNav />
@@ -427,8 +454,46 @@ setShowPopup(false);
         <div className="cart-container page">
           <h1>My Cart</h1>
 
-          {fetchedProducts.length === 0 ? (
-          <div className="empty-cart">
+
+         
+          { isLoading ? (
+            <div className="loading-message">
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+            </div>
+   
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+             
+            </div>
+   
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+            </div>
+   
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+            </div>
+   
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+            </div>
+   
+            <div className="loading-card">
+              <div className="loading-img"></div>
+              <div className="loading-text"></div>
+            </div>
+          </div>
+          ) : (
+
+        <div>
+                { fetchedProducts.length === 0 ?(
+                  <div className="empty-cart">
             <MdOutlineShoppingCart className="cart-icon" />
             <h3>Your cart is empty</h3>
             <p>
@@ -437,166 +502,129 @@ setShowPopup(false);
             </p>
             <NavLink to="/store">Start Shopping</NavLink>
           </div>
-          ) : (
+                ) : (
+                  <div className='cart'>
 
-<div>
-        {isLoading ? (
-          <div className="loading-message">
-            <div className="loading-card">
-              <div className="loading-img"></div>
-              <div className="loading-text"></div>
-              <div className="loading-text-II"></div>
-            </div>
+                    <div className="cart-container main-container">
+                      
+                {fetchedProducts.map((product, index) => (
+                    <div key={index} className="cart-item">
+                        {/* <p>{product.productId}</p> */}
 
-            <div className="loading-card">
-              <div className="loading-img"></div>
-              <div className="loading-text"></div>
-              <div className="loading-text-II"></div>
-            </div>
+                        <div className="product-info">
 
-            <div className="loading-card">
-              <div className="loading-img"></div>
-              <div className="loading-text"></div>
-              <div className="loading-text-II"></div>
-            </div>
+                          <div className="info">
+                        <img src={product.imgUrl} alt={product.txtVal} />
 
-            <div className="loading-card">
-              <div className="loading-img"></div>
-              <div className="loading-text"></div>
-              <div className="loading-text-II"></div>
-            </div>
+                        <div className="name-desc">
+                        <h3>{product.txtVal}</h3>
+                        <p>{product.desc}</p>
+                        {/* <p>{product.quantity}</p> */}
+                         <p className="mobile">
+                      &#8358;&nbsp;
+                        {(parseFloat(product.price) * product.quantity).toLocaleString("en-US")}
+                      </p>
+                        </div>
 
-            <div className="loading-card">
-              <div className="loading-img"></div>
-              <div className="loading-text"></div>
-              <div className="loading-text-II"></div>
-            </div>
+                          </div>
 
-            <div className="loading-card">
-              <div className="loading-img"></div>
-              <div className="loading-text"></div>
-              <div className="loading-text-II"></div>
-            </div>
-          </div>
-        ) : (
-          <div className='cart'>
+                        <div className="price desktop">
+                        <p>
+                      &#8358;&nbsp;
+                        {(parseFloat(product.price) * product.quantity).toLocaleString("en-US")}
+                      </p>
+                        </div>
 
-            <div className="cart-container">
-              
-        {fetchedProducts.map((product, index) => (
-            <div key={index} className="cart-item">
-                {/* <p>{product.productId}</p> */}
+                        </div>
 
-                <div className="product-info">
+                        <div className="cart-control">
+                        <button className="delete-btn"  onClick={() => handleDeleteProduct(product.productId)}> <CiTrash className="delete-icon"/> <p>Remove</p></button>
 
-                  <div className="info">
-                <img src={product.imgUrl} alt={product.txtVal} />
+                        <div className="quantity-counter">
+                          <button  onClick={() => handleDecreaseQuantity(product.productId)}><FiMinus className="count-icon" /></button>
+                          <p>{product.quantity}</p>
+                          <button onClick={() => handleIncreaseQuantity(product.productId)}><FaPlus  className="count-icon" /></button>
+                        </div>
+                        </div>
 
-                <div className="name-desc">
-                <h3>{product.txtVal}</h3>
-                <p>{product.desc}</p>
-                {/* <p>{product.quantity}</p> */}
+                        {/* Render other product details */}
+                    </div>
+                ))}
+
                 </div>
+
+                <div className="cart-summary">
+                  <h3>Order summary</h3>
+                  <p>Subtotal: <span>{getTotalPrice()}</span></p>
+                  <p>Items(+QTY): <span>{totalItems}</span></p>
+
+                  <div className="address">
+                  <h6>DELIVERY ADDRESS <NavLink to='/editAddress'>EDIT</NavLink></h6>
+
+                  <p>{addressData.addressLine1}</p>
 
                   </div>
 
-                <div className="price">
-                <p>
-              &#8358;&nbsp;
-                {(parseFloat(product.price) * product.quantity).toLocaleString("en-US")}
-              </p>
+                  <div className="delivery">
+                  <h6>DELIVERY DETAILS</h6>
+
+                  <div className="estimate">
+                    <p>Delivery between <span>{formattedDate15DaysFromNow}</span> and <span>{formattedDate20DaysFromNow}</span></p>
+                  </div>
+
+                <div className="shipping-state">
+
+                <div className="state">
+                <input
+                  type="radio"
+                  id="lagos"
+                  name="shipping"
+                  value="LAGOS"
+                checked={selectedShipping === 'LAGOS'}
+                onChange={handleShippingChange}
+                />
+                <label htmlFor="lagos">Shipping(LAGOS)</label>
+                </div>
+                
+
+                <div className="state">
+                <input
+                  type="radio"
+                  id="others"
+                  name="shipping"
+                  value="OTHERS"
+                    checked={selectedShipping === 'OTHERS'}
+                onChange={handleShippingChange}
+                />
+                <label htmlFor="others">Shipping(OTHERS)</label>
                 </div>
 
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+              </div>
+
+
+
+                  </div>
+
+                  <div className="total">
+                    <p>Total <span>{formattedTotalPriceWithShipping}</span></p>
+                  <li>Shipping not included</li>
+                  </div>
+
+                  <button className='checkout' onClick={handleCheckout}>Checkout</button>
+
+
                 </div>
 
-                <div className="cart-control">
-                <button className="delete-btn"  onClick={() => handleDeleteProduct(product.productId)}> <CiTrash className="delete-icon"/> <p>Remove</p></button>
 
-                <div className="quantity-counter">
-                  <button  onClick={() => handleDecreaseQuantity(product.productId)}><FiMinus className="count-icon" /></button>
-                  <p>{product.quantity}</p>
-                  <button onClick={() => handleIncreaseQuantity(product.productId)}><FaPlus  className="count-icon" /></button>
+
                 </div>
-                </div>
+                )}
 
-                {/* Render other product details */}
-            </div>
-        ))}
-
-        </div>
-
-        <div className="cart-summary">
-          <h3>Order summary</h3>
-          <p>Subtotal: <span>{getTotalPrice()}</span></p>
-          <p>Items(+QTY): <span>{totalItems}</span></p>
-
-          <div className="address">
-          <h6>DELIVERY ADDRESS <NavLink to='/editAddress'>EDIT</NavLink></h6>
-
-          <p>{addressData.addressLine1}</p>
-
-          </div>
-
-          <div className="delivery">
-          <h6>DELIVERY DETAILS</h6>
-
-          <div className="estimate">
-            <p>Delivery between <span>{formattedDate15DaysFromNow}</span> and <span>{formattedDate20DaysFromNow}</span></p>
-          </div>
-
-         <div className="shipping-state">
-
-         <div className="state">
-        <input
-          type="radio"
-          id="lagos"
-          name="shipping"
-          value="LAGOS"
-        checked={selectedShipping === 'LAGOS'}
-        onChange={handleShippingChange}
-        />
-        <label htmlFor="lagos">Shipping(LAGOS)</label>
-         </div>
-         
-
-        <div className="state">
-        <input
-          type="radio"
-          id="others"
-          name="shipping"
-          value="OTHERS"
-            checked={selectedShipping === 'OTHERS'}
-        onChange={handleShippingChange}
-        />
-        <label htmlFor="others">Shipping(OTHERS)</label>
-        </div>
-
-         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-      </div>
-
-
-
-          </div>
-
-          <div className="total">
-            <p>Total <span>{formattedTotalPriceWithShipping}</span></p>
-          <li>Shipping not included</li>
-          </div>
-
-          <button className='checkout' onClick={handleCheckout}>Checkout</button>
-
-
-        </div>
-
-
-
+                
         </div>
         )}
-
-        
-</div>
-)}
          
           
         </div>
@@ -604,7 +632,7 @@ setShowPopup(false);
             {showPopup && (
         <div className="popup">
 
-          <div class="spinner">
+          <div className="spinner">
             <div></div>   
             <div></div>    
             <div></div>    

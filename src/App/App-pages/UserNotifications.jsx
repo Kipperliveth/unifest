@@ -9,10 +9,10 @@ import { PiNotePencilLight } from "react-icons/pi";
 
 function UserNotifications() {
   const [notifications, setNotifications] = useState([]);
-  const [readNotifications, setReadNotifications] = useState([]);
   const currentUser = auth.currentUser;
   const [user, setUser] = useState({})
   const [isLoading, setIsLoading] = useState(true);
+  const [readNotifications, setReadNotifications] = useState([]);
   const [unreadCount, setUnreadCount] = useState(0); // State to store the count of unread notifications
   // pop up spinner
 const [showPopup, setShowPopup] = useState(false);

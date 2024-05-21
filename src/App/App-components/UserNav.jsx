@@ -249,7 +249,7 @@ function UserNav() {
                   <LiaUserEditSolid className="icon" />
                   <p>View Profile</p>
                 </NavLink>
-                <NavLink className="icon">
+                <NavLink className="icon" to='/myorders'>
                   <BsBox2 /> <p>My Orders</p>
                 </NavLink>
                 <button onClick={logout}>Log out</button>
@@ -272,8 +272,29 @@ function UserNav() {
             <MdCancel onClick={toggleVisibilty} className="cancel-btn" />
 
             <span>
-              <IoIosNotificationsOutline className="span-icon" onClick={notifLink} />
-              <AiOutlineShoppingCart className="span-icon" onClick={cartLink} />
+              <div className="cart-cont" onClick={notifLink}>
+            <div className="cart-container">
+
+            <div className="cart-total">{unreadCount}</div>
+          <IoIosNotificationsOutline
+            className="app-icon desktop-view cart"
+            onClick={cartLink}
+          />
+            </div>
+
+          </div>
+
+          <div className="cart-cont" onClick={cartLink}>
+            <div className="cart-container">
+
+            <div className="cart-total">{cartItemCount}</div>
+          <AiOutlineShoppingCart
+            className="app-icon desktop-view cart"
+            onClick={cartLink}
+          />
+            </div>
+
+          </div>
             </span>
 
             <div className="mobilepage-links">
@@ -293,7 +314,7 @@ function UserNav() {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/contact" onClick={toggleVisibilty}>
+                <NavLink to="/myorders" onClick={toggleVisibilty}>
                   My Orders
                 </NavLink>
               </li>

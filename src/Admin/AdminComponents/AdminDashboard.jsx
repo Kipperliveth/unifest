@@ -14,9 +14,15 @@ import { FaUserCircle } from "react-icons/fa";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { CiDeliveryTruck } from "react-icons/ci";
+import { collection, getDocs,onSnapshot } from "firebase/firestore";
+import { txtdb } from "../../firebase-config";
+
+
 
 function AdminDashboard() {
   const [user, setUser] = useState({});
+  const [ordersCount, setOrdersCount] = useState(0);
+  const [notificationsCount, setNotificationsCount] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false); // State to track open/closed state
 
@@ -29,6 +35,30 @@ function AdminDashboard() {
       setUser(currentUser);
     });
   }, [auth]);
+
+  useEffect(() => {
+    const ordersCollection = collection(txtdb, "orders");
+    const unsubscribe = onSnapshot(ordersCollection, (snapshot) => {
+      setOrdersCount(snapshot.docs.length);
+    }, (error) => {
+      console.error("Error fetching orders:", error);
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const ordersCollection = collection(txtdb, "notifications");
+    const unsubscribe = onSnapshot(ordersCollection, (snapshot) => {
+      setNotificationsCount(snapshot.docs.length);
+    }, (error) => {
+      console.error("Error fetching orders:", error);
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className="adminDash">
@@ -45,7 +75,7 @@ function AdminDashboard() {
         </NavLink>
         <NavLink to="/adminNotifications">
           <IoIosNotificationsOutline className="dash-icon" />{" "}
-          <h3>Notifications</h3>
+          <h3>Notifications {notificationsCount > 0 && `(${notificationsCount})`}</h3>
         </NavLink>
 
         <div className="adminDash-shop">
@@ -54,7 +84,7 @@ function AdminDashboard() {
             <IoCloudUploadOutline className="admin-shop-icon" /> <h3> Post</h3>
           </NavLink>
           <NavLink to='/orders'>
-            <CiDeliveryTruck className="admin-shop-icon" /> <h3>Orders</h3>
+            <CiDeliveryTruck className="admin-shop-icon" /> <h3>Orders {ordersCount > 0 && `(${ordersCount})`}</h3>
           </NavLink>
           <NavLink to="/uploads">
             <IoMdCloudOutline className="admin-shop-icon" /> <h3>Uploads</h3>
