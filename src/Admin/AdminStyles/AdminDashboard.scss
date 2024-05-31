@@ -64,6 +64,18 @@
                 border-radius: 50%;
             }
 
+            .admin-pic{
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+
+            }
+
+            p{
+                font-weight: 600;
+            }
+
             h3{
                 font-weight: 500;
             }
@@ -187,6 +199,7 @@
 
             .adminPic{
                 width: 25px;
+                height: 25px;
                 border-radius: 50%;
             }
 

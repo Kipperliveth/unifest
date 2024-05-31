@@ -15,17 +15,16 @@ function Onboarding() {
 
   const handleProfileUpdate = () => {
     setIsLoggedIn(true);
-    setTimeout(() => {
-      setIsLoggedIn(false);
-    }, 2000);
 
     if (!username) {
       setErrorMessage("Field cannot be empty");
+      setIsLoggedIn(false);
       return;
     }
 
     if (username.length < 3) {
       setErrorMessage("Username must be at least 3 characters long");
+      setIsLoggedIn(false);
       return;
     }
 
@@ -35,12 +34,15 @@ function Onboarding() {
       .then(() => {
         // Profile updated successfully
         console.log("Profile updated!");
+      setIsLoggedIn(false);
         navigate("/profilePic");
         // You can navigate to the next page or perform any other action here
       })
       .catch((error) => {
         // An error occurred
         console.error("Error updating profile:", error);
+      setIsLoggedIn(false);
+        
       });
   };
 

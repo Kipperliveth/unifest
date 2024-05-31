@@ -8,6 +8,8 @@ import { FaSearch } from "react-icons/fa";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { FaTruck } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
+import { ImSpinner8 } from "react-icons/im";
+
 
 
 
@@ -15,6 +17,8 @@ function Orders() {
 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   
   const fetchOrders = async () => {
     try {
@@ -87,6 +91,7 @@ function Orders() {
   const [isFirstPage, setIsFirstPage] = useState(true);
 
   const markAsCompleted = async () => {
+    setIsLoggedIn(true);
     const userID = selectedOrder.userId;
 
     if (selectedOrder) {
@@ -130,6 +135,8 @@ function Orders() {
           console.log("Document containing matching order data:", foundDoc);
       } else {
           console.log("No document found containing the matching order ID.");
+          setIsLoggedIn(false);
+
       }
 
       const documentId = foundDoc.docRef;
@@ -145,11 +152,13 @@ function Orders() {
       
             //
             closeModal();
+            setIsLoggedIn(false);
 
               console.log("Order marked as completed and added to Firebase.");
             } catch (error) {
               console.error("Error adding document: ", error);
-              alert("Failed to mark as completed. Please try again.");
+              setIsLoggedIn(false);
+
             }
           }
         };
@@ -245,6 +254,10 @@ function Orders() {
 
               </div>
             ))}
+
+            {filteredOrders.length === 0 ? (
+            <p className="no-notifications">No pending orders</p> 
+              ) : null}
           </div>
         )}
   
@@ -263,7 +276,11 @@ function Orders() {
               <div className="header">
                 <span>
                 <h1>Order ID: {selectedOrder.id}</h1>
-                  <button onClick={markAsCompleted}>Mark as Completed<FaCheck className="icon"/></button>
+                  <button onClick={markAsCompleted} > {isLoggedIn ? (
+                  <ImSpinner8 className="login-spinner" />
+                ) : (
+                  "Mark as completed"
+                )} <FaCheck className="icon"/></button>
                 </span>
   
                 <div className="dates">
@@ -384,6 +401,10 @@ function Orders() {
               <p className="status">Completed</p>
             </div>
           ))}
+
+          {filteredOrders.length === 0 ? (
+            <p className="no-notifications">Completed orders will show here</p> 
+              ) : null}
         </div>
       )}
 

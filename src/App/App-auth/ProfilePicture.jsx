@@ -28,15 +28,17 @@ function ProfilePicture() {
 
   function handleClick() {
     setIsLoggedIn(true);
-    setTimeout(() => {
-      setIsLoggedIn(false);
-    }, 2000);
 
     if (!photo) {
       setErrorMessage("Please choose a display picture");
+      setIsLoggedIn(false);
       return;
     }
-    upload(photo, currentUser, setLoading);
+    upload(photo, currentUser, setLoading).then(() => {
+      // Upload was successful
+      setIsLoggedIn(false);
+    })
+    
   }
 
   useEffect(() => {

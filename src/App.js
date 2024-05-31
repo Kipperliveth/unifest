@@ -5,6 +5,7 @@ import "./Admin/AdminStyles/AdminstylesMain.scss";
 import { BrowserRouter as Router } from "react-router-dom"; 
 import AnimatedRoutes from "./Pages/AnimatedRoutes";
 import Footer from "./Components/Footer";
+import TawkToChat from "./App/App-components/TawkToChat";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
       <Navbar />
 
       <AnimatedRoutes />
+
+      <TawkToChat />
 
       <Footer />
 

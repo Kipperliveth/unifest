@@ -32,6 +32,7 @@ function Editaddress() {
         !addressData.city
       ) {
         setErrorMessage("Please fill in all fields."); // Set error message
+        setIsLoggedIn(false);
         return; // Stop further execution
       }
   

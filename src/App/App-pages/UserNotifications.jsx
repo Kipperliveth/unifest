@@ -173,7 +173,10 @@ setShowPopup(true);
         <div className="notification-container page">
 
         <h1>Notifications</h1>
-        <p className="recent"><span></span>New<span></span></p>
+
+        {notifications.length > 0 ? (
+          <p className="recent"><span></span>New<span></span></p>
+        ) : ('')}
 
         <div>
         {isLoading ? (
@@ -233,6 +236,7 @@ setShowPopup(true);
                     <h4>Your order with ID: {notification.orderRefId} has been confirmed </h4>
                     <p>Expected delivery for this item to {notification.state} is between {notification.formattedDate15DaysFromNow} and {notification.formattedDate20DaysFromNow}</p>
                     <p>Please note that delivery fees are paid for seperately</p>
+                    <p>Use the live chat feature to inquire shipping fees</p>
                     <h5>To track your order please contact Evanis Interiors via Email</h5>
                     <span>
 
@@ -249,7 +253,10 @@ setShowPopup(true);
 
         </div>
 
-        <p className="recent"><span></span>Older<span></span></p>
+        {readNotifications.length > 0 ? (
+          <p className="recent"><span></span>Older<span></span></p>
+
+        ) : ('')}
 
         <div className="read">
         {isLoading ? (
@@ -308,7 +315,8 @@ setShowPopup(true);
                 <div className="right">
                     <h4>Your order with ID: {readNotification.orderRefId} has been confirmed </h4>
                     <p>Expected delivery for this item to {readNotification.state} is between {readNotification.formattedDate15DaysFromNow} and {readNotification.formattedDate20DaysFromNow}</p>
-                    <p>Please note that delivery fees are paid for seperately</p>
+                    <p>Please note that delivery fees are paid for seperately. </p>
+                    <p>Use the live chat feature to inquire shipping fees</p>
                     <h5>To track your order please contact Evanis Interiors via Email</h5>
                     <span>
 
@@ -324,6 +332,10 @@ setShowPopup(true);
         )}
 
         </div>
+
+        {notifications.length === 0 && readNotifications.length === 0 && (
+          <p className="no-notifications">Your notifications will show here</p>
+        )}
 
       </div>
 

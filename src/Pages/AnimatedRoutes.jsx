@@ -27,6 +27,7 @@ import ProfilePicture from "../App/App-auth/ProfilePicture";
 import Orders from "../Admin/AdminPages/Orders";
 import Editaddress from "../App/App-auth/Editaddress";
 import Myorders from "../App/App-pages/Myorders";
+import PasswordReset from "../App/App-auth/PasswordReset";
 
 
 function AnimatedRoutes() {
@@ -46,6 +47,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/reset" element={<PasswordReset />}/>
         <Route path="/signup" element={<SignUp />} />
         {/* proteted routes */}
         {/* <Route path='/marketplace' element={<ProtectedRoute>

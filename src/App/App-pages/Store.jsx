@@ -205,7 +205,7 @@ function Store() {
               <button onClick={() => handleCategoryClick("All")}>
                 <img src={all} alt="" />
               </button>
-              All
+              <p>All</p>
             </span>
 
             <span className="category-name">

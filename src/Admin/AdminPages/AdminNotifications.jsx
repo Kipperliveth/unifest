@@ -159,7 +159,9 @@ setShowPopup(true);
 
               <div className="notification-container page">
 
-        <p className="recent"><span></span>New<span></span></p>
+              {notifications.length > 0 ? (
+          <p className="recent"><span></span>New<span></span></p>
+        ) : null}
 
         <div>
         {isLoading ? (
@@ -235,7 +237,9 @@ setShowPopup(true);
 
         </div>
 
-        <p className="recent"><span></span>Older<span></span></p>
+        {readNotifications.length > 0 ? (
+          <p className="recent"><span></span>Older<span></span></p>
+        ) : null}
 
         <div className="read">
         {isLoading ? (
@@ -310,6 +314,10 @@ setShowPopup(true);
         )}
 
         </div>
+
+        {notifications.length === 0 && readNotifications.length === 0 && (
+          <p className="no-notifications">Your notifications will show here</p>
+        )}
 
         </div>
 

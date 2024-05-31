@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 
 function Address() {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(true);
   const [addressData, setAddressData] = useState({
     addressLine1: "",
     addressPhone: "",
@@ -204,6 +204,9 @@ function Address() {
 
         {showPopup && (
         <div className="popup">
+
+          <div className="popup-container">
+            
           <FaCheck className="completed-icon" />
           <p>Your information has been saved successfully!</p>
           <button onClick={nextPage}>
@@ -213,6 +216,8 @@ function Address() {
               "My Dashboard"
             )}
           </button>
+
+          </div>
         </div>
         )}
       </div>

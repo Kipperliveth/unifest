@@ -149,7 +149,7 @@ const fetchAddressData = async (user) => {
               </div>
 
               <div className="forgot-pass">
-                <NavLink>Forgot password?</NavLink>
+                <NavLink to='/reset'>Forgot password?</NavLink>
               </div>
 
               <button onClick={login} className="login-btn">

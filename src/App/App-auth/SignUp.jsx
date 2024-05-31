@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
+import { createUserWithEmailAndPassword, AuthErrorCodes, sendEmailVerification  } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { PiReadCvLogoFill } from "react-icons/pi";
@@ -31,9 +31,6 @@ function SignUp() {
     event.preventDefault();
 
     setIsLoggedIn(true);
-    setTimeout(() => {
-      setIsLoggedIn(false);
-    }, 2000);
 
     if (!password || !confirmPassword) {
       setError("Please fill in all fields");
@@ -50,10 +47,18 @@ function SignUp() {
           confirmPassword
         );
         console.log(user);
+        const userCredentials = user.user
+        await sendEmailVerification(userCredentials);        
         navigate("/onboarding");
+        setIsLoggedIn(false);
       } catch (error) {
+        setIsLoggedIn(false);
         if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
           setError("Email is already in use");
+          setIsLoggedIn(false);
+        } else if (error.code === 'auth/invalid-email'){
+          setIsLoggedIn(false);
+          setError('Invalid Email')
         }
         console.log(error.message);
       }
