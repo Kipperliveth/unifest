@@ -188,7 +188,7 @@ function Store() {
             <input
               className="searchInput"
               type="text"
-              placeholder="search for an something..."
+              placeholder="search for something..."
               onChange={(event) => {
                 setSearchTerm(event.target.value);
               }}
@@ -294,7 +294,8 @@ function Store() {
           </div>
         ) : (
           <div className="uploaded-posts">
-            {filteredData.map((product) => {
+          {filteredData.length > 0 ? (
+            filteredData.map((product) => {
               const isInCart = cartItems.some(
                 (item) => item.productId === product.id
               );
@@ -307,35 +308,30 @@ function Store() {
                     width="200px"
                     alt="product"
                   />
-
                   <div className="product-info">
                     <h2 className="product-name">{product.txtVal}</h2>
-
                     <p className="product-description">{product.desc}</p>
-
                     <p className="product-category">{product.category}</p>
                     <span>
                       <p className="product-price">
-                      &#8358;&nbsp;{parseFloat(product.price).toLocaleString('en-US')}
+                        &#8358;&nbsp;{parseFloat(product.price).toLocaleString('en-US')}
                       </p>
-
                       {isInCart ? (
-                        <button
-                        onClick={() => removeFromCart(product.id)}
-                        >
-                          Delete
-                        </button>
+                        <button onClick={() => removeFromCart(product.id)}>Delete</button>
                       ) : (
-                        <button onClick={() => addToCart(product)}>
-                          Add to Cart
-                        </button>
+                        <button onClick={() => addToCart(product)}>Add to Cart</button>
                       )}
                     </span>
                   </div>
                 </div>
               );
-            })}
-          </div>
+            })
+          ) : (
+            <div className="no-results">
+              <p>No products found</p>
+            </div>
+          )}
+        </div>
         )}
 
         <div className={`product-modal ${isProductModalOpen ? "open" : ""}`}>

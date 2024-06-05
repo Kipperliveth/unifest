@@ -299,7 +299,7 @@ function UserNav() {
 
             <div className="mobilepage-links">
               <li>
-                <NavLink to="/shop" onClick={toggleVisibilty}>
+                <NavLink to="/store" onClick={toggleVisibilty}>
                   Shop
                 </NavLink>
               </li>

@@ -14,6 +14,8 @@ import { CiTrash } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa6";
 import { FiMinus } from "react-icons/fi";
 import emailjs from 'emailjs-com';
+import { MdKeyboardArrowLeft } from "react-icons/md";
+
 emailjs.init("0AYqWDKbnCvVpNyW6");
 
 
@@ -289,6 +291,10 @@ useEffect(() => {
 // pop up spinner
 const [showPopup, setShowPopup] = useState(false);
 
+//completed
+const [completed, setCompleted] = useState(false)
+const [orderID, setOrderID] = useState(""); // New state variable for Order ID
+
 
 
 
@@ -342,7 +348,7 @@ emailContent += `\n    - ${product.txtVal} (x ${product.quantity})`;
 
 // Add the total price and shipping address to the email content
 emailContent += `
-- Total: ${getTotalPriceNumeric} (including Tax tax)
+- Total: ${getTotalPriceNumeric} (Shipping fees not included)
 - Shipping Address:
   ${addressData.addressLine1}
   ${addressData.addressPhone}
@@ -368,6 +374,7 @@ If you have any questions or need assistance, please don't contact our customer 
 })
 .then((response) => {
   console.log('Email sent successfully:', response);
+  setOrderID(orderRef.id)
   //user app notifications
 
   try {
@@ -429,6 +436,7 @@ If you have any questions or need assistance, please don't contact our customer 
     console.error("Error adding notification:", error);
   }
 setShowPopup(false);
+setCompleted(true);
 
 
 })
@@ -648,6 +656,39 @@ setShowPopup(false);
 
         </div>
       )}
+
+      {completed && (
+        <div className='checkout-popup'>
+
+            <div className='close-btn'><MdKeyboardArrowLeft classNme='icon'/> <button>Home</button> </div>
+
+          <div className='checkout-container'>
+
+          <div className="checkbox-wrapper">
+  <input checked="" type="checkbox" />
+  <svg viewBox="0 0 35.6 35.6">
+    <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
+    <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+    <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
+  </svg>
+        </div>
+
+        <h2>Order Confirmed</h2>
+
+
+        <p>Thank you for shopping on Evanis interiors! <br /> We will contact you soon to confirm the delivery fees.</p>
+        <p>Order ID: <span>{orderID}</span></p>
+
+       <div className='buttons'>
+            <NavLink to= '/store'>Continue Shopping</NavLink>
+            <NavLink to='/myorders'> Order Details</NavLink>
+        </div>
+
+          </div>
+          </div>
+      )}
+
+
       </div>
     </div>
   );

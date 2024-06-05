@@ -8,6 +8,7 @@ import { ImSpinner8 } from "react-icons/im";
 import { FaCloud } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { FaCheckDouble } from "react-icons/fa6";
+import { MdClose } from "react-icons/md";
 
 function Post() {
   const [txt, setTxt] = useState("");
@@ -15,6 +16,9 @@ function Post() {
   const [desc, setDescTxt] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   const [errorMessage, setErrorMessage] = useState("");
   const [uploadSuccess, setUploadSuccess] = useState(false);
@@ -37,13 +41,11 @@ function Post() {
 
   const handleClick = async () => {
     setIsLoggedIn(true);
-    setTimeout(() => {
-      setIsLoggedIn(false);
-    }, 2000);
 
     setUploadInProgress(true);
 
     if (!txt || !desc || !category || !price || !img) {
+      setIsLoggedIn(false);
       setErrorMessage("Please fill in all fields before uploading.");
       return;
     }
@@ -54,8 +56,11 @@ function Post() {
       const valRef = collection(txtdb, "txtData");
       await addDoc(valRef, { txtVal: txt, desc, category, price, imgUrl: img });
       setUploadSuccess(true);
+      setIsLoggedIn(false);
+      
     } catch (error) {
       console.error("Error uploading data: ", error);
+      setIsLoggedIn(false);
       setErrorMessage("An error occurred while uploading. Please try again.");
     }
 
@@ -74,7 +79,17 @@ function Post() {
   }, []);
 
   //validation
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  //close logic
+
+  const handleClose = () => {
+    setUploadSuccess(false)
+    setTxt("");
+    setImg("");
+    setDescTxt("");
+    setCategory("");
+    setPrice("");
+  }
 
   return (
     <div className="adminHome">
@@ -93,12 +108,14 @@ function Post() {
               type="file"
               onChange={(e) => handleUpload(e)}
               placeholder="browse"
+              // value={img}
             />
 
             <input
               type="text"
               name="name"
               placeholder="product name"
+               value={txt}
               onChange={(e) => setTxt(e.target.value)}
               required
             />
@@ -107,19 +124,14 @@ function Post() {
               type="text"
               name="description"
               placeholder="product description"
+                value={desc}
               onChange={(e) => setDescTxt(e.target.value)}
               required
             />
-            {/* 
-            <input
-              type="text"
-              name="cateogory"
-              placeholder="product category"
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            /> */}
+       
             <select
               name="category"
+              value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
             >
@@ -136,13 +148,14 @@ function Post() {
               type="number"
               name="price"
               placeholder="product price (without commas)"
+                value={price}
               onChange={(e) => setPrice(e.target.value)}
               required
             />
 
             <span>
               <button onClick={handleClick}>
-                {uploadInProgress ? (
+                {isLoggedIn ? (
                   <ImSpinner8 className="load-spinner" />
                 ) : (
                   "Upload Product"
@@ -155,6 +168,10 @@ function Post() {
 
         {uploadSuccess && (
           <div className="success-message">
+            <div className="close">
+           <MdClose className="icon" onClick={handleClose}/>
+            </div>
+
             <FaCloud className="success-icon" />
 
             <div className="msg">

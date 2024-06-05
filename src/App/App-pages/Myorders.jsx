@@ -207,11 +207,11 @@ function Myorders() {
 
                 <div className="head">
       
-              <div className="route"><p>Dashboard</p><MdOutlineKeyboardArrowRight className="icon"/><p>My orders</p><MdOutlineKeyboardArrowRight className="icon"/><p className='id'>ID {selectedOrder.id}</p></div>
+              <div className="route"><p>Dashboard</p><MdOutlineKeyboardArrowRight className="icon"/><p>My orders</p><MdOutlineKeyboardArrowRight className="icon"/><p className='id'>ID {selectedOrder.orderRefId}</p></div>
 
               <div className="header">
                 <div className='span'>
-                <p>Order ID: {selectedOrder.id}</p>
+                <p>Order ID: {selectedOrder.orderRefId}</p>
                   <button>{selectedOrder.status}</button>
                 </div>
 
