@@ -22,9 +22,14 @@ import storageicon from "../../stock/storageicon.png";
 import { MdCancel } from "react-icons/md";
 import { auth } from "../../firebase-config";
 import { txtdb } from "../../firebase-config";
+import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+
 
 
 function Store() {
+  const navigate = useNavigate();
+
   const [imageList, setImageList] = useState([]);
 
   const [isLoading, setIsLoading] = useState(true);
@@ -177,6 +182,73 @@ function Store() {
     });
   }, []);
 
+  //modal add to cart
+
+  const popupcart = (selectedProductData) => {
+    setCartItems((prevCartItems) => [...prevCartItems, selectedProductData]);
+
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
+    
+      addDoc(productRef, {
+        imgUrl: selectedProductData.imgUrl,
+        productId: selectedProductData.id,
+        txtVal: selectedProductData.txtVal,
+        desc: selectedProductData.desc,
+        category: selectedProductData.category,
+        price: selectedProductData.price,
+        quantity: 1
+        // Other product details
+      })
+      .then(() => {
+        console.log("Product added to user cart");
+      })
+      .catch((error) => {
+        console.error("Error adding product:", error);
+      });
+    } else {
+      // Implement logic for temporary cart (optional)
+    }
+  }
+
+  //buy now
+
+  const gotocart = () => {
+    navigate('/cart')
+  }
+
+  const buynow = (selectedProductData) => {
+    setCartItems((prevCartItems) => [...prevCartItems, selectedProductData]);
+
+    if (currentUser) {
+      const userId = currentUser.uid;
+      const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
+    
+      addDoc(productRef, {
+        imgUrl: selectedProductData.imgUrl,
+        productId: selectedProductData.id,
+        txtVal: selectedProductData.txtVal,
+        desc: selectedProductData.desc,
+        category: selectedProductData.category,
+        price: selectedProductData.price,
+        quantity: 1
+        // Other product details
+      })
+      .then(() => {
+        console.log("Product added to user cart");
+        navigate('/cart')
+      })
+      .catch((error) => {
+        console.error("Error adding product:", error);
+      });
+    } else {
+      // Implement logic for temporary cart (optional)
+    }
+  }
+
+
+
   return (
     <div className="theStore ">
       <UserNav />
@@ -317,7 +389,7 @@ function Store() {
                         &#8358;&nbsp;{parseFloat(product.price).toLocaleString('en-US')}
                       </p>
                       {isInCart ? (
-                        <button onClick={() => removeFromCart(product.id)}>Delete</button>
+                        <button onClick={() => removeFromCart(product.id)}>Remove</button>
                       ) : (
                         <button onClick={() => addToCart(product)}>Add to Cart</button>
                       )}
@@ -336,21 +408,50 @@ function Store() {
 
         <div className={`product-modal ${isProductModalOpen ? "open" : ""}`}>
           {selectedProductData && (
+            
             <div className="popup-details">
+
               <div className="closeIcon">
-                <MdCancel className="close" onClick={handleCloseModal} />
+                <p className="close" onClick={handleCloseModal} > <IoIosArrowBack />back to store</p>
               </div>
-              <img src={selectedProductData.imgUrl} alt="Product" />
+
+
+              <div className="container">
+
+              <div className="left">
+                <img src={selectedProductData.imgUrl} alt="Product" />
+
+              </div>
+
+              <div className="right">
+
               <h2>{selectedProductData.txtVal}</h2>
               {/* Add image */}
-              <p>{selectedProductData.desc}</p>
 
-              <p className="price"> &#8358;{selectedProductData.price}</p>
+              <p className="price"> &#8358; {parseFloat(selectedProductData.price).toLocaleString('en-us')}</p>
+              <p>{selectedProductData.desc}</p>
               {/* ... other product details ... */}
               <div className="buy-now">
-                <button>Buy Now</button>
-                <button>Add to Cart</button>
+               
+
+                {cartItems.some(item => item.productId === selectedProductData.id) ? (
+                        <button onClick={() => gotocart()}>Buy now</button>
+                      ) : (
+                        <button  onClick={() => buynow(selectedProductData)}>Buy Now</button>
+                      )}
+
+                {cartItems.some(item => item.productId === selectedProductData.id) ? (
+                        <button onClick={() => removeFromCart(selectedProductData.id)}>Remove from cart</button>
+                      ) : (
+                        <button onClick={() => popupcart(selectedProductData)}>Add to Cart</button>
+                      )}
               </div>
+
+              </div>
+
+              </div>
+
+
             </div>
           )}
         </div>

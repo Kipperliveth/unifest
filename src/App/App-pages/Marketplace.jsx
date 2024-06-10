@@ -24,11 +24,13 @@ function Marketplace() {
   return (
     <div className="marketplace">
       <UserNav />
+
       <div className="market-container">
         <h1>Marketplace</h1>
         <h2>{user?.email}</h2>
         <button onClick={logout}>log out</button>
       </div>
+      
     </div>
   );
 }

@@ -660,18 +660,18 @@ setCompleted(true);
       {completed && (
         <div className='checkout-popup'>
 
-            <div className='close-btn'><MdKeyboardArrowLeft classNme='icon'/> <button>Home</button> </div>
+            <div className='close-btn'><MdKeyboardArrowLeft className='icon'/> <NavLink to='/store' className='button'>Home</NavLink> </div>
 
           <div className='checkout-container'>
 
           <div className="checkbox-wrapper">
-  <input checked="" type="checkbox" />
-  <svg viewBox="0 0 35.6 35.6">
-    <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
-    <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
-    <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
-  </svg>
-        </div>
+          <input defaultChecked={false} type="checkbox" />
+          <svg viewBox="0 0 35.6 35.6">
+            <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
+            <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+            <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
+          </svg>
+                </div>
 
         <h2>Order Confirmed</h2>
 

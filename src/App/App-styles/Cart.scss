@@ -125,7 +125,9 @@
                 transform: scale(.9)
             }
 
-            button{
+            .button{
+                text-decoration: none;
+                color: #333;
                 background: none;
                 border: none;
                 font-weight: 500;
@@ -245,7 +247,7 @@
               }
               
               .checkbox-wrapper input[type=checkbox]:checked + svg .background {
-                fill: #421c64;
+                fill: #228B22;
               }
               
               .checkbox-wrapper input[type=checkbox]:checked + svg .stroke {

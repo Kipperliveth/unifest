@@ -9,8 +9,9 @@ import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
 import { FaTruck } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import { ImSpinner8 } from "react-icons/im";
+import emailjs from 'emailjs-com';
 
-
+emailjs.init("0AYqWDKbnCvVpNyW6");
 
 
 function Orders() {
@@ -148,7 +149,39 @@ function Orders() {
           date: completedOrderData.completionDate,
           delivery: 'Delivered on'
         })
-      })
+      }).finally(() => {
+        addDoc(collection(txtdb, `userNotifications/${userID}/deliverynotifications`), {
+          orderRefId: selectedOrderId,
+          timestamp:completedOrderData.completionDate,
+          userEmail: selectedOrder.userEmail,
+          username: selectedOrder.username
+        }).then(() => {
+
+          let emailContent = `
+          We are pleased to inform you that your package with order ID:${selectedOrderId}  has been successfully delivered.
+
+          Delivery Details:
+
+          Order ID: ${selectedOrderId}
+          Delivery Date: ${completedOrderData.completionDate}
+
+          Thank you for choosing Evanis Interiors.
+          
+          If you have any queries about your order or need further assistance, please to contact our customer support team.
+          `
+
+          emailjs.send("service_w7spb28", "template_qlj2ich", {
+            to_email: selectedOrder.userEmail,
+            userEmail: selectedOrder.userEmail,
+            message: emailContent,
+            orderRefId: selectedOrderId,
+            username: selectedOrder.username,
+            from_name: "Evanis Interiors"
+            // other variables you want to include in your email template
+          })
+
+        })
+      })    
       
             //
             closeModal();

@@ -11,6 +11,7 @@ import SignUp from "../App/App-auth/SignUp";
 // import Marketplace from "../App/App-pages/Marketplace";
 // import AdminDashboard from "../Admin/AdminComponents/AdminDashboard";
 import ProtectedRoute from "../App/App-auth/AuthGuard";
+import AdminRoute from "../App/App-auth/AdminGuard"
 import MasterclassMain from "../App/App-pages/MasterclassMain";
 import Store from "../App/App-pages/Store";
 import UserDashboard from "../App/App-pages/UserDashboard";
@@ -28,6 +29,7 @@ import Orders from "../Admin/AdminPages/Orders";
 import Editaddress from "../App/App-auth/Editaddress";
 import Myorders from "../App/App-pages/Myorders";
 import PasswordReset from "../App/App-auth/PasswordReset";
+import GetHelp from "../App/App-pages/GetHelp";
 
 
 function AnimatedRoutes() {
@@ -72,13 +74,14 @@ function AnimatedRoutes() {
         <Route
           path="/userMasterclass"
           element={
-            <ProtectedRoute>
+           
               <MasterclassMain />
-            </ProtectedRoute>
+          
           }
         />
 
-        <Route path="/store" element={<Store />} />
+        <Route path="/store" element={ <Store />} />
+        <Route path='/gethelp' element={<GetHelp />}/>
 
         {/* <Route
           path="/adminDashboard"

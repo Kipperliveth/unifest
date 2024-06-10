@@ -203,7 +203,7 @@ function UserNav() {
           <li>
             <NavLink
               className={({ isActive }) => (isActive ? "active-link" : "link")}
-              to="/shop"
+              to="/gethelp"
             >
               Get Help
             </NavLink>

@@ -5,6 +5,7 @@ import { txtdb } from "../../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { PiNotePencilLight } from "react-icons/pi";
+import { CiDeliveryTruck } from "react-icons/ci";
 
 
 function UserNotifications() {
@@ -59,8 +60,8 @@ const [showPopup, setShowPopup] = useState(false);
         };
       });
       // Count the number of unread notifications
-      const unreadNotifications = newNotifications.filter((notification) => !notification.read);
-      setUnreadCount(unreadNotifications.length);
+      // const unreadNotifications = newNotifications.filter((notification) => !notification.read);
+      // setUnreadCount(unreadNotifications.length);
       setNotifications(newNotifications);
       setIsLoading(false);
 
@@ -129,7 +130,7 @@ setShowPopup(true);
     try {
       const userId = currentUser.uid;
       const readNotificationData = {
-          orderRefId: notification.id,
+          orderRefId: notification.orderRefId,
       state: notification.state,
       formattedDate15DaysFromNow: notification.formattedDate15DaysFromNow,
       formattedDate20DaysFromNow: notification.formattedDate20DaysFromNow,
@@ -159,9 +160,124 @@ setShowPopup(true);
     }
   };
 
-  //pop up
+  //delivered notifs
 
+ const [deliveredNotifications, setDeliveredNotifications] = useState([])
+
+  useEffect(() => {
+    if (!user) return; // Return early if user is null
   
+    const userId = user.uid;
+    const q = query(
+      collection(txtdb, `userNotifications/${userId}/deliverynotifications`),
+      orderBy("timestamp", "desc")
+    );
+  
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const newDeliveredNotifications = snapshot.docs.map((doc) => {
+        let timestamp;
+        if (doc.data().timestamp instanceof Date) {
+          timestamp = doc.data().timestamp;
+        } else {
+          timestamp = new Date(doc.data().timestamp);
+        }
+        return {
+          id: doc.id,
+          ...doc.data(),
+          timestamp: timestamp.toLocaleString([], {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            // hour: "2-digit",
+            // minute: "2-digit",
+          }),
+        };
+      });
+ 
+      setDeliveredNotifications(newDeliveredNotifications);
+      setIsLoading(false);
+
+
+    });
+  
+    return () => unsubscribe();
+  }, [user]); // Run whenever the user object changes
+
+  const handleDeleteDeliveredNotification = async (deliveredId) => {
+    try {
+      const userId = currentUser.uid;
+      await deleteDoc(doc(collection(txtdb, `userNotifications/${userId}/deliverynotifications`), deliveredId));
+      console.log("Notification deleted");
+    } catch (error) {
+      console.error("Error deleting notification:", error);
+    }
+  };
+  
+
+  const handleMarkDeliveredNotificationAsRead = async (delivered) => {
+    setShowPopup(true);
+    
+        try {
+          const userId = currentUser.uid;
+          const readDeliveredNotificationData = {
+              orderRefId: delivered.orderRefId,
+          timestamp: delivered.timestamp
+          };
+      
+          await addDoc(collection(txtdb, `userNotifications/${userId}/deliveredread`), readDeliveredNotificationData);
+          console.log("Notification marked as read and moved to read notifications");
+          await handleDeleteDeliveredNotification(delivered.id);
+          setShowPopup(false);
+          
+        } catch (error) {
+          console.error("Error marking notification as read:", error);
+          setShowPopup(false);
+    
+        }
+      };
+
+// read delivered notifs
+
+const [readDeliveredNotifications, setReadDeliveredNotifications] = useState([]);
+
+
+useEffect(() => {
+  if (!user) return; // Return early if user is null
+
+  const userId = user.uid;
+  const q = query(
+    collection(txtdb, `userNotifications/${userId}/deliveredread`),
+    orderBy("timestamp", "desc")
+  );
+
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    const readDelivNotifications = snapshot.docs.map((doc) => {
+      let timestamp;
+      if (doc.data().timestamp instanceof Date) {
+        timestamp = doc.data().timestamp;
+      } else {
+        timestamp = new Date(doc.data().timestamp);
+      }
+      return {
+        id: doc.id,
+        ...doc.data(),
+        timestamp: timestamp.toLocaleString([], {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }),
+      };
+    });
+    // Count the number of unread notifications
+    setReadDeliveredNotifications(readDelivNotifications);
+    setIsLoading(false);
+
+
+  });
+
+  return () => unsubscribe();
+}, [user]);
+
 
   return (
     <div>
@@ -174,7 +290,7 @@ setShowPopup(true);
 
         <h1>Notifications</h1>
 
-        {notifications.length > 0 ? (
+        {(notifications.length > 0 || deliveredNotifications.length > 0 )? (
           <p className="recent"><span></span>New<span></span></p>
         ) : ('')}
 
@@ -224,6 +340,31 @@ setShowPopup(true);
             </div>
           </div>
         ) : (
+          <div className="new-notifications">
+
+            <div className="delivered notifications">
+            
+              {deliveredNotifications.map((delivered) => (
+
+                  <div className="container notification" key={delivered.id}>
+                          <div className="left"> <CiDeliveryTruck className="icon"/></div>
+
+              <div className="right">
+                  <h4>Your order with ID: {delivered.orderRefId} has been Delivered </h4>
+                  <p style={{ fontWeight: '500' }}>on {delivered.timestamp} </p>
+                  <p>Use the live chat feature to reach us if you have any queries about this order</p>
+                  <h5>Thank You!</h5>
+                  <span>
+
+                  <p className="date">{delivered.timestamp}</p> <button onClick={() => handleMarkDeliveredNotificationAsRead(delivered)}>Mark as Read</button>
+                  
+                  </span>
+              </div>
+              
+                  </div>
+
+              ))}
+            </div>
 
             <div className="notifications">
             {notifications.map((notification) => (
@@ -249,11 +390,15 @@ setShowPopup(true);
               
             ))}
             </div>
+
+          
+
+            </div>
         )}
 
         </div>
 
-        {readNotifications.length > 0 ? (
+        {(readNotifications.length > 0 || readDeliveredNotifications.length > 0 ) ? (
           <p className="recent"><span></span>Older<span></span></p>
 
         ) : ('')}
@@ -304,6 +449,31 @@ setShowPopup(true);
             </div>
           </div>
         ) : (
+            <div className="readnotificationa">
+
+              <div className="delivered notifications">
+            
+              {readDeliveredNotifications.map((readdelivered) => (
+
+                  <div className="container notification" key={readdelivered.id}>
+                          <div className="left"> <CiDeliveryTruck className="icon"/></div>
+
+              <div className="right">
+                  <h4>Your order with ID: {readdelivered.orderRefId} has been Delivered </h4>
+                  <p style={{ fontWeight: '500' }}>on {readdelivered.timestamp} </p>
+                  <p>Use the live chat feature to reach us if you have any queries about this order</p>
+                  <h5>Thank You!</h5>
+                  <span>
+
+                  <p className="date">{readdelivered.timestamp}</p> <button>Read</button>
+                  
+                  </span>
+              </div>
+              
+                  </div>
+
+              ))}
+            </div>
 
             <div className="notifications">
             {readNotifications.map((readNotification) => (
@@ -329,11 +499,13 @@ setShowPopup(true);
               
             ))}
             </div>
+
+            </div>
         )}
 
         </div>
 
-        {notifications.length === 0 && readNotifications.length === 0 && (
+        {notifications.length === 0 && readNotifications.length === 0 && readDeliveredNotifications.length === 0 && deliveredNotifications.length === 0 &&(
           <p className="no-notifications">Your notifications will show here</p>
         )}
 
@@ -342,7 +514,7 @@ setShowPopup(true);
       {showPopup && (
         <div className="popup">
 
-          <div class="spinner">
+          <div className="spinner">
             <div></div>   
             <div></div>    
             <div></div>    
