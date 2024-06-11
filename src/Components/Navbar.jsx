@@ -32,7 +32,7 @@ function Navbar() {
     '/profilePic',
     '/editAddress',
     '/myorders',
-    '/gethelp'
+    '/gethelp', '/editprofile', '/adminlog'
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname);
@@ -54,7 +54,7 @@ function Navbar() {
                 className={({ isActive }) =>
                   isActive ? "active-link" : "link"
                 }
-                to="/shop"
+                to="/store"
               >
                 Shop
               </NavLink>
@@ -133,7 +133,7 @@ function Navbar() {
 
               <div className="mobilepage-links">
                 <li>
-                  <NavLink to="/shop" onClick={toggleVisibilty}>
+                  <NavLink to="/store" onClick={toggleVisibilty}>
                     Shop
                   </NavLink>
                 </li>

@@ -30,6 +30,8 @@ import Editaddress from "../App/App-auth/Editaddress";
 import Myorders from "../App/App-pages/Myorders";
 import PasswordReset from "../App/App-auth/PasswordReset";
 import GetHelp from "../App/App-pages/GetHelp";
+import ProfileEdit from "../App/App-auth/ProfileEdit";
+import Adminlog from "../Admin/AdminPages/Adminlog";
 
 
 function AnimatedRoutes() {
@@ -70,6 +72,7 @@ function AnimatedRoutes() {
         <Route path='/profilePic'  element={<ProfilePicture />}/>
         <Route path='/orders' element={<Orders />}/>
         <Route path="/myorders" element={<Myorders />} />
+        <Route path='/editprofile' element={<ProfileEdit />}/>
 
         <Route
           path="/userMasterclass"
@@ -82,6 +85,7 @@ function AnimatedRoutes() {
 
         <Route path="/store" element={ <Store />} />
         <Route path='/gethelp' element={<GetHelp />}/>
+        <Route path='/adminlog' element={<Adminlog />} />
 
         {/* <Route
           path="/adminDashboard"

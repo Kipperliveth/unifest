@@ -31,9 +31,9 @@ function Login() {
     event.preventDefault();
 
     setIsLoggedIn(true);
-    setTimeout(() => {
-      setIsLoggedIn(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   setIsLoggedIn(false);
+    // }, 2000);
     try {
       const user = await signInWithEmailAndPassword(
         auth,
@@ -41,9 +41,11 @@ function Login() {
         loginPassword
       );
       console.log(user);
+      setIsLoggedIn(false);
       navigate("/userDashboard");
     } catch (error) {
       console.log(error.message);
+      setIsLoggedIn(false);
       setError(error.message);
     }
   };

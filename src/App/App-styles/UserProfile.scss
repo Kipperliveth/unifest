@@ -42,38 +42,57 @@
         }
 
         .address-info-header{
-            h2{
+            margin-top: 2rem;
+            transition: .2s ease;
+
+            .edit{
+                text-decoration: none;
+                color: #666;
                 font-weight: 400;
-                border: 1px solid  hsl(0, 0%, 93%);
+                border: 1px solid  hsl(0, 0%, 73%);
                 padding: 1rem 4rem ;
                 border-radius: 5px;
-                
+
+            }
+            &:hover{
+                transform: scale(.95);
             }
         }
         .address-info{
             box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            border: 1px solid  hsl(0, 0%, 83%);
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 5px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
+            margin-top: 2rem;
 
             span{
-                background: hsl(0, 0%, 93%);
+                background: hsl(0, 0%, 97%);
                 padding: 1rem ;
                 padding-right: 2.5rem;
-                border-radius: 10px;
+                border-radius: 5px;
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
 
                 h3{
                     font-weight: 400;
-                    font-size: 14px;
+                    font-size: 13px;
                 }
 
                 p{
                     font-weight: 600;
+                    color: #333;
+                }
+
+                .address{
+                    line-height: 1.5;
+                    overflow: hidden; 
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    width: 100%;
                 }
             }
         }
@@ -93,6 +112,21 @@
             &:hover{
                 transform: scale(.95);
             }
+            .login-spinner{
+                animation: spin 2s linear infinite;
+                width: 3.5rem;
+                transition: .2s ease-in-out;
+
+            }
+
+            @keyframes spin {
+                from {
+                  transform: rotate(0deg);
+                }
+                to {
+                  transform: rotate(360deg);
+                }
+              }
         }
     }
 
@@ -116,9 +150,12 @@
         }
 
         .address-info-header{
-            h2{
+
+            .edit{
+                text-decoration: none;
+                color: #666;
                 font-weight: 400;
-                border: 1px solid  hsl(0, 0%, 93%);
+                border: 1px solid  hsl(0, 0%, 73%);
                 padding: 1rem;
                 font-size: 16px;
                 border-radius: 5px;
@@ -131,6 +168,10 @@
             flex-direction: column;
             width: 70vw;
             overflow-x: hidden;
+
+            span {
+                font-size: .9em;
+            }
         }
     }
 }

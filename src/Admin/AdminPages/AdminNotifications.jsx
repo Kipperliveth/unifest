@@ -116,7 +116,7 @@ setShowPopup(true);
 
     try {
       const readNotificationData = {
-          orderRefId: notification.id,
+          orderRefId: notification.orderRefId,
         username:notification.username,
         userEmail:notification.userEmail,
       timestamp: notification.timestamp
@@ -326,7 +326,7 @@ setShowPopup(true);
 {showPopup && (
         <div className="popup">
 
-          <div class="spinner">
+          <div className="spinner">
             <div></div>   
             <div></div>    
             <div></div>    

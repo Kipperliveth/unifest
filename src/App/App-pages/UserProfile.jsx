@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { doc, collection, getDoc } from "firebase/firestore";
-
 import { auth, txtdb } from "../../firebase-config";
 import {
-  setPersistence,
-  browserSessionPersistence,
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import UserNav from "../App-components/UserNav";
+import { NavLink } from "react-router-dom";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { ImSpinner8 } from "react-icons/im";
+
 
 function UserProfile() {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
 
   const [user, setUser] = useState({});
 
@@ -31,14 +34,19 @@ function UserProfile() {
   //   });
 
   const logout = async () => {
+    setIsLoggedIn(true);
+
     if (auth.currentUser) {
       await signOut(auth);
       navigate("/login");
+      setIsLoggedIn(false);
+
     } else {
       // Handle the scenario where the user is not logged in
       // For example, you might display an error message or redirect the user to the login page
       console.log("User is not logged in");
       navigate("/login");
+      setIsLoggedIn(false);
     }
   };
 
@@ -107,7 +115,7 @@ function UserProfile() {
           </div>
 
           <div className="address-info-header">
-            <h2>My Shipping Information</h2>
+            <NavLink className='edit' to='/editprofile'>Edit Shipping Information <MdOutlineModeEdit /></NavLink>
           </div>
 
           <div className="address-info">
@@ -117,12 +125,12 @@ function UserProfile() {
               <>
                 <span>
                   <h3>Address:</h3>
-                  <p>{addressData.addressLine1}</p>
+                  <p className="address">{addressData.addressLine1}</p>
                 </span>
 
                 <span>
                   <h3>Your Number:</h3>
-                  <p> {addressData.addressPhone}</p>
+                  <p > {addressData.addressPhone}</p>
                 </span>
 
                 <span>
@@ -141,7 +149,13 @@ function UserProfile() {
             )}
           </div>
 
-          <button onClick={logout}>Log Out</button>
+          <button onClick={logout}>
+          {isLoggedIn ? (
+                  <ImSpinner8 className="login-spinner" />
+                ) : (
+                  "Log Out"
+                )}
+          </button>
         </div>
       </div>
     </div>

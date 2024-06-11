@@ -6,8 +6,12 @@ function AdminHome() {
     <div className="adminHome">
       <AdminDashboard />
 
+      <h2 className="admin-current-page mobile-content">Admin Dashboard</h2>
+
       <div className="adminHome-content adminContent">
-        <h1>Welcome Back Admin</h1>
+      <h2 className="admin-current-page desktop-content"> Admin Dashboard</h2>
+
+        {/* <h3>Welcome Back Admin</h3> */}
       </div>
     </div>
   );

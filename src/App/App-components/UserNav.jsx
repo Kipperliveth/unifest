@@ -245,7 +245,7 @@ function UserNav() {
           {showUserInfo && (
             <div className="currentUserInfo">
               <div className="currentUserInfo-content">
-                <NavLink>
+                <NavLink to='/userProfile'>
                   <LiaUserEditSolid className="icon" />
                   <p>View Profile</p>
                 </NavLink>

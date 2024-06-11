@@ -102,7 +102,7 @@ function AdminDashboard() {
             <h3>Schedules</h3>
           </NavLink>
 
-          <NavLink>
+          <NavLink to='/adminlog'>
             <img
               src={user?.photoURL}
               alt="adminDisplayPicture"

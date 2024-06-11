@@ -57,6 +57,12 @@
             gap: .7rem;
         }
 
+        .span{
+            text-decoration: none;
+            color: #333;
+        }
+
+
     }
 
         }
@@ -207,16 +213,17 @@
             gap: .4rem;
             transition: .2s ease-in-out;
             margin-top: 2rem;
-            background: #bba58f;
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            background: #bba58f;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     
             &:hover{
                 gap: .7rem;
             }
 
-            span, .ctaArrow{
+            .span, .ctaArrow{
             color: white;
+            text-decoration: none;
         }
+
 
         }
      
@@ -376,7 +383,7 @@
                 margin: 0 auto;
                 gap: 4rem;
                 width: fit-content;
-                box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
             
                 input{
                     // padding: 1rem 0;

@@ -50,7 +50,7 @@
                 &:nth-child(1){
                     background: rgba(0, 0, 0, 0.5) url('../../stock/storeback.jpg') no-repeat;
                     background-position: center;
-                    background-size: 130%;
+                    background-size: 150%;
                     background-blend-mode: overlay;
                     position: relative;
                     overflow: hidden;
@@ -58,21 +58,21 @@
                     transition: background-size .3s ease-in-out;
 
                     &:hover{
-                       background-size: 150%;
+                       background-size: 170%;
                     }
                 }
 
                 &:nth-child(2){
                     background:rgba(0, 0, 0, 0.5) url('../../stock/masterback.jpg') no-repeat;
                     background-position: center;
-                    background-size: 130%;
+                    background-size: 150%;
                     background-blend-mode: overlay;
                     position: relative;
                     overflow: hidden;
                     transition: background-size .3s ease-in-out;
 
                     &:hover{
-                       background-size: 150%;
+                       background-size: 170%;
                     }
                 }
 
