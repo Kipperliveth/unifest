@@ -7,13 +7,12 @@ import { getStorage } from "firebase/storage";
 // const currentUser = useAuth();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAlo5r0kYGWQpeNJq8b85YFAocSR7dzblg",
-  authDomain: "evanisfour-97686.firebaseapp.com",
-  projectId: "evanisfour-97686",
-  storageBucket: "evanisfour-97686.appspot.com",
-  messagingSenderId: "105670815210",
-  appId: "1:105670815210:web:ee23ac63f8f9712ce95693",
-  measurementId: "G-L30BX9RZNC"
+  apiKey: "AIzaSyC4Xhj11Xrwx4VTyPTXed8pQZe475BPNDU",
+  authDomain: "evanis-interiors-5ff2c.firebaseapp.com",
+  projectId: "evanis-interiors-5ff2c",
+  storageBucket: "evanis-interiors-5ff2c.appspot.com",
+  messagingSenderId: "305655159315",
+  appId: "1:305655159315:web:b58ed367033a87a996fde6"
 };
 
 const app = initializeApp(firebaseConfig);

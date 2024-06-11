@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
 
 function Address() {
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
   const [addressData, setAddressData] = useState({
     addressLine1: "",
     addressPhone: "",

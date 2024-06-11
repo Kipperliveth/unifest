@@ -4,7 +4,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged
 } from "firebase/auth";
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect} from "react";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 import { auth, txtdb } from "../../firebase-config";
@@ -27,22 +27,30 @@ function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
 
+  const allowedUid = "CqhQfMc1LZdNCUgixbXpYT0SGaG2";
   const login = async (event) => {
     event.preventDefault();
-
     setIsLoggedIn(true);
-    // setTimeout(() => {
-    //   setIsLoggedIn(false);
-    // }, 2000);
+   
     try {
-      const user = await signInWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword
       );
-      console.log(user);
+      const user = userCredential.user;
       setIsLoggedIn(false);
-      navigate("/userDashboard");
+
+        if (user.uid === allowedUid) {
+        console.log("Admin access!");
+        setError(false);
+        navigate('/adminHome')
+      } else {
+        console.log("customer access!");
+        navigate("/userDashboard");
+        }
+        
+
     } catch (error) {
       console.log(error.message);
       setIsLoggedIn(false);
@@ -76,9 +84,12 @@ const fetchAddressData = async (user) => {
   const userSnap = await getDoc(userRef);
   if (userSnap.exists()) {
       const userData = userSnap.data();
-      if (userData.address) {
+      if (userData.address && userId=== allowedUid) {
+          navigate('/adminHome'); // Redirect to dashboard if address exists
+      } else if(userData.address){
           navigate('/userDashboard'); // Redirect to dashboard if address exists
-      } else {
+      }
+       else {
           navigate('/onboarding'); // Redirect to onboarding if address doesn't exist
       }
   } else {

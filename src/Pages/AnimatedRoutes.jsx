@@ -32,6 +32,7 @@ import PasswordReset from "../App/App-auth/PasswordReset";
 import GetHelp from "../App/App-pages/GetHelp";
 import ProfileEdit from "../App/App-auth/ProfileEdit";
 import Adminlog from "../Admin/AdminPages/Adminlog";
+import NotFound from "./NotFound";
 
 
 function AnimatedRoutes() {
@@ -53,48 +54,47 @@ function AnimatedRoutes() {
         <Route path="/login" element={<Login />} />
         <Route path="/reset" element={<PasswordReset />}/>
         <Route path="/signup" element={<SignUp />} />
+        <Route path="*" element={<NotFound />} />
         {/* proteted routes */}
+
         {/* <Route path='/marketplace' element={<ProtectedRoute>
                       <Marketplace />
                     </ProtectedRoute> }/> */}
         {/* <Route path="/marketplace" element={<Marketplace />} /> */}
-        <Route path="/userDashboard" element={<UserDashboard />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/userProfile" element={<UserProfile />} />
-        <Route path="/notifications" element={<UserNotifications />}/>
-        <Route path="/adminHome" element={<AdminHome />} />
-        <Route path="/adminNotifications" element={<AdminNotifications />} />
-        <Route path="/post" element={<Post />}/>
-        <Route path='/uploads' element={<Uploads />}/>
-        <Route path='/onboarding' element={<Onboarding />}/>
-        <Route path="/address" element={<Address />}/>
-        <Route path='/editAddress' element={<Editaddress />} />
-        <Route path='/profilePic'  element={<ProfilePicture />}/>
-        <Route path='/orders' element={<Orders />}/>
-        <Route path="/myorders" element={<Myorders />} />
-        <Route path='/editprofile' element={<ProfileEdit />}/>
+        
+        <Route path="/userDashboard" element={<ProtectedRoute> <UserDashboard /></ProtectedRoute>} />
+        <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute> } />
+        <Route path="/userProfile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+        <Route path="/notifications" element={<ProtectedRoute><UserNotifications /></ProtectedRoute> }/>
+        <Route path='/onboarding' element={<ProtectedRoute><Onboarding /></ProtectedRoute> }/>
+        <Route path="/address" element={<ProtectedRoute><Address /></ProtectedRoute>}/>
+        <Route path='/editAddress' element={<ProtectedRoute><Editaddress /></ProtectedRoute>} />
+        <Route path='/profilePic'  element={<ProtectedRoute><ProfilePicture /></ProtectedRoute>}/>
+        <Route path='/editprofile' element={<ProtectedRoute><ProfileEdit /></ProtectedRoute>}/>
+
+        <Route path="/myorders" element={<ProtectedRoute><Myorders /></ProtectedRoute>} />
+                  <Route path="/store" element={<ProtectedRoute><Store /></ProtectedRoute> } />
+                  <Route path='/gethelp' element={<ProtectedRoute><GetHelp /></ProtectedRoute>}/>
+          
 
         <Route
           path="/userMasterclass"
           element={
-           
+            <ProtectedRoute>
               <MasterclassMain />
-          
+              </ProtectedRoute>
           }
         />
 
-        <Route path="/store" element={ <Store />} />
-        <Route path='/gethelp' element={<GetHelp />}/>
-        <Route path='/adminlog' element={<Adminlog />} />
+        {/* admin routes */}
+          <Route path="/adminHome" element={<AdminRoute> <AdminHome /></AdminRoute>} />
+          <Route path="/adminNotifications" element={<AdminRoute><AdminNotifications /></AdminRoute> } />
+          <Route path="/post" element={<AdminRoute><Post /></AdminRoute>}/>
+          <Route path='/uploads' element={<AdminRoute><Uploads /></AdminRoute>}/>
+          <Route path='/orders' element={<AdminRoute><Orders /></AdminRoute>}/>
+        <Route path='/adminlog' element={<AdminRoute><Adminlog /></AdminRoute>} />
 
-        {/* <Route
-          path="/adminDashboard"
-          element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        /> */}
+  
       </Routes>
     </AnimatePresence>
   );

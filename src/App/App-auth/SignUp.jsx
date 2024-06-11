@@ -33,10 +33,13 @@ function SignUp() {
     setIsLoggedIn(true);
 
     if (!password || !confirmPassword) {
+      setIsLoggedIn(false);
       setError("Please fill in all fields");
     } else if (password !== confirmPassword) {
+      setIsLoggedIn(false);
       setError("Passwords do not match");
     } else if (password.length < 6) {
+      setIsLoggedIn(false);
       setError("Password should be at least 6 characters long");
     } else {
       setError("");

@@ -9,9 +9,16 @@ import logo from "../stock/logomain.png";
 function Footer() {
   const location = useLocation();
 
-  const hiddenPaths = ["/adminHome", "/post", '/uploads', "/orders"];
+  const hiddenPaths = ["/adminHome", "/post", '/uploads', "/orders"]
 
-  const shouldHideComponent = hiddenPaths.includes(location.pathname);
+  const allPaths = [
+    "/", "/marketplace", "/store", "/address", "/userMasterclass", "/userDashboard",
+    "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
+    "/notifications", "/uploads", "/onboarding", "/profilePic", "/editAddress",
+    "/myorders", "/gethelp", "/editprofile", "/adminlog", '/login', '/signup', '/masterclass', '/about', '/contact'
+  ];
+
+  const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);
 
   return (
     <div style={{ display: shouldHideComponent ? "none" : "block" }}>

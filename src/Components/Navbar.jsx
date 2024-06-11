@@ -32,10 +32,17 @@ function Navbar() {
     '/profilePic',
     '/editAddress',
     '/myorders',
-    '/gethelp', '/editprofile', '/adminlog'
+    '/gethelp', '/editprofile', '/adminlog',
   ];
 
-  const shouldHideComponent = hiddenPaths.includes(location.pathname);
+  const allPaths = [
+    "/", "/marketplace", "/store", "/address", "/userMasterclass", "/userDashboard",
+    "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
+    "/notifications", "/uploads", "/onboarding", "/profilePic", "/editAddress",
+    "/myorders", "/gethelp", "/editprofile", "/adminlog", '/login', '/signup', '/masterclass', '/about', '/contact'
+  ];
+
+  const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);
 
   return (
     <div style={{ display: shouldHideComponent ? "none" : "block" }}>
