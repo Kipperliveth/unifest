@@ -11,6 +11,8 @@ function Home() {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    document.ttile = "Evanis Interiors"
+    
     if (!hasMounted) {
       setHasMounted(true);
       AOS.init({

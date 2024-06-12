@@ -62,43 +62,52 @@ function Login() {
 
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-}
+    try {
+      await signInWithPopup(auth, provider);
+      // You can add any additional logic here if needed after successful sign-in
+    } catch (error) {
+      if (error.code === 'auth/cancelled-popup-request') {
+        console.log("Popup request was cancelled");
+      } else {
+        console.error("Error signing in with Google: ", error.message);
+      }
+      // Optionally, you can set an error message state to display an error message to the user
+      setErrorMessage("An error occurred while signing in with Google. Please try again.");
+    }
+  };
+
+
 
 useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-          await fetchAddressData(user);
+  const fetchAddressData = async (user) => {
+    const userId = user.uid;
+    const userRef = doc(collection(txtdb, "users"), userId);
+    const userSnap = await getDoc(userRef);
+    if (userSnap.exists()) {
+      const userData = userSnap.data();
+      if (userData.address && userId === allowedUid) {
+        navigate('/adminHome'); // Redirect to admin home if address exists and user is admin
+      } else if (userData.address) {
+        navigate('/userDashboard'); // Redirect to user dashboard if address exists
       } else {
-          console.log("No authenticated user found.");
+        navigate('/onboarding'); // Redirect to onboarding if address doesn't exist
       }
+    } else {
+      console.log("No address data found for the current user.");
+      navigate('/onboarding');
+    }
+  };
+
+  const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      await fetchAddressData(user);
+    } else {
+      console.log("No authenticated user found.");
+    }
   });
 
   return () => unsubscribe(); // Clean up the subscription
-
-}, []);
-
-const fetchAddressData = async (user) => {
-  const userId = user.uid;
-  const userRef = doc(collection(txtdb, "users"), userId);
-  const userSnap = await getDoc(userRef);
-  if (userSnap.exists()) {
-      const userData = userSnap.data();
-      if (userData.address && userId=== allowedUid) {
-          navigate('/adminHome'); // Redirect to dashboard if address exists
-      } else if(userData.address){
-          navigate('/userDashboard'); // Redirect to dashboard if address exists
-      }
-       else {
-          navigate('/onboarding'); // Redirect to onboarding if address doesn't exist
-      }
-  } else {
-      console.log("No address data found for the current user.");
-      navigate('/onboarding');
-  }
-};
-
-
+}, [navigate, allowedUid]); 
 
   //loader
   const [isLoading, setIsLoading] = useState(true);
@@ -177,7 +186,7 @@ const fetchAddressData = async (user) => {
                 <p className="passcheck">{`invalid email or password`}</p>
               )}
 
-              {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+              {errorMessage && <p style={{ color: "red", fontWeight: 500}}>{errorMessage}</p>}
 
               <p className="sign-up-link">
                 Don't have an account? <NavLink to="/signup">Sign Up</NavLink>

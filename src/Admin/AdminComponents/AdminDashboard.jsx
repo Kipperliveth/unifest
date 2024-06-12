@@ -4,17 +4,15 @@ import logo from "../../stock/logomain.png";
 import { MdOutlineDashboard } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { CiCircleList } from "react-icons/ci";
 import { IoMdCloudOutline } from "react-icons/io";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { MdOutlineSchedule } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { onAuthStateChanged} from "firebase/auth";
 import { auth } from "../../firebase-config";
 import { CiDeliveryTruck } from "react-icons/ci";
-import { collection, getDocs,onSnapshot } from "firebase/firestore";
+import { collection,onSnapshot } from "firebase/firestore";
 import { txtdb } from "../../firebase-config";
 
 
@@ -34,7 +32,7 @@ function AdminDashboard() {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
     });
-  }, [auth]);
+  }, []);
 
   useEffect(() => {
     const ordersCollection = collection(txtdb, "orders");

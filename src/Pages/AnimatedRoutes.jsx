@@ -90,9 +90,10 @@ function AnimatedRoutes() {
           <Route path="/adminHome" element={<AdminRoute> <AdminHome /></AdminRoute>} />
           <Route path="/adminNotifications" element={<AdminRoute><AdminNotifications /></AdminRoute> } />
           <Route path="/post" element={<AdminRoute><Post /></AdminRoute>}/>
-          <Route path='/uploads' element={<AdminRoute><Uploads /></AdminRoute>}/>
           <Route path='/orders' element={<AdminRoute><Orders /></AdminRoute>}/>
         <Route path='/adminlog' element={<AdminRoute><Adminlog /></AdminRoute>} />
+          {/* <Route path='/uploads' element={<AdminRoute><Uploads /></AdminRoute>}/> */}
+          <Route path='/uploads' element={<Uploads />}/>
 
   
       </Routes>
