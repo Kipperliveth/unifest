@@ -1,5 +1,9 @@
 .adminHome{
 
+    &::-webkit-scrollbar {
+        display: none;
+      }
+
 
    
     .adminUploads{
@@ -165,10 +169,27 @@
 
         .uploads-container{
             margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            padding-left: 20px;
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             gap: 2rem;
+
+               // display: grid;
+            // grid-template-columns: repeat(3, 1fr);
+            // justify-content: center;
+            // width: fit-content;
+            // margin: 0 auto;
+
+
+            .no-results{
+                width: 100%;
+                padding-block: 5rem;
+                display: flex;
+                font-weight: 500;
+                justify-content: center;
+            }
 
 
             .product{
@@ -196,13 +217,19 @@
 
                 .product-name{
                     font-weight: 500;
+                    line-height: 1.5;
+                    overflow: hidden; 
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
                 }
 
                 .product-description{
+                    // width: 90%;
                     line-height: 1.5;
                     overflow: hidden; 
                     text-overflow: ellipsis;
                     white-space: nowrap; /* Prevent line breaks */
+
                 }
 
 
@@ -245,7 +272,7 @@
 
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 791px) {
 .adminHome{
 
     .admin-current-page{
@@ -292,13 +319,13 @@
 
         .uploads-container{
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: .75rem;
             
 
             .product{
-                font-size: 0.8em;
-                width: 11em;
+                font-size: 0.9em;
+                // width: 11em;
 
                 span{
                     flex-direction: column;
@@ -318,3 +345,81 @@
     }
 }
 }
+
+@media screen and (max-width: 690px) {
+    .adminHome{
+    
+    
+        .adminUploads{
+
+    
+            .loading-message{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: .75rem;
+                justify-content: center;
+    
+                .loading-card{
+                    font-size: 0.8em;
+                    width: 11em;
+    
+                }
+            }
+    
+            .uploads-container{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: fit-content;
+                margin:  0 auto;
+                justify-content: space-around;
+                gap: 1.5rem;
+                
+    
+                .product{
+                    font-size: 0.8em;
+                    // width: 19em;
+    
+                }
+            }
+        }
+    }
+    }
+
+    @media screen and (max-width: 480px) {
+        .adminHome{
+        
+        
+            .adminUploads{
+    
+        
+                .loading-message{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: .75rem;
+                    justify-content: center;
+        
+                    .loading-card{
+                        font-size: 0.8em;
+                        width: 11em;
+        
+                    }
+                }
+        
+                .uploads-container{
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: .75rem;
+                    width: fit-content;
+                    margin:  0 auto;
+                    justify-content: space-around;
+                    
+        
+                    .product{
+                        font-size: 0.8em;
+                        width: 140px;
+        
+                    }
+                }
+            }
+        }
+        }

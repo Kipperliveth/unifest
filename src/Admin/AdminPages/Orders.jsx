@@ -11,7 +11,7 @@ import { FaCheck } from "react-icons/fa";
 import { ImSpinner8 } from "react-icons/im";
 import emailjs from 'emailjs-com';
 
-emailjs.init("0AYqWDKbnCvVpNyW6");
+emailjs.init("55KFb3ovp5zp-SlMq");
 
 
 function Orders() {
@@ -170,7 +170,7 @@ function Orders() {
           If you have any queries about your order or need further assistance, please to contact our customer support team.
           `
 
-          emailjs.send("service_w7spb28", "template_qlj2ich", {
+          emailjs.send("service_r60nfme", "template_todl238", {
             to_email: selectedOrder.userEmail,
             userEmail: selectedOrder.userEmail,
             message: emailContent,

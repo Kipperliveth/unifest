@@ -16,7 +16,7 @@ import { FiMinus } from "react-icons/fi";
 import emailjs from 'emailjs-com';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
-emailjs.init("0AYqWDKbnCvVpNyW6");
+emailjs.init("55KFb3ovp5zp-SlMq");
 
 
 function Cart() {
@@ -348,7 +348,9 @@ emailContent += `\n    - ${product.txtVal} (x ${product.quantity})`;
 
 // Add the total price and shipping address to the email content
 emailContent += `
+
 - Total: ${getTotalPriceNumeric} (Shipping fees not included)
+
 - Shipping Address:
   ${addressData.addressLine1}
   ${addressData.addressPhone}
@@ -363,7 +365,7 @@ If you have any questions or need assistance, please don't contact our customer 
          
 
     //  await sendEmailNotification(userEmail, orderRef.id);
-    emailjs.send("service_w7spb28", "template_od7teag", {
+    emailjs.send("service_r60nfme", "template_max8cdd", {
   to_email: userEmail,
   userEmail: userEmail,
   message: emailContent,

@@ -189,28 +189,32 @@ function Uploads() {
           </div>
         ) : (
           <div className="uploads-container">
-            {filteredData.map((value) => (
-              <div className="product" key={value.id}>
-                <img
-                  src={value.imgUrl}
-                  height="200px"
-                  width="200px"
-                  alt="product"
-                />
+            {filteredData.length === 0 ? (
+            <div className="no-results">
+              No products found.
+            </div>
+          ) : (filteredData.map((value) => (
+                        <div className="product" key={value.id}>
+                          <img
+                            src={value.imgUrl}
+                            height="200px"
+                            width="200px"
+                            alt="product"
+                          />
 
-                <div className="product-info">
-                  <h2 className="product-name">{value.txtVal}</h2>
+                          <div className="product-info">
+                            <h2 className="product-name">{value.txtVal}</h2>
 
-                  <p className="product-description">{value.desc}</p>
+                            <p className="product-description">{value.desc}</p>
 
-                  <p className="product-category">{value.category}</p>
-                  <span>
-                    <p className="product-price">&#8358;&nbsp;{parseFloat(value.price).toLocaleString('en-US')}</p>
-                    <button onClick={() => deleteItem(value.id)}>Delete</button>
-                  </span>
-                </div>
-              </div>
-            ))}
+                            <p className="product-category">{value.category}</p>
+                            <span>
+                              <p className="product-price">&#8358;&nbsp;{parseFloat(value.price).toLocaleString('en-US')}</p>
+                              <button onClick={() => deleteItem(value.id)}>Delete</button>
+                            </span>
+                          </div>
+                        </div>
+                    ) ))}
           </div>
         )}
       </div>

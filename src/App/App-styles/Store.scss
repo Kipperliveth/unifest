@@ -352,7 +352,7 @@
               .container{
                 display: grid;
                 grid-template-columns:  repeat(2, 1fr);
-                // align-items: start;
+                align-items: start;
                 justify-content: center;
                 // gap: 10rem;
                 width: fit-content;
