@@ -1,11 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { FaAngleRight } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { FaArrowRightLong } from "react-icons/fa6";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.js";
+import CountdownTimer from "../Components/CountdownTimer";
 
 function Home() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -34,15 +34,17 @@ function Home() {
             data-aos-once="true"
           >
             <h1 data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
-              Transform Your Space to a Place of Beauty and Comfort
+              The Biggest Party on Campus Returns!
             </h1>
             <p
               data-aos-delay="300"
               data-aos="fade-up" data-aos-duration="800" data-aos-once="true" 
              >
-              Conceptual. Custom. Yours. We design interiors that tell your
-              story through unique details and bespoke furniture
+              The VYBEZ Universe will be live in
+             
             </p>
+          <CountdownTimer />
+
 
             <div
               className="button"
@@ -52,86 +54,13 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <NavLink to='/login' className='span'>Get Started</NavLink>
-                <FaAngleRight />
+                <NavLink to='/login' className='span'>Become a perfomer</NavLink>
               </button>
             </div>
           </div>
         </div>
 
-        <div className="shop-section">
-          <h1 data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
-            Design Your Dream, Piece by Piece
-          </h1>
-
-          <p data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
-            Shop customizable furnitures to match your style and space
-          </p>
-
-          <div className="shop-items">
-            <NavLink
-              to="/store"
-              className="clm one"
-              data-aos="fade-left"
-              data-aos-duration="1000"
-              data-aos-once="true"
-              data-aos-delay="200"
-            >
-              <h2 className="top-desc">Seating Furniture</h2>
-
-              <h3 className="bottom-desc">Sofas and Couches</h3>
-            </NavLink>
-
-            <NavLink
-              to="/store"
-              className="clm two"
-              data-aos="fade-left"
-              data-aos-duration="1000"
-              data-aos-once="true"
-              data-aos-delay="300"
-            >
-              <h2 className="top-desc">Tables & Surfaces</h2>
-
-              <h3 className="bottom-desc">Desks and Dining</h3>
-            </NavLink>
-
-            <NavLink
-              to="/store"
-              className="clm three"
-              data-aos="fade-left"
-              data-aos-duration="1000"
-              data-aos-once="true"
-              data-aos-delay="400"
-            >
-              <h2 className="top-desc">Storage & Organanisation</h2>
-
-              <h3 className="bottom-desc">Beds, Wardrobes</h3>
-            </NavLink>
-
-            <NavLink
-              to="/store"
-              className="clm four"
-              data-aos="fade-left"
-              data-aos-duration="1000"
-              data-aos-once="true"
-              data-aos-delay="500"
-            >
-              <h2 className="top-desc">Speciality & Decor</h2>
-
-              <h3 className="bottom-desc">Mirrors, Lighting</h3>
-            </NavLink>
-          </div>
-
-          <button
-            className="shop-cta"
-            data-aos="zoom-in"
-            data-aos-duration="800"
-            data-aos-once="true"
-          >
-            <NavLink className='span'>Go To Shop</NavLink>
-            <FaArrowRightLong className="ctaArrow special-icon" />
-          </button>
-        </div>
+       
 
         <div className="masterclass-section">
           <div className="m-container">
@@ -240,6 +169,82 @@ function Home() {
             ></div>
           </div>
         </div>
+
+        <div className="shop-section">
+          <h1 data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
+            Design Your Dream, Piece by Piece
+          </h1>
+
+          <p data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
+            Shop customizable furnitures to match your style and space
+          </p>
+
+          <div className="shop-items">
+            <NavLink
+              to="/store"
+              className="clm one"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-once="true"
+              data-aos-delay="200"
+            >
+              <h2 className="top-desc">Seating Furniture</h2>
+
+              <h3 className="bottom-desc">Sofas and Couches</h3>
+            </NavLink>
+
+            <NavLink
+              to="/store"
+              className="clm two"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-once="true"
+              data-aos-delay="300"
+            >
+              <h2 className="top-desc">Tables & Surfaces</h2>
+
+              <h3 className="bottom-desc">Desks and Dining</h3>
+            </NavLink>
+
+            <NavLink
+              to="/store"
+              className="clm three"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-once="true"
+              data-aos-delay="400"
+            >
+              <h2 className="top-desc">Storage & Organanisation</h2>
+
+              <h3 className="bottom-desc">Beds, Wardrobes</h3>
+            </NavLink>
+
+            <NavLink
+              to="/store"
+              className="clm four"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-once="true"
+              data-aos-delay="500"
+            >
+              <h2 className="top-desc">Speciality & Decor</h2>
+
+              <h3 className="bottom-desc">Mirrors, Lighting</h3>
+            </NavLink>
+          </div>
+
+          <button
+            className="shop-cta"
+            data-aos="zoom-in"
+            data-aos-duration="800"
+            data-aos-once="true"
+          >
+            <NavLink className='span'>Go To Shop</NavLink>
+            <FaArrowRightLong className="ctaArrow special-icon" />
+          </button>
+        </div>
+
+        <div className="sponsors-section"></div>
 
         <div className="newsletter-section">
           <div className="newsletter-container">

@@ -80,7 +80,8 @@
                 margin-top: 1rem;
                 display: flex;
                 align-items: center;
-                gap: 2rem;
+                gap: 1rem;
+                padding-block: 5px;
 
 
                 .category-name{
@@ -88,8 +89,12 @@
                     flex-direction: column;
                     justify-content: center;
                     text-align: center;
-                    gap: .7rem;
                     align-items: center;
+                    cursor: pointer;
+                    color: #000;
+                    border: 1px solid #888;
+                    border-radius: 20px;
+                    
 
                     button{
                         background: none;
@@ -118,6 +123,7 @@
                     p{
                         font-size: 13px;
                         font-weight: 600;
+                        padding: 8px 17px;
                     }
 
                 }
@@ -354,8 +360,8 @@
                 grid-template-columns:  repeat(2, 1fr);
                 align-items: start;
                 justify-content: center;
-                // gap: 10rem;
-                width: fit-content;
+                gap: 2rem;
+                width: 90%;
                 margin: 0 auto;
            
                 
@@ -369,21 +375,61 @@
                     width: 100%;
                     align-items:flex-start;
                 }
-              }
-              
 
-                
+                .left{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 1.6rem;
+
+                    overflow-x: auto;
+                    white-space: nowrap;
+                    background: hsl(0, 0%, 98%);
+                    padding: 10px;
+        
+                    &::-webkit-scrollbar{
+                        display: none;
+                      }
+
+                        
                 img{
                     border-radius: 5px;
                     max-width: 400px;
                     height: 400px;
                     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                    object-fit: cover;
+                    
                 }
+
+                }
+
+              }
+             
 
                 p{
                     white-space: wrap;
-
+                    font-size: .9em;
                 }
+
+                h5{
+                    font-size: .7em;
+                    color: #888;
+                    margin-top: 1.5rem;
+                }
+
+                .color, .size{
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                }
+
+                .variation{
+                    background: none;
+                    padding: 7px 14px;
+                    border: 1px solid #888;
+                    cursor: pointer;
+                }
+
 
                 .price{
                     font-weight: 600;
@@ -392,8 +438,7 @@
                 .buy-now{
                     display: flex;
                     flex-direction: row;
-                    // align-items: start;
-                    // justify-content: center;
+                   margin-top: 1.5rem;
                     width: 100%;
                     gap: 1rem;
 
@@ -420,6 +465,60 @@
         .product-modal.open {
             display: flex; /* Show when open */
           }
+
+          .popup{
+            position: fixed;
+            top: 0;
+            width: 100%;
+            left: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 100000;
+    
+            .spinner {
+                display: flex;
+                gap: 1rem;
+                align-items: center;
+                background: green;
+                color: white;
+                font-weight: 600;
+                padding: 8px 16px ;
+                border-radius: 16px;
+                cursor: pointer;
+                transition: .3s ease;
+                margin-bottom: 5rem;
+                box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                animation: slideUp 0.5s ease-out forwards;
+                
+                .icon{
+                    font-size: 20px;
+                  }
+
+                &:hover{
+                    transform: scale(.95);
+                }
+
+                @keyframes slideUp {
+                    from {
+                      transform: translateY(100%);
+                      opacity: 0;
+                    }
+                    to {
+                      transform: translateY(0);
+                      opacity: 1;
+                    }
+                  }
+              }
+
+              .variation{
+                background: hsl(54, 100%, 35%);
+              }
+
+              .removed{
+              background: #ff4d4d;}
+         }
 
 }
 
@@ -514,7 +613,9 @@
                         .left{
                             width: 100%;
                             display: flex;
-                            justify-content: center;
+                            align-items: center;
+                            gap: 1.6rem;
+
                         }
 
 
@@ -644,8 +745,6 @@
         .uploaded-posts-container{
 
             .uploaded-posts{
-             
-    
     
                 .product{
                  width: 250px;
@@ -730,8 +829,7 @@
 
 
                 .closeIcon{
-
-                margin-top: 10rem;
+                margin-top: 20%;
 
                 }
 

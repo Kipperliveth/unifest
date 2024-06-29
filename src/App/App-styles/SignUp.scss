@@ -10,7 +10,7 @@
         margin-top: 6rem;
 
         .sign-left{
-            background: url('../../stock/signup.jpg')no-repeat;
+            background: url('../../stock/backgrounds/DSC_3180.jpg')no-repeat;
             background-size: cover;
             background-position: center;
             background-blend-mode: overlay;
@@ -38,6 +38,9 @@
 
             .head-p{
                 letter-spacing: 1px;
+                font-weight: bold;
+                color: #888;
+                font-size: .8em;
             }
 
             .signup-form{
@@ -133,12 +136,15 @@
 .signup-page{
     width: 90vw;
     margin: 0 auto;
+    font-size: .8em;
+
 
     .signup-page-container{
         display: flex;
         justify-content: center;
         width: 90vw;
         position: relative;
+        padding-top:1.6rem;
 
         .sign-left{
             display: none;

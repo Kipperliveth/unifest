@@ -4,8 +4,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../../firebase-config";
 
 const ProtectedRoute = ({  children }) => {
-  const [user, loading, error] = useAuthState(auth);
-  if (loading || !user || error) {
+  const [user, error] = useAuthState(auth);
+  if ( !user || error) {
     return <Navigate to="/login" replace />;
   }
   return children;

@@ -62,7 +62,8 @@ function AnimatedRoutes() {
                     </ProtectedRoute> }/> */}
         {/* <Route path="/marketplace" element={<Marketplace />} /> */}
         
-        <Route path="/userDashboard" element={<ProtectedRoute> <UserDashboard /></ProtectedRoute>} />
+        {/* <Route path="/userDashboard" element={<ProtectedRoute> <UserDashboard /></ProtectedRoute>} /> */}
+        <Route path="/userDashboard" element={ <UserDashboard />} />
         <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute> } />
         <Route path="/userProfile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
         <Route path="/notifications" element={<ProtectedRoute><UserNotifications /></ProtectedRoute> }/>

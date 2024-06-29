@@ -5,7 +5,7 @@
     border: 1px solid #888;
     border-radius: 15px;
     padding: .5rem;
-    height: fit-content;
+    // height: fit-content;
     top:0;
     position: sticky;
     background: white;
@@ -20,18 +20,22 @@
         display: flex;
         text-decoration: none;
         color: #523d35;
+        // margin-left: 1rem;
         align-items: center;
         
         img{
             width: 50px;
             height: 50px;
+            padding-left: .8rem;
         }
 
         .logo{
-            letter-spacing: 4px;
-            
-            span{
-                font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            gap: 2px;
+            font-weight: 1000;
+            font-family: "Recursive", sans-serif;
+            p{
             }
         }
     }
@@ -96,10 +100,26 @@
         .adminDash-shop{
             margin: 1rem 0;
         }
+        
 
 
         .adminDash-masterclass{
             margin-bottom: 1rem;
+            height: 50%;
+            display: flex;
+            // flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+            bottom: 0;
+
+            
+            a{
+                width: 100%;
+                background: hsl(17, 21%, 90%);
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            }
+
+           
 
             .admin-masterclass-icon{
                 width: 30px;
@@ -221,7 +241,7 @@
       }
       
       .menu-container.open .menu-border {
-        height: 27.69rem; /* Adjust to desired expanded height */
+        height: 20.69rem; /* Adjust to desired expanded height */
       }
 
       .menu-container.open{
@@ -250,9 +270,16 @@
 
 @media screen and (min-width: 1080px) and (max-width: 1115px) {
 .adminDash{
+    
 
     .adminDash-links{
         font-size: .8em;
     }
 }
+}
+
+@media screen and (min-width: 1080px) {
+    .adminDash{
+        height: 91vh;
+    }
 }

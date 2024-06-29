@@ -94,7 +94,7 @@ function SignUp() {
             <div className="head">
               <h1>Get Started!</h1> <PiReadCvLogoFill className="sign-icon" />
             </div>
-            <p className="head-p">Learn. Shop. Design.</p>
+            <p className="head-p">CREATE. VYBE. CONNECT.</p>
 
             <form className="signup-form">
               <div className="emailnpassword">

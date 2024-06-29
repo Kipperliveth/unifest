@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../stock/logomain.png";
+// import logo from "../../stock";
+import logo from "../../stock/Unifest-logo-1.png";
+
 import { MdOutlineDashboard } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoCloudUploadOutline } from "react-icons/io5";
@@ -61,11 +63,11 @@ function AdminDashboard() {
   return (
     <div className="adminDash">
       <NavLink to="/adminHome" className="logo-container">
-        <img src={logo} alt="evanis-interior-logo" />
-        <p className="logo">
-          <span>EVANIS</span> INTERIORS
-        </p>
-      </NavLink>
+            <img src={logo} alt="evanis-interior-logo" />
+            <div className="logo">
+              <p>UNI</p> FEST 
+            </div>
+          </NavLink>
 
       <div className="adminDash-links desktop">
         <NavLink to="/adminHome">
@@ -90,15 +92,7 @@ function AdminDashboard() {
         </div>
 
         <div className="adminDash-masterclass">
-          <h2>Masterclass</h2>
-          <NavLink>
-            <LiaChalkboardTeacherSolid className="admin-masterclass-icon" />{" "}
-            <h3>Start a Class</h3>
-          </NavLink>
-          <NavLink>
-            <MdOutlineSchedule className="admin-masterclass-icon" />
-            <h3>Schedules</h3>
-          </NavLink>
+       
 
           <NavLink to='/adminlog'>
             <img
@@ -140,15 +134,6 @@ function AdminDashboard() {
               <NavLink to="/uploads">
                 <IoMdCloudOutline className="admin-shop-icon" />
                 <h3>Uploads</h3>
-              </NavLink>
-
-              <NavLink>
-                <LiaChalkboardTeacherSolid className="admin-masterclass-icon" />
-                <h3>Start Class</h3>
-              </NavLink>
-              <NavLink>
-                <MdOutlineSchedule className="admin-masterclass-icon" />
-                <h3>Schedules</h3>
               </NavLink>
 
               <NavLink to='/adminlog'>

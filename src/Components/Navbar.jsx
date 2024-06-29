@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import logo from "../stock/logomain.png";
+import logo from "../stock/Unifest-logo-1.png";
 import { NavLink, useLocation } from "react-router-dom";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { IoIosNotificationsOutline } from "react-icons/io";
 import { RiMenu4Fill } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
+import { IoTicketOutline } from "react-icons/io5";
+import { PiReadCvLogoLight } from "react-icons/pi";
+import { IoShirtOutline } from "react-icons/io5";
+import { LuRewind } from "react-icons/lu";
+import { IoCallOutline } from "react-icons/io5";
 
 function Navbar() {
   const [isVisible, SetIsVisible] = useState(false);
@@ -48,14 +51,16 @@ function Navbar() {
     <div style={{ display: shouldHideComponent ? "none" : "block" }}>
       <div className="navigation ">
         <nav className=" navbar">
+
           <NavLink to="/" className="logo-container">
             <img src={logo} alt="evanis-interior-logo" />
-            <p className="logo">
-              <span>EVANIS</span> INTERIORS
-            </p>
+            <div className="logo">
+              <p>UNI</p> FEST 
+            </div>
           </NavLink>
 
           <ul className="page-links">
+            
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -63,20 +68,10 @@ function Navbar() {
                 }
                 to="/store"
               >
-                Shop
+                Merch
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? "active-link" : "link"
-                }
-                to="/masterclass"
-              >
-                {" "}
-                Masterclass
-              </NavLink>
-            </li>
+
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -88,6 +83,19 @@ function Navbar() {
                 About
               </NavLink>
             </li>
+
+               <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive ? "active-link" : "link"
+                }
+                to="/masterclass"
+              >
+                {" "}
+                Memories
+              </NavLink>
+            </li>
+
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -99,24 +107,13 @@ function Navbar() {
                 Contact
               </NavLink>
             </li>
+
           </ul>
 
           <div className="app">
-            <div className='notif-bars'>
-
-            <IoIosNotificationsOutline className="app-icon desktop-view notifs" />
-            <div className="notif-bar bar1 desktop-view">
-              <NavLink to="/login">Login</NavLink> to see notifications
-            </div>
-            <AiOutlineShoppingCart className="app-icon desktop-view cart" />
-            <div className="notif-bar bar2 desktop-view">
-              <NavLink to="/login">Login</NavLink> to see cart
-            </div>
-            
-          </div>
 
             <NavLink to="/login" className="login-btn">
-              Login
+              Tickets <IoTicketOutline className="logo-icon"/>
             </NavLink>
 
             <RiMenu4Fill
@@ -127,39 +124,45 @@ function Navbar() {
         </nav>
 
         <div
-          className={` mobile-menu-container ${isVisible ? "is-visible" : ""} `}
+          className={`mobilee-menu-container ${isVisible ? "is-visible" : ""} `}
         >
           <div className="mobile-menu">
             <div className="menu-content">
               <MdCancel onClick={toggleVisibilty} className="cancel-btn" />
 
-              <span>
-                <IoIosNotificationsOutline className="span-icon" />
-                <AiOutlineShoppingCart className="span-icon" />
-              </span>
-
               <div className="mobilepage-links">
-                <li>
+
+
                   <NavLink to="/store" onClick={toggleVisibilty}>
-                    Shop
-                  </NavLink>
-                </li>
                 <li>
-                  <NavLink to="/masterclass" onClick={toggleVisibilty}>
-                    Masterclass
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/about" onClick={toggleVisibilty}>
                     About
-                  </NavLink>
+                <PiReadCvLogoLight className="icon" />
                 </li>
+                  </NavLink>
+
+                  <NavLink to="/masterclass" onClick={toggleVisibilty}>
                 <li>
-                  <NavLink to="/contact" onClick={toggleVisibilty}>
-                    Contact
-                  </NavLink>
+                    Merch
+                <IoShirtOutline className="icon"/>
                 </li>
+                  </NavLink>
+
+                  <NavLink to="/about" onClick={toggleVisibilty}>
+                <li>
+                    Mermories
+                <LuRewind className="icon" />
+                </li>
+                  </NavLink>
+
+                  <NavLink to="/contact" onClick={toggleVisibilty}>
+                <li>
+                    Contact
+                <IoCallOutline className="icon"/>
+                </li>
+                  </NavLink>
+
               </div>
+
             </div>
           </div>
         </div>

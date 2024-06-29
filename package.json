@@ -1,5 +1,5 @@
 {
-  "name": "evanisinteriors",
+  "name": "unifest",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,6 +24,8 @@
     "smtpjs": "^0.0.1",
     "util": "^0.12.5",
     "uuid": "^9.0.1"
+  },"devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.14.5"
   },
   "scripts": {
     "start": "react-scripts start",

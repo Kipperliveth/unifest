@@ -4,10 +4,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from "../../firebase-config";
 
 const AdminRoute = ({ children }) => {
-  const [user, loading, error] = useAuthState(auth);
-  const allowedUid = "CqhQfMc1LZdNCUgixbXpYT0SGaG2";  // Define the allowed UID here
+  const [user, error] = useAuthState(auth);
+  const allowedUid = "thQ3Ml8pyWeAjiexvbUgrPLMfES2";  // Define the allowed UID here
 
-  if (loading || error || !user || user.uid !== allowedUid) {
+  if ( error || !user || user.uid !== allowedUid) {
     return <Navigate to="/login" replace />;
   }
 

@@ -188,14 +188,19 @@ const handleDecreaseQuantity = async (productId) => {
       // If a document with the matching product ID is found, update its quantity
       const docSnapshot = querySnapshot.docs[0];
       const productData = docSnapshot.data();
-      const newQuantity = Math.max((productData.quantity || 0) - 1, 0);
-      await setDoc(docSnapshot.ref, { ...productData, quantity: newQuantity });
+      const currentQuantity = productData.quantity || 0;
 
-      // Update the local state
-      setProductQuantities((prevQuantities) => ({
-        ...prevQuantities,
-        [productId]: newQuantity,
-      }));
+      // Prevent quantity from going below 1
+      if (currentQuantity > 1) {
+        const newQuantity = currentQuantity - 1;
+        await setDoc(docSnapshot.ref, { ...productData, quantity: newQuantity });
+
+        // Update the local state
+        setProductQuantities((prevQuantities) => ({
+          ...prevQuantities,
+          [productId]: newQuantity,
+        }));
+      }
     } else {
       console.error("Product not found in the cart.");
     }
@@ -551,7 +556,7 @@ setCompleted(true);
                         <button className="delete-btn"  onClick={() => handleDeleteProduct(product.productId)}> <CiTrash className="delete-icon"/> <p>Remove</p></button>
 
                         <div className="quantity-counter">
-                          <button  onClick={() => handleDecreaseQuantity(product.productId)}><FiMinus className="count-icon" /></button>
+                          <button  onClick={() => handleDecreaseQuantity(product.productId)}><FiMinus className="count-icon" disabled={productQuantities[product.productId] <= 1}/></button>
                           <p>{product.quantity}</p>
                           <button onClick={() => handleIncreaseQuantity(product.productId)}><FaPlus  className="count-icon" /></button>
                         </div>

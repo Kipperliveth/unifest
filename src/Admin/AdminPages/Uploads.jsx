@@ -97,56 +97,27 @@ function Uploads() {
 
         <div className="categories-container">
           <h3 className="categories-header">Categories</h3>
+
           <div className="categories">
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("All")}>
-                <img src={all} alt="" />
-              </button>
-              All
-            </span>
 
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Sitting")}>
-                <img src={sitting} alt="" />
-              </button>
-              <p>Sitting</p>
-            </span>
+          {["All", "Sitting", "Curtains", "Tables", "Room", "Lights", "Storage"].map((category) => (
+              <span className="category-name" key={category}>
+                <p
+                  onClick={() => handleCategoryClick(category)}
+                  style={{
+                    backgroundColor: selectedCategory === category ? 'black' : 'transparent',
+                    color: selectedCategory === category ? 'white' : 'black',
+                    borderRadius: '20px',
+                  }}
+                >
+                  {category}
+                </p>
+              </span>
+            ))}
 
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Curtains")}>
-                <img src={curtains} alt="" />
-              </button>
-              <p>Curtains</p>
-            </span>
 
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Tables")}>
-                <img src={tables} alt="" />
-              </button>
-              <p>Tables</p>
-            </span>
-
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Room")}>
-                <img src={room} alt="" />
-              </button>
-              <p>Room</p>
-            </span>
-
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Lights")}>
-                <img src={lights} alt="" />
-              </button>
-              <p>Lights</p>
-            </span>
-
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Storage")}>
-                <img src={storageicon} alt="" />
-              </button>
-              <p>Storage</p>
-            </span>
           </div>
+
         </div>
 
         {isLoading ? (

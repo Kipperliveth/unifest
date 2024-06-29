@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../stock/logomain.png";
+import logo from "../../stock/Unifest-logo-1.png";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { CiUser } from "react-icons/ci";
 import { auth } from "../../firebase-config";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +11,6 @@ import { LiaUserEditSolid } from "react-icons/lia";
 import { RiMenu4Fill } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
 import {
-  getFirestore,
   collection, query, orderBy,
   getDocs,
   onSnapshot
@@ -174,48 +172,23 @@ function UserNav() {
   return (
     <div className="userNavbar">
       <div className="userNav-container">
-        <NavLink to="/userDashboard" className="logo-container">
-          <img src={logo} alt="evanis-interior-logo" />
-          <p className="logo">
-            <span>EVANIS</span> INTERIORS
-          </p>
-        </NavLink>
+      <NavLink to="/store" className="logo-container">
+            <img src={logo} alt="evanis-interior-logo" />
+            <div className="logo">
+              <p>UNI</p> FEST 
+            </div>
+          </NavLink>
 
-        <div className="userNavLinks desktop-content">
-          <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active-link" : "link")}
-              to="/store"
-            >
-              Shop
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active-link" : "link")}
-              to="/userMasterclass"
-            >
-              Masterclass
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink
-              className={({ isActive }) => (isActive ? "active-link" : "link")}
-              to="/gethelp"
-            >
-              Get Help
-            </NavLink>
-          </li>
-        </div>
+     
 
         <div className="userControls desktop-content">
        
           <div className="cart-cont" onClick={notifLink}>
             <div className="cart-container">
 
-            <div className="cart-total">{unreadCount}</div>
+            {unreadCount > 0 && (
+           <div className="cart-total">{unreadCount}</div>
+           )}
           <IoIosNotificationsOutline
             className="app-icon desktop-view cart"
             onClick={cartLink}
@@ -227,7 +200,9 @@ function UserNav() {
           <div className="cart-cont" onClick={cartLink}>
             <div className="cart-container">
 
-            <div className="cart-total">{cartItemCount}</div>
+            {cartItemCount > 0 && (
+              <div className="cart-total">{cartItemCount}</div>
+            )}
           <AiOutlineShoppingCart
             className="app-icon desktop-view cart"
             onClick={cartLink}
@@ -275,7 +250,9 @@ function UserNav() {
               <div className="cart-cont" onClick={notifLink}>
             <div className="cart-container">
 
-            <div className="cart-total">{unreadCount}</div>
+              {unreadCount > 0 && (
+                <div className="cart-total">{unreadCount}</div>
+              )}
           <IoIosNotificationsOutline
             className="app-icon desktop-view cart"
             onClick={cartLink}
@@ -287,7 +264,9 @@ function UserNav() {
           <div className="cart-cont" onClick={cartLink}>
             <div className="cart-container">
 
+            {cartItemCount > 0 && (
             <div className="cart-total">{cartItemCount}</div>
+          )}
           <AiOutlineShoppingCart
             className="app-icon desktop-view cart"
             onClick={cartLink}
@@ -303,21 +282,25 @@ function UserNav() {
                   Shop
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/masterclass" onClick={toggleVisibilty}>
-                  Masterclass
-                </NavLink>
-              </li>
+            
               <li>
                 <NavLink to="/userProfile" onClick={toggleVisibilty}>
                   View profile
                 </NavLink>
               </li>
+              
               <li>
                 <NavLink to="/myorders" onClick={toggleVisibilty}>
                   My Orders
                 </NavLink>
               </li>
+
+              <li>
+                <NavLink to="/myorders" onClick={toggleVisibilty}>
+                  Get Help
+                </NavLink>
+              </li>
+
             </div>
           </div>
         </div>

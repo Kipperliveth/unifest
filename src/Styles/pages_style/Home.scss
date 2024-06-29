@@ -8,7 +8,7 @@
     //   }
 
 .landing{
-    background: rgba(0, 0, 0, 0.5) url('../../stock/homeLanding.jpg')no-repeat;
+    background: rgba(0, 0, 0, 0.5) url('../../stock/backgrounds/049A2211.jpg')no-repeat;
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
@@ -38,7 +38,7 @@
     p{
         color: white;
         font-size: 18px;
-        font-weight: lighter;
+        font-weight: 500;
     }
 
     .cta{
@@ -51,15 +51,18 @@
         align-items: center;
         cursor: pointer;
         gap: .4rem;
-        transition: .2s ease-in-out;
-
+        transition: .3s ease;
+        background: transparent;
+        border: 1px solid white;
+        border-radius: 5px;
+        
         &:hover{
-            gap: .7rem;
-        }
-
-        .span{
-            text-decoration: none;
-            color: #333;
+           transform: scale(.95);
+            }
+            
+            .span{
+                text-decoration: none;
+                color: white;
         }
 
 
@@ -459,6 +462,20 @@
         }
     }
 } 
+}
+
+@media screen and (max-width: 500px) {
+.home{
+
+    .landing {
+        height: 100vh;
+    }
+    
+    .landing-content-container{
+        // margin: 16rem 0
+        // padding-top: 2rem;
+    }
+}
 }
 
 @media screen and (max-width: 720px) {

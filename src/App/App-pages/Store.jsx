@@ -8,17 +8,10 @@ import {
   collection,
   getDocs,
   deleteDoc,
-  doc,
+  doc, updateDoc,
   setDoc, onSnapshot
 } from "firebase/firestore";
 import { CiSearch } from "react-icons/ci";
-import all from "../../stock/allmain.png";
-import sitting from "../../stock/couchicon.png";
-import curtains from "../../stock/curtainicon.png";
-import room from "../../stock/roomicon.png";
-import lights from "../../stock/lighticon.png";
-import tables from "../../stock/tableicon.png";
-import storageicon from "../../stock/storageicon.png";
 import { MdCancel } from "react-icons/md";
 import { auth } from "../../firebase-config";
 import { txtdb } from "../../firebase-config";
@@ -52,26 +45,78 @@ function Store() {
     if (currentUser) {
       const userId = currentUser.uid;
       const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
+      
+
+      if(product.sizes.length > 0 && product.color.length > 0){
+        console.log("testing")
+        if (!selectedColor && product.color.length > 0) {
+          handleProductClick(product)
+          setPopupMessage("Please choose a color");
+            setVariationPopup(true);
+          setTimeout(() => setVariationPopup(false), 3000);
+          return;
+        }
     
-      addDoc(productRef, {
-        productId: product.id,
-        imgUrl: product.imgUrl,
-        txtVal: product.txtVal,
-        desc: product.desc,
-        category: product.category,
-        price: product.price,
-        quantity: 1
-        // Other product details
-      })
-      .then(() => {
-        console.log("Product added to user cart");
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
+        if (!selectedSize && product.sizes.length > 0) {
+          handleProductClick(product)
+          setPopupMessage("Please choose a size");
+          setVariationPopup(true);
+          setTimeout(() => setVariationPopup(false), 3000);
+          return;
+        }
+        // return;
+        addDoc(productRef, {
+          imgUrl: product.imgUrl,
+          txtVal: product.txtVal,
+          desc: product.desc,
+          category: product.category,
+          price: product.price,
+          quantity: 1
+          // Other product details
+        })
+        .then((docRef) => {
+          console.log("Product added to user cart");
+          const documentId = docRef.id;
+          updateDoc(doc(txtdb, `userCart/${userId}/products/${documentId}`), {
+            productId: docRef.id,
+          });
+          setShowPopup(true);
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 3000); 
+        })
+        .catch((error) => {
+          console.error("Error adding product:", error);
+        });
+      }else{
+        console.log("aint")
+        addDoc(productRef, {
+          productId: product.id,
+          imgUrl: product.imgUrl,
+          txtVal: product.txtVal,
+          desc: product.desc,
+          category: product.category,
+          price: product.price,
+          quantity: 1
+          // Other product details
+        })
+        .then(() => {
+          setShowPopup(true);
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 3000); 
+        })
+        .catch((error) => {
+          console.error("Error adding product:", error);
+        });
+
+      }
+    
+    
     } else {
       // Implement logic for temporary cart (optional)
     }
+
   }
 
 
@@ -108,8 +153,10 @@ function Store() {
           // Update the cart items in the local state after deletion
           const updatedCartItems = cartItems.filter((item) => item.productId !== productId);
           setCartItems(updatedCartItems);
-          
           console.log("Product deletion completed");
+          setremovedPopup(true)
+      setTimeout(() => setremovedPopup(false), 3000);
+
         } catch (error) {
           console.error("Error removing product:", error);
         }
@@ -170,7 +217,7 @@ function Store() {
 
   //display data onload
   useEffect(() => {
-    document.title = "Store Evanis-Interiors"
+    document.title = "Merch - UNIFEST"
     getData();
   }, []);
 
@@ -183,9 +230,24 @@ function Store() {
   }, []);
 
   //modal add to cart
+  const [popupMessage, setPopupMessage] = useState("");
 
   const popupcart = (selectedProductData) => {
     setCartItems((prevCartItems) => [...prevCartItems, selectedProductData]);
+
+        if (!selectedColor && selectedProductData.color.length > 1) {
+      setPopupMessage("Please choose a color");
+        setVariationPopup(true);
+      setTimeout(() => setVariationPopup(false), 3000);
+      return;
+    }
+
+    if (!selectedSize && selectedProductData.sizes.length > 1) {
+      setPopupMessage("Please choose a size");
+      setVariationPopup(true);
+      setTimeout(() => setVariationPopup(false), 3000);
+      return;
+    }
 
     if (currentUser) {
       const userId = currentUser.uid;
@@ -193,16 +255,25 @@ function Store() {
     
       addDoc(productRef, {
         imgUrl: selectedProductData.imgUrl,
-        productId: selectedProductData.id,
         txtVal: selectedProductData.txtVal,
         desc: selectedProductData.desc,
         category: selectedProductData.category,
         price: selectedProductData.price,
-        quantity: 1
+        quantity: 1,
+        color: selectedColor,
+        size: selectedSize
         // Other product details
       })
-      .then(() => {
+      .then((docRef) => {
         console.log("Product added to user cart");
+        const documentId = docRef.id;
+        updateDoc(doc(txtdb, `userCart/${userId}/products/${documentId}`), {
+          productId: docRef.id,
+        });
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+        }, 3000); 
       })
       .catch((error) => {
         console.error("Error adding product:", error);
@@ -221,22 +292,43 @@ function Store() {
   const buynow = (selectedProductData) => {
     setCartItems((prevCartItems) => [...prevCartItems, selectedProductData]);
 
+     if (!selectedColor && selectedProductData.color.length > 1) {
+      setPopupMessage("Please choose a color");
+        setVariationPopup(true);
+      setTimeout(() => setVariationPopup(false), 3000);
+      return;
+    }
+
+    if (!selectedSize && selectedProductData.sizes.length > 1) {
+      setPopupMessage("Please choose a size");
+      setVariationPopup(true);
+      setTimeout(() => setVariationPopup(false), 3000);
+      return;
+    }
+
     if (currentUser) {
       const userId = currentUser.uid;
       const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
     
       addDoc(productRef, {
         imgUrl: selectedProductData.imgUrl,
-        productId: selectedProductData.id,
         txtVal: selectedProductData.txtVal,
         desc: selectedProductData.desc,
         category: selectedProductData.category,
         price: selectedProductData.price,
-        quantity: 1
+        quantity: 1,
+        color: selectedColor,
+        size: selectedSize
         // Other product details
       })
-      .then(() => {
+      .then((docRef) => {
         console.log("Product added to user cart");
+        const documentId = docRef.id;
+        updateDoc(doc(txtdb, `userCart/${userId}/products/${documentId}`), {
+          productId: docRef.id,
+        });
+      })
+      .finally(() =>{
         navigate('/cart')
       })
       .catch((error) => {
@@ -246,6 +338,20 @@ function Store() {
       // Implement logic for temporary cart (optional)
     }
   }
+
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  function handleColorSelect(color) {
+    setSelectedColor(color);
+}
+function handleSizeSelect(size) {
+  setSelectedSize(size);
+}
+
+const [showPopup, setShowPopup] = useState(false);
+const [removedPopup, setremovedPopup] = useState(false);
+const [variationPopup, setVariationPopup] = useState(false)
 
 
 
@@ -273,55 +379,25 @@ function Store() {
         <h3 className="categories-header">Categories</h3>
         <div className="categories-container">
           <div className="categories">
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("All")}>
-                <img src={all} alt="" />
-              </button>
-              <p>All</p>
-            </span>
 
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Sitting")}>
-                <img src={sitting} alt="" />
-              </button>
-              <p>Sitting</p>
-            </span>
+          {["All", "Sitting", "Curtains", "Tables", "Room", "Lights", "Storage"].map((category) => (
+              <span className="category-name" key={category}>
+                <p
+                  onClick={() => handleCategoryClick(category)}
+                  style={{
+                    backgroundColor: selectedCategory === category ? 'black' : 'transparent',
+                    color: selectedCategory === category ? 'white' : 'black',
+                    borderRadius: '20px',
+                  }}
+                >
+                  {category}
+                </p>
+              </span>
+            ))}
 
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Curtains")}>
-                <img src={curtains} alt="" />
-              </button>
-              <p>Curtains</p>
-            </span>
 
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Tables")}>
-                <img src={tables} alt="" />
-              </button>
-              <p>Tables</p>
-            </span>
-
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Room")}>
-                <img src={room} alt="" />
-              </button>
-              <p>Room</p>
-            </span>
-
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Lights")}>
-                <img src={lights} alt="" />
-              </button>
-              <p>Lights</p>
-            </span>
-
-            <span className="category-name">
-              <button onClick={() => handleCategoryClick("Storage")}>
-                <img src={storageicon} alt="" />
-              </button>
-              <p>Storage</p>
-            </span>
           </div>
+
         </div>
 
         {isLoading ? (
@@ -419,8 +495,9 @@ function Store() {
               <div className="container">
 
               <div className="left">
-                <img src={selectedProductData.imgUrl} alt="Product" />
-
+              {selectedProductData.imgUrl && selectedProductData.imgUrl.map((url, index) => (
+                    <img key={index} src={url} alt="Product" />
+                  ))}
               </div>
 
               <div className="right">
@@ -430,6 +507,34 @@ function Store() {
 
               <p className="price"> &#8358; {parseFloat(selectedProductData.price).toLocaleString('en-us')}</p>
               <p>{selectedProductData.desc}</p>
+
+              {(selectedProductData.color.length > 0 || selectedProductData.sizes.length > 0) && (
+                <h5>VARIATIONS:</h5>
+              )}
+
+               {selectedProductData.color.length > 0? (
+              <div className="color">
+              {selectedProductData.color.map((color) => (
+                <button  onClick={() => handleColorSelect(color)} className='variation' key={color}    style={{
+                  border: selectedColor === color ? '2px solid black' : '1px solid gray', // Change border style based on selection
+                }}>
+                {color}
+              </button>
+              ))}
+              </div>
+              ) : null}
+
+                {selectedProductData.sizes.length > 0? (
+                <div className="size">
+                    {selectedProductData.sizes.map((size) => (
+                      <button onClick={() => handleSizeSelect(size)} className="variation" key={size}  style={{
+                        border: selectedSize === size ? '2px solid black' : '1px solid gray', // Change border style based on selection
+                      }}>{size}</button>
+                    ))}
+                </div>
+              ) : null}
+           
+              
               {/* ... other product details ... */}
               <div className="buy-now">
                
@@ -455,6 +560,38 @@ function Store() {
             </div>
           )}
         </div>
+
+        {showPopup && (
+        <div className="popup">
+
+          <div className="spinner" onClick={() => setShowPopup(false)}>
+           <MdCancel className='icon' /> Item has been added to cart
+          </div>
+
+        </div>
+      )}
+
+    {variationPopup && (
+        <div className="popup">
+
+          <div className="spinner variation" onClick={() => setVariationPopup(false)}>
+           <MdCancel className='icon' /> {popupMessage}
+          </div>
+
+        </div>
+      )}
+
+        {removedPopup && (
+        <div className="popup">
+
+          <div className="spinner removed" onClick={() => setremovedPopup(false)}>
+           <MdCancel className='icon' /> Item has been removed from cart
+          </div>
+
+        </div>
+      )}
+
+
       </div>
     </div>
   );
