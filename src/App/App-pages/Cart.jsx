@@ -16,11 +16,10 @@ import { FiMinus } from "react-icons/fi";
 import emailjs from 'emailjs-com';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
-emailjs.init("55KFb3ovp5zp-SlMq");
+emailjs.init("oFALOKT7ahfnZc7PX");
 
 
 function Cart() {
-  const [cartItems, setCartItems] = useState([]);
   const [user, setUser] = useState({})
   const [loading, setLoading] = useState(true); // New loading state
   const [errorMessage, setErrorMessage] = useState(''); // State for error message
@@ -100,6 +99,31 @@ const handleDeleteProduct = async (productId) => {
   }
 };
 
+//shipping state
+const [selectedShipping, setSelectedShipping] = useState('');
+const [totalPrice, setTotalPrice] = useState(0);
+
+
+const handleShippingChange = (e) => {
+  const shippingMethod = e.target.value;
+  setSelectedShipping(shippingMethod);
+
+  let shippingCost = 0;
+  if (shippingMethod === 'PICKUP') {
+    shippingCost = 2000; // Example shipping cost for pickup
+  } else if (shippingMethod === 'DOOR DELIVERY') {
+    if(addressData.city === 'Iwofe' || 'Rupokwu' || "Eleme Junction" || "Adageorge" ||"Borokiri" || "Akpajo" || "Adageorge" || "Agip" || "Abuloma" || "Atali" || "Eliozu" || "Elelewon" || "Odili" || "Eneka" || "Woji"){
+      shippingCost = 3000; // Example shipping cost for pickup
+    } else if (addressData.city === 'Choba' || 'Aluu' || "Alakahia" || "Rumuokoro" || "Rumuosi"){
+      shippingCost = 2500; // Example shipping cost for pickup
+    }
+
+  } 
+
+  setTotalPrice(shippingCost);
+  console.log(totalPrice)
+};
+
   // Calculate total price of products in the cart
 const getTotalPrice = () => {
   let totalPrice = 0;
@@ -114,7 +138,7 @@ const getTotalPrice = () => {
 
 const getTotalPriceNumeric = parseFloat(getTotalPrice().replace(/[^\d.-]/g, ''));
 
-const totalPriceWithShipping = getTotalPriceNumeric;
+const totalPriceWithShipping = getTotalPriceNumeric + totalPrice;
 
 const formattedTotalPriceWithShipping = totalPriceWithShipping.toLocaleString('en-US', { style: 'currency', currency: 'NGN' });
 
@@ -281,13 +305,7 @@ const options = { day: 'numeric', month: 'short' };
 const formattedDate15DaysFromNow = date15DaysFromNow.toLocaleDateString('en-US', options);
 const formattedDate20DaysFromNow = date20DaysFromNow.toLocaleDateString('en-US', options);
 
-//shipping state
-const [selectedShipping, setSelectedShipping] = useState('');
 
-const handleShippingChange = (e) => {
-  setSelectedShipping(e.target.value);
-
-};
 
 useEffect(() => {
   console.log(selectedShipping);
@@ -326,6 +344,7 @@ setShowPopup(true);
       userId: userId, // Store the user's ID in the order document
       cartItems: fetchedProducts, // Store the contents of the user's cart
       totalPrice: getTotalPriceNumeric, // Store the total price of the order
+      deliveryFee: totalPrice,
       shippingOption: selectedShipping, // Store the selected shipping option
       address: addressData.addressLine1,
       callLine: addressData.addressPhone,
@@ -341,42 +360,30 @@ setShowPopup(true);
 
    // Get the email content
 let emailContent = `
-Order Details:
-- Order ID: ${orderRef.id}
-
-- Items:
 `;
 // Loop through fetchedProducts array to include product name and quantity
 fetchedProducts.forEach((product, index) => {
 emailContent += `\n    - ${product.txtVal} (x ${product.quantity})`;
 });
+;
 
-// Add the total price and shipping address to the email content
-emailContent += `
-
-- Total: ${getTotalPriceNumeric} (Shipping fees not included)
-
-- Shipping Address:
-  ${addressData.addressLine1}
-  ${addressData.addressPhone}
-  ${addressData.city}
-  ${addressData.state}
-
-estimated delivery between ${formattedDate15DaysFromNow} and ${formattedDate20DaysFromNow}
-
-If you have any questions or need assistance, please don't contact our customer support team at [Customer Support Email Address] or visit our FAQs page: [FAQs Link].
-`;
-
-         
-
+    const date = new Date();
+    const formattedDate = date.toISOString().split('T')[0];
+    const timestamp = formattedDate;
     //  await sendEmailNotification(userEmail, orderRef.id);
-    emailjs.send("service_r60nfme", "template_max8cdd", {
+    emailjs.send("service_1i849ri", "template_7ful5o4", {
   to_email: userEmail,
   userEmail: userEmail,
   message: emailContent,
   orderRefId: orderRef.id,
+  city: addressData.city,
+  state: addressData.state,
+  totalPrice: getTotalPriceNumeric,
+  deliveryFee: totalPrice,
   to_name: userName,
-  from_name: "Evanis Interiors"
+  timestamp: timestamp,
+  estimatedDelivery: `${formattedDate15DaysFromNow} and ${formattedDate20DaysFromNow}`,
+  from_name: "UNIFEST Merch"
   // other variables you want to include in your email template
 })
 .then((response) => {
@@ -389,6 +396,7 @@ If you have any questions or need assistance, please don't contact our customer 
      addDoc(collection(txtdb, `userNotifications/${userId}/inbox`), {
       orderRefId: orderRef.id,
       state: addressData.state,
+      city: addressData.city,
       formattedDate15DaysFromNow: formattedDate15DaysFromNow,
       formattedDate20DaysFromNow: formattedDate20DaysFromNow,
       timestamp: timestamp
@@ -417,8 +425,10 @@ If you have any questions or need assistance, please don't contact our customer 
       date: timestamp,
          orderRefId: orderRef.id,
       state: addressData.state,
+      city: addressData.city,
       cartItems: fetchedProducts, // Store the contents of the user's cart
       totalPrice: getTotalPriceNumeric, // Store the total price of the order
+      deliveryFee: totalPrice,
       shippingOption: selectedShipping, // Store the selected shipping option
       formattedDate15DaysFromNow: formattedDate15DaysFromNow,
       formattedDate20DaysFromNow: formattedDate20DaysFromNow,
@@ -533,7 +543,9 @@ setCompleted(true);
 
                         <div className="name-desc">
                         <h3>{product.txtVal}</h3>
-                        <p>{product.desc}</p>
+                        {product.color && <p><span>Color:</span> {product.color}</p>}
+                        {product.size && <p><span>Size:</span> {product.size}</p>}
+
                         {/* <p>{product.quantity}</p> */}
                          <p className="mobile">
                       &#8358;&nbsp;
@@ -592,13 +604,13 @@ setCompleted(true);
                 <div className="state">
                 <input
                   type="radio"
-                  id="lagos"
+                  id="pickup"
                   name="shipping"
-                  value="LAGOS"
-                checked={selectedShipping === 'LAGOS'}
+                  value="PICKUP"
+                checked={selectedShipping === 'PICKUP'}
                 onChange={handleShippingChange}
                 />
-                <label htmlFor="lagos">Shipping(LAGOS)</label>
+                <label htmlFor="pickup">Pick up at Abuja park(Choba)</label>
                 </div>
                 
 
@@ -607,11 +619,11 @@ setCompleted(true);
                   type="radio"
                   id="others"
                   name="shipping"
-                  value="OTHERS"
-                    checked={selectedShipping === 'OTHERS'}
+                  value="DOOR DELIVERY"
+                    checked={selectedShipping === 'DOOR DELIVERY'}
                 onChange={handleShippingChange}
                 />
-                <label htmlFor="others">Shipping(OTHERS)</label>
+                <label htmlFor="others">Door delivery to {addressData.city}</label>
                 </div>
 
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
@@ -624,7 +636,7 @@ setCompleted(true);
 
                   <div className="total">
                     <p>Total <span>{formattedTotalPriceWithShipping}</span></p>
-                  <li>Shipping not included</li>
+                  <li>Shipping included</li>
                   </div>
 
                   <button className='checkout' onClick={handleCheckout}>Checkout</button>
@@ -683,7 +695,7 @@ setCompleted(true);
         <h2>Order Confirmed</h2>
 
 
-        <p>Thank you for shopping on Evanis interiors! <br /> We will contact you soon to confirm the delivery fees.</p>
+        <p>Thank you for buying the Unifest Merch! <br /> We will contact you soon for delivery.</p>
         <p>Order ID: <span>{orderID}</span></p>
 
        <div className='buttons'>

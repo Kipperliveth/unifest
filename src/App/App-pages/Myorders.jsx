@@ -232,7 +232,8 @@ function Myorders() {
                 
                                   <span>
                                 <p className="name">{item.txtVal}</p>
-                                <p>{item.desc}</p>
+                                <p>{item.color}</p>
+                                <p>{item.size}</p>
                                 </span>
                                 
                 
@@ -254,8 +255,19 @@ function Myorders() {
   
                         <div className="left">
                           <h2>Payment</h2>
-                          <h5>Total Price(shipping not included)</h5>
-                      <p>&#8358;{parseFloat(selectedOrder.totalPrice).toLocaleString('en-US')}</p>
+
+                          <span>
+                          <h5>Items total: </h5><p>&#8358;{parseFloat(selectedOrder.totalPrice).toLocaleString('en-US')}</p>
+                          </span>
+
+                          <span>
+                          <h5>Delivery Fees:</h5><p>&#8358;{parseFloat(selectedOrder.deliveryFee).toLocaleString('en-US')}</p>
+                          </span>
+
+                          <span>
+                          <h5>Total: </h5>
+                      <p>&#8358;{parseFloat(selectedOrder.deliveryFee + selectedOrder.totalPrice).toLocaleString('en-US')}</p>
+                          </span>
 
                         </div>
 
@@ -263,7 +275,7 @@ function Myorders() {
                       <h2>Delivery</h2>
                       <h3>Address</h3>
                       <p> {selectedOrder.address}</p>
-                      <p> {selectedOrder.shippingOption}/{selectedOrder.state}</p>
+                      <p> {selectedOrder.shippingOption}/{selectedOrder.city}</p>
                       <p>{selectedOrder.callLine}</p>
 
                       <div className="p second"><FaTruck className="icon"/> Estimated delivery between: {selectedOrder.formattedDate15DaysFromNow} - {selectedOrder.formattedDate20DaysFromNow} </div>

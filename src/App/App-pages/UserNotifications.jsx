@@ -375,10 +375,8 @@ useEffect(() => {
 
                 <div className="right">
                     <h4>Your order with ID: {notification.orderRefId} has been confirmed </h4>
-                    <p>Expected delivery for this item to {notification.state} is between {notification.formattedDate15DaysFromNow} and {notification.formattedDate20DaysFromNow}</p>
-                    <p>Please note that delivery fees are paid for seperately</p>
-                    <p>Use the live chat feature to inquire shipping fees</p>
-                    <h5>To track your order please contact Evanis Interiors via Email</h5>
+                    <p>Expected delivery for this item to {notification.city} is between {notification.formattedDate15DaysFromNow} and {notification.formattedDate20DaysFromNow}</p>
+                    <h5>To track your order please contact Unifest via Live Chat</h5>
                     <span>
 
                     <p className="date">{notification.timestamp}</p> <button onClick={() => handleMarkNotificationAsRead(notification)}>Mark as Read</button>
@@ -484,10 +482,8 @@ useEffect(() => {
 
                 <div className="right">
                     <h4>Your order with ID: {readNotification.orderRefId} has been confirmed </h4>
-                    <p>Expected delivery for this item to {readNotification.state} is between {readNotification.formattedDate15DaysFromNow} and {readNotification.formattedDate20DaysFromNow}</p>
-                    <p>Please note that delivery fees are paid for seperately. </p>
-                    <p>Use the live chat feature to inquire shipping fees</p>
-                    <h5>To track your order please contact Evanis Interiors via Email</h5>
+                    <p>Expected delivery for this item to {readNotification.city} is between {readNotification.formattedDate15DaysFromNow} and {readNotification.formattedDate20DaysFromNow}</p>
+                    <h5>To track your order please contact Unifest via Live Chat</h5>
                     <span>
 
                     <p className="date">{readNotification.timestamp}</p> <button>Read</button>

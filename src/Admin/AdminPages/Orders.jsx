@@ -11,7 +11,7 @@ import { FaCheck } from "react-icons/fa";
 import { ImSpinner8 } from "react-icons/im";
 import emailjs from 'emailjs-com';
 
-emailjs.init("55KFb3ovp5zp-SlMq");
+emailjs.init("oFALOKT7ahfnZc7PX");
 
 
 function Orders() {
@@ -158,25 +158,29 @@ function Orders() {
         }).then(() => {
 
           let emailContent = `
-          We are pleased to inform you that your package with order ID:${selectedOrderId}  has been successfully delivered.
+          `;
+          // Loop through fetchedProducts array to include product name and quantity
+          selectedOrder.cartItems.forEach((product, index) => {
+          emailContent += `\n    - ${product.txtVal} (x ${product.quantity})`;
+          });
+          ;
 
-          Delivery Details:
-
-          Order ID: ${selectedOrderId}
-          Delivery Date: ${completedOrderData.completionDate}
-
-          Thank you for choosing Evanis Interiors.
           
-          If you have any queries about your order or need further assistance, please to contact our customer support team.
-          `
-
-          emailjs.send("service_r60nfme", "template_todl238", {
+          const date = new Date();
+          const formattedDate = date.toISOString().split('T')[0];
+          const timestamp = formattedDate;
+          emailjs.send("service_1i849ri", "template_mwys2kw", {
             to_email: selectedOrder.userEmail,
             userEmail: selectedOrder.userEmail,
             message: emailContent,
             orderRefId: selectedOrderId,
+            city: selectedOrder.city,
+            state: selectedOrder.state,
+            totalPrice: selectedOrder.totalPrice,
+            deliveryFee: selectedOrder.deliveryFee,
             username: selectedOrder.username,
-            from_name: "Evanis Interiors"
+            timestamp: timestamp,
+            from_name: "UNIFEST Merch"
             // other variables you want to include in your email template
           })
 
@@ -221,7 +225,7 @@ function Orders() {
       <div className="search-bar">
         <input 
           type="text" 
-          placeholder="Search by Order ID or Date" 
+          placeholder="Search by Order ID" 
           value={searchInput} 
           onChange={(e) => setSearchInput(e.target.value)} 
         />
@@ -333,7 +337,8 @@ function Orders() {
   
                     <span>
                   <p className="name">{item.txtVal}</p>
-                  <p>{item.desc}</p>
+                  <p>{item.color}</p>
+                  <p>{item.size}</p>
                   </span>
                   
   
@@ -366,8 +371,23 @@ function Orders() {
             <p> {selectedOrder.address}</p>
             <p> {selectedOrder.shippingOption}/{selectedOrder.state}</p>
              <p>{selectedOrder.callLine}</p>
-             <h3>Total Price(shipping not included)</h3>
+
+              <span>
+             <h3>Items Price: </h3>
             <p>&#8358;{parseFloat(selectedOrder.totalPrice).toLocaleString('en-US')}</p>
+              </span>
+
+              <span>
+             <h3>Delivery Fee:</h3>
+            <p>&#8358;{parseFloat(selectedOrder.deliveryFee).toLocaleString('en-US')}</p>
+            </span>
+
+            <span>
+             <h3>Total: </h3>
+            <p>&#8358;{parseFloat(selectedOrder.totalPrice + selectedOrder.deliveryFee).toLocaleString('en-US')}</p>
+            </span>
+
+
               </div>
               </div>
   
@@ -477,7 +497,8 @@ function Orders() {
 
                   <span>
                 <p className="name">{item.txtVal}</p>
-                <p>{item.desc}</p>
+                <p>{item.color}</p>
+                <p>{item.size}</p>
                 </span>
                 
 
@@ -510,8 +531,21 @@ function Orders() {
           <p> {selectedOrder.address}</p>
           <p> {selectedOrder.shippingOption}/{selectedOrder.state}</p>
            <p>{selectedOrder.callLine}</p>
-           <h3>Total Price(shipping not included)</h3>
-          <p>&#8358;{parseFloat(selectedOrder.totalPrice).toLocaleString('en-US')}</p>
+          
+            <span>
+             <h3>Items Price: </h3>
+            <p>&#8358;{parseFloat(selectedOrder.totalPrice).toLocaleString('en-US')}</p>
+              </span>
+
+              <span>
+             <h3>Delivery Fee:</h3>
+            <p>&#8358;{parseFloat(selectedOrder.deliveryFee).toLocaleString('en-US')}</p>
+            </span>
+
+            <span>
+             <h3>Total: </h3>
+            <p>&#8358;{parseFloat(selectedOrder.totalPrice + selectedOrder.deliveryFee).toLocaleString('en-US')}</p>
+            </span>
             </div>
             </div>
 

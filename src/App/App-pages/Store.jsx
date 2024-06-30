@@ -23,8 +23,6 @@ import { useNavigate } from "react-router-dom";
 function Store() {
   const navigate = useNavigate();
 
-  const [imageList, setImageList] = useState([]);
-
   const [isLoading, setIsLoading] = useState(true);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -235,49 +233,76 @@ function Store() {
   const popupcart = (selectedProductData) => {
     setCartItems((prevCartItems) => [...prevCartItems, selectedProductData]);
 
-        if (!selectedColor && selectedProductData.color.length > 1) {
-      setPopupMessage("Please choose a color");
-        setVariationPopup(true);
-      setTimeout(() => setVariationPopup(false), 3000);
-      return;
-    }
-
-    if (!selectedSize && selectedProductData.sizes.length > 1) {
-      setPopupMessage("Please choose a size");
-      setVariationPopup(true);
-      setTimeout(() => setVariationPopup(false), 3000);
-      return;
-    }
+    
 
     if (currentUser) {
       const userId = currentUser.uid;
       const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
+
+      if(selectedProductData.color.length > 1 &&  selectedProductData.sizes.length > 1){
+
+        if (!selectedColor && selectedProductData.color.length > 1) {
+          setPopupMessage("Please choose a color");
+            setVariationPopup(true);
+          setTimeout(() => setVariationPopup(false), 3000);
+          return;
+        }
     
-      addDoc(productRef, {
-        imgUrl: selectedProductData.imgUrl,
-        txtVal: selectedProductData.txtVal,
-        desc: selectedProductData.desc,
-        category: selectedProductData.category,
-        price: selectedProductData.price,
-        quantity: 1,
-        color: selectedColor,
-        size: selectedSize
-        // Other product details
-      })
-      .then((docRef) => {
-        console.log("Product added to user cart");
-        const documentId = docRef.id;
-        updateDoc(doc(txtdb, `userCart/${userId}/products/${documentId}`), {
-          productId: docRef.id,
+        if (!selectedSize && selectedProductData.sizes.length > 1) {
+          setPopupMessage("Please choose a size");
+          setVariationPopup(true);
+          setTimeout(() => setVariationPopup(false), 3000);
+          return;
+        }
+
+        addDoc(productRef, {
+          imgUrl: selectedProductData.imgUrl,
+          txtVal: selectedProductData.txtVal,
+          desc: selectedProductData.desc,
+          category: selectedProductData.category,
+          price: selectedProductData.price,
+          quantity: 1,
+          color: selectedColor,
+          size: selectedSize
+          // Other product details
+        })
+        .then((docRef) => {
+          console.log("Product added to user cart");
+          const documentId = docRef.id;
+          updateDoc(doc(txtdb, `userCart/${userId}/products/${documentId}`), {
+            productId: docRef.id,
+          });
+          setShowPopup(true);
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 3000); 
+        })
+        .catch((error) => {
+          console.error("Error adding product:", error);
         });
-        setShowPopup(true);
-        setTimeout(() => {
-          setShowPopup(false);
-        }, 3000); 
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
+
+      }else{
+        addDoc(productRef, {
+          productId: selectedProductData.id,
+          imgUrl: selectedProductData.imgUrl,
+          txtVal: selectedProductData.txtVal,
+          desc: selectedProductData.desc,
+          category: selectedProductData.category,
+          price: selectedProductData.price,
+          quantity: 1
+          // Other product details
+        })
+        .then(() => {
+          setShowPopup(true);
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 3000); 
+        })
+        .catch((error) => {
+          console.error("Error adding product:", error);
+        });
+      }
+    
     } else {
       // Implement logic for temporary cart (optional)
     }
@@ -292,53 +317,85 @@ function Store() {
   const buynow = (selectedProductData) => {
     setCartItems((prevCartItems) => [...prevCartItems, selectedProductData]);
 
-     if (!selectedColor && selectedProductData.color.length > 1) {
-      setPopupMessage("Please choose a color");
-        setVariationPopup(true);
-      setTimeout(() => setVariationPopup(false), 3000);
-      return;
-    }
-
-    if (!selectedSize && selectedProductData.sizes.length > 1) {
-      setPopupMessage("Please choose a size");
-      setVariationPopup(true);
-      setTimeout(() => setVariationPopup(false), 3000);
-      return;
-    }
 
     if (currentUser) {
       const userId = currentUser.uid;
       const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
     
-      addDoc(productRef, {
-        imgUrl: selectedProductData.imgUrl,
-        txtVal: selectedProductData.txtVal,
-        desc: selectedProductData.desc,
-        category: selectedProductData.category,
-        price: selectedProductData.price,
-        quantity: 1,
-        color: selectedColor,
-        size: selectedSize
-        // Other product details
-      })
-      .then((docRef) => {
-        console.log("Product added to user cart");
-        const documentId = docRef.id;
-        updateDoc(doc(txtdb, `userCart/${userId}/products/${documentId}`), {
-          productId: docRef.id,
+      if(selectedProductData.color.length > 1 &&  selectedProductData.sizes.length > 1){
+
+        if (!selectedColor && selectedProductData.color.length > 1) {
+          setPopupMessage("Please choose a color");
+            setVariationPopup(true);
+          setTimeout(() => setVariationPopup(false), 3000);
+          return;
+        }
+    
+        if (!selectedSize && selectedProductData.sizes.length > 1) {
+          setPopupMessage("Please choose a size");
+          setVariationPopup(true);
+          setTimeout(() => setVariationPopup(false), 3000);
+          return;
+        }
+
+        addDoc(productRef, {
+          imgUrl: selectedProductData.imgUrl,
+          txtVal: selectedProductData.txtVal,
+          desc: selectedProductData.desc,
+          category: selectedProductData.category,
+          price: selectedProductData.price,
+          quantity: 1,
+          color: selectedColor,
+          size: selectedSize
+          // Other product details
+        })
+        .then((docRef) => {
+          console.log("Product added to user cart");
+          const documentId = docRef.id;
+          updateDoc(doc(txtdb, `userCart/${userId}/products/${documentId}`), {
+            productId: docRef.id,
+          });
+          setShowPopup(true);
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 3000); 
+        })
+        .finally(() =>{
+          navigate('/cart')
+        })
+        .catch((error) => {
+          console.error("Error adding product:", error);
         });
-      })
-      .finally(() =>{
-        navigate('/cart')
-      })
-      .catch((error) => {
-        console.error("Error adding product:", error);
-      });
+
+      }else{
+        addDoc(productRef, {
+          productId: selectedProductData.id,
+          imgUrl: selectedProductData.imgUrl,
+          txtVal: selectedProductData.txtVal,
+          desc: selectedProductData.desc,
+          category: selectedProductData.category,
+          price: selectedProductData.price,
+          quantity: 1
+          // Other product details
+        })
+        .then(() => {
+          setShowPopup(true);
+          setTimeout(() => {
+            setShowPopup(false);
+          }, 3000); 
+        })
+        .finally(() =>{
+          navigate('/cart')
+        })
+        .catch((error) => {
+          console.error("Error adding product:", error);
+        });
+      }
     } else {
       // Implement logic for temporary cart (optional)
     }
   }
-
+  
   const [selectedColor, setSelectedColor] = useState(null);
   const [selectedSize, setSelectedSize] = useState(null);
 

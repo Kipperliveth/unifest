@@ -132,6 +132,7 @@
 
 
             .cart-cont{
+                
 
                 &:hover .cart-total{
                     animation: shake 0.4s ;
@@ -292,7 +293,7 @@
 
             .menu-content{
                 font-weight: 500;
-                margin: 2rem;
+                padding: 2rem;
                 display: flex;
                 flex-direction: column;
                 position: relative;
@@ -314,7 +315,7 @@
 
             span{
                 display: flex;
-                align-items: center;
+                width: fit-content;
                 font-size: 1.6em;
                 gap: 1rem;
                 .cart-cont{
@@ -327,10 +328,10 @@
                         position: relative;
                         cursor: pointer;
 
-                        // .notifs{
-                        //     font-size: 1.2em;
-                        // }
-    
+                        .cart{
+                        font-size: 1.25em;
+                        }
+
                         .cart-total{
                             position: absolute;
                             border: 2px solid white;
@@ -355,7 +356,7 @@
             }
 
                 .mobilepage-links{
-                    margin-top: 2rem;
+                    margin-top: 1.6rem;
                     display: flex;
                     flex-direction: column;
                     list-style: none;

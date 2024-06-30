@@ -409,6 +409,12 @@
                             flex-direction: column;
                             gap: 1rem;
 
+                            span{
+                                display: inherit;
+                                gap: 5px;
+                                align-items: center;
+                            }
+
                             h2{
                                 font-weight: 600;
                             }

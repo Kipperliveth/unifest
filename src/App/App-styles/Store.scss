@@ -311,7 +311,6 @@
                 border-radius: 10px;;
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
                 align-items: center;
                 background: white;
                 gap: .5rem;
@@ -320,15 +319,13 @@
              overflow-y: scroll;
              width: 100%;
              height: 100vh;
-
+             
              &::-webkit-scrollbar{
-                display: none;
-              }
+                 display: none;
+                }
 
-              .closeIcon{
-                  //   border: 1px solid hsl(0, 0%, 83%);
-                  //   position: absolute;
-                  //   top: 0;
+                .closeIcon{
+                    margin-top: 4rem;
                   background: none;
                   width: 80%;
                   font-weight: 600;
@@ -338,7 +335,7 @@
                   
                   .close{
                       padding: 1rem;
-                      margin-bottom: 1.5rem;
+                      margin-bottom: 1rem;
                       width: fit-content;
                       display: flex;
                       justify-content: left;
@@ -446,7 +443,7 @@
                         background: none;
                         border: 1px solid #888;
                         width: 7rem;
-                        padding: 12px 28px;
+                        padding: 12px 0;
                         border-radius: 5px;
                         cursor: pointer;
                         width: 200px;
@@ -536,7 +533,7 @@
             position: relative;
 
             span{
-                width: 100%;
+                width: 60%;
                
                 input{
                     width: 100%;
@@ -544,10 +541,15 @@
             }
         }
 
-      
+      .categories-header{
+        margin-left: 2.5%;
+      }
         .categories-container{
             overflow-x: auto;
             white-space: nowrap;
+            width: 95%;
+            margin: 0 auto;
+            margin-bottom: 1.6rem;
 
             &::-webkit-scrollbar{
                 display: none;
@@ -600,7 +602,7 @@
             // justify-content:start;
 
             .closeIcon{
-                margin-top: 22rem;
+                // margin-top: 400px;
                 width: 95%;
             }
 
@@ -608,21 +610,21 @@
                        display: flex;
                         flex-direction: column;
                         margin-bottom: 8rem;
-                        width: 90% !important;
+                        width: 100% !important;
 
                         .left{
-                            width: 100%;
+                            width: 90vw;
                             display: flex;
-                            align-items: center;
                             gap: 1.6rem;
-
+                            margin: 0 auto;
                         }
 
 
                         .right{
                             position: relative;
-                            width: 100%;
+                            width: 90%;
                             padding: 0;
+                            margin: 0 auto;
                         }
             }
 
@@ -732,6 +734,14 @@
                         gap: 2rem;
                     }
 
+                    .buy-now{
+                        margin-bottom: 5rem;
+
+                        button{
+                        font-size: .8em;
+                        }
+
+                    }
                 }
             }
         }
@@ -828,10 +838,10 @@
             .popup-details{
 
 
-                .closeIcon{
-                margin-top: 20%;
+                // .closeIcon{
+                // margin-top: 20%;
 
-                }
+                // }
 
                 .container{
                     font-size: .8em;
