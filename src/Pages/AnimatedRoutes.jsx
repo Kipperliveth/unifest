@@ -74,7 +74,7 @@ function AnimatedRoutes() {
         <Route path='/editprofile' element={<ProtectedRoute><ProfileEdit /></ProtectedRoute>}/>
 
         <Route path="/myorders" element={<ProtectedRoute><Myorders /></ProtectedRoute>} />
-                  <Route path="/store" element={<ProtectedRoute><Store /></ProtectedRoute> } />
+                  <Route path="/merch" element={<ProtectedRoute><Store /></ProtectedRoute> } />
                   <Route path='/gethelp' element={<ProtectedRoute><GetHelp /></ProtectedRoute>}/>
           
 

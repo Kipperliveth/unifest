@@ -78,7 +78,9 @@
 
             .categories{
                 margin-top: 1rem;
+                justify-content: center;
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
                 gap: 1rem;
                 padding-block: 5px;
@@ -189,6 +191,15 @@
             }
         }
         
+        .no-results{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            margin-top: 10rem;
+            margin-bottom: 15rem;
+        }
+
         .uploaded-posts{
             width: 100%;
             // display: grid;
@@ -198,17 +209,9 @@
             margin-block: 4rem;
             display: flex;
             flex-wrap: wrap;
-            position: relative;
-            
-            justify-content: center;
             transition: .2s ease;
 
 
-            .no-results{
-                display: flex;
-                justify-content: center;
-                margin-block: 7rem;
-            }
 
              .product{
                  //    background: hsl(0, 0%, 95%);
@@ -668,7 +671,6 @@
 
             .uploaded-posts{
                 display: grid;
-                // grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                 grid-template-columns: repeat(2, 1fr);
                 gap: .75rem;
                 justify-content: right;
@@ -792,8 +794,6 @@
 
             .uploaded-posts{
              
-    
-    
                 .product{
                  width: 200px;
                font-size: .8em;
@@ -834,14 +834,7 @@
 
         .product-modal{
 
-
             .popup-details{
-
-
-                // .closeIcon{
-                // margin-top: 20%;
-
-                // }
 
                 .container{
                     font-size: .8em;

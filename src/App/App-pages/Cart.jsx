@@ -525,7 +525,7 @@ setCompleted(true);
               Explore our wide selection of products and find the perfect fit
               for you.
             </p>
-            <NavLink to="/store">Start Shopping</NavLink>
+            <NavLink to="/merch">Start Shopping</NavLink>
           </div>
                 ) : (
                   <div className='cart'>
@@ -679,7 +679,7 @@ setCompleted(true);
       {completed && (
         <div className='checkout-popup'>
 
-            <div className='close-btn'><MdKeyboardArrowLeft className='icon'/> <NavLink to='/store' className='button'>Home</NavLink> </div>
+            <div className='close-btn'><MdKeyboardArrowLeft className='icon'/> <NavLink to='/merch' className='button'>Home</NavLink> </div>
 
           <div className='checkout-container'>
 
@@ -699,7 +699,7 @@ setCompleted(true);
         <p>Order ID: <span>{orderID}</span></p>
 
        <div className='buttons'>
-            <NavLink to= '/store'>Continue Shopping</NavLink>
+            <NavLink to= '/merch'>Continue Shopping</NavLink>
             <NavLink to='/myorders'> Order Details</NavLink>
         </div>
 

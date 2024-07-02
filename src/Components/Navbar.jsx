@@ -20,7 +20,7 @@ function Navbar() {
 
   const hiddenPaths = [
     "/marketplace",
-    "/store",
+    "/merch",
     "/address",
     "/userMasterclass",
     "/userDashboard",

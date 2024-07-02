@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import { txtdb } from "../../firebase-config";
 import { useLocation } from "react-router-dom";
+import { CiUser } from "react-icons/ci";
 
 function UserNav() {
   const [user, setUser] = useState({});
@@ -172,10 +173,10 @@ function UserNav() {
   return (
     <div className="userNavbar">
       <div className="userNav-container">
-      <NavLink to="/store" className="logo-container">
+      <NavLink to="/merch" className="logo-container">
             <img src={logo} alt="evanis-interior-logo" />
             <div className="logo">
-              <p>UNI</p> FEST 
+              <p>UNI</p> FEST
             </div>
           </NavLink>
 
@@ -184,6 +185,7 @@ function UserNav() {
         <div className="userControls desktop-content">
        
           <div className="cart-cont" onClick={notifLink}>
+            
             <div className="cart-container">
 
             {unreadCount > 0 && (
@@ -210,12 +212,18 @@ function UserNav() {
             </div>
 
           </div>
-          <img
+
+          <CiUser className="app-icon user"
+            onClick={toggleUserInfo} />
+
+          {/* <img
             src={user && user.email ? user.photoURL : ''}
             alt="displayPicture"
             className="app-icon user"
             onClick={toggleUserInfo}
-          />
+          /> */}
+
+          
 
           {showUserInfo && (
             <div className="currentUserInfo">
@@ -233,10 +241,19 @@ function UserNav() {
           )}
         </div>
 
+      <div className="cart-cont mobile-view mobile-menu-btn">
+
+        {(unreadCount > 0 && cartItemCount > 0) && (
+          <div  onClick={toggleVisibilty} className="mobile-view cartNote cart-total">{unreadCount+cartItemCount} </div>
+        )}
+
         <RiMenu4Fill
-          className="app-icon mobile-view menu"
+          className="app-icon mobile-view menu menu-icon"
           onClick={toggleVisibilty}
-        />
+          />
+
+       </div>
+
       </div>
 
       <div
@@ -278,7 +295,7 @@ function UserNav() {
 
             <div className="mobilepage-links">
               <li>
-                <NavLink to="/store" onClick={toggleVisibilty}>
+                <NavLink to="/merch" onClick={toggleVisibilty}>
                  Merch
                 </NavLink>
               </li>

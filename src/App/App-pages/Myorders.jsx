@@ -43,12 +43,13 @@ function Myorders() {
       try {
         const deliveredOrdersRef = collection(txtdb, `userNotifications/${userId}/deliveredOrders`);
         const deliveredOrdersSnapshot = await getDocs(deliveredOrdersRef);
-        const deliveredOrdersData = deliveredOrdersSnapshot.docs.map((doc) => ({
+        let deliveredOrdersData = deliveredOrdersSnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        // You can store delivered orders in a separate state variable if needed
-        console.log("Delivered Orders:", deliveredOrdersData);
+               // Sort delivered orders by date (new to old)
+               deliveredOrdersData = deliveredOrdersData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
         setDeliveredOrders(deliveredOrdersData);
       } catch (error) {
         console.error("Error fetching delivered orders:", error);

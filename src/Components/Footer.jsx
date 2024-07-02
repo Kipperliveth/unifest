@@ -12,7 +12,7 @@ function Footer() {
   const hiddenPaths = ["/adminHome", "/post", '/uploads', "/orders"]
 
   const allPaths = [
-    "/", "/marketplace", "/store", "/address", "/userMasterclass", "/userDashboard",
+    "/", "/marketplace", "/merch", "/address", "/userMasterclass", "/userDashboard",
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
     "/notifications", "/uploads", "/onboarding", "/profilePic", "/editAddress",
     "/myorders", "/gethelp", "/editprofile", "/adminlog", '/login', '/signup', '/masterclass', '/about', '/contact', '/reset'

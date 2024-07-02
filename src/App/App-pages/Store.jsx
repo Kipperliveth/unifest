@@ -437,7 +437,7 @@ const [variationPopup, setVariationPopup] = useState(false)
         <div className="categories-container">
           <div className="categories">
 
-          {["All", "Sitting", "Curtains", "Tables", "Room", "Lights", "Storage"].map((category) => (
+          {["All", "Shirts", "Vests", "Hoodies", "Socks", "Shorts", "Crocs", "Backpacks", "Caps", "Beanies"].map((category) => (
               <span className="category-name" key={category}>
                 <p
                   onClick={() => handleCategoryClick(category)}
@@ -531,12 +531,12 @@ const [variationPopup, setVariationPopup] = useState(false)
                 </div>
               );
             })
-          ) : (
-            <div className="no-results">
-              <p>No products found</p>
-            </div>
-          )}
+          ) : null}
         </div>
+        )}
+
+        {filteredData.length === 0 && (
+          <div className="no-results">No products found</div>
         )}
 
         <div className={`product-modal ${isProductModalOpen ? "open" : ""}`}>

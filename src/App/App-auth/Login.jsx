@@ -47,7 +47,7 @@ function Login() {
         navigate('/adminHome')
       } else {
         console.log("customer access!");
-        navigate("/store");
+        navigate("/merch");
         }
         
 
@@ -88,7 +88,7 @@ useEffect(() => {
       if (userData.address && userId === allowedUid) {
         navigate('/adminHome'); // Redirect to admin home if address exists and user is admin
       } else if (userData.address) {
-        navigate('/store'); // Redirect to user dashboard if address exists
+        navigate('/merch'); // Redirect to user dashboard if address exists
       } else {
         navigate('/onboarding'); // Redirect to onboarding if address doesn't exist
       }

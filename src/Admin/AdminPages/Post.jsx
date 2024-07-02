@@ -167,12 +167,15 @@ function Post() {
               required
             >
               <option value="">Select Category</option>
-              <option value="Sitting">Sitting</option>
-              <option value="Curtains">Curtains</option>
-              <option value="Room">Room</option>
-              <option value="Tables">Tables</option>
-              <option value="Lights">Lights</option>
-              <option value="Storage">storage</option>
+              <option value="Shirts">Shirts</option>
+              <option value="Vests">Vests</option>
+              <option value="Hoodies">Hoodies</option>
+              <option value="Socks">Socks</option>
+              <option value="Shorts">Shorts</option>
+              <option value="Crocs">Crocs</option>
+              <option value="Backpacks">Backpacks</option>
+              <option value="Caps">Caps</option>
+              <option value="Beanies">Beanies</option>
             </select>
 
             <select

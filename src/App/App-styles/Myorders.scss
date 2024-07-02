@@ -102,6 +102,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
+
                 }
 
                 .bottom{
@@ -402,6 +403,16 @@
     .myorders-page{
 
         .orders-container{
+
+            .orders .order .top{
+
+                h4{
+                    width: 70%; 
+                    white-space: nowrap; 
+                    overflow: hidden; 
+                    text-overflow: ellipsis;
+                }
+            }
     
             .product-modal{
                 font-size: .8em;
