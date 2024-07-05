@@ -142,7 +142,7 @@ function Editaddress() {
                 </select>
     
                 {/* Add similar input fields for other address components */}
-                <button type="submit">
+                <button className="edit-btn" type="submit">
                   {isLoggedIn ? (
                     <ImSpinner8 className="onboarding-spinner" />
                   ) : (
@@ -156,15 +156,19 @@ function Editaddress() {
     
             {showPopup && (
             <div className="popup">
+
+          <div className="popup-container edit-container">
+
               <FaCheck className="completed-icon" />
               <p>Your information has been Edited successfully!</p>
               <button onClick={nextPage}>
                 {isLoggedIn ? (
                   <ImSpinner8 className="onboarding-spinner" />
                 ) : (
-                  "Go Back"
+                  "Continue"
                 )}
               </button>
+            </div>
             </div>
             )}
           </div>

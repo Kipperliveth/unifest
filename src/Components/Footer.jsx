@@ -12,10 +12,10 @@ function Footer() {
   const hiddenPaths = ["/adminHome", "/post", '/uploads', "/orders"]
 
   const allPaths = [
-    "/", "/marketplace", "/merch", "/address", "/userMasterclass", "/userDashboard",
+    "/", "/marketplace", "/merch", "/userMasterclass",
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
-    "/notifications", "/uploads", "/onboarding", "/profilePic", "/editAddress",
-    "/myorders", "/gethelp", "/editprofile", "/adminlog", '/login', '/signup', '/masterclass', '/about', '/contact', '/reset'
+    "/notifications", "/uploads", "/profilePic",
+    "/myorders", "/gethelp","/adminlog", '/login', '/signup', '/masterclass', '/about', '/contact', '/reset'
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);

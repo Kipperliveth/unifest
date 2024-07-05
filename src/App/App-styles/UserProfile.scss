@@ -17,12 +17,13 @@
             align-items: center;
             gap: 1.5rem;
             
-            img{
-                width: 150px;
-                height:150px;
-                border-radius: 50%;
-                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-                object-fit: cover;
+            .img{
+                // width: 150px;
+                // height:150px;
+                // border-radius: 50%;
+                // box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                // object-fit: cover;
+                font-size: 4rem;
             }
 
             .user-details-info{
@@ -67,6 +68,11 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
             margin-top: 2rem;
+
+            .no-address{
+                line-height: 1.5;
+                text-align: center;
+            }
 
             span{
                 background: hsl(0, 0%, 97%);

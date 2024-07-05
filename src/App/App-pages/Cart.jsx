@@ -522,8 +522,7 @@ setCompleted(true);
             <MdOutlineShoppingCart className="cart-icon" />
             <h3>Your cart is empty</h3>
             <p>
-              Explore our wide selection of products and find the perfect fit
-              for you.
+            Browse through the exclusive Unifest merch and find the perfect fit to show off your Vybe.
             </p>
             <NavLink to="/merch">Start Shopping</NavLink>
           </div>

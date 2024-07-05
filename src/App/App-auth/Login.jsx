@@ -55,6 +55,10 @@ function Login() {
       console.log(error.message);
       setIsLoggedIn(false);
       setError(error.message);
+
+      if (error.code === 'auth/network-request-failed'){
+        setError('Metwork Error')
+      }
     }
   };
 
@@ -90,11 +94,11 @@ useEffect(() => {
       } else if (userData.address) {
         navigate('/merch'); // Redirect to user dashboard if address exists
       } else {
-        navigate('/onboarding'); // Redirect to onboarding if address doesn't exist
+        navigate('/onboarding/address'); // Redirect to onboarding if address doesn't exist
       }
     } else {
       console.log("No address data found for the current user.");
-      navigate('/onboarding');
+      navigate('/onboarding/address');
     }
   };
 

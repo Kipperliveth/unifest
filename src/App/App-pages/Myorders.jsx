@@ -198,6 +198,10 @@ function Myorders() {
               
             ))}
 
+            {deliveredOrders.length === 0 ? (
+              <p className='empty'>Your orders will show here</p>
+            ): null}
+
         <div className={`product-modal ${isModalOpen ? "open" : ""}`}>
 
                 {selectedOrder && (

@@ -72,13 +72,105 @@
         
     }
 
+    .tickets{
+        margin-top: 5rem;
+    background: rgba(0, 0, 0, 0.5) url('../../stock/backgrounds/2024.jpg')no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    position: relative;
+
+    .landing-content-container{
+        margin: 5rem 0;
+    }
+    }
+
     .shop-section,
     .masterclass-section,
     .about-section, 
-    .newsletter-section{
+    .newsletter-section,
+    .this-year-section{
         width: 90vw;
         margin: 0 auto;
         margin-top: 5rem;
+    }
+
+    .this-year-section{
+        
+        .this-year-container{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        // gap: 2.5rem;
+
+        .left{
+            display: grid;
+            gap: 1.5rem;
+
+            .top{
+                width: 90%;
+                justify-content: center;
+                height: 25em;
+    
+                background: url('../../stock/backgrounds/crowd.jpg')no-repeat;
+                background-size: cover;
+                background-position: center;
+                background-blend-mode: overlay;
+                border-radius: 5px;
+            }
+
+            .bottom{
+                line-height: 1.5;
+            }
+        }
+
+            .right{
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+
+                .block{
+                    display: flex;
+                    gap: 1.6rem;
+
+                    h3{
+                        line-height: 1.5;
+                        font-size: .9em;
+                        padding-top: 1rem;
+                    }
+
+                    .img{
+                        min-width: 150px;
+                        height: 150px;
+                        background: rgba(0, 0, 0, 0.1) url('../../stock/backgrounds/location.jpg')no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                        background-blend-mode: overlay;
+                        position: relative;
+                        border-radius: 10px;
+                        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+                    }
+                    .imgtwo{
+                        background: rgba(0, 0, 0, 0.1) url('../../stock/backgrounds/049A2024.jpg')no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                        background-blend-mode: overlay;
+                        position: relative;
+                    }
+                    .imgthree{
+                        background: rgba(0, 0, 0, 0.1) url('../../stock/backgrounds/crew.jpg')no-repeat;
+                        background-size: cover;
+                        background-position: center;
+                        background-blend-mode: overlay;
+                        position: relative;
+                    }
+
+                    
+                }
+            }
+
+        }
+
     }
 
     .shop-section{
@@ -88,8 +180,17 @@
         font-weight: 500;
         }
 
+        h5{
+            margin-top: .7rem;
+        }
+
         .shop-items{
-            margin-top: 3rem;
+            &::-webkit-scrollbar {
+                display: none; /* Or width: 0; or height: 0; */
+              }
+        overflow-x: auto;
+
+            margin-top: 2rem;
             display: flex;
             gap: 2rem;
 
@@ -127,7 +228,7 @@
             }
 
             .one{
-                background: rgba(0, 0, 0, 0.5) url('../../stock/sofa.jpg')no-repeat ;
+                background: rgba(0, 0, 0, 0.3) url('../../stock/grid/standingstill.jpg')no-repeat ;
                 background-size: cover;
                 background-position: center;
                 background-blend-mode: overlay;
@@ -139,14 +240,14 @@
                     }
 
                     @keyframes changeBackgroundOne {
-                        0% { background-image: url('../../stock//table.jpg'); }
-                        50% { background-image: url('../../stock/sofa3.jpg'); }
-                        100% { background-image: url('../../stock/sofa4.jpg'); }
+                        0% { background-image: url('../../stock/grid/backbacking.jpg'); }
+                        50% { background-image: url('../../stock/grid//holdinghoodie.jpg'); }
+                        100% { background-image: url('../../stock/grid/standingstill.jpg') }
                       }
             }
 
             .two{
-                background: rgba(0, 0, 0, 0.5) url('../../stock//table.jpg')no-repeat ;
+                background: rgba(0, 0, 0, 0.3) url('../../stock/grid/sobunsomze.jpg')no-repeat ;
                 background-size: cover;
                 background-position: center;
                 background-blend-mode: overlay;
@@ -158,14 +259,14 @@
                     }
 
                     @keyframes changeBackgroundTwo {
-                        0% { background-image: url('../../stock//table2.jpg'); }
-                        50% { background-image: url('../../stock//table3.jpg'); }
-                        100% { background-image: url('../../stock//table4.jpg'); }
+                        0% { background-image: url('../../stock/grid/haedwear.jpg'); }
+                        50% { background-image: url('../../stock/grid/sobunsomze.jpg')}
+                        100% { background-image:url('../../stock/grid/redbeanie.jpg');}
                       }
             }
 
             .three{
-                background: rgba(0, 0, 0, 0.5) url('../../stock//bed.jpg')no-repeat ;
+                background: rgba(0, 0, 0, 0.3) url('../../stock/grid/slides.jpg')no-repeat ;
                 background-size: cover;
                 background-position: center;
                 background-blend-mode: overlay;
@@ -177,14 +278,14 @@
                     }
 
                     @keyframes changeBackgroundThree {
-                        0% { background-image: url('../../stock//bed2.jpg'); }
-                        50% { background-image: url('../../stock//bed3.jpg'); }
-                        100% { background-image: url('../../stock//bed4.jpg'); }
+                        0% { background-image: url('../../stock/grid/holdingslides.jpg'); }
+                        50% { background-image: url('../../stock/grid/slides.jpg'); }
+                        100% { background-image: url('../../stock/grid/slidepair.jpg'); }
                       }
             }
 
             .four{
-                background: rgba(0, 0, 0, 0.5) url('../../stock//light.jpg')no-repeat ;
+                background: rgba(0, 0, 0, 0.3)  url('../../stock/grid/vybezpack.jpg')no-repeat ;
                 background-size: cover;
                 background-position: center;
                 background-blend-mode: overlay;
@@ -196,9 +297,28 @@
                     }
 
                     @keyframes changeBackgroundFour {
-                        0% { background-image:  url('../../stock//light2.jpg'); }
-                        50% { background-image:  url('../../stock//light3.jpg'); }
-                        100% { background-image:  url('../../stock//light4.jpg'); }
+                        0% { background-image:  url('../../stock/grid/vybezpack.jpg'); }
+                        50% { background-image:  url('../../stock/grid/somzesquating.jpg'); }
+                        100% { background-image:  url('../../stock/grid/blackholding\ bag.jpg'); }
+                      }
+            }
+
+            .five{
+                background: rgba(0, 0, 0, 0.3) url('../../stock/grid/shirtnshort.jpg')no-repeat ;
+                background-size: cover;
+                background-position: center;
+                background-blend-mode: overlay;
+                position: relative;
+                transition: transform  0.3s ease-in-out;
+
+                &:hover{
+                    animation: changeBackgroundFive 5s infinite alternate-reverse;
+                    }
+
+                    @keyframes changeBackgroundFive {
+                        0% { background-image: url('../../stock/grid/blackonblack.jpg'); }
+                        50% { background-image: url('../../stock/grid/shirtnshort.jpg') }
+                        100% { background-image:url('../../stock/grid/whiteshirt.jpg');  }
                       }
             }
 
@@ -236,23 +356,55 @@
 
         .m-container{
             display: grid;
-            grid-template-columns: 50% 50%;
+            grid-template-columns: 45% 50%;
             place-items: center;
             justify-content: space-between;
 
             .m-sec-left{
                 position: relative;
-                display: grid;
+                display: flex;
+                flex-direction: column;
+                gap: 1.6rem;
                 width: 90%;
                 justify-content: center;
-                height: 25em;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+                height: 25em;            
 
-                background: url('../../stock/master2.jpg')no-repeat;
-                background-size: cover;
-                background-position: center;
+                .left-box{
+                    height: 7rem;
+                    width: 75%;
+                    border-radius: 15px;
+                   background-size: cover;
+                    background-position: center;
                 background-blend-mode: overlay;
-                border-radius: 5px;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+                     &:nth-child(1){
+                        display: flex;
+                        align-self: center;
+                        background: url('../../stock/backgrounds/DSC_3180.jpg')no-repeat;
+                        background-size: cover;
+                        background-position: center ;
+                    background-blend-mode: overlay;
+                    }
+
+                    &:nth-child(2){
+                        display: flex;
+                        align-self: flex-end;
+                background: url('../../stock/backgrounds/049A2103.jpg')no-repeat;
+                background-size: cover;
+                background-position: center ;
+            background-blend-mode: overlay;
+                    }
+
+             
+                    &:nth-child(3){
+                        background: url('../../stock/backgrounds/049A1918.jpg')no-repeat;
+                        background-size: cover;
+                        background-position: center ;
+                    background-blend-mode: overlay;
+                    }
+
+                }
             }
 
             .m-sec-right{
@@ -345,7 +497,7 @@
                 justify-content: center;
                 height: 25em;
 
-                background: url('../../stock/master.jpg')no-repeat;
+                background: url('../../stock/backgrounds/crowd.jpg')no-repeat;
                 background-size: cover;
                 background-position: center;
                 background-blend-mode: overlay;
@@ -440,7 +592,7 @@
 
         .m-container{
             display: flex;
-            flex-direction: column;
+            flex-direction: column-reverse;
             gap: 3rem;
 
             .m-sec-left{
@@ -453,7 +605,7 @@
 
         .abt-sec-container{
             display: flex;
-            flex-direction:column-reverse;
+            flex-direction:column;
             gap: 3rem;
 
             .abt-sec-right{
@@ -469,6 +621,16 @@
 
     .landing {
         height: 100vh;
+    }
+
+    .tickets{
+    height:fit-content ;
+
+    .landing-content-container{
+    h1{
+    font-size: 27.5px;
+    }
+}
     }
     
     .landing-content-container{

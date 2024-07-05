@@ -40,7 +40,7 @@ function Masterclass() {
       <div className="masterclass">
         {/*  */}
         <div className="masterclass-landing">
-          <h1>Join our Masterclass</h1>
+          <h1>Moments to last a lifetime</h1>
         </div>
 
         <div className="masterclass-enroll">
