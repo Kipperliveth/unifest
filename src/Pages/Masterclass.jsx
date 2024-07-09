@@ -18,12 +18,13 @@ import { BiSupport } from "react-icons/bi";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.js";
+import NavCountdown from "../Components/NavCountdown";
 
 function Masterclass() {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    document.title = "Masterclass-Evanis Interiors";
+    document.title = "Memories-Unifest";
 
     if (!hasMounted) {
       setHasMounted(true);
@@ -40,7 +41,12 @@ function Masterclass() {
       <div className="masterclass">
         {/*  */}
         <div className="masterclass-landing">
-          <h1>Moments to last a lifetime</h1>
+          <div className="header">
+
+          <h1>UNIFEST Rewind</h1>
+          <NavCountdown />
+
+          </div>
         </div>
 
         <div className="masterclass-enroll">

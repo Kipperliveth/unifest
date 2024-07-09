@@ -42,7 +42,7 @@ function Navbar() {
     "/", "/marketplace", "/store", "/address", "/userMasterclass", "/userDashboard",
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
     "/notifications", "/uploads", "/onboarding", "/profilePic", "/editAddress",
-    "/myorders", "/gethelp", "/adminlog", '/login', '/signup', '/masterclass', '/about', '/contact','/reset'
+    "/myorders", "/gethelp", "/adminlog", '/login', '/signup', '/memories', '/about', '/contact','/reset'
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);
@@ -53,7 +53,7 @@ function Navbar() {
         <nav className=" navbar">
 
           <NavLink to="/" className="logo-container">
-            <img src={logo} alt="evanis-interior-logo" />
+            <img src={logo} alt="unifest-logo" />
             <div className="logo">
               <p>UNI</p> FEST 
             </div>
@@ -89,7 +89,7 @@ function Navbar() {
                 className={({ isActive }) =>
                   isActive ? "active-link" : "link"
                 }
-                to="/masterclass"
+                to="/memories"
               >
                 {" "}
                 Memories
@@ -133,21 +133,21 @@ function Navbar() {
               <div className="mobilepage-links">
 
 
-                  <NavLink to="/store" onClick={toggleVisibilty}>
+                  <NavLink to="/about" onClick={toggleVisibilty}>
                 <li>
                     About
                 <PiReadCvLogoLight className="icon" />
                 </li>
                   </NavLink>
 
-                  <NavLink to="/masterclass" onClick={toggleVisibilty}>
+                  <NavLink to="/login" onClick={toggleVisibilty}>
                 <li>
                     Merch
                 <IoShirtOutline className="icon"/>
                 </li>
                   </NavLink>
 
-                  <NavLink to="/about" onClick={toggleVisibilty}>
+                  <NavLink to="/memories" onClick={toggleVisibilty}>
                 <li>
                     Mermories
                 <LuRewind className="icon" />

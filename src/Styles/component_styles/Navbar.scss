@@ -95,7 +95,7 @@
                 height: 2px;
                 border-radius: 25px;
                 transform: scaleX(0);
-                background: #bba58f;
+                background: #ff7e00;
                 transform-origin: center;
                 opacity: 0;
                 transition: 0.3s ease-in-out, visibility ease-in;
@@ -358,7 +358,8 @@
 
 }
 
-@media screen and (max-width: 850px) {
+
+@media screen and (max-width: 1050px) {
 .navbar{
     border-radius: 50px;
     grid-template-columns: repeat(2, 1fr);

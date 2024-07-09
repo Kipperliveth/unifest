@@ -1,7 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { NavLink } from 'react-router-dom';
 
+
+
 function NotFound() {
+  useEffect(() => {
+    document.title = "Not Found";
+  }, []);
+
+
   return (
     <div className="not-found-container">
       <h1>404</h1>

@@ -6,12 +6,19 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.js";
 import CountdownTimer from "../Components/CountdownTimer";
+import tesh from '../stock/backgrounds/tesh.png'
+import mavin from '../stock/backgrounds/mavin.png'
+import tekkon from '../stock/backgrounds/tekkon.png'
+import toscana from '../stock/backgrounds/hotel.png'
+import audiomack from '../stock/backgrounds/audio.png'
+import clip from '../stock/backgrounds/6-removebg.png'
+
 
 function Home() {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    document.ttile = "Evanis Interiors"
+    document.title = "Unifest"
     
     if (!hasMounted) {
       setHasMounted(true);
@@ -54,7 +61,7 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <NavLink to='/login' className='span'>Become a perfomer</NavLink>
+                <NavLink to='/login' className='sspan'>Become a perfomer</NavLink>
               </button>
             </div>
           </div>
@@ -177,7 +184,7 @@ function Home() {
 
             <div className="left">
               <div className="top">
-
+    <img src={clip} alt="" />
               </div>
               <div className="bottom">
                     <h4>This Year: Bigger, Better, and Unmissable </h4>
@@ -188,14 +195,28 @@ function Home() {
                 <div className="right">
                   <div className="block one">
                   <div className="img"></div>
-                  <div className="span">
+                  <div className="this-year-span">
                     <h3>With a new venue</h3>
-                    <p></p>
+                    <p>UNIFEST will be live at Olobo premier college on September 14th 2024, opposite the University of Port Harcourt main gate.</p>
+                    <NavLink>Get directions</NavLink>
                     </div></div>
 
-                  <div className="block two"><div className="img imgtwo"></div><div className="span"><h3>Fresh performances from amazing new talents</h3></div></div>
+                  <div className="block two">
+                    <div className="img imgtwo"></div>
+                    <div className="this-year-span">
+                      <h3>Fresh performances from amazing new talents</h3>
+                      <p>Witness & Be Part Of The Vybe! Experience incredible performances and get your chance to showcase too!</p>
+                    <NavLink>Become a performer</NavLink>
+                        </div></div>
 
-                  <div className="block three"><div className="img imgthree"></div><div className="span"><h3> Unifest 2024 is set to be the ultimate place to create, Vybe and connect.</h3></div></div>
+                  <div className="block three">
+                    <div className="img imgthree"></div>
+                    <div className="this-year-span">
+                      <h3> Be Part of Unifest 2024!</h3>
+                      <p>This year, Unifest is bringing the heat with acts that will blow the roof off! Surprise artists, rising stars, and local legends are all set to create a once-in-a-lifetime Vybe with you and your crew.</p>
+                    <NavLink>Buy Your Tickets Now</NavLink>
+
+                      </div></div>
                 </div>
           </div>
 
@@ -227,7 +248,7 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <NavLink to='/login' className='span'>Get Tickets</NavLink>
+                <NavLink to='/login' className='tickets-span'>Get Tickets</NavLink>
               </button>
             </div>
           </div>
@@ -317,12 +338,22 @@ function Home() {
             data-aos-duration="800"
             data-aos-once="true"
           >
-            <NavLink className='span'>Get the Merch</NavLink>
+            <NavLink className='shop-span'>Get the Merch</NavLink>
             <FaArrowRightLong className="ctaArrow special-icon" />
           </button>
         </div>
 
-        <div className="sponsors-section"></div>
+        <div className="sponsors-section">
+          <h1 className="sponsors-title">Meet our Sponsors from Last Year</h1>
+          <div className="sponsors-container">
+            <img src={toscana} alt="toscana hotel"/>
+            <img src={mavin} alt="mavin records"/>
+            <img src={audiomack} alt="audiomack"/>
+            <img src={tekkon} alt="tekkon"/>
+            <img src={tesh} alt="tesh interiors"/>
+          </div>
+          <NavLink>Become a sponsor</NavLink>
+        </div>
 
         <div className="newsletter-section">
           <div className="newsletter-container">
@@ -351,7 +382,7 @@ function Home() {
               data-aos-delay="600"
               data-aos-once="true"
             >
-            Join vybez universe and get access to exclusive offers, early bird tickets, festival updates, insider tips, and the latest news about UNIFEST straight from our team.
+            Updates on exclusive offers, early bird tickets, insider tips, and the latest news about UNIFEST straight from our team.
             </p>
 
             <div

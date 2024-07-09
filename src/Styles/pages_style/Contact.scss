@@ -2,19 +2,36 @@
     width: 100%;
 
     .contact-header{
-        background: rgba(0, 0, 0, 0.5) url('../../stock/contacth.jpg')no-repeat;
+        background: rgba(0, 0, 0, 0.5) url('../../stock/backgrounds/contact.jpg')no-repeat;
         background-size: cover;
-        background-position: center 20%;
+        background-position: center 40%;
         background-blend-mode: overlay;
         position: relative;
+        position: relative;
+        display: flex;
+        align-items: center;
         
         
-        h1{
-            padding: 2rem 5rem;
+        .header{
+            display: flex;
+            align-items: center;
+            overflow-x: hidden;
+            justify-content: space-between;
+            position: relative;
+            overflow-x: hidden;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            // padding: 2rem 5rem;
+            padding: 2rem 0 2rem 3rem;
             padding-top: 7rem;
+            animation: fadeIn 1s ease-in-out;
+
+        }
+        h1{
             color: white;
             letter-spacing: 1px;
-            
         }
     }
 
@@ -271,10 +288,13 @@
 
     .contact-header{
 
-        background-position: center 1%;
-        h1{
-            padding: 2rem 2rem;
+        .header{
+            padding: 1rem 0.5rem 2rem 2rem;
             padding-top: 7rem;
+
+            h1{
+                font-size: 1.5em;
+            }
         }
     }
 
@@ -319,4 +339,21 @@
         }
     }
 }
+}
+
+@media screen and (max-width: 720px) {
+    .contact{
+    
+        .contact-header{
+    
+            .header{
+                padding: 1rem 0 2rem 1.5rem;
+                padding-top: 7rem;
+    
+                h1{
+                    font-size: 1em;
+                }
+            }
+        }
+    }
 }

@@ -15,7 +15,7 @@ function Footer() {
     "/", "/marketplace", "/merch", "/userMasterclass",
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
     "/notifications", "/uploads", "/profilePic",
-    "/myorders", "/gethelp","/adminlog", '/login', '/signup', '/masterclass', '/about', '/contact', '/reset'
+    "/myorders", "/gethelp","/adminlog", '/login', '/signup', '/memories', '/about', '/contact', '/reset'
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);

@@ -10,12 +10,13 @@ import { MdMailOutline } from "react-icons/md";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.js";
+import NavCountdown from "../Components/NavCountdown";
 
 function Contact() {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    document.title = "Contact-Evanis interiors";
+    document.title = "Contact-Unifest";
 
     if (!hasMounted) {
       setHasMounted(true);
@@ -30,7 +31,11 @@ function Contact() {
     <div className="pagewidth">
       <div className="contact">
         <div className="contact-header">
+        <div className="header">
+
           <h1>Contact Us</h1>
+          <NavCountdown />
+          </div>
         </div>
 
         <div className="contact-form">
