@@ -72,7 +72,7 @@ function SignUp() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    document.title = "Create Account-Evanis interiors";
+    document.title = "Create Account-Unifest";
 
     const timer = setTimeout(() => {
       setIsLoading(false);

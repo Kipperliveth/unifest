@@ -145,7 +145,7 @@ const formattedTotalPriceWithShipping = totalPriceWithShipping.toLocaleString('e
 
 
 useEffect(() => {
-  document.title ="Cart Evanis-Interiors"
+  document.title ="Cart Unifest"
     fetchProducts();
     // getTotalPrice();
 }, [currentUser]); // Fetch products whenever currentUser changes

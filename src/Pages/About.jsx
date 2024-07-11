@@ -29,6 +29,13 @@ function About() {
     }
   }, [hasMounted]);
 
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth'  // Optional: for smooth scrolling
+    });
+  };
+
   return (
     <div className="pagewidth">
       <div className="about">
@@ -105,7 +112,7 @@ function About() {
           >
             <div  className='left-right'>
             <img
-            data-aos="fade-down" 
+            data-aos="zoom-in" 
             data-aos-duration="800"
             data-aos-delay="600"
             data-aos-once="true"
@@ -113,7 +120,7 @@ function About() {
           </div>
           <div  className='left-left'>
             <img 
-             data-aos="fade-down"
+             data-aos="zoom-in"
              data-aos-duration="800"
              data-aos-delay="200"
              data-aos-once="true"
@@ -128,7 +135,7 @@ function About() {
 
           <div className="abt-story-left">
             <h1
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="800"
               data-aos-delay="400"
               data-aos-once="true"
@@ -137,7 +144,7 @@ function About() {
             </h1>
 
             <p
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="800"
               data-aos-delay="500"
               data-aos-once="true"
@@ -146,7 +153,7 @@ function About() {
             </p>
 
             <div
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="800"
               data-aos-delay="600"
               data-aos-once="true"
@@ -171,7 +178,7 @@ function About() {
 
           <div className="shop-items">
             <a
-              to="/merch"
+             href="https://docs.google.com/forms/d/e/1FAIpQLSfVflDw-JyfDIA4ZcbTKriVqV945xzHbNIlPO6hV0x5NP4GIQ/viewform?usp=sf_link"
               className="clm one"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -184,7 +191,7 @@ function About() {
             </a>
 
             <NavLink
-              to="/store"
+              onClick={scrollToBottom}
               className="clm five"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -210,12 +217,12 @@ function About() {
             </a>
 
             <NavLink
-              to="/store"
               className="clm three"
               data-aos="fade-left"
               data-aos-duration="1000"
               data-aos-once="true"
               data-aos-delay="400"
+              onClick={scrollToBottom}
             >
               <h2 className="top-desc">Join our team</h2>
 
@@ -223,7 +230,7 @@ function About() {
             </NavLink>
 
             <NavLink
-              to="/merch"
+              to="/comingsoon"
               className="clm four"
               data-aos="fade-left"
               data-aos-duration="1000"
