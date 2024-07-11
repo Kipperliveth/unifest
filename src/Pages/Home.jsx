@@ -14,11 +14,16 @@ import audiomack from '../stock/backgrounds/audio.png'
 import clip from '../stock/backgrounds/6-removebg.png'
 import { txtdb } from "../firebase-config";
 import { collection, addDoc } from "firebase/firestore";
+import { LuMailX } from "react-icons/lu";
+import { LuMailCheck } from "react-icons/lu";
 
 
 function Home() {
   
   const [hasMounted, setHasMounted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [completed, setCompleted] = useState(false)
+  const [notCompleted, setNotCompleted] = useState(false)
   
   useEffect(() => {
     document.title = "Unifest"
@@ -39,6 +44,7 @@ function Home() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setShowPopup(true);
     setStatus('Submitting...');
     
     try {
@@ -47,10 +53,15 @@ function Home() {
       setStatus('Subscription successful!');
       console.log('Subscription successful!');
       setEmail('');
+      setShowPopup(false);
+      setCompleted(true);
 
     } catch (error) {
       console.error('Error adding email:', error);
       setStatus('Subscription failed. Please try again.');
+      setShowPopup(false);
+      setNotCompleted(true);
+      
     }
   };
 
@@ -449,6 +460,71 @@ function Home() {
             </h6>
           </div>
         </div>
+
+        {showPopup && (
+        <div className="popup">
+
+          <div className="spinner">
+            <div></div>   
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+            <div></div>    
+          </div>
+
+
+        </div>
+      )}
+
+      {completed && (
+        <div className='checkout-popup'>
+
+
+          <div className='checkout-container'>
+
+          <div className="success">
+        <LuMailCheck className="ticket-icon"/>
+        </div>
+
+        <h1>all done!</h1>
+
+        <p>Your are now subscribed to the UNIFEST Newsletter!<br /> Updates and news will be sent to your email.</p>
+
+       <div className='buttons'>
+            <button onClick={() => setCompleted(false)} className="a"> Close</button>
+        </div>
+
+          </div>
+          </div>
+      )}
+
+      {notCompleted && (
+        <div className='checkout-popup'>
+
+
+          <div className='checkout-container'>
+
+          <div className="error">
+        <LuMailX className="ticket-icon"/>
+        </div>
+
+        <h1>oops!</h1>
+
+
+        <p>Something went wrong, you are not yet subscribed! <br /> Please try again.</p>
+
+       <div className='buttons'>
+            <button onClick={() => setNotCompleted(false)} className="a again"> try again</button>
+        </div>
+
+          </div>
+          </div>
+      )}
 
 
       </div>

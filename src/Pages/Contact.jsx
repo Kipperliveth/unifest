@@ -24,6 +24,7 @@ function openTawkTo() {
 }
 
 function Contact() {
+  
   const [completed, setCompleted] = useState(false)
   const [notCompleted, setNotCompleted] = useState(false)
 
