@@ -283,7 +283,7 @@ function Contact() {
 
         <div className="about-touch">
           <h1
-            data-aos="fade-up"
+            data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-delay="200"
             data-aos-once="true"
@@ -292,9 +292,9 @@ function Contact() {
           </h1>
 
           <div
-            data-aos="fade-up"
+            data-aos="zoom-in"
             data-aos-duration="800"
-            data-aos-delay="300"
+            data-aos-delay="400"
             data-aos-once="true"
           >
             <NavLink to="#" onClick={openTawkTo} className="about-page-cta">

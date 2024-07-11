@@ -240,7 +240,7 @@ function About() {
 
         <section id="next-step" className="next-step">
           <h1
-            data-aos="fade-up"
+            data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-delay="400"
             data-aos-once="true"
@@ -250,7 +250,7 @@ function About() {
        
           <div
             className="next-links"
-            data-aos="fade-up"
+            data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-delay="600"
             data-aos-once="true"
