@@ -217,7 +217,7 @@ function Home() {
 
             <div
               className="abt-sec-right"
-              data-aos="zoom-in-left"
+              data-aos="zoom-in"
               data-aos-duration="800"
               data-aos-delay="200"
               data-aos-once="true"
@@ -406,7 +406,7 @@ function Home() {
         <div className="newsletter-section">
           <div className="newsletter-container">
             <h3
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
               data-aos-delay="600"
               data-aos-once="true"
@@ -415,7 +415,7 @@ function Home() {
             </h3>
 
             <h1
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
               data-aos-delay="600"
               data-aos-once="true"
@@ -425,7 +425,7 @@ function Home() {
             <span></span>
 
             <p
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
               data-aos-delay="600"
               data-aos-once="true"
@@ -435,7 +435,7 @@ function Home() {
 
             <div
               className="sub-container"
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
               data-aos-delay="600"
               data-aos-once="true"
