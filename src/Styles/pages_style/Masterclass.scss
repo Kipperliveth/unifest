@@ -386,8 +386,8 @@
     .masterclass-enroll{
         display: flex;
         flex-direction: column;
-        margin-top: 3rem;
-        align-items: normal;
+        // margin-top: 3rem;
+        // align-items: normal;
         gap: 2.5rem;
 
         .enroll-left{
@@ -470,6 +470,23 @@
         }
     }
 
+    .masterclass-enroll{
+        justify-content: center;
+    
+        .enroll-left{
+            width: 90%;
+        }
+    }
    
 }
+
+.head-tag{
+    h2{
+        font-size: 85%;
+    }
+
+}
+
+
+
 }

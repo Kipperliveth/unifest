@@ -89,7 +89,7 @@ function Masterclass() {
         
         </div>
 
-        <div className="masterclass-details">
+        {/* <div className="masterclass-details">
           <h1
             data-aos="fade-up"
             data-aos-duration="800"
@@ -354,11 +354,11 @@ function Masterclass() {
               </p>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="about-touch">
           <h1
-            data-aos="fade-up"
+            data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-delay="200"
             data-aos-once="true"
@@ -367,15 +367,15 @@ function Masterclass() {
           </h1>
 
           <div
-            data-aos="fade-up"
+            data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-delay="300"
             data-aos-once="true"
           >
-            <NavLink to="/contact" className="about-page-cta">
+            <a href="https://tellerafricatickets.com/product/unifest-2024/" className="about-page-cta">
               <div>UNIFEST 2024 Tickets</div>
               <IoTicketOutline className="cta-insta" />
-            </NavLink>
+            </a>
           </div>
         </div>
       </div>
