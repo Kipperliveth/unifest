@@ -12,11 +12,14 @@ import tekkon from '../stock/backgrounds/tekkon.png'
 import toscana from '../stock/backgrounds/hotel.png'
 import audiomack from '../stock/backgrounds/audio.png'
 import clip from '../stock/backgrounds/6-removebg.png'
+import { txtdb } from "../firebase-config";
+import { collection, addDoc } from "firebase/firestore";
 
 
 function Home() {
+  
   const [hasMounted, setHasMounted] = useState(false);
-
+  
   useEffect(() => {
     document.title = "Unifest"
     
@@ -29,6 +32,29 @@ function Home() {
       AOS.refresh();
     }
   }, [hasMounted]);
+
+  //newsletters
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus('Submitting...');
+    
+    try {
+      // Add the email to the Firestore database
+      await addDoc(collection(txtdb, 'subscribers'), { email });
+      setStatus('Subscription successful!');
+      console.log('Subscription successful!');
+      setEmail('');
+
+    } catch (error) {
+      console.error('Error adding email:', error);
+      setStatus('Subscription failed. Please try again.');
+    }
+  };
+
+
 
   return (
     <div className="pagewidth ">
@@ -61,7 +87,7 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <NavLink to='/login' className='sspan'>Become a perfomer</NavLink>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVflDw-JyfDIA4ZcbTKriVqV945xzHbNIlPO6hV0x5NP4GIQ/viewform?usp=sf_link" to='/login' className='sspan'>Become a perfomer</a>
               </button>
             </div>
           </div>
@@ -78,9 +104,20 @@ function Home() {
               // data-aos-duration="500"
               // data-aos-once="true"
             >
-              <div className="left-box one"></div>
-              <div className="left-box two"></div>
-              <div className="left-box three"></div>
+              <div 
+              data-aos="fade-left"
+                data-aos-duration="800"
+                data-aos-once="true" className="left-box one"></div>
+              <div
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-once="true"
+               className="left-box two"></div>
+              <div 
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-once="true"
+              className="left-box three"></div>
             </div>
 
             <div className="m-sec-right">
@@ -117,7 +154,7 @@ function Home() {
                 data-aos-once="true"
                 data-aos-delay="400"
               >
-                <NavLink to="/masterclass" className="masterclass-cta">
+                <NavLink to="/about" className="masterclass-cta">
                   <p>Read more</p>
                   <FaArrowRightLong />
                 </NavLink>
@@ -163,7 +200,7 @@ function Home() {
                 data-aos-delay="600"
                 data-aos-once="true"
               >
-                <NavLink to="/about">See UNIFEST 2023 in Pictures</NavLink>
+                <NavLink to="/memories">See UNIFEST 2023 in Pictures</NavLink>
               </div>
             </div>
 
@@ -184,7 +221,7 @@ function Home() {
 
             <div className="left">
               <div className="top">
-    <img src={clip} alt="" />
+              <img src={clip} alt="unifest" />
               </div>
               <div className="bottom">
                     <h4>This Year: Bigger, Better, and Unmissable </h4>
@@ -198,7 +235,7 @@ function Home() {
                   <div className="this-year-span">
                     <h3>With a new venue</h3>
                     <p>UNIFEST will be live at Olobo premier college on September 14th 2024, opposite the University of Port Harcourt main gate.</p>
-                    <NavLink>Get directions</NavLink>
+                    <a href="https://maps.app.goo.gl/MwLTcvd8WWjFZsPB8">Get directions</a>
                     </div></div>
 
                   <div className="block two">
@@ -206,7 +243,7 @@ function Home() {
                     <div className="this-year-span">
                       <h3>Fresh performances from amazing new talents</h3>
                       <p>Witness & Be Part Of The Vybe! Experience incredible performances and get your chance to showcase too!</p>
-                    <NavLink>Become a performer</NavLink>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVflDw-JyfDIA4ZcbTKriVqV945xzHbNIlPO6hV0x5NP4GIQ/viewform?usp=sf_link">Become a performer</a>
                         </div></div>
 
                   <div className="block three">
@@ -214,7 +251,7 @@ function Home() {
                     <div className="this-year-span">
                       <h3> Be Part of Unifest 2024!</h3>
                       <p>This year, Unifest is bringing the heat with acts that will blow the roof off! Surprise artists, rising stars, and local legends are all set to create a once-in-a-lifetime Vybe with you and your crew.</p>
-                    <NavLink>Buy Your Tickets Now</NavLink>
+                    <a href="https://tellerafricatickets.com/product/unifest-2024/">Buy Your Tickets Now</a>
 
                       </div></div>
                 </div>
@@ -248,7 +285,7 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <NavLink to='/login' className='tickets-span'>Get Tickets</NavLink>
+                <a href="https://tellerafricatickets.com/product/unifest-2024/" className='tickets-span'>Get Tickets</a>
               </button>
             </div>
           </div>
@@ -267,7 +304,7 @@ function Home() {
 
           <div className="shop-items">
             <NavLink
-              to="/merch"
+              to="/comingsoon"
               className="clm one"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -280,7 +317,7 @@ function Home() {
             </NavLink>
 
             <NavLink
-              to="/store"
+              to="/comingsoon"
               className="clm five"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -293,7 +330,7 @@ function Home() {
             </NavLink>
 
             <NavLink
-              to="/store"
+              to="/comingsoon"
               className="clm two"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -306,7 +343,7 @@ function Home() {
             </NavLink>
 
             <NavLink
-              to="/store"
+              to="/comingsoon"
               className="clm three"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -319,7 +356,7 @@ function Home() {
             </NavLink>
 
             <NavLink
-              to="/store"
+              to="/comingsoon"
               className="clm four"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -352,7 +389,7 @@ function Home() {
             <img src={tekkon} alt="tekkon"/>
             <img src={tesh} alt="tesh interiors"/>
           </div>
-          <NavLink>Become a sponsor</NavLink>
+          <NavLink to='/contact'>Become a sponsor</NavLink>
         </div>
 
         <div className="newsletter-section">
@@ -392,8 +429,14 @@ function Home() {
               data-aos-delay="600"
               data-aos-once="true"
             >
-              <input type="text" placeholder="Enter email address" />
+              <form onSubmit={handleSubmit}>
+              <input type="email" placeholder="Enter email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+               />
               <button>Subscribe</button>
+              </form>
             </div>
 
             <h6
@@ -406,6 +449,8 @@ function Home() {
             </h6>
           </div>
         </div>
+
+
       </div>
     </div>
   );

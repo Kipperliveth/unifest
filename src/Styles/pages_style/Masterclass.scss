@@ -1,16 +1,20 @@
 .masterclass{
     width: 100%;
 
-    .masterclass-enroll,
     .masterclass-details,
     .masterclass-structure,
     .masterclass-benefits,
-    .next-step{
+    .about-touch{
         width: 90vw;
         margin: 0 auto;
         margin-top: 5rem;
-    // display: none !important;
+    }
 
+    .head-tag{
+        width: 92.5vw;
+        margin: 0 auto;
+        padding-block: 2rem;
+        font-size: 90%;
     }
     
     .masterclass-landing{
@@ -48,27 +52,39 @@
     }
 
     .masterclass-enroll{
+        width: 100%;
+        overflow-x: hidden;
+        background:  rgba(0, 0, 0, 0.5) url('../../stock/backgrounds/mem.jpg')no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+        position: relative;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 
-        display: grid;
-        grid-template-columns: 50% 48%;
-        justify-content: space-between;
-        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+        // justify-content: space-between;
+        // align-items: center;
 
-
+        
         .enroll-left{
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            width: 50%;
+            color: white;
+            padding-block: 6rem;
+            margin-left: 2.5%;
 
             h1{
                 span{
-                    color: #bba58f;
+                    color: #FF7E00;
                 }
             }
 
             p{
                 line-height: 1.7;
-                color: #000;
+                color: white;
             }
 
             .class-cta{
@@ -81,7 +97,7 @@
                     display: inherit;
                     align-items: inherit;
                     gap: .5rem;
-                    color: #333;
+                    color: #eee;
                     text-decoration: none;
                     border: 1px solid #888;
                     padding: 7px 15px;
@@ -105,16 +121,6 @@
             }
         }
 
-        .enroll-right{
-                background: url('../../stock/enroll3.jpg')no-repeat;
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay;
-            position: relative;
-            height: 20rem;
-            border-radius: 5px;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-        }
 
     }
 
@@ -314,56 +320,44 @@
         }
     }
 
-
-    .next-step{
-        text-align: center;
-        display:flex;
-        justify-content: center;
+    .about-touch{
+        display: flex;
         flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 3rem;
+        justify-content: center;
+        align-items: center;
+        gap: .8rem;
+        margin-top: 9rem;
 
-        h1{
-            span{
-                color: #bba58f;
-            }
-        }
 
-        p{
-            width: 70%;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-
-        .next-links{
+        .about-page-cta{
+            width: fit-content;
             display: flex;
-            gap: 1rem;
             align-items: center;
-            margin: 0 auto;
-
-            a{
-                color: #000;
-                text-decoration: none;
-                padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            background: #F0F0F0;
+            
+                padding: 10px 20px;
                 border-radius: 20px;
-                transition: .3s ease-in-out;
-
+                outline: none;
+                border: none;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                gap: .7rem;
+                transition: .2s ease-in-out;
+        
                 &:hover{
-                    transform: scale(.9);
-                }
-                
-                &:nth-child(1){
-                    border: 1px solid black;
+                    gap: 1rem;
                 }
 
-                &:nth-child(2){
-                    background: black;
-                    color: white;
+                .cta-insta{
+                    font-size: 20px;
                 }
-            }
+            
         }
     }
-
     
 
 
@@ -476,11 +470,6 @@
         }
     }
 
-    .next-step{
-
-        p{
-            width: 100%;
-        }
-    }
+   
 }
 }

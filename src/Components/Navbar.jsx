@@ -9,7 +9,7 @@ import { IoShirtOutline } from "react-icons/io5";
 import { LuRewind } from "react-icons/lu";
 import { IoCallOutline } from "react-icons/io5";
 
-function Navbar() {
+function Navbar({ setShowPopup }) {
   const [isVisible, SetIsVisible] = useState(false);
 
   const toggleVisibilty = () => {
@@ -39,7 +39,7 @@ function Navbar() {
   ];
 
   const allPaths = [
-    "/", "/marketplace", "/store", "/address", "/userMasterclass", "/userDashboard",
+    "/", "/marketplace", "/store", "/address", "/comingsoon", "/userDashboard",
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
     "/notifications", "/uploads", "/onboarding", "/profilePic", "/editAddress",
     "/myorders", "/gethelp", "/adminlog", '/login', '/signup', '/memories', '/about', '/contact','/reset'
@@ -66,7 +66,7 @@ function Navbar() {
                 className={({ isActive }) =>
                   isActive ? "active-link" : "link"
                 }
-                to="/store"
+                to="/comingsoon"
               >
                 Merch
               </NavLink>
@@ -112,9 +112,9 @@ function Navbar() {
 
           <div className="app">
 
-            <NavLink to="/login" className="login-btn">
+            <a onClick={() => setShowPopup(true)} className="login-btn">
               Tickets <IoTicketOutline className="logo-icon"/>
-            </NavLink>
+            </a>
 
             <RiMenu4Fill
               className="app-icon mobile-view menu"
@@ -140,7 +140,7 @@ function Navbar() {
                 </li>
                   </NavLink>
 
-                  <NavLink to="/login" onClick={toggleVisibilty}>
+                  <NavLink to="/comingsoon" onClick={toggleVisibilty}>
                 <li>
                     Merch
                 <IoShirtOutline className="icon"/>

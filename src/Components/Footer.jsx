@@ -2,9 +2,15 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { FaWhatsapp } from "react-icons/fa";
+import { IoLogoTiktok } from "react-icons/io5";
 import { MdMailOutline } from "react-icons/md";
 import logo from "../stock/Unifest-logo-1.png";
+
+function openTawkTo() {
+  if (window.Tawk_API) {
+    window.Tawk_API.toggle();
+  }
+}
 
 function Footer() {
   const location = useLocation();
@@ -12,7 +18,7 @@ function Footer() {
   const hiddenPaths = ["/adminHome", "/post", '/uploads', "/orders"]
 
   const allPaths = [
-    "/", "/marketplace", "/merch", "/userMasterclass",
+    "/", "/marketplace", "/merch", "/comingsoon", 
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
     "/notifications", "/uploads", "/profilePic",
     "/myorders", "/gethelp","/adminlog", '/login', '/signup', '/memories', '/about', '/contact', '/reset'
@@ -35,25 +41,25 @@ function Footer() {
 
             <div className="footer-links">
               <li>
-                <NavLink>FAQS</NavLink>
+                <NavLink to="/contact#faqs">FAQS</NavLink>
               </li>
               <li>
-                <NavLink>Get help</NavLink>
+                <NavLink to='#' onClick={openTawkTo}>Get help</NavLink>
               </li>
               <li>
-                <NavLink>Merch</NavLink>
+                <NavLink to='/comingsoon'>Merch</NavLink>
               </li>
               <li>
-                <NavLink>Contact</NavLink>
+                <NavLink to='/contact'>Contact</NavLink>
               </li>
             </div>
 
             <div className="socials">
-              <FaInstagram className="footer-icon" />
-              <FaXTwitter className="footer-icon" />
-              <FaWhatsapp className="footer-icon" />
-              <MdMailOutline className="footer-icon" />
-            </div>
+                      <a href="https://www.instagram.com/unifest001?igsh=Y3UzY3U3Ym44dmh6"><FaInstagram className="icon" /></a>
+                      <a href="https://x.com/unifest001?t=v1LY_RCY5_DHDN7XBiMzqA&s=09"><FaXTwitter className="icon" /></a>
+                      <a  href="mailto:unifest12@gmail.com?subject=Unifest%20'24%20Inquiry"><MdMailOutline className="icon" /></a>
+                      <a href="https://www.tiktok.com/@unifest001?_t=8nv0OSN4tUL&_r=1"><IoLogoTiktok className="icon" /></a>
+                    </div>
           </div>
 
           <div className="footer-bottom">

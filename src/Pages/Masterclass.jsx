@@ -19,6 +19,8 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.js";
 import NavCountdown from "../Components/NavCountdown";
+import { IoTicketOutline } from "react-icons/io5";
+
 
 function Masterclass() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -49,34 +51,30 @@ function Masterclass() {
           </div>
         </div>
 
+        <div className='head-tag'> <h2>Highlights from UNIFEST 2023</h2></div>
+
         <div className="masterclass-enroll">
           <div className="enroll-left">
             <h1
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
-              data-aos-delay="600"
+              data-aos-delay="200"
               data-aos-once="true"
             >
-              <span>Master</span> the Art of Interior <span>Design</span> with
-              Our Certified Masterclass.
+             UNIFEST is set to be most dynamic <span>Student Festival</span> in Nigeria
             </h1>
             <p
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
-              data-aos-delay="600"
+              data-aos-delay="400"
               data-aos-once="true"
             >
-              Ready to transform your passion for design into a rewarding
-              career? Our immersive masterclass welcomes everyone, from aspiring
-              designers to seasoned professionals seeking to refresh their
-              skills and knowledge. Whether you're dreaming of designing your
-              own space or starting a design business, this comprehensive
-              program equips you with the tools and guidance needed to succeed.
+             Connecting Universities and creating the best memories.
             </p>
 
-            <div
+            {/* <div
               className="class-cta"
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="800"
               data-aos-delay="600"
               data-aos-once="true"
@@ -86,17 +84,9 @@ function Masterclass() {
               <NavLink>
                 <p>Login to Dashboard</p> <BsBoxArrowUpRight />
               </NavLink>
-            </div>
+            </div> */}
           </div>
-          <div
-            className="enroll-right"
-            data-aos="zoom-in-left"
-            data-aos-duration="1000"
-            data-aos-delay="600"
-            data-aos-once="true"
-          >
-            {" "}
-          </div>
+        
         </div>
 
         <div className="masterclass-details">
@@ -366,34 +356,26 @@ function Masterclass() {
           </div>
         </div>
 
-        <div className="next-step">
+        <div className="about-touch">
           <h1
             data-aos="fade-up"
             data-aos-duration="800"
-            data-aos-delay="400"
+            data-aos-delay="200"
             data-aos-once="true"
           >
-            Ready to Take the <span>Next Step?</span>
+            Get Tickets Now
           </h1>
-          <p
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-delay="500"
-            data-aos-once="true"
-          >
-            Enroll today and embark on your journey to becoming a skilled and
-            sought-after interior designer. Contact us to learn more and secure
-            your spot in the next session!
-          </p>
+
           <div
-            className="next-links"
             data-aos="fade-up"
             data-aos-duration="800"
-            data-aos-delay="600"
+            data-aos-delay="300"
             data-aos-once="true"
           >
-            <NavLink>Enroll Here</NavLink>
-            <NavLink>Contact Us</NavLink>
+            <NavLink to="/contact" className="about-page-cta">
+              <div>UNIFEST 2024 Tickets</div>
+              <IoTicketOutline className="cta-insta" />
+            </NavLink>
           </div>
         </div>
       </div>

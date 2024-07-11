@@ -8,6 +8,7 @@
 @import './pages_style/Shop.scss';
 @import url('./pages_style/NotFound.scss');
 @import url('./pages_style/CountdownTimer.scss');
+@import url('./pages_style/Presale.scss');
 @import url('./component_styles/NavCountdown.scss');
 
 *{
@@ -17,6 +18,7 @@
     -webkit-touch-callout: none;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 .pagewidth{

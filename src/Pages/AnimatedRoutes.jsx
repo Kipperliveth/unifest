@@ -54,6 +54,7 @@ function AnimatedRoutes() {
         <Route path="/reset" element={<PasswordReset />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
+        
         {/* proteted routes */}
 
         {/* <Route path='/marketplace' element={<ProtectedRoute>
@@ -136,11 +137,9 @@ function AnimatedRoutes() {
         />
 
         <Route
-          path="/userMasterclass"
+          path="/comingsoon"
           element={
-            <ProtectedRoute>
               <MasterclassMain />
-            </ProtectedRoute>
           }
         />
 

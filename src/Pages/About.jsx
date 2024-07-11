@@ -11,7 +11,6 @@ import AOS from "aos";
 import "aos/dist/aos.js";
 // import NavCountdown from "../Components/NavCountdown";
 import NavCountdown from "../Components/NavCountdown";
-import { IoTicketOutline } from "react-icons/io5";
 import { IoCameraOutline } from "react-icons/io5";
 
 function About() {
@@ -70,7 +69,7 @@ function About() {
               data-aos-delay="600"
               data-aos-once="true"
             >
-              <NavLink className="about-page-cta">
+              <NavLink to='/memories' className="about-page-cta">
                 <div>Experience Unifest</div>
                 <IoCameraOutline className="cta-insta" />
               </NavLink>
@@ -152,9 +151,9 @@ function About() {
               data-aos-delay="600"
               data-aos-once="true"
             >
-              <NavLink className="about-page-ctaa">
+              <a href='#next-step' className="about-page-ctaa">
                 Become a part of this Year's Unifest
-              </NavLink>
+              </a>
             </div>
 
           </div>
@@ -171,7 +170,7 @@ function About() {
           </span>
 
           <div className="shop-items">
-            <NavLink
+            <a
               to="/merch"
               className="clm one"
               data-aos="fade-left"
@@ -182,7 +181,7 @@ function About() {
               <h2 className="top-desc">Become a Perfomer</h2>
 
               <h3 className="bottom-desc">Fill the form here</h3>
-            </NavLink>
+            </a>
 
             <NavLink
               to="/store"
@@ -197,8 +196,8 @@ function About() {
               <h3 className="bottom-desc">Follow us for news and Updates</h3>
             </NavLink>
 
-            <NavLink
-              to="/store"
+            <a
+             href="#next-step"
               className="clm two"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -208,7 +207,7 @@ function About() {
               <h2 className="top-desc">Become a Sponsor</h2>
 
               <h3 className="bottom-desc">Partner with us for Unifest '24</h3>
-            </NavLink>
+            </a>
 
             <NavLink
               to="/store"
@@ -224,7 +223,7 @@ function About() {
             </NavLink>
 
             <NavLink
-              to="/store"
+              to="/merch"
               className="clm four"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -239,29 +238,27 @@ function About() {
 
         </div>
 
-
-        <div className="about-touch">
+        <section id="next-step" className="next-step">
           <h1
             data-aos="fade-up"
             data-aos-duration="800"
-            data-aos-delay="200"
+            data-aos-delay="400"
             data-aos-once="true"
           >
-            Get Tickets Now
+            Be part of the UNIFEST <span>Experience</span>
           </h1>
-
+       
           <div
+            className="next-links"
             data-aos="fade-up"
             data-aos-duration="800"
-            data-aos-delay="300"
+            data-aos-delay="600"
             data-aos-once="true"
           >
-            <NavLink to="/contact" className="about-page-cta">
-              <div>UNIFEST 2024 Tickets</div>
-              <IoTicketOutline className="cta-insta" />
-            </NavLink>
+            <a  href="https://tellerafricatickets.com/product/unifest-2024/">Get Tickets</a>
+            <NavLink to='/contact'>Contact Us</NavLink>
           </div>
-        </div>
+        </section>
 
       </div>
     </div>

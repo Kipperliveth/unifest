@@ -6,6 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import AnimatedRoutes from "./Pages/AnimatedRoutes";
 import Footer from "./Components/Footer";
 import TawkToChat from "./App/App-components/TawkToChat";
+import Pop from "./Pages/Pop";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Navbar />
 
       <AnimatedRoutes />
+      <Pop />
 
       <TawkToChat />
 
