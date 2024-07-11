@@ -273,16 +273,16 @@ function Home() {
         <div className="landing tickets">
           <div
             className="landing-content-container"
-            data-aos="fade-up"
+            data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-once="true"
           >
-            <h1 data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
+            <h1 data-aos="zoom-in" data-aos-duration="800" data-aos-once="true">
             Be a part of this year's unforgettable moments.
             </h1>
             <p
               data-aos-delay="300"
-              data-aos="fade-up" data-aos-duration="800" data-aos-once="true" 
+              data-aos="zoom-in" data-aos-duration="800" data-aos-once="true" 
              >
               Click below to secure your spot and get your tickets now!
             </p>
@@ -290,7 +290,7 @@ function Home() {
 
             <div
               className="button"
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
               data-aos-once="true"
               data-aos-delay="400"
