@@ -73,16 +73,16 @@ function Home() {
         <div className="landing">
           <div
             className="landing-content-container"
-            data-aos="fade-up"
+            data-aos="zoom-in"
             data-aos-duration="800"
             data-aos-once="true"
           >
-            <h1 data-aos="fade-up" data-aos-duration="800" data-aos-once="true">
+            <h1 data-aos="zoom-in" data-aos-duration="800" data-aos-once="true">
               The Biggest Party on Campus Returns!
             </h1>
             <p
               data-aos-delay="300"
-              data-aos="fade-up" data-aos-duration="800" data-aos-once="true" 
+              data-aos="zoom-in" data-aos-duration="800" data-aos-once="true" 
              >
               The VYBEZ Universe will be live in
              
@@ -92,7 +92,7 @@ function Home() {
 
             <div
               className="button"
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
               data-aos-once="true"
               data-aos-delay="400"
@@ -451,7 +451,7 @@ function Home() {
             </div>
 
             <h6
-              data-aos="fade-up"
+              data-aos="zoom-in"
               data-aos-duration="1000"
               data-aos-delay="600"
               data-aos-once="true"

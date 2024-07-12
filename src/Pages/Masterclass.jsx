@@ -51,10 +51,15 @@ function Masterclass() {
           </div>
         </div>
 
-        <div className='head-tag'> <h2>Highlights from UNIFEST 2023</h2></div>
-
         <div className="masterclass-enroll">
+
           <div className="enroll-left">
+
+          <h3 
+           data-aos="zoom-in"
+           data-aos-duration="1000"
+           data-aos-once="true"
+          >Highlights from UNIFEST <span>2023</span> </h3>
             <h1
               data-aos="zoom-in"
               data-aos-duration="1000"
@@ -72,289 +77,68 @@ function Masterclass() {
              Connecting Universities and creating the best memories.
             </p>
 
-            {/* <div
-              className="class-cta"
-              data-aos="zoom-in"
-              data-aos-duration="800"
-              data-aos-delay="600"
-              data-aos-once="true"
-            >
-              <NavLink>Enroll Now</NavLink>
-
-              <NavLink>
-                <p>Login to Dashboard</p> <BsBoxArrowUpRight />
-              </NavLink>
-            </div> */}
+        
           </div>
+
+            <div className="enroll-right">
+
+              <div className="pic-left">
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="200"
+                  data-aos-once="true"
+               className="pic wide one"></div>
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="300"
+                  data-aos-once="true"
+               className="pic long two"></div>
+              </div>
+
+              <div className="pic-right">
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="400"
+                  data-aos-once="true"
+              className="pic long three"></div>
+              <div
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="500"
+                  data-aos-once="true"
+              className="pic wide four"></div>
+              </div>
+            </div>
         
         </div>
 
-        {/* <div className="masterclass-details">
-          <h1
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-delay="600"
-            data-aos-once="true"
-          >
-            What you'll <span>Learn</span>
-          </h1>
-
-          <div className="m-learn">
-            <div
-              className="learn-box"
-              data-aos="fade-up"
-              data-aos-duration="800"
-              data-aos-delay="700"
-              data-aos-once="true"
-            >
-              <FaHandHolding className="learn-icon" />
-
-              <h3>Hands-on Learning</h3>
-
-              <p>
-                Apply your knowledge through practical exercises and real-world
-                project examples, gaining valuable experience under the expert
-                guidance of our instructor.
-              </p>
-            </div>
-
-            <div
-              className="learn-box"
-              data-aos="fade-up"
-              data-aos-duration="800"
-              data-aos-delay="900"
-              data-aos-once="true"
-            >
-              <LiaChalkboardTeacherSolid className="learn-icon" />
-
-              <h3>Modern Interior Design Principles</h3>
-
-              <p>
-                Delve into the latest trends, styles, and techniques in interior
-                design, covering color theory, space planning, furniture
-                selection, and sustainable design practices.
-              </p>
-            </div>
-
-            <div
-              className="learn-box"
-              data-aos="fade-up"
-              data-aos-duration="400"
-              data-aos-delay="1000"
-              data-aos-once="true"
-            >
-              <FaPeopleArrows className="learn-icon" />
-
-              <h3>Personalized Feedback</h3>
-
-              <p>
-                Benefit from regular feedback and personalized mentoring through
-                interactive Zoom meetings with your instructor, ensuring you
-                grasp each concept thoroughly.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="masterclass-structure">
-          <h1
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-delay="300"
-            data-aos-once="true"
-          >
-            Course Structure
-          </h1>
-
-          <div className="structure-container">
-            <div className="structure-left">
-              <div
-                className="big-img"
-                data-aos="zoom-in-left"
-                data-aos-duration="800"
-                data-aos-delay="600"
-                data-aos-once="true"
-              ></div>
-              <span>
-                <div
-                  className="small-img1"
-                  data-aos="zoom-in-down"
-                  data-aos-duration="800"
-                  data-aos-delay="600"
-                  data-aos-once="true"
-                ></div>
-                <div
-                  className="small-img2"
-                  data-aos="zoom-in-up"
-                  data-aos-duration="800"
-                  data-aos-delay="500"
-                  data-aos-once="true"
-                ></div>
-              </span>
-            </div>
-            <div className="structure-right">
-              <div
-                className="structure-box"
-                data-aos="fade-up"
-                data-aos-duration="800"
-                data-aos-delay="300"
-                data-aos-once="true"
-              >
-                <TbBrandZoom className="structure-icon" />
-                <div className="structure-dets">
-                  <h3>Format</h3>
-                  <p>
-                    Engaging and interactive Zoom meetings where you can
-                    actively participate and ask questions.
-                  </p>
-                </div>
+        {/* <div className="activities">
+              <div className="activities-left">
+                <div className="box"></div>
+                <div className="box"></div>
+                <div className="box"></div>
               </div>
 
-              <div
-                className="structure-box"
-                data-aos="fade-up"
-                data-aos-duration="800"
-                data-aos-delay="300"
-                data-aos-once="true"
-              >
-                <MdSchedule className="structure-icon" />
-                <div className="structure-dets">
-                  <h3>Schedule</h3>
-                  <p>
-                    Evening sessions held every day (specific timings to be
-                    confirmed)
-                  </p>
-                </div>
+              <div className="activities-right">
+                <h2>UNIFEST 2023 was an <span>unforgettable</span> experience.</h2>
+                <p>The energy was electric, the atmosphere buzzing with excitement. From electrifying performances to vibrant social gatherings, there was something for everyone. </p>
               </div>
-              <div
-                className="structure-box"
-                data-aos="fade-up"
-                data-aos-duration="800"
-                data-aos-delay="300"
-                data-aos-once="true"
-              >
-                <MdOutlineAssessment className="structure-icon" />
-                <div className="structure-dets">
-                  <h3>Assessment</h3>
-                  <p>
-                    Quizzes after each session to solidify your understanding.
-                  </p>
-                </div>
-              </div>
-              <div
-                className="structure-box"
-                data-aos="fade-up"
-                data-aos-duration="800"
-                data-aos-delay="300"
-                data-aos-once="true"
-              >
-                <MdOutlineAttachMoney className="structure-icon" />
-                <div className="structure-dets">
-                  <h3>Cost</h3>
-                  <p>₦25,000 per month/class</p>
-                </div>
-              </div>
-
-              <div
-                className="structure-box"
-                data-aos="fade-up"
-                data-aos-duration="800"
-                data-aos-delay="300"
-                data-aos-once="true"
-              >
-                <TbTimeDuration30 className="structure-icon" />
-                <div className="structure-dets">
-                  <h3>Duration </h3>
-                  <p>1 month</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="masterclass-benefits">
-          <h1
-            data-aos="fade-up"
-            data-aos-duration="800"
-            data-aos-delay="300"
-            data-aos-once="true"
-          >
-            <span>Benfits</span> you'll Enjoy
-          </h1>
-          <div className="benefits-container">
-            <div
-              className="benefit-box"
-              data-aos="fade-up"
-              data-aos-duration="800"
-              data-aos-delay="300"
-              data-aos-once="true"
-            >
-              <GrUserExpert className="benfit-icon" />
-              <h3>Expert Instruction</h3>
-              <p>
-                Learn from a renowned interior design professional with
-                extensive experience and industry knowledge.
-              </p>
-            </div>
-            <div
-              className="benefit-box"
-              data-aos="fade-up"
-              data-aos-duration="800"
-              data-aos-delay="400"
-              data-aos-once="true"
-            >
-              <TbStretching2 className="benfit-icon" />
-              <h3>Flexible Learning</h3>
-              <p>
-                Enjoy the convenience of evening sessions that fit into your
-                busy schedule.
-              </p>
-            </div>
-            <div
-              className="benefit-box"
-              data-aos="fade-up"
-              data-aos-duration="800"
-              data-aos-delay="500"
-              data-aos-once="true"
-            >
-              <BiSupport className="benfit-icon" />
-              <h3>Personalized Support</h3>
-              <p>
-                Receive tailored feedback and guidance to optimize your learning
-                experience.
-              </p>
-            </div>
-            <div
-              className="benefit-box"
-              data-aos="fade-up"
-              data-aos-duration="800"
-              data-aos-delay="600"
-              data-aos-once="true"
-            >
-              <MdOutlineConnectWithoutContact className="benfit-icon" />
-              <h3>Community Connection</h3>
-              <p>
-                Connect with fellow students and build a network of passionate
-                designers.
-              </p>
-            </div>
-            <div
-              className="benefit-box"
-              data-aos="fade-up"
-              data-aos-duration="800"
-              data-aos-delay="700"
-              data-aos-once="true"
-            >
-              <FaHelmetSafety className="benfit-icon" />
-              <h3>Career-Ready</h3>
-              <p>
-                Gain the skills and confidence to pursue your design
-                aspirations, whether launching your own business or landing your
-                dream job.
-              </p>
-            </div>
-          </div>
         </div> */}
+
+        <div className="stage">
+
+        </div>
+
+        <div className="thepeople">
+              {/* <h1>Unifest is an exciting way to meet new people and make valuable campus connections.</h1> */}
+        </div>
+
+        <div className="see-more">
+
+        </div>
 
         <div className="about-touch">
           <h1
