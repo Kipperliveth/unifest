@@ -26,7 +26,7 @@ function Home() {
   const [notCompleted, setNotCompleted] = useState(false)
   
   useEffect(() => {
-    document.title = "Unifest"
+    document.title = "UNIFEST - The Biggest Party On campus"
     
     if (!hasMounted) {
       setHasMounted(true);
