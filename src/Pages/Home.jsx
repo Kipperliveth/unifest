@@ -386,7 +386,7 @@ function Home() {
             data-aos-duration="800"
             data-aos-once="true"
           >
-            <NavLink className='shop-span'>Get the Merch</NavLink>
+            <NavLink to='/comingsoon' className='shop-span'>Get the Merch</NavLink>
             <FaArrowRightLong className="ctaArrow special-icon" />
           </button>
         </div>
