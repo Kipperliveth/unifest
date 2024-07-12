@@ -115,18 +115,60 @@ function Masterclass() {
         
         </div>
 
-        {/* <div className="activities">
+        <div className="activities">
               <div className="activities-left">
-                <div className="box"></div>
-                <div className="box"></div>
-                <div className="box"></div>
+                <div 
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-once="true" className="box"></div>
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="200"
+                  data-aos-once="true"
+                className="box"></div>
+                <div
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="400"
+                  data-aos-once="true"
+                className="box"></div>
               </div>
 
               <div className="activities-right">
-                <h2>UNIFEST 2023 was an <span>unforgettable</span> experience.</h2>
-                <p>The energy was electric, the atmosphere buzzing with excitement. From electrifying performances to vibrant social gatherings, there was something for everyone. </p>
+                <h1 
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-once="true"
+                >UNIFEST 2023 was an <span>Unforgettable</span> Experience.</h1>
+                <p
+                  data-aos="zoom-in"
+                  data-aos-duration="1000"
+                  data-aos-delay="200"
+                  data-aos-once="true"
+                >The energy was electric, the atmosphere buzzing with excitement. From electrifying performances to vibrant social gatherings, there was something for everyone. </p>
+
+                <div className="more-pics">
+                  <div
+                   data-aos="zoom-in"
+                   data-aos-duration="1000"
+                   data-aos-once="true"
+                  className="pic"></div>
+                  <div 
+                   data-aos="zoom-in"
+                   data-aos-duration="1000"
+                   data-aos-delay="200"
+                   data-aos-once="true"
+                  className="pic"></div>
+                  <div
+                   data-aos="zoom-in"
+                   data-aos-duration="1000"
+                   data-aos-delay="400"
+                   data-aos-once="true"
+                  className="pic"></div>
+                </div>
               </div>
-        </div> */}
+        </div>
 
         <div className="stage">
 
@@ -137,6 +179,26 @@ function Masterclass() {
         </div>
 
         <div className="see-more">
+          <h2>See More <span>Pictures</span> and Momements from <br /> UNIFEST 2023</h2>
+      
+          <div className="see-more-container">
+          <div className="left">
+            <div className="left-top"></div>
+            <div className="left-bottom"></div>
+          </div>
+          <div className="middle">
+            <div className="middle-only"></div>
+          </div>
+          <div className="right">
+            <div className="right-top">
+              <div className="right-top-1"></div>
+              <div className="right-top-2"></div>
+            </div>
+            <div className="right-bottom">
+              <div className="right-bottom-only"></div>
+            </div>
+          </div>
+          </div>
 
         </div>
 
