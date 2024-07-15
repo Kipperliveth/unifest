@@ -31,7 +31,7 @@ function Presale({ showPopup, setShowPopup }) {
         <h1>Pre-sale Tickets are Sold-Out!</h1>
 
 
-        <p>Thank you for Buying the Pre-sale Tickets for UNIFEST 2024! <br />
+        <p>Thank you for Purchasing the Pre-sale Tickets for UNIFEST 2024! <br />
         Follow our socials for more updates on the event </p>
 
         <div className='buttons'>
