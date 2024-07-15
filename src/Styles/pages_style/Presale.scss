@@ -18,17 +18,21 @@
                 flex-direction: inherit;
                 justify-content: inherit;
                 align-items: inherit;
-                gap: 1.5rem;
+                gap: 1rem;
                 text-align: center;
                 background: white;
                 padding: 5rem 3rem 3rem 3rem;
                 border-radius: 1rem;
                 
+                h1{
+                  // width: 50vw;
+                  // border: 1px solid red;
+                }
 
                 p{
                     font-weight: 500;
                     color: #333;
-                    line-height: 1.5;
+                    line-height: 1.7;
 
                     span{
                         font-weight: 600;
@@ -176,9 +180,9 @@
     .checkout-popup{
 
         .checkout-container{
-            width: 60vw;
+            width: 70vw;
             font-size: 90%;
-            padding: 3rem 3rem 3rem 3rem;
+            padding: 3rem 2rem 3rem 2rem;
 
         }
     }

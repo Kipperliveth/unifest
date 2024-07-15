@@ -13,7 +13,7 @@ import "aos/dist/aos.js";
 import NavCountdown from "../Components/NavCountdown";
 import { IoCameraOutline } from "react-icons/io5";
 
-function About() {
+function About({ setShowPopup }) {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -262,7 +262,7 @@ function About() {
             data-aos-delay="600"
             data-aos-once="true"
           >
-            <a  href="https://tellerafricatickets.com/product/unifest-2024/">Get Tickets</a>
+            <NavLink >Get Tickets</NavLink>
             <NavLink to='/contact'>Contact Us</NavLink>
           </div>
         </section>

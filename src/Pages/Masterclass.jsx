@@ -218,10 +218,10 @@ function Masterclass() {
             data-aos-delay="300"
             data-aos-once="true"
           >
-            <a href="https://tellerafricatickets.com/product/unifest-2024/" className="about-page-cta">
+            <NavLink className="about-page-cta">
               <div>UNIFEST 2024 Tickets</div>
               <IoTicketOutline className="cta-insta" />
-            </a>
+            </NavLink>
           </div>
         </div>
       </div>

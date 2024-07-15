@@ -112,9 +112,9 @@ function Navbar({ setShowPopup }) {
 
           <div className="app">
 
-            <a onClick={() => setShowPopup(true)} className="login-btn">
+            <NavLink onClick={() => setShowPopup(true)} className="login-btn">
               Tickets <IoTicketOutline className="logo-icon"/>
-            </a>
+            </NavLink>
 
             <RiMenu4Fill
               className="app-icon mobile-view menu"

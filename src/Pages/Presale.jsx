@@ -1,8 +1,17 @@
 import React from 'react'
 import { IoTicketOutline } from "react-icons/io5";
+import { NavLink } from "react-router-dom";
 
 
 function Presale({ showPopup, setShowPopup }) {
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth'  // Optional: for smooth scrolling
+    });
+    setShowPopup(false)
+  };
 
   if (!showPopup) return null;
 
@@ -19,14 +28,14 @@ function Presale({ showPopup, setShowPopup }) {
         <IoTicketOutline className="ticket-icon"/>
         </div>
 
-        <h1>Pre-sale Tickets are Live at 50% Off!</h1>
+        <h1>Pre-sale Tickets are Sold-Out!</h1>
 
 
-        <p>
-        Pre-sale tickets for UNIFEST 2024 are now available <br /> for 72 hours get tickets at a 50% discount!</p>
+        <p>Thank you for Buying the Pre-sale Tickets for UNIFEST 2024! <br />
+        Follow our socials for more updates on the event </p>
 
         <div className='buttons'>
-        <a href='https://tellerafricatickets.com/product/unifest-2024/'  className="a again"> Get Tickets</a>
+        <NavLink onClick={scrollToBottom}  className="a again"> Follow Us</NavLink>
         <button onClick={() => setShowPopup(false)} className="a close"> Close</button>
         </div>
 
