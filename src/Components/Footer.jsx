@@ -63,7 +63,7 @@ function Footer() {
           </div>
 
           <div className="footer-bottom">
-            &copy; 2023 unifest
+            &copy; 2024 unifest
             <div>
               <NavLink id="terms">terms of use</NavLink> |{" "}
               <NavLink id="policies">privacy policy</NavLink>
