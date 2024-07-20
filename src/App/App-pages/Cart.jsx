@@ -16,7 +16,7 @@ import { FiMinus } from "react-icons/fi";
 import emailjs from 'emailjs-com';
 import { MdKeyboardArrowLeft } from "react-icons/md";
 
-emailjs.init("oFALOKT7ahfnZc7PX");
+emailjs.init("Ubd9KrlkMCBa72PUL");
 
 
 function Cart() {
