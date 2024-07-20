@@ -179,11 +179,14 @@
         .uploads-container{
             margin-bottom: 3rem;
             padding-bottom: 3rem;
-            padding-left: 20px;
+            // padding-left: 20px;
             display: flex;
             align-items: center;
             flex-wrap: wrap;
             gap: 2rem;
+            width: fit-content;
+            margin: 0 auto;
+            // border: 2px solid red;
 
                // display: grid;
             // grid-template-columns: repeat(3, 1fr);
@@ -258,7 +261,7 @@
     
                     button{
                     border: none;
-                    background: #BBA58F;
+                    background: #B22222;
                     cursor: pointer;
                     padding: 8px 15px;
                     border-radius: 10px;
@@ -304,7 +307,10 @@
 
             .categories{
                 overflow-x: auto;
-                white-space: nowrap;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                // white-space: nowrap;
 
                 &::-webkit-scrollbar{
                     display: none;

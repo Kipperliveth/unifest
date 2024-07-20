@@ -64,9 +64,9 @@ function Footer() {
 
           <div className="footer-bottom">
             &copy; 2024 unifest
-            <div>
-              <NavLink id="terms">terms of use</NavLink> |{" "}
-              <NavLink id="policies">privacy policy</NavLink>
+            <div className="misc">
+              <NavLink id="terms">terms of use</NavLink> |
+              <NavLink id="policies"> privacy policy</NavLink>
             </div>
           </div>
         </div>

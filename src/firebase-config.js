@@ -7,12 +7,12 @@ import { getStorage } from "firebase/storage";
 // const currentUser = useAuth();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD6mrDcDJ_HXRZU51404BY1PEC5o0ETWFo",
-  authDomain: "unifest-70d85.firebaseapp.com",
-  projectId: "unifest-70d85",
-  storageBucket: "unifest-70d85.appspot.com",
-  messagingSenderId: "203847567557",
-  appId: "1:203847567557:web:e758b55ca16fabb539c8ac"
+  apiKey: "AIzaSyDd44qke0vR3Xe4pMOSmKPFlhUidqb3rwo",
+  authDomain: "unifest-test.firebaseapp.com",
+  projectId: "unifest-test",
+  storageBucket: "unifest-test.appspot.com",
+  messagingSenderId: "418160094867",
+  appId: "1:418160094867:web:5fd1e8e69def2d5b03a766"
 };
 
 const app = initializeApp(firebaseConfig);

@@ -14,14 +14,13 @@ function UserNotifications() {
   const [user, setUser] = useState({})
   const [isLoading, setIsLoading] = useState(true);
   const [readNotifications, setReadNotifications] = useState([]);
-  const [unreadCount, setUnreadCount] = useState(0); // State to store the count of unread notifications
   // pop up spinner
 const [showPopup, setShowPopup] = useState(false);
 
 
   
   useEffect(() => {
-    document.title = "Notifications Evanis-Interiors";
+    document.title = "Notifications UNIFEST";
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -52,10 +51,8 @@ const [showPopup, setShowPopup] = useState(false);
           ...doc.data(),
           timestamp: timestamp.toLocaleString([], {
             day: "numeric",
-            month: "numeric",
+            month: "short",
             year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
           }),
         };
       });
@@ -95,10 +92,8 @@ const [showPopup, setShowPopup] = useState(false);
           ...doc.data(),
           timestamp: timestamp.toLocaleString([], {
             day: "numeric",
-            month: "numeric",
+            month: "short",
             year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
           }),
         };
       });
@@ -186,7 +181,7 @@ setShowPopup(true);
           ...doc.data(),
           timestamp: timestamp.toLocaleString([], {
             day: "numeric",
-            month: "long",
+            month: "short",
             year: "numeric",
             // hour: "2-digit",
             // minute: "2-digit",
@@ -278,6 +273,44 @@ useEffect(() => {
   return () => unsubscribe();
 }, [user]);
 
+const [readyForPickup, setReadyForPickup] = useState([])
+
+useEffect(() => {
+  if (!user) return; // Return early if user is null
+
+  const userId = user.uid;
+  const q = query(
+    collection(txtdb, `userNotifications/${userId}/pendingPickupNotification`),
+    orderBy("timestamp", "desc")
+  );
+
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    const readDelivNotifications = snapshot.docs.map((doc) => {
+      let timestamp;
+      if (doc.data().timestamp instanceof Date) {
+        timestamp = doc.data().timestamp;
+      } else {
+        timestamp = new Date(doc.data().timestamp);
+      }
+      return {
+        id: doc.id,
+        ...doc.data(),
+        timestamp: timestamp.toLocaleString([], {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }),
+      };
+    });
+    // Count the number of unread notifications
+    setReadyForPickup(readDelivNotifications);
+    console.log(readyForPickup, 'ready')
+    setIsLoading(false);
+  });
+
+  return () => unsubscribe();
+}, [user]);
+
 
   return (
     <div>
@@ -342,6 +375,28 @@ useEffect(() => {
         ) : (
           <div className="new-notifications">
 
+      <div className="notifications"> 
+            {readyForPickup.map((forPickup) => (
+
+              <div className="notification" key={forPickup.id}>
+
+                <div className="left"> <PiNotePencilLight className="icon"/></div>
+
+                <div className="right">
+                    <h4>Your order with ID: {forPickup.orderRefId} is ready for Pickup </h4>
+                    <p>We would contact you soon for Drop off</p>
+                    <span>
+
+                    <p className="date">{forPickup.timestamp}</p> <button onClick={() => handleMarkNotificationAsRead(forPickup)}>Mark as Read</button>
+                    
+                    </span>
+                </div>
+
+              </div>
+              
+            ))}
+            </div>
+
             <div className="delivered notifications">
             
               {deliveredNotifications.map((delivered) => (
@@ -397,7 +452,7 @@ useEffect(() => {
         </div>
 
         {(readNotifications.length > 0 || readDeliveredNotifications.length > 0 ) ? (
-          <p className="recent"><span></span>Older<span></span></p>
+          <p className="recent older"><span></span>Older<span></span></p>
 
         ) : ('')}
 
@@ -506,6 +561,8 @@ useEffect(() => {
         )}
 
       </div>
+
+      
 
       {showPopup && (
         <div className="popup">

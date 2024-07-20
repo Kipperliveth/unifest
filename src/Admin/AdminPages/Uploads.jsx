@@ -100,7 +100,7 @@ function Uploads() {
 
           <div className="categories">
 
-          {["All", "Sitting", "Curtains", "Tables", "Room", "Lights", "Storage"].map((category) => (
+          {["All", "Shirts", "Vests", "Hoodies", "Socks", "Shorts", "Crocs", "Backpacks", "Caps", "Beanies"].map((category) => (
               <span className="category-name" key={category}>
                 <p
                   onClick={() => handleCategoryClick(category)}

@@ -268,10 +268,11 @@
     margin: 0 auto;
 
     h1{
-        border-left: 2px solid #bba58f;
+        border-left: 2px solid #FF7E00;
         padding-left: .5rem;
         letter-spacing: 1px;
         margin-bottom: 3rem;
+        font-size: 1em;
     }
 
     .empty-cart{
@@ -290,7 +291,7 @@
         a{
             text-decoration: none;
             color: #333;
-            background: #bba58f;
+            background: #FF7E00;
             padding: 15px 17.5px;
             border-radius: 5px;
             color: white;
@@ -638,6 +639,9 @@
 
             &:hover{
             transform: scale(.95);
+            background: #FF7E00;
+            color: white;
+            font-weight: 500;
             }
 
         }

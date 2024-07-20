@@ -53,7 +53,7 @@ function AnimatedRoutes() {
         <Route path="/reset" element={<PasswordReset />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
         
         {/* proteted routes */}
 
@@ -169,14 +169,7 @@ function AnimatedRoutes() {
             </AdminRoute>
           }
         />
-        <Route
-          path="/orders"
-          element={
-            <AdminRoute>
-              <Orders />
-            </AdminRoute>
-          }
-        />
+        <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute> } />
         <Route
           path="/adminlog"
           element={
@@ -185,8 +178,10 @@ function AnimatedRoutes() {
             </AdminRoute>
           }
         />
-        {/* <Route path='/uploads' element={<AdminRoute><Uploads /></AdminRoute>}/> */}
-        <Route path="/uploads" element={<Uploads />} />
+        <Route path='/uploads' element={<AdminRoute><Uploads /></AdminRoute>}/>
+        {/* <Route path="/uploads" element={<Uploads />} />
+        <Route path="/orders" element={<Orders />} /> */}
+
       </Routes>
     </AnimatePresence>
   );
