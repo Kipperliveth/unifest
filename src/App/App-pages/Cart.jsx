@@ -377,7 +377,7 @@ const [transactionReference, setTransactionReference] = useState('')
 
 
 const handlePaystackPayment = async () => {
-  const paystackPublicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
+  const paystackPublicKey = "pk_live_3247756c59ed492b8f73ac45f270ef9949bb87e1";
 
   const handler = window.PaystackPop.setup({
     key: paystackPublicKey,
