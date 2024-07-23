@@ -178,6 +178,11 @@
                     
                 }
 
+                .number{
+                    display: flex;
+                    flex-direction: column;
+                }
+
                 .error-message {
                     color: red; /* Set text color to red */
                     margin-top: 1rem; /* Add some space above the error message */

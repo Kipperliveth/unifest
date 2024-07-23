@@ -110,7 +110,7 @@ const handleShippingChange = (e) => {
 
   let shippingCost = 0;
   if (shippingMethod === 'PICKUP') {
-    shippingCost = 2000; // Example shipping cost for pickup
+    shippingCost = 500; // Example shipping cost for pickup
   } else if (shippingMethod === 'DOOR DELIVERY') {
     if(addressData.city === 'Iwofe' || 'Rupokwu' || "Eleme Junction" || "Adageorge" ||"Borokiri" || "Akpajo" || "Adageorge" || "Agip" || "Abuloma" || "Atali" || "Eliozu" || "Elelewon" || "Odili" || "Eneka" || "Woji"){
       shippingCost = 3000; // Example shipping cost for pickup
@@ -264,18 +264,18 @@ const totalItems = fetchedProducts.reduce((total, product) => total + product.qu
     fetchAddressData();
   }, []);
 
-  useEffect(() => {
-    const cachedAddressData = localStorage.getItem("addressData");
-    if (cachedAddressData) {
-      setAddressData(JSON.parse(cachedAddressData));
-      setLoading(false);
-    } else {
-      const fetchAddressData = async () => {
-        // Fetch address data from Firestore as before
-      };
-      fetchAddressData();
-    }
-  }, []);
+  // useEffect(() => {
+  //   const cachedAddressData = localStorage.getItem("addressData");
+  //   if (cachedAddressData) {
+  //     setAddressData(JSON.parse(cachedAddressData));
+  //     setLoading(false);
+  //   } else {
+  //     const fetchAddressData = async () => {
+  //       // Fetch address data from Firestore as before
+  //     };
+  //     fetchAddressData();
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (!loading) {
@@ -294,11 +294,11 @@ const currentDate = new Date();
 
 // Calculate the date 15 days from now
 const date15DaysFromNow = new Date(currentDate);
-date15DaysFromNow.setDate(currentDate.getDate() + 15);
+date15DaysFromNow.setDate(currentDate.getDate() + 7);
 
 // Calculate the date 20 days from now
 const date20DaysFromNow = new Date(currentDate);
-date20DaysFromNow.setDate(currentDate.getDate() + 20);
+date20DaysFromNow.setDate(currentDate.getDate() + 14);
 
 // Format the dates as "day month"
 const options = { day: 'numeric', month: 'short' };
@@ -319,6 +319,20 @@ const [completed, setCompleted] = useState(false)
 const [orderID, setOrderID] = useState(""); // New state variable for Order ID
 
 
+//delete cart
+const deletecart = async () => {
+  const userId = currentUser.uid;
+
+    // Get all documents in the collection
+    const productRef = collection(txtdb, `userCart/${userId}/products`);
+    const querySnapshot = await getDocs(productRef);
+
+
+   // Delete each document
+   const deletePromises = querySnapshot.docs.map((document) => deleteDoc(doc(txtdb, `userCart/${userId}/products`, document.id)));
+   await Promise.all(deletePromises);
+}
+
 
 
 // order email
@@ -326,11 +340,87 @@ const userEmail = auth.currentUser?.email;
 const userName = user.displayName;
 
 //checkout logic
+const [notCompleted, setNotCompleted] = useState(false)
+
+console.log(window.PaystackPop,userEmail,  "pasystack" );
+const amount = getTotalPriceNumeric + totalPrice; // Total amount including shipping
+
+const check = () => {
+  if (!selectedShipping) {
+    setErrorMessage('Please choose a shipping option');
+    setTimeout(() => {
+      setErrorMessage('');
+    }, 5000);
+    return;
+  }
+  
+  if (selectedShipping === "DOOR DELIVERY" && !addressData.addressLine1) {
+    setErrorMessage('Please add a Delivery Address');
+    setTimeout(() => {
+      setErrorMessage('');
+    }, 5000);
+    return;
+  }
+  
+  if (selectedShipping === "PICKUP" && !addressData.addressPhone) {
+    setErrorMessage('Add a number for pick up');
+    setNotCompleted(true);
+    setTimeout(() => {
+      setErrorMessage('');
+    }, 5000);
+    return;
+  }
+  handlePaystackPayment()
+};
+
+const [transactionReference, setTransactionReference] = useState('')
+
+
+const handlePaystackPayment = async () => {
+  const paystackPublicKey = process.env.REACT_APP_PAYSTACK_PUBLIC_KEY;
+
+  const handler = window.PaystackPop.setup({
+    key: paystackPublicKey,
+    email: userEmail, 
+    amount: amount * 100, 
+    currency: 'NGN', 
+    callback: function(response) {
+      // console.log('payment successful', response.reference)
+      setTransactionReference('Payment completed',  response.reference);
+      handleCheckout();
+    },
+    onClose: function() {
+      setTransactionReference('Payment was not completed');
+    }
+  });
+
+  handler.openIframe();
+};
+
+
 
 const handleCheckout = async () => {
   
 if (!selectedShipping) {
   setErrorMessage('Please choose a shipping option');
+  setTimeout(() => {
+    setErrorMessage('');
+  }, 5000);
+  return;
+}
+if (selectedShipping === "DOOR DELIVERY" && !addressData.addressLine1) {
+  setErrorMessage('Please add a Delivery Address');
+  setTimeout(() => {
+    setErrorMessage('');
+  }, 5000);
+  return;
+}
+if (selectedShipping === "PICKUP" && !addressData.addressPhone){
+  setErrorMessage('Add a number for pick up');
+  setNotCompleted(true);
+  setTimeout(() => {
+    setErrorMessage('');
+  }, 5000);
   return;
 }
 setShowPopup(true);
@@ -352,6 +442,7 @@ setShowPopup(true);
       state: addressData.state,
       userEmail: userEmail,
       username: userName,
+      reference: transactionReference,
       formattedDate15DaysFromNow: formattedDate15DaysFromNow,
       formattedDate20DaysFromNow: formattedDate20DaysFromNow,
       createdAt: new Date(), // Store the current date and time as the creation date
@@ -421,7 +512,7 @@ emailContent += `\n    - ${product.txtVal} (x ${product.quantity})`;
     });
 
     const orderData = {
-      status: "Pending delivery",
+      status: "confirmed",
       date: timestamp,
          orderRefId: orderRef.id,
       state: addressData.state,
@@ -444,9 +535,10 @@ emailContent += `\n    - ${product.txtVal} (x ${product.quantity})`;
     // You can now use the documentId for further operations
     updateDoc(doc(txtdb, `userNotifications/${userId}/deliveredOrders/${documentId}`), {
      docRef: docRef.id,
-   });
+   }).then(() => {
+    deletecart();
+   })
   })
- 
 
     console.log("Notification added");
   } catch (error) {
@@ -454,7 +546,6 @@ emailContent += `\n    - ${product.txtVal} (x ${product.quantity})`;
   }
 setShowPopup(false);
 setCompleted(true);
-
 
 })
 .catch((error) => {
@@ -471,7 +562,6 @@ setCompleted(true);
 };
 
 
-
   return (
     <div>
       <UserNav />
@@ -479,8 +569,6 @@ setCompleted(true);
         <div className="cart-container page">
           <h1>My Cart</h1>
 
-
-         
           { isLoading ? (
             <div className="loading-message">
             <div className="loading-card">
@@ -585,9 +673,9 @@ setCompleted(true);
                   <p>Items(+QTY): <span>{totalItems}</span></p>
 
                   <div className="address">
-                  <h6>DELIVERY ADDRESS <NavLink to='/editAddress'>EDIT</NavLink></h6>
+                  <h6>DELIVERY {addressData.addressLine1 || !addressData.addressPhone ? "ADDRESS": "NUMBER"} <NavLink to='/editAddress'>EDIT</NavLink></h6>
 
-                  <p>{addressData.addressLine1}</p>
+                  <p>{addressData.addressLine1 ? addressData.addressLine1 : addressData.addressPhone}</p>
 
                   </div>
 
@@ -638,7 +726,7 @@ setCompleted(true);
                   <li>Shipping included</li>
                   </div>
 
-                  <button className='checkout' onClick={handleCheckout}>Checkout</button>
+                  <button className='checkout'  onClick={check} disabled={completed || isLoading}>Checkout</button>
 
 
                 </div>
@@ -705,6 +793,23 @@ setCompleted(true);
           </div>
           </div>
       )}
+
+      {notCompleted && (
+        <div className='addNumber'>
+
+
+          <div className='checkout-container'>
+
+        <p>Please Add a number as a way to reach you when your order is ready for pickup</p>
+
+       <div className='buttons'>
+            <button onClick={() => setNotCompleted(false)} className="a">Cancel</button>
+            <NavLink onClick={() => setNotCompleted(false)} to='/addNumber' className="a again">Add Number</NavLink>
+        </div>
+
+          </div>
+          </div>
+      )}  
 
 
       </div>

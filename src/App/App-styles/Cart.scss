@@ -263,6 +263,80 @@
         }
     }
 
+    .addNumber{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 10000;
+        background: rgba(0, 0 , 0, 0.5);
+
+        .checkout-container{
+            display: inherit;
+            flex-direction: inherit;
+            justify-content: inherit;
+            align-items: inherit;
+            gap: 1rem;
+            text-align: center;
+            background: white;
+            padding: 5rem 3rem 3rem 3rem;
+            border-radius: 1rem;
+            
+
+            p{
+                font-weight: 500;
+                color: #333;
+                line-height: 1.5;
+                width: 30vw;
+
+                span{
+                    font-weight: 600;
+                }
+            }
+
+            .buttons{
+                // margin-top: 2rem;
+                display: flex;
+                gap: 1rem;
+                margin-top: 2.5rem;
+
+                .a{
+                    padding: 15px 8px;
+                    border-radius: 25px;
+                    border: none;
+                    cursor: pointer;
+                    width: 250px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    transition: .3s ease;
+                    background: #888;
+                    color: white;
+                    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+                    &:hover{
+                        transform: scale(.9)
+                    }
+
+                 
+                }
+
+                a{
+                    text-decoration: none;
+                }
+
+                .again{
+                    background: #FF7E00;
+                }
+            }
+
+          
+    }
+    }
+
     .cart-container{
     width: 90vw;
     margin: 0 auto;
@@ -746,3 +820,30 @@
      
     }
     }
+
+@media screen and (max-width: 750px) {
+.cart-page{
+    .addNumber{
+        .checkout-container{
+            width: 60vw;
+            font-size: 90%;
+            padding: 3rem 3rem 3rem 3rem;
+            gap: 0 !important;
+    
+                p{
+                    width: fit-content;
+                    line-height: 2;
+                }
+
+                .buttons{
+                width: 100%;
+
+                .a{
+                    font-size: .9em;
+                    // padding-inline: ;
+                }
+                }
+        } 
+    }
+}
+}

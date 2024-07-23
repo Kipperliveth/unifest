@@ -25,7 +25,7 @@ import Post from "../Admin/AdminPages/Post";
 import Uploads from "../Admin/AdminPages/Uploads";
 import Onboarding from "../App/App-auth/Onboarding";
 import Address from "../App/App-auth/Address";
-import Orders from "../Admin/AdminPages/Orders";
+// import Orders from "../Admin/AdminPages/Orders";
 import Editaddress from "../App/App-auth/Editaddress";
 import Myorders from "../App/App-pages/Myorders";
 import PasswordReset from "../App/App-auth/PasswordReset";
@@ -33,6 +33,7 @@ import GetHelp from "../App/App-pages/GetHelp";
 import ProfileEdit from "../App/App-auth/ProfileEdit";
 import Adminlog from "../Admin/AdminPages/Adminlog";
 import NotFound from "./NotFound";
+import AddNumber from "../App/App-auth/AddNumber";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -46,7 +47,7 @@ function AnimatedRoutes() {
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
-        <Route path="/shop" element={<Shop />} />
+        <Route path="/merch-preview" element={<Shop />} />
         <Route path="/memories" element={<Masterclass />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -106,6 +107,7 @@ function AnimatedRoutes() {
 
         <Route path='/editAddress' element={<ProtectedRoute><Editaddress /></ProtectedRoute>} />
         <Route path='/editprofile' element={<ProtectedRoute><ProfileEdit /></ProtectedRoute>}/>
+        <Route path='/addNumber' element={<ProtectedRoute><AddNumber /></ProtectedRoute>} />
 
         {/* neutered */}
         {/* <Route path='/profilePic'  element={<ProtectedRoute><ProfilePicture /></ProtectedRoute>}/> */}
@@ -169,7 +171,7 @@ function AnimatedRoutes() {
             </AdminRoute>
           }
         />
-        <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute> } />
+        {/* <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute> } /> */}
         <Route
           path="/adminlog"
           element={

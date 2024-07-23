@@ -243,7 +243,7 @@ function UserNav() {
 
       <div className="cart-cont mobile-view mobile-menu-btn">
 
-        {(unreadCount > 0 && cartItemCount > 0) && (
+        {(unreadCount > 0 || cartItemCount > 0) && (
           <div  onClick={toggleVisibilty} className="mobile-view cartNote cart-total">{unreadCount+cartItemCount} </div>
         )}
 

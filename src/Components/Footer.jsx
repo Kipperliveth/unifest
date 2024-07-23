@@ -13,6 +13,9 @@ function openTawkTo() {
 }
 
 function Footer() {
+  const handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll animation
+  };
   const location = useLocation();
 
   const hiddenPaths = ["/adminHome", "/post", '/uploads', "/orders"]
@@ -21,7 +24,7 @@ function Footer() {
     "/", "/marketplace", "/merch", "/comingsoon", 
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
     "/notifications", "/uploads", "/profilePic",
-    "/myorders", "/gethelp","/adminlog", '/login', '/signup', '/memories', '/about', '/contact', '/reset'
+    "/myorders", "/gethelp","/adminlog", '/login', '/signup', '/memories', '/about', '/contact', '/reset', "/merch-preview",
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);
@@ -32,7 +35,7 @@ function Footer() {
         <div className="footer">
           <div className="footer-top">
 
-            <NavLink to="/" className="logo-container">
+            <NavLink  onClick={handleScrollToTop} className="logo-container">
             <img src={logo} alt="evanis-interior-logo" />
             <div className="logo">
               <p>UNI</p> FEST 
@@ -47,7 +50,7 @@ function Footer() {
                 <NavLink to='#' onClick={openTawkTo}>Get help</NavLink>
               </li>
               <li>
-                <NavLink to='/comingsoon'>Merch</NavLink>
+                <NavLink to='/merch-preview'>Merch</NavLink>
               </li>
               <li>
                 <NavLink to='/contact'>Contact</NavLink>

@@ -138,7 +138,7 @@ useEffect(() => {
             <h1>
               Welcome Back! <PiHandWavingFill className="wave-icon" />
             </h1>
-            <p>Enter login details to proceed to dashboard</p>
+            <p>Enter login details to proceed to store</p>
             <button className="google-login" onClick={signInWithGoogle}>
               <FcGoogle className="google-icon" /> <h3>Log in with Google</h3>
             </button>
@@ -190,7 +190,7 @@ useEffect(() => {
                 <p className="passcheck">{`invalid email or password`}</p>
               )}
 
-              {errorMessage && <p style={{ color: "red", fontWeight: 500}}>{errorMessage}</p>}
+              {errorMessage && <p className="passcheck" style={{ color: "red", fontWeight: 500}}>{errorMessage}</p>}
 
               <p className="sign-up-link">
                 Don't have an account? <NavLink to="/signup">Sign Up</NavLink>

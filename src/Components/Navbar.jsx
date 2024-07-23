@@ -42,7 +42,7 @@ function Navbar({ setShowPopup }) {
     "/", "/marketplace", "/store", "/address", "/comingsoon", "/userDashboard",
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
     "/notifications", "/uploads", "/onboarding", "/profilePic", "/editAddress",
-    "/myorders", "/gethelp", "/adminlog", '/login', '/signup', '/memories', '/about', '/contact','/reset'
+    "/myorders", "/gethelp", "/adminlog", '/login', '/signup', '/memories', '/about', '/contact','/reset', '/merch-preview',
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);
@@ -66,7 +66,7 @@ function Navbar({ setShowPopup }) {
                 className={({ isActive }) =>
                   isActive ? "active-link" : "link"
                 }
-                to="/comingsoon"
+                to="/merch-preview"
               >
                 Merch
               </NavLink>
@@ -140,7 +140,7 @@ function Navbar({ setShowPopup }) {
                 </li>
                   </NavLink>
 
-                  <NavLink to="/comingsoon" onClick={toggleVisibilty}>
+                  <NavLink to="/merch-preview" onClick={toggleVisibilty}>
                 <li>
                     Merch
                 <IoShirtOutline className="icon"/>
