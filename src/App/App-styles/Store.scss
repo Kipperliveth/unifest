@@ -560,6 +560,8 @@
                 .buttons{
                     // margin-top: 2rem;
                     display: flex;
+                    justify-content: center;
+                    align-items: center;
                     gap: 1rem;
                     margin-top: 2.5rem;
     
@@ -707,6 +709,29 @@
                         }
             }
 
+            }
+        }
+
+        .addNumber{
+
+            .checkout-container{
+            width: 80vw;
+            gap: 0;
+            padding: 0;
+            padding: 1.5rem;
+
+            p{
+                width: 90%;
+            }
+
+            .buttons{
+                margin-top: 1rem;
+                width: 100%;
+
+                .a{
+                    width: 100%;
+                }
+            }
             }
         }
     }
