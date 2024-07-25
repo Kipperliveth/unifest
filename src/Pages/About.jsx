@@ -230,7 +230,7 @@ function About({ setShowPopup }) {
             </NavLink>
 
             <NavLink
-              to="/comingsoon"
+              to="/merch-preview"
               className="clm four"
               data-aos="fade-left"
               data-aos-duration="1000"

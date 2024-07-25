@@ -34,6 +34,7 @@ import ProfileEdit from "../App/App-auth/ProfileEdit";
 import Adminlog from "../Admin/AdminPages/Adminlog";
 import NotFound from "./NotFound";
 import AddNumber from "../App/App-auth/AddNumber";
+import Tickets from "../App/App-pages/Tickets";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -55,6 +56,7 @@ function AnimatedRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
+        {/* <Route path="/tickets" element={<Tickets />} /> */}
         
         {/* proteted routes */}
 
@@ -138,19 +140,18 @@ function AnimatedRoutes() {
           }
         />
 
-        <Route
+        {/* <Route
           path="/comingsoon"
           element={
               <MasterclassMain />
           }
-        />
+        /> */}
 
         {/* admin routes */}
         <Route
           path="/adminHome"
           element={
             <AdminRoute>
-              {" "}
               <AdminHome />
             </AdminRoute>
           }

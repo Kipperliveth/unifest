@@ -315,7 +315,7 @@ function Home() {
 
           <div className="shop-items">
             <NavLink
-              to="/comingsoon"
+              to="/merch-preview"
               className="clm one"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -328,7 +328,7 @@ function Home() {
             </NavLink>
 
             <NavLink
-              to="/comingsoon"
+              to="/merch-preview"
               className="clm five"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -341,7 +341,7 @@ function Home() {
             </NavLink>
 
             <NavLink
-              to="/comingsoon"
+              to="/merch-preview"
               className="clm two"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -354,7 +354,7 @@ function Home() {
             </NavLink>
 
             <NavLink
-              to="/comingsoon"
+              to="/merch-preview"
               className="clm three"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -367,7 +367,7 @@ function Home() {
             </NavLink>
 
             <NavLink
-              to="/comingsoon"
+              to="/merch-preview"
               className="clm four"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -386,7 +386,7 @@ function Home() {
             data-aos-duration="800"
             data-aos-once="true"
           >
-            <NavLink to='/comingsoon' className='shop-span'>Get the Merch</NavLink>
+            <NavLink to='/merch-preview' className='shop-span'>Get the Merch</NavLink>
             <FaArrowRightLong className="ctaArrow special-icon" />
           </button>
         </div>

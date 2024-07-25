@@ -45,7 +45,7 @@ function Store() {
       const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
       
 
-      if(product.sizes.length > 0 && product.color.length > 0){
+      if(product.sizes.length > 0 || product.color.length > 0){
         console.log("testing")
         if (!selectedColor && product.color.length > 0) {
           handleProductClick(product)
@@ -239,16 +239,16 @@ function Store() {
       const userId = currentUser.uid;
       const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
 
-      if(selectedProductData.color.length > 1 &&  selectedProductData.sizes.length > 1){
+      if(selectedProductData.color.length > 0 ||  selectedProductData.sizes.length > 0){
 
-        if (!selectedColor && selectedProductData.color.length > 1) {
+        if (!selectedColor && selectedProductData.color.length > 0) {
           setPopupMessage("Please choose a color");
             setVariationPopup(true);
           setTimeout(() => setVariationPopup(false), 3000);
           return;
         }
     
-        if (!selectedSize && selectedProductData.sizes.length > 1) {
+        if (!selectedSize && selectedProductData.sizes.length > 0) {
           setPopupMessage("Please choose a size");
           setVariationPopup(true);
           setTimeout(() => setVariationPopup(false), 3000);
@@ -322,16 +322,16 @@ function Store() {
       const userId = currentUser.uid;
       const productRef = collection(txtdb, `userCart/${userId}/products`); // User-specific cart collection
     
-      if(selectedProductData.color.length > 1 &&  selectedProductData.sizes.length > 1){
+     if(selectedProductData.color.length > 0 ||  selectedProductData.sizes.length > 0){
 
-        if (!selectedColor && selectedProductData.color.length > 1) {
+        if (!selectedColor && selectedProductData.color.length > 0) {
           setPopupMessage("Please choose a color");
             setVariationPopup(true);
           setTimeout(() => setVariationPopup(false), 3000);
           return;
         }
     
-        if (!selectedSize && selectedProductData.sizes.length > 1) {
+        if (!selectedSize && selectedProductData.sizes.length > 0) {
           setPopupMessage("Please choose a size");
           setVariationPopup(true);
           setTimeout(() => setVariationPopup(false), 3000);
@@ -359,9 +359,6 @@ function Store() {
           setTimeout(() => {
             setShowPopup(false);
           }, 3000); 
-        })
-        .finally(() =>{
-          navigate('/cart')
         })
         .catch((error) => {
           console.error("Error adding product:", error);
