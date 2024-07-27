@@ -11,7 +11,7 @@ import { FaCheck } from "react-icons/fa";
 import { ImSpinner8 } from "react-icons/im";
 import emailjs from 'emailjs-com';
 
-emailjs.init("I9WFMLdV0i4NoNHmd");
+// emailjs.init("I9WFMLdV0i4NoNHmd");
 
 
 function Orders() {
@@ -264,20 +264,20 @@ function Orders() {
           const date = new Date();
           const formattedDate = date.toISOString().split('T')[0];
           const timestamp = formattedDate;
-          emailjs.send("service_1i849ri", "template_mwys2kw", {
-            to_email: selectedOrder.userEmail,
-            userEmail: selectedOrder.userEmail,
-            message: emailContent,
-            orderRefId: selectedOrderId,
-            city: selectedOrder.city,
-            state: selectedOrder.state,
-            totalPrice: selectedOrder.totalPrice,
-            deliveryFee: selectedOrder.deliveryFee,
-            username: selectedOrder.username,
-            timestamp: timestamp,
-            from_name: "UNIFEST Merch"
-            // other variables you want to include in your email template
-          })
+          // emailjs.send("service_1i849ri", "template_mwys2kw", {
+          //   to_email: selectedOrder.userEmail,
+          //   userEmail: selectedOrder.userEmail,
+          //   message: emailContent,
+          //   orderRefId: selectedOrderId,
+          //   city: selectedOrder.city,
+          //   state: selectedOrder.state,
+          //   totalPrice: selectedOrder.totalPrice,
+          //   deliveryFee: selectedOrder.deliveryFee,
+          //   username: selectedOrder.username,
+          //   timestamp: timestamp,
+          //   from_name: "UNIFEST Merch"
+          //   // other variables you want to include in your email template
+          // })
 
         })
       })    
