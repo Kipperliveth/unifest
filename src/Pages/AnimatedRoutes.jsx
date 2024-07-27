@@ -56,7 +56,7 @@ function AnimatedRoutes() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/tickets" element={<Tickets />} /> */}
+        <Route path="/tickets" element={<Tickets />} />
         
         {/* proteted routes */}
 

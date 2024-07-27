@@ -1,13 +1,31 @@
 import React, {useState} from 'react'
 import NavCountdown from '../../Components/NavCountdown';
+import { IoTicketOutline } from "react-icons/io5";
+
 
 function Tickets() {
+
     const [selectedPackage, setSelectedPackage] = useState("");
+    const [regulardetails, setRegularDetails] = useState(false)
+    const [vipdetails, setVipdetails] = useState(true)
+    const [vvipdetails, setVvipdetails] = useState("")
 
     const handlePackageClick = (value) => {
       setSelectedPackage(value);
+
+      if(value === "Regular"){
+        setRegularDetails(true);
+      } else if (value === "Vip"){
+        console.log("Vip working")
+        setVipdetails(true);
+      } else if (value === "VVIP"){
+        console.log("Vvip working")
+        setVvipdetails(true);
+
+      }
       console.log(value)
     };
+
 
   return (
     <div className="pagewidth">
@@ -26,28 +44,28 @@ function Tickets() {
           className="form-right"
         >
             <div className="head">
-            <h2>Buy Tickets</h2>
+            <h2>Buy Tickets <IoTicketOutline className="ticket-icon"/></h2>
             <p>Please Select the type of ticket you wish to purchase</p>
             </div>
 
             <div className="package-container">
             <div
-                className={`package ${selectedPackage === '1' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('1')}
+                className={`package ${selectedPackage === 'Regular' ? 'selected' : ''}`}
+                onClick={() => handlePackageClick('Regular')}
             >
-                1
+               Regular
             </div>
             <div
-                className={`package ${selectedPackage === '2' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('2')}
+                className={`package ${selectedPackage === 'Vip' ? 'selected' : ''}`}
+                onClick={() => handlePackageClick('Vip')}
             >
-                2
+               VIP
             </div>
             <div
-                className={`package ${selectedPackage === '3' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('3')}
+                className={`package ${selectedPackage === 'VVIP' ? 'selected' : ''}`}
+                onClick={() => handlePackageClick('VVIP')}
             >
-                3
+                VVIP
             </div>
     </div>
             
@@ -92,8 +110,79 @@ function Tickets() {
 
       </div>
 
-     {/* 
+      {regulardetails && (
+      <div className='checkout-popup'>
 
+
+        <div className='checkout-container tickets'>
+
+      <h1>Regular Tickets -   &#8358;5,000 (Early Bird)</h1>
+
+        <ul>
+        <li>Access To The Festival</li>
+          <li>Access To Vendors At the Festival Venue</li>
+          <li>Participation in festival games and activities</li>
+          <li>You May Leave And Re-Enter The Festival At Any Time</li>
+          <li>Opportunity to win prizes through festival contests and raffles</li>
+        </ul>
+
+     <div className='buttons tickets'>
+          <button onClick={() => setRegularDetails(false)} className="a"> Close</button>
+      </div>
+
+        </div>
+        </div>
+    )}
+
+       {vvipdetails && (
+        <div className='checkout-popup'>
+  
+  
+          <div className='checkout-container tickets'>
+  
+          <h1>VVIP Tickets -   &#8358;200,000 (5 Persons)</h1>
+  
+        
+          <ul>
+            <li>Access To The Festival</li>
+            <li>Access To Vendors At the Festival Venue</li>
+            <li>You May Leave And Re-Enter The Festival At Any Time</li>
+          </ul>
+        
+  
+       <div className='buttons tickets'>
+            <button onClick={() => setVvipdetails(false)} className="a"> Close</button>
+        </div>
+  
+          </div>
+          </div>
+      )}
+
+    {vipdetails && (  
+      <div className='checkout-popup'>
+
+
+        <div className='checkout-container tickets'>
+
+      <h1>VIP Tickets -   &#8358;90,000 (2 Persons)</h1>
+      
+        <ul>
+          <li>Access To The Festival</li>
+          <li>Access To Vendors At the Festival Venue</li>
+          <li>Participation in festival games and activities</li>
+          <li>You May Leave And Re-Enter The Festival At Any Time</li>
+          <li>Opportunity to win prizes through festival contests and raffles</li>
+        </ul>
+
+     <div className='buttons tickets'>
+          <button onClick={() => setVipdetails(false)} className="a"> Close</button>
+      </div>
+
+        </div>
+        </div>
+    )}
+
+     {/* 
 
       {showPopup && (
       <div className="popup">
@@ -113,36 +202,7 @@ function Tickets() {
 
 
       </div>
-    )}
-
-    {completed && (
-      <div className='checkout-popup'>
-
-
-        <div className='checkout-container'>
-
-        <div className="checkbox-wrapper">
-        <input defaultChecked={false} type="checkbox" />
-        <svg viewBox="0 0 35.6 35.6">
-          <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
-          <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
-          <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
-        </svg>
-              </div>
-
-      <h1>all done!</h1>
-
-
-      <p>Your message has been sent succesfully! <br /> We will get in touch soon.</p>
-
-     <div className='buttons'>
-          <button onClick={() => setCompleted(false)} className="a"> Close</button>
-      </div>
-
-        </div>
-        </div>
-    )}
-
+    )} 
     {notCompleted && (
       <div className='checkout-popup'>
 
@@ -164,7 +224,9 @@ function Tickets() {
 
         </div>
         </div>
-    )} */}
+    )} 
+      */}
+
 
     </div>
   </div>

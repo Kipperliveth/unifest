@@ -157,16 +157,33 @@
         background: rgba(0, 0 , 0, 0.5);
 
 
-        .checkout-container{
+        .checkout-container.tickets{
                 display: inherit;
                 flex-direction: inherit;
-                justify-content: inherit;
+                // justify-content: inherit;
                 align-items: inherit;
                 gap: 1.5rem;
-                text-align: center;
+                // text-align: center;
                 background: white;
-                padding: 5rem 3rem 3rem 3rem;
+                // padding: 5rem 3rem 3rem 3rem;
                 border-radius: 1rem;
+                position: relative;
+
+                h1{
+                  display: flex;
+                  align-self: center;
+                }
+
+                ul{
+                position: relative;
+                  line-height: 2;
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: flex-start;
+                  font-weight: 500;
+                  margin-left: 7%;
+                }
                 
 
                 p{
@@ -179,7 +196,7 @@
                     }
                 }
 
-                .buttons{
+                .buttons.tickets{
                     // margin-top: 2rem;
                     display: flex;
                     flex-direction: column;
@@ -196,7 +213,7 @@
                         font-weight: 600;
                         text-decoration: none;
                         transition: .3s ease;
-                        background: #228B22;
+                        background: #FF7E00;
                         color: white;
                         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
@@ -329,6 +346,16 @@
                 align-items: center;
                 gap: 1rem;
                 margin-bottom: 1.5rem;
+
+                h2{
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                }
+
+                .ticket-icon{
+                  color: #FF7E00;
+                }
             }
 
             .package-container{
@@ -342,13 +369,17 @@
                     // margin: 10px;
                     border: 2px solid #ccc;
                     cursor: pointer;
-                    transition: background-color 0.3s, color 0.3s;
+                    transition: background 0.3s, color 0.3s;
+                    border-radius: 5px;
                   }
                   
                   .package.selected {
-                    background-color: #4CAF50;
+                    // background-color: #4CAF50;
+                    background: #FF7E00;
+                    background: linear-gradient(to right, hsl(30, 100%, 55%), #FF7E00);
                     color: white;
-                    border-color: #4CAF50;
+                    border-color: #FF7E00;
+                    font-weight: 500;
                   }
             }
 
@@ -480,9 +511,6 @@
             }
         }
     }
-
-
-  
 
 }
 
