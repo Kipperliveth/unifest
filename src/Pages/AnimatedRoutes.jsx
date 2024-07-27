@@ -112,7 +112,7 @@ function AnimatedRoutes() {
         <Route path='/addNumber' element={<ProtectedRoute><AddNumber /></ProtectedRoute>} />
 
         {/* neutered */}
-        <Route path='/profilePic'  element={<ProtectedRoute><ProfilePicture /></ProtectedRoute>}/>
+        {/* <Route path='/profilePic'  element={<ProtectedRoute><ProfilePicture /></ProtectedRoute>}/> */}
         {/* <Route path="/userDashboard" element={ <UserDashboard />} /> */}
 
         <Route
