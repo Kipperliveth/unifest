@@ -25,7 +25,7 @@ import Post from "../Admin/AdminPages/Post";
 import Uploads from "../Admin/AdminPages/Uploads";
 import Onboarding from "../App/App-auth/Onboarding";
 import Address from "../App/App-auth/Address";
-// import Orders from "../Admin/AdminPages/Orders";
+import Orders from "../Admin/AdminPages/Orders";
 import Editaddress from "../App/App-auth/Editaddress";
 import Myorders from "../App/App-pages/Myorders";
 import PasswordReset from "../App/App-auth/PasswordReset";
@@ -112,7 +112,7 @@ function AnimatedRoutes() {
         <Route path='/addNumber' element={<ProtectedRoute><AddNumber /></ProtectedRoute>} />
 
         {/* neutered */}
-        {/* <Route path='/profilePic'  element={<ProtectedRoute><ProfilePicture /></ProtectedRoute>}/> */}
+        <Route path='/profilePic'  element={<ProtectedRoute><ProfilePicture /></ProtectedRoute>}/>
         {/* <Route path="/userDashboard" element={ <UserDashboard />} /> */}
 
         <Route
@@ -172,7 +172,7 @@ function AnimatedRoutes() {
             </AdminRoute>
           }
         />
-        {/* <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute> } /> */}
+        <Route path="/orders" element={<AdminRoute><Orders /></AdminRoute> } />
         <Route
           path="/adminlog"
           element={
