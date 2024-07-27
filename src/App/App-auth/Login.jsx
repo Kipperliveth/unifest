@@ -27,7 +27,7 @@ function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
 
-  const allowedUid = "CqhQfMc1LZdNCUgixbXpYT0SGaG2";
+  const allowedUid = "ADQf0ZCM8rRHt99PV4IG8vcYMxr2";
   const login = async (event) => {
     event.preventDefault();
     setIsLoggedIn(true);
