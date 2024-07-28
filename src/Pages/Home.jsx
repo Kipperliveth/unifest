@@ -61,7 +61,6 @@ function Home() {
       setStatus('Subscription failed. Please try again.');
       setShowPopup(false);
       setNotCompleted(true);
-      
     }
   };
 
