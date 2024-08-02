@@ -183,7 +183,8 @@ function AnimatedRoutes() {
         />
         <Route path='/uploads' element={<AdminRoute><Uploads /></AdminRoute>}/>
         {/* <Route path="/uploads" element={<Uploads />} />
-        <Route path="/orders" element={<Orders />} /> */}
+        */}
+        {/* <Route path="/post" element={<Post />} />  */}
 
       </Routes>
     </AnimatePresence>

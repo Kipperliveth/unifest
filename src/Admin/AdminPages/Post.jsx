@@ -183,7 +183,6 @@ function Post() {
               value={sizes}
               onChange={handleSizing}
               multiple
-              required
             >
               <option value="Small">Small</option>
               <option value="Medium">Medium</option>
@@ -197,7 +196,6 @@ function Post() {
               value={color}
               onChange={handleColor}
               multiple
-              required
             >
               <option value="White">White</option>
               <option value="Black">Black</option>

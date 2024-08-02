@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { PiReadCvLogoFill } from "react-icons/pi";
 import { ImSpinner8 } from "react-icons/im";
 import { PuffLoader } from "react-spinners";
+import {txtdb} from "../../firebase-config"
+import { collection, addDoc } from "firebase/firestore";
+
 
 function SignUp() {
   const navigate = useNavigate();
@@ -18,6 +21,22 @@ function SignUp() {
   const [error, setError] = useState("");
   //
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  //subs
+  const [status, setStatus] = useState('');
+
+  const handleSubscribe = async (event) => {
+    setStatus('Submitting...');
+    
+    try {
+      // Add the email to the Firestore database
+      await addDoc(collection(txtdb, 'subscribers'), { registerEmail });
+      console.log('Subscription successful!');
+    } catch (error) {
+      console.error('Error adding email:', error);
+      setStatus('Subscription failed. Please try again.');
+    }
+  };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -50,6 +69,7 @@ function SignUp() {
           confirmPassword
         );
         console.log(user);
+        handleSubscribe();
         // const userCredentials = user.user
         // await sendEmailVerification(userCredentials);        
         navigate("/onboarding");

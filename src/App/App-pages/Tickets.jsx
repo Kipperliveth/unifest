@@ -4,6 +4,7 @@ import { IoTicketOutline } from "react-icons/io5";
 import {collection, addDoc, updateDoc} from "firebase/firestore";
 import { txtdb } from '../../firebase-config';
 import { useNavigate } from "react-router-dom";
+import emailjs from 'emailjs-com';
 
 
 
@@ -19,6 +20,18 @@ function Tickets() {
     const [email, setEmail] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
     const [gender, setGender] = useState("")
+
+    //subs
+    const handleSubs = async (event) => {
+      
+      try {
+        // Add the email to the Firestore database
+        await addDoc(collection(txtdb, 'subscribers'), { email });
+        console.log('Subscription successful!');
+      } catch (error) {
+        console.error('Error adding email:', error);
+      }
+    };
 
     // pop up spinner
   const [showPopup, setShowPopup] = useState(false);
@@ -66,6 +79,7 @@ const navigate = useNavigate();
       setShowPopup(true)
       const totalAmount = quantities[selectedPackage] * prices[selectedPackage];
       try {
+        emailjs.init("FFQYAzaYAjzv1DFb9")
         const docRef =  await addDoc(collection(txtdb, 'tickets'), {
           firstName,
           lastName,
@@ -81,7 +95,27 @@ const navigate = useNavigate();
         });
         setTicketId(docRef.id);
         console.log(ticketId)
-           // Clear the input fields
+        console.log('Ticket purchase successful!');
+         emailjs.send("service_mpundp7", "template_q9bpwir", {
+          to_email: email,
+          userEmail: email,
+          TicketId: docRef.id,
+          totalPrice: totalAmount,
+          to_name: firstName,
+          from_name: "UNIFEST Tickets",
+          reply_to: "noreply",
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          phoneNumber: phoneNumber,
+          gender: gender,
+          selectedPackage: selectedPackage,
+          quantity: quantities[selectedPackage],
+          totalAmount: totalAmount,
+          // other variables you want to include in your email template
+        }).then((response) => {
+          console.log('Email sent successfully:', response);
+              // Clear the input fields
         setFirstName("");
         setLastName("");
         setEmail("");
@@ -93,7 +127,8 @@ const navigate = useNavigate();
           VIP: 1,
           VVIP: 1,
         });
-        console.log('Ticket purchase successful!');
+        })
+        handleSubs();
         setShowPopup(false)
         setCompleted(true)
       } catch (error) {
