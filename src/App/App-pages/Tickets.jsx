@@ -15,6 +15,7 @@ function Tickets() {
     const [vipdetails, setVipdetails] = useState(false)
     const [vvipdetails, setVvipdetails] = useState(false)
 
+
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
     const [email, setEmail] = useState("")
@@ -47,7 +48,7 @@ const navigate = useNavigate();
     });
 
     const prices = {
-      Regular: 5000,
+      Regular: 4000,
       Vip: 90000,
       VVIP: 200000,
     };
@@ -73,9 +74,87 @@ const navigate = useNavigate();
     };
 
 
-    //
-    const handleSubmit = async (event) => {
+    //check
+  const [errorMessage, setErrorMessage] = useState(''); // State for error message
+
+
+    const check = (event) => {
       event.preventDefault();
+   if(!selectedPackage){
+    setErrorMessage('Please select a ticket package');
+    setTimeout(() => {
+      setErrorMessage('');
+    }, 5000);
+    return;
+   }
+   if(!firstName || !lastName || !email || !phoneNumber || !gender){
+    setErrorMessage('Please fill in all fields');
+    setTimeout(() => {
+      setErrorMessage('');
+    }, 5000);
+    return;
+   }
+      handlePaystackPayment()
+    };
+    
+
+    const copyToClipboard = () => {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ticketId)
+          .then(() => {
+            setCopyButtonText("Copied");
+          })
+          .catch((error) => {
+            console.error('Error copying to clipboard:', error);
+            alert('Failed to copy Ticket ID. Please try again.');
+          });
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = ticketId;
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+    
+        try {
+          const successful = document.execCommand('copy');
+          if (successful) {
+            setCopyButtonText("Copied");
+          } else {
+            alert('Failed to copy Ticket ID. Please try again.');
+          }
+        } catch (error) {
+          console.error('Error copying to clipboard:', error);
+          alert('Failed to copy Ticket ID. Please try again.');
+        }
+    
+        document.body.removeChild(textArea);
+      }
+    };
+
+
+    const Amount = quantities[selectedPackage] * prices[selectedPackage];
+
+    const handlePaystackPayment = async () => {
+      const paystackPublicKey = "pk_live_3247756c59ed492b8f73ac45f270ef9949bb87e1";
+    
+      const handler = window.PaystackPop.setup({
+        key: paystackPublicKey,
+        email: email, 
+        amount: Amount * 100, 
+        currency: 'NGN', 
+        callback: function(response) {
+          handleSubmit(response.reference);
+        },
+        onClose: function() {
+          console.warn('Payment was not completed')
+        }
+      });
+    
+      handler.openIframe();
+    };
+
+    //
+    const handleSubmit = async (reference) => {
       setShowPopup(true)
       const totalAmount = quantities[selectedPackage] * prices[selectedPackage];
       try {
@@ -86,6 +165,7 @@ const navigate = useNavigate();
           email,
           phoneNumber,
           gender,
+          reference: reference,
           package: selectedPackage,
           quantity: quantities[selectedPackage],
           totalAmount,
@@ -134,39 +214,6 @@ const navigate = useNavigate();
       } catch (error) {
         console.error('Error adding ticket:', error);
         alert('Error purchasing ticket. Please try again.');
-      }
-    };
-
-    const copyToClipboard = () => {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(ticketId)
-          .then(() => {
-            setCopyButtonText("Copied");
-          })
-          .catch((error) => {
-            console.error('Error copying to clipboard:', error);
-            alert('Failed to copy Ticket ID. Please try again.');
-          });
-      } else {
-        const textArea = document.createElement("textarea");
-        textArea.value = ticketId;
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-    
-        try {
-          const successful = document.execCommand('copy');
-          if (successful) {
-            setCopyButtonText("Copied");
-          } else {
-            alert('Failed to copy Ticket ID. Please try again.');
-          }
-        } catch (error) {
-          console.error('Error copying to clipboard:', error);
-          alert('Failed to copy Ticket ID. Please try again.');
-        }
-    
-        document.body.removeChild(textArea);
       }
     };
     
@@ -231,7 +278,7 @@ const navigate = useNavigate();
             </div>
             </div>
             
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={check}>
 
             <div className="top">
               <input
@@ -271,7 +318,7 @@ const navigate = useNavigate();
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)} />
 
-              <label for="gender">Gender</label>
+              <label htmlFor="gender">Gender</label>
              <select 
               id="gender"
               name="gender"
@@ -292,11 +339,19 @@ const navigate = useNavigate();
 
             </div>
 
-            <button type="submit" disabled={!selectedPackage}>
+            <button type="submit" >
             <h3>Checkout {selectedPackage && ( <div>&#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}</div> )}
             </h3>
  
             </button>
+
+                {errorMessage && (
+            <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
+              {errorMessage}
+            </p>
+            )}
+
+
 
             
           </form>
@@ -312,7 +367,7 @@ const navigate = useNavigate();
 
         <div className='checkout-container tickets'>
 
-      <h1>Regular Tickets -   &#8358;5,000 (Early Bird)</h1>
+      <h1>Regular Tickets -   &#8358;4,000 (Early Bird)</h1>
 
         <ul>
         <li>Access To The Festival</li>
