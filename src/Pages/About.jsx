@@ -262,7 +262,7 @@ function About({ setShowPopup }) {
             data-aos-delay="600"
             data-aos-once="true"
           >
-            <NavLink >Get Tickets</NavLink>
+            <NavLink  to='/tickets' >Get Tickets</NavLink>
             <NavLink to='/contact'>Contact Us</NavLink>
           </div>
         </section>

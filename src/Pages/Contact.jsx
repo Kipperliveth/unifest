@@ -192,7 +192,7 @@ function Contact() {
                     How can i purchase tickets?  
                   </label>
                   <div className="acc-content">
-                  Tickets can be purchased online through our official website or at the venue on the day of the event. Get tickets now <NavLink>here</NavLink>
+                  Tickets can be purchased online through our official website or at the venue on the day of the event. Get tickets now <NavLink to='/tickets'>here</NavLink>
                   </div>
                 </div>
 

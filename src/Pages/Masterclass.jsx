@@ -218,7 +218,7 @@ function Masterclass() {
             data-aos-delay="300"
             data-aos-once="true"
           >
-            <NavLink className="about-page-cta">
+            <NavLink to='/tickets' className="about-page-cta">
               <div>UNIFEST 2024 Tickets</div>
               <IoTicketOutline className="cta-insta" />
             </NavLink>

@@ -112,7 +112,7 @@ function Navbar({ setShowPopup }) {
 
           <div className="app">
 
-            <NavLink onClick={() => setShowPopup(true)} className="login-btn">
+            <NavLink to='/tickets' className="login-btn">
               Tickets <IoTicketOutline className="logo-icon"/>
             </NavLink>
 

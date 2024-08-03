@@ -261,7 +261,7 @@ function Home() {
                     <div className="this-year-span">
                       <h3> Be Part of Unifest 2024!</h3>
                       <p>This year, Unifest is bringing the heat with acts that will blow the roof off! Surprise artists, rising stars, and local legends are all set to create a once-in-a-lifetime Vybe with you and your crew.</p>
-                    <NavLink>Buy Your Tickets Now</NavLink>
+                    <NavLink to='/tickets'>Buy Your Tickets Now</NavLink>
 
                       </div></div>
                 </div>
@@ -295,7 +295,7 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <NavLink className='tickets-span'>Get Tickets</NavLink>
+                <NavLink to='/tickets' className='tickets-span'>Get Tickets</NavLink>
               </button>
             </div>
           </div>
