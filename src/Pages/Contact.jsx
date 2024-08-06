@@ -220,7 +220,7 @@ function Contact() {
                 >
                   <input type="radio" id="three" name="item" />
                   <label htmlFor="three" className="title">
-                   What is the Concert data and time?
+                   What is the Concert date and time?
                   </label>
                   <div className="acc-content">
                    Unifest will take place on the 14th of sepetember at 12:00 PM
