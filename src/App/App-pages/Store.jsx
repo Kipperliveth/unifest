@@ -521,7 +521,12 @@ const [variationPopup, setVariationPopup] = useState(false)
                       {isInCart ? (
                         <button onClick={() => removeFromCart(product.id)}>Remove</button>
                       ) : (
-                        <button onClick={() => addToCart(product)}>Add to Cart</button>
+                        product.txtVal === "Vybez Universe X Unifest Shorts" ? (
+                          // Handle "Vybez Universe X Unifest Shorts" case (optional)
+                          <button style={{ backgroundColor: 'grey' }}>Sold Out</button>
+                        ) : (
+                          <button onClick={() => addToCart(product)}>Add to Cart</button>
+                        )
                       )}
                     </span>
                   </div>
@@ -593,16 +598,27 @@ const [variationPopup, setVariationPopup] = useState(false)
               <div className="buy-now">
                
 
-                {cartItems.some(item => item.productId === selectedProductData.id) ? (
-                        <button onClick={() => gotocart()}>Buy now</button>
-                      ) : (
-                        <button  onClick={() => buynow(selectedProductData)}>Buy Now</button>
-                      )}
+              {
+                        selectedProductData.txtVal === "Vybez Universe X Unifest Shorts" ? (
+                          <button style={{ backgroundColor: 'grey', color: "white" }}>Sold Out</button>
+                        ) : (
+                          cartItems.some(item => item.productId === selectedProductData.id) ? (
+                            <button onClick={() => gotocart()}>Buy now</button>
+                          ) : (
+                            <button  onClick={() => buynow(selectedProductData)}>Buy Now</button>
+                          )
+                        )
+                      }
 
-                {cartItems.some(item => item.productId === selectedProductData.id) ? (
+             
+                      {cartItems.some(item => item.productId === selectedProductData.id) ? (
                         <button onClick={() => removeFromCart(selectedProductData.id)}>Remove from cart</button>
                       ) : (
-                        <button onClick={() => popupcart(selectedProductData)}>Add to Cart</button>
+                        selectedProductData.txtVal === "Vybez Universe X Unifest Shorts" ? (
+                          <button style={{ backgroundColor: 'grey', color: "white" }}>Sold Out</button>
+                        ) : (
+                          <button onClick={() => popupcart(selectedProductData)}>Add to Cart</button>
+                        )
                       )}
               </div>
 

@@ -2,14 +2,10 @@ import { useState, useEffect } from "react";
 import React from "react";
 // import UserNav from "../App-components/UserNav";
 // import { storage } from "../../firebase-config";
-import { ref, listAll, getDownloadURL } from "firebase/storage";
 import {
-  addDoc,
   collection,
   getDocs,
-  deleteDoc,
-  doc, updateDoc,
-  setDoc, onSnapshot
+ onSnapshot
 } from "firebase/firestore";
 import { CiSearch } from "react-icons/ci";
 import { MdCancel } from "react-icons/md";
@@ -275,11 +271,19 @@ const [variationPopup, setVariationPopup] = useState(false)
                       <p className="product-price">
                         &#8358;&nbsp;{parseFloat(product.price).toLocaleString('en-US')}
                       </p>
+                  
+
                       {isInCart ? (
                         <button onClick={() => removeFromCart(product.id)}>Remove</button>
                       ) : (
-                        <button onClick={() => addToCart(product)}>Add to Cart</button>
+                        product.txtVal === "Vybez Universe X Unifest Shorts" ? (
+                          // Handle "Vybez Universe X Unifest Shorts" case (optional)
+                          <button style={{ backgroundColor: 'grey' }}>Sold Out</button>
+                        ) : (
+                          <button onClick={() => addToCart(product)}>Add to Cart</button>
+                        )
                       )}
+
                     </span>
                   </div>
                 </div>
@@ -349,17 +353,26 @@ const [variationPopup, setVariationPopup] = useState(false)
               {/* ... other product details ... */}
               <div className="buy-now">
                
-
-                {cartItems.some(item => item.productId === selectedProductData.id) ? (
-                        <button onClick={() => gotocart()}>Buy now</button>
-                      ) : (
-                        <button  onClick={() => buynow(selectedProductData)}>Buy Now</button>
-                      )}
+                      {
+                        selectedProductData.txtVal === "Vybez Universe X Unifest Shorts" ? (
+                          <button style={{ backgroundColor: 'grey', color: "white" }}>Sold Out</button>
+                        ) : (
+                          cartItems.some(item => item.productId === selectedProductData.id) ? (
+                            <button onClick={() => gotocart()}>Buy now</button>
+                          ) : (
+                            <button  onClick={() => buynow(selectedProductData)}>Buy Now</button>
+                          )
+                        )
+                      }
 
                 {cartItems.some(item => item.productId === selectedProductData.id) ? (
                         <button onClick={() => removeFromCart(selectedProductData.id)}>Remove from cart</button>
                       ) : (
-                        <button onClick={() => popupcart(selectedProductData)}>Add to Cart</button>
+                        selectedProductData.txtVal === "Vybez Universe X Unifest Shorts" ? (
+                          <button style={{ backgroundColor: 'grey', color: "white" }}>Sold Out</button>
+                        ) : (
+                          <button onClick={() => popupcart(selectedProductData)}>Add to Cart</button>
+                        )
                       )}
               </div>
 
