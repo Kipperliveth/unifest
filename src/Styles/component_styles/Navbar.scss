@@ -29,7 +29,6 @@
         display: none;
     }
 
-
     .active-link{
 
         &::after{
@@ -47,7 +46,6 @@
             opacity: 1;
             transition: 0.3s ease-in-out, visibility ease-in;
         }
-
 
     }
 
