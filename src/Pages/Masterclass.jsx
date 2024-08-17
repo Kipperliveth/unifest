@@ -1,20 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { BsBoxArrowUpRight } from "react-icons/bs";
-import { LiaChalkboardTeacherSolid } from "react-icons/lia";
-import { FaPeopleArrows, FaHelmetSafety } from "react-icons/fa6";
-import { FaHandHolding } from "react-icons/fa";
-import { TbBrandZoom, TbStretching2 } from "react-icons/tb";
-import { TbTimeDuration30 } from "react-icons/tb";
-import {
-  MdOutlineAttachMoney,
-  MdSchedule,
-  MdOutlineAssessment,
-  MdOutlineConnectWithoutContact,
-} from "react-icons/md";
-import { GrUserExpert } from "react-icons/gr";
-import { BiSupport } from "react-icons/bi";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.js";

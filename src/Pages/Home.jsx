@@ -24,6 +24,7 @@ function Home() {
   const [showPopup, setShowPopup] = useState(false);
   const [completed, setCompleted] = useState(false)
   const [notCompleted, setNotCompleted] = useState(false)
+  const [applicationClosed, setApplicationClosed] = useState(false)
   
   useEffect(() => {
     document.title = "UNIFEST - The Biggest Party On campus"
@@ -97,7 +98,7 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVflDw-JyfDIA4ZcbTKriVqV945xzHbNIlPO6hV0x5NP4GIQ/viewform?usp=sf_link" to='/login' className='sspan'>Become a perfomer</a>
+                <NavLink onClick={() => setApplicationClosed(true)} className='sspan'>Become a perfomer</NavLink>
               </button>
             </div>
           </div>
@@ -253,7 +254,7 @@ function Home() {
                     <div className="this-year-span">
                       <h3>Fresh performances from amazing new talents</h3>
                       <p>Witness & Be Part Of The Vybe! Experience incredible performances and get your chance to showcase too!</p>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVflDw-JyfDIA4ZcbTKriVqV945xzHbNIlPO6hV0x5NP4GIQ/viewform?usp=sf_link">Become a performer</a>
+                    <NavLink onClick={() => setApplicationClosed(true)}>Become a performer</NavLink>
                         </div></div>
 
                   <div className="block three">
@@ -524,6 +525,23 @@ function Home() {
           </div>
           </div>
       )}
+
+{applicationClosed && (
+        <div className='addNumber'>
+
+
+          <div className='checkout-container'>
+
+        <p>performance applications are currently closed</p>
+
+       <div className='buttons'>
+            <button onClick={() => setApplicationClosed(false)} className="a">close</button>
+            <NavLink onClick={() => setApplicationClosed(false)} to='/tickets' className="a again">Get Tickets</NavLink>
+        </div>
+
+          </div>
+          </div>
+      )}  
 
 
       </div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FaInstagram } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import aboutImage from "../stock/backgrounds/raygen.jpg";
 import reverse from "../stock/backgrounds/reverse.jpg";
@@ -15,6 +14,7 @@ import { IoCameraOutline } from "react-icons/io5";
 
 function About({ setShowPopup }) {
   const [hasMounted, setHasMounted] = useState(false);
+  const [applicationClosed, setApplicationClosed] = useState(false)
 
   useEffect(() => {
     document.title = "About-Unifest";
@@ -177,8 +177,8 @@ function About({ setShowPopup }) {
           </span>
 
           <div className="shop-items">
-            <a
-             href="https://docs.google.com/forms/d/e/1FAIpQLSfVflDw-JyfDIA4ZcbTKriVqV945xzHbNIlPO6hV0x5NP4GIQ/viewform?usp=sf_link"
+            <NavLink
+           onClick={() => setApplicationClosed(true)}
               className="clm one"
               data-aos="fade-left"
               data-aos-duration="1000"
@@ -188,7 +188,7 @@ function About({ setShowPopup }) {
               <h2 className="top-desc">Become a Perfomer</h2>
 
               <h3 className="bottom-desc">Fill the form here</h3>
-            </a>
+            </NavLink>
 
             <NavLink
               onClick={scrollToBottom}
@@ -266,6 +266,23 @@ function About({ setShowPopup }) {
             <NavLink to='/contact'>Contact Us</NavLink>
           </div>
         </section>
+
+        {applicationClosed && (
+        <div className='addNumber'>
+
+
+          <div className='checkout-container'>
+
+        <p>performance applications are currently closed</p>
+
+       <div className='buttons'>
+            <button onClick={() => setApplicationClosed(false)} className="a">close</button>
+            <NavLink onClick={() => setApplicationClosed(false)} to='/tickets' className="a again">Get Tickets</NavLink>
+        </div>
+
+          </div>
+          </div>
+      )}  
 
       </div>
     </div>
