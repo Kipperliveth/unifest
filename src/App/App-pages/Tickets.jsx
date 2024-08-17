@@ -135,7 +135,7 @@ const navigate = useNavigate();
     const Amount = quantities[selectedPackage] * prices[selectedPackage];
 
     const handlePaystackPayment = async () => {
-      const paystackPublicKey = "pk_live_3247756c59ed492b8f73ac45f270ef9949bb87e1";
+      const paystackPublicKey = "pk_live_d3ce6d705e141445156ba3ca5a51ec8738aa66d7";
     
       const handler = window.PaystackPop.setup({
         key: paystackPublicKey,
