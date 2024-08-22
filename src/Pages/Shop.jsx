@@ -415,7 +415,7 @@ const [variationPopup, setVariationPopup] = useState(false)
         </div>
       )}
 
-{notCompleted && (
+      {notCompleted && (
         <div className='addNumber'>
 
 

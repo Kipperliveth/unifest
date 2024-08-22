@@ -12,7 +12,7 @@ import {
   setDoc, onSnapshot
 } from "firebase/firestore";
 import { CiSearch } from "react-icons/ci";
-import { MdCancel } from "react-icons/md";
+import { MdCancel } from "react-icons/md";  
 import { auth } from "../../firebase-config";
 import { txtdb } from "../../firebase-config";
 import { IoIosArrowBack } from "react-icons/io";

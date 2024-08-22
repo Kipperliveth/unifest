@@ -215,14 +215,6 @@ function UserNav() {
 
           <CiUser className="app-icon user"
             onClick={toggleUserInfo} />
-
-          {/* <img
-            src={user && user.email ? user.photoURL : ''}
-            alt="displayPicture"
-            className="app-icon user"
-            onClick={toggleUserInfo}
-          /> */}
-
           
 
           {showUserInfo && (
