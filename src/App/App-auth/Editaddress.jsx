@@ -160,7 +160,7 @@ function Editaddress() {
           <div className="popup-container edit-container">
 
               <FaCheck className="completed-icon" />
-              <p>Your information has been Edited successfully!</p>
+              <p>Your information has been updated successfully!</p>
               <button onClick={nextPage}>
                 {isLoggedIn ? (
                   <ImSpinner8 className="onboarding-spinner" />

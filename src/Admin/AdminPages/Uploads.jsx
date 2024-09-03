@@ -4,13 +4,6 @@ import AdminDashboard from "../AdminComponents/AdminDashboard";
 import { txtdb } from "../../firebase-config";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { CiSearch } from "react-icons/ci";
-import all from "../../stock/allmain.png";
-import sitting from "../../stock/couchicon.png";
-import curtains from "../../stock/curtainicon.png";
-import room from "../../stock/roomicon.png";
-import lights from "../../stock/lighticon.png";
-import tables from "../../stock/tableicon.png";
-import storageicon from "../../stock/storageicon.png";
 
 function Uploads() {
   const [data, setData] = useState([]);

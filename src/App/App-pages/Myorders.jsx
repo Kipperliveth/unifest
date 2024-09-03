@@ -177,7 +177,8 @@ function Myorders() {
 
                 <div className="top">
                     <h4>{notification.orderRefId}</h4>
-                    <p>Items ({notification.cartItems.length})</p>
+                    <p>Items ({notification.cartItems ? notification.cartItems.length : 0})</p>
+
                 </div>
 
                 <div className="bottom">

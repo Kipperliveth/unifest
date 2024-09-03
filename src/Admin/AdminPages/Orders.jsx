@@ -11,6 +11,7 @@ import { FaCheck } from "react-icons/fa";
 import { ImSpinner8 } from "react-icons/im";
 import emailjs from 'emailjs-com';
 
+// emailjs.init("Ubd9KrlkMCBa72PUL");
 // emailjs.init("I9WFMLdV0i4NoNHmd");
 
 
@@ -199,7 +200,8 @@ function Orders() {
       try {
         await setDoc(doc(txtdb, "completed", selectedOrder.id), completedOrderData);
               // Delete the order from the "orders" collection
-      // await deleteDoc(doc(txtdb, "orders", selectedOrder.id));
+      await deleteDoc(doc(txtdb, "pendingDelivery", selectedOrder.id));
+      await deleteDoc(doc(txtdb, "pendingPickup", selectedOrder.id));
       // addDoc(collection(txtdb, `userNotifications/${userID}/deliveredOrders`), {
       //   orderRefId: selectedOrder.id,
       //   satus: "pending",
@@ -209,7 +211,7 @@ function Orders() {
       //   completionDate: completedOrderData.completionDate,
       //   addresss: completedOrderData.address
       // });
-      //
+      
       const orderData = collection(txtdb, `userNotifications/${userID}/deliveredOrders`);
       const orderDatadb = await getDocs(orderData);
       const orderDataArray = orderDatadb.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -264,20 +266,20 @@ function Orders() {
           const date = new Date();
           const formattedDate = date.toISOString().split('T')[0];
           const timestamp = formattedDate;
-          // emailjs.send("service_1i849ri", "template_mwys2kw", {
-          //   to_email: selectedOrder.userEmail,
-          //   userEmail: selectedOrder.userEmail,
-          //   message: emailContent,
-          //   orderRefId: selectedOrderId,
-          //   city: selectedOrder.city,
-          //   state: selectedOrder.state,
-          //   totalPrice: selectedOrder.totalPrice,
-          //   deliveryFee: selectedOrder.deliveryFee,
-          //   username: selectedOrder.username,
-          //   timestamp: timestamp,
-          //   from_name: "UNIFEST Merch"
-          //   // other variables you want to include in your email template
-          // })
+          emailjs.send("service_1i849ri", "template_mwys2kw", {
+            to_email: selectedOrder.userEmail,
+            userEmail: selectedOrder.userEmail,
+            message: emailContent,
+            orderRefId: selectedOrderId,
+            city: selectedOrder.city,
+            state: selectedOrder.state,
+            totalPrice: selectedOrder.totalPrice,
+            deliveryFee: selectedOrder.deliveryFee,
+            username: selectedOrder.username,
+            timestamp: timestamp,
+            from_name: "UNIFEST Merch"
+            // other variables you want to include in your email template
+          })
 
         })
       })    
@@ -310,17 +312,17 @@ function Orders() {
             try {
               await setDoc(doc(txtdb, "pendingDelivery", selectedOrder.id), completedOrderData);
                     // Delete the order from the "orders" collection
-            // await deleteDoc(doc(txtdb, "orders", selectedOrder.id));
+            await deleteDoc(doc(txtdb, "orders", selectedOrder.id));
             // addDoc(collection(txtdb, `userNotifications/${userID}/deliveredOrders`), {
             //   orderRefId: selectedOrder.id,
-            //   satus: "pending",
+            //   status: "pending",
             //   cart: completedOrderData.cartItems,
             //   state: completedOrderData.state,
             //   totalPrice: completedOrderData.totalPrice,
             //   completionDate: completedOrderData.completionDate,
             //   addresss: completedOrderData.address
             // });
-            //
+            
             const orderData = collection(txtdb, `userNotifications/${userID}/deliveredOrders`);
             const orderDatadb = await getDocs(orderData);
             const orderDataArray = orderDatadb.docs.map(doc => ({ id: doc.id, ...doc.data() }));
@@ -363,7 +365,6 @@ function Orders() {
                 username: selectedOrder.username
               })
               .then(() => {
-      
                 let emailContent = `
                 `;
                 // Loop through fetchedProducts array to include product name and quantity
@@ -421,7 +422,7 @@ function Orders() {
             try {
               await setDoc(doc(txtdb, "pendingPickup", selectedOrder.id), completedOrderData);
                     // Delete the order from the "orders" collection
-            // await deleteDoc(doc(txtdb, "orders", selectedOrder.id));
+            await deleteDoc(doc(txtdb, "orders", selectedOrder.id));
             // addDoc(collection(txtdb, `userNotifications/${userID}/deliveredOrders`), {
             //   orderRefId: selectedOrder.id,
             //   satus: "pending",
@@ -431,7 +432,7 @@ function Orders() {
             //   completionDate: completedOrderData.completionDate,
             //   addresss: completedOrderData.address
             // });
-            //
+            
             const orderData = collection(txtdb, `userNotifications/${userID}/deliveredOrders`);
             const orderDatadb = await getDocs(orderData);
             const orderDataArray = orderDatadb.docs.map(doc => ({ id: doc.id, ...doc.data() }));
