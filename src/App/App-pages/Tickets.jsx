@@ -147,7 +147,7 @@ const navigate = useNavigate();
           handleSubmit(response.reference);
         },
         onClose: function() {
-          console.warn('Payment was not completed')
+          console.warn('Payment was not completed!')
         }
       });
     
