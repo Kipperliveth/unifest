@@ -98,7 +98,7 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <NavLink onClick={() => setApplicationClosed(true)} className='sspan'>Become a perfomer</NavLink>
+                <NavLink to='/tickets' className='sspan'>Get Tickets</NavLink>
               </button>
             </div>
           </div>
