@@ -48,7 +48,7 @@ const navigate = useNavigate();
     });
 
     const prices = {
-      Regular: 4000,
+      Regular: 5000,
       Vip: 90000,
       VVIP: 200000,
     };
@@ -368,7 +368,7 @@ const navigate = useNavigate();
 
         <div className='checkout-container tickets'>
 
-      <h1>Regular Tickets -   &#8358;4,000 (Early Bird)</h1>
+      <h1>Regular Access -   &#8358;5,000</h1>
 
         <ul>
         <li>Access To The Festival</li>
@@ -393,7 +393,7 @@ const navigate = useNavigate();
           <div className='checkout-container tickets'>
   
           
-      <h1>VVIP Tickets -   &#8358;200,000 (Table For 5)</h1>
+      <h1>VVIP Access -   &#8358;200,000 (Table For 5)</h1>
 
       <ul>
         <li>5 Persons Access Only</li>
@@ -422,7 +422,7 @@ const navigate = useNavigate();
 
         <div className='checkout-container tickets'>
 
-      <h1>VIP Tickets - &#8358;90,000 (2 Persons)</h1>
+      <h1>VIP Access - &#8358;90,000 (2 Persons)</h1>
       
         <ul>
           <li>2 Persons Access Only</li>
