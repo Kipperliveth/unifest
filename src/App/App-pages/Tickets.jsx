@@ -217,6 +217,9 @@ const navigate = useNavigate();
         alert('Error purchasing ticket. Please try again.');
       }
     };
+
+    const [isVvipSoldOut, setIsVvipSoldOut] = useState(true); // Assume VVIP is sold out
+
     
     
 
@@ -340,11 +343,28 @@ const navigate = useNavigate();
 
             </div>
 
-            <button type="submit" >
-            <h3>Checkout {selectedPackage && ( <div>&#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}</div> )}
-            </h3>
- 
-            </button>
+            <button
+            type={selectedPackage === "VVIP" && isVvipSoldOut ? "button" : "submit"}
+            disabled={selectedPackage === "VVIP" && isVvipSoldOut}
+            style={{
+              backgroundColor: selectedPackage === "VVIP" && isVvipSoldOut ? "#d3d3d3" : "",
+              color: selectedPackage === "VVIP" && isVvipSoldOut ? "#555" : "#fff",
+              cursor: selectedPackage === "VVIP" && isVvipSoldOut ? "not-allowed" : "pointer"
+            }}
+          >
+            {selectedPackage === "VVIP" && isVvipSoldOut ? (
+              <h3>Sold Out</h3>
+            ) : (
+              <h3>
+                Checkout {selectedPackage && (
+                  <div>
+                    &#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}
+                  </div>
+                )}
+              </h3>
+            )}
+          </button>
+
 
                 {errorMessage && (
             <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
