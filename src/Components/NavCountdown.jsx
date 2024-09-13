@@ -54,7 +54,7 @@ const NavCountdown = () => {
 
   return (
     <div className="NavCountdown">
-      {timerComponents.length ? timerComponents : <span>Time's up!</span>}
+      {timerComponents.length ? timerComponents : <span style={{ paddingRight: '36px' }}>Today!</span>}
     </div>
   );
 };

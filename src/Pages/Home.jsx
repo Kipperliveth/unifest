@@ -84,7 +84,7 @@ function Home() {
               data-aos-delay="300"
               data-aos="zoom-in" data-aos-duration="800" data-aos-once="true" 
              >
-              The VYBEZ Universe will be live in
+              The VYBEZ Universe will be live
              
             </p>
           <CountdownTimer />

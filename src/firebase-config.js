@@ -7,7 +7,7 @@ import { getStorage } from "firebase/storage";
 // const currentUser = useAuth();
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD6mrDcDJ_HXRZU51404BY1PEC5o0ETWFo",
+   apiKey: "AIzaSyD6mrDcDJ_HXRZU51404BY1PEC5o0ETWFo",
   authDomain: "unifest-70d85.firebaseapp.com",
   projectId: "unifest-70d85",
   storageBucket: "unifest-70d85.appspot.com",

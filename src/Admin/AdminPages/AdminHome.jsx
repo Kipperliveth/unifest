@@ -36,12 +36,14 @@ function AdminHome() {
       <h2 className="admin-current-page desktop-content">Tickets</h2>
 
         {/* <h3>Welcome Back Admin</h3> */}
-        <ul>
+        <ul className='tix'>
         {users.map((user) => (
           <li key={user.id}>
             <h3>{user.name}</h3>
             <p>Email: {user.email}</p>
             <p>Phone: {user.phoneNumber}</p>
+            <p>Package: {user.package}</p>
+            <p>TicketID: {user.TicketId}</p>
             {/* Add more fields as needed */}
           </li>
         ))}
