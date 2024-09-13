@@ -7,8 +7,6 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { IoMdCloudOutline } from "react-icons/io";
-import { LiaChalkboardTeacherSolid } from "react-icons/lia";
-import { MdOutlineSchedule } from "react-icons/md";
 import { AiOutlineMenu } from "react-icons/ai";
 import { MdCancel } from "react-icons/md";
 import { onAuthStateChanged} from "firebase/auth";
@@ -16,6 +14,7 @@ import { auth } from "../../firebase-config";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { collection,onSnapshot } from "firebase/firestore";
 import { txtdb } from "../../firebase-config";
+import { IoTicketOutline } from "react-icons/io5";
 
 
 
@@ -71,7 +70,7 @@ function AdminDashboard() {
 
       <div className="adminDash-links desktop">
         <NavLink to="/adminHome">
-          <MdOutlineDashboard className="dash-icon" /> <h3>Dashboard</h3>
+          <IoTicketOutline className="dash-icon" /> <h3>Tickets</h3>
         </NavLink>
         <NavLink to="/adminNotifications">
           <IoIosNotificationsOutline className="dash-icon" />{" "}
@@ -89,6 +88,7 @@ function AdminDashboard() {
           <NavLink to="/uploads">
             <IoMdCloudOutline className="admin-shop-icon" /> <h3>Uploads</h3>
           </NavLink>
+       
         </div>
 
         <div className="adminDash-masterclass">
@@ -116,8 +116,8 @@ function AdminDashboard() {
           <div className="menu-border">
             <div className="menu-links">
               <NavLink to="/adminHome">
-                <MdOutlineDashboard className="admin-shop-icon" />
-                <h3>Dashboard</h3>
+                <IoTicketOutline className="admin-shop-icon" />
+                <h3>Tickets</h3>
               </NavLink>
               <NavLink to='/adminNotifications'>
                 <IoIosNotificationsOutline className="admin-shop-icon" />

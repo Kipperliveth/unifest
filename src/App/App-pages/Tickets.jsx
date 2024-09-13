@@ -49,8 +49,8 @@ const navigate = useNavigate();
 
     const prices = {
       Regular: 5000,
-      Vip: 90000,
-      VVIP: 200000,
+      Vip: 110000,
+      VVIP: 250000,
     };
 
     const handleQuantityChange = (value, amount) => {
@@ -393,7 +393,7 @@ const navigate = useNavigate();
           <div className='checkout-container tickets'>
   
           
-      <h1>VVIP Access -   &#8358;200,000 (Table For 5)</h1>
+      <h1>VVIP Access -   &#8358;250,000 (Table For 5)</h1>
 
       <ul>
         <li>5 Persons Access Only</li>
@@ -422,7 +422,7 @@ const navigate = useNavigate();
 
         <div className='checkout-container tickets'>
 
-      <h1>VIP Access - &#8358;90,000 (2 Persons)</h1>
+      <h1>VIP Access - &#8358;110,000 (2 Persons)</h1>
       
         <ul>
           <li>2 Persons Access Only</li>

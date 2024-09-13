@@ -35,6 +35,7 @@ import Adminlog from "../Admin/AdminPages/Adminlog";
 import NotFound from "./NotFound";
 import AddNumber from "../App/App-auth/AddNumber";
 import Tickets from "../App/App-pages/Tickets";
+import Ticks from "../Admin/AdminPages/Ticks";
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -182,6 +183,8 @@ function AnimatedRoutes() {
           }
         />
         <Route path='/uploads' element={<AdminRoute><Uploads /></AdminRoute>}/>
+        <Route path="/ticks" element={<Ticks />} />
+
         {/* <Route path="/uploads" element={<Uploads />} />
         */}
         {/* <Route path="/post" element={<Post />} />  */}
