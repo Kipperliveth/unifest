@@ -365,6 +365,11 @@ const navigate = useNavigate();
             )}
           </button>
 
+          {selectedPackage === "VVIP" && (
+            <p style={{ textAlign: "center", color: "#ff6f61", marginTop: "20px", fontWeight: "500" }}>
+              Contact 0812-952-6952 for VVIP access and Enquiries.
+            </p>
+          )}
 
                 {errorMessage && (
             <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
