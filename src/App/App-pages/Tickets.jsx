@@ -346,27 +346,7 @@ const navigate = useNavigate();
 
             {/* delete from here */}
 
-            <button
-            type={selectedPackage === "VVIP" && isVvipSoldOut ? "button" : "submit"}
-            disabled={selectedPackage === "VVIP" && isVvipSoldOut}
-            style={{
-              backgroundColor: selectedPackage === "VVIP" && isVvipSoldOut ? "#d3d3d3" : "",
-              color: selectedPackage === "VVIP" && isVvipSoldOut ? "#555" : "#fff",
-              cursor: selectedPackage === "VVIP" && isVvipSoldOut ? "not-allowed" : "pointer"
-            }}
-          >
-            {selectedPackage === "VVIP" && isVvipSoldOut ? (
-              <h3>Sold Out</h3>
-            ) : (
-              <h3>
-                Checkout {selectedPackage && (
-                  <div>
-                    &#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}
-                  </div>
-                )}
-              </h3>
-            )}
-          </button>
+            
 
           {/* to here */}
 
