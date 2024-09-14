@@ -39,11 +39,13 @@ function AdminHome() {
         <ul className='tix'>
         {users.map((user) => (
           <li key={user.id}>
-            <h3>{user.name}</h3>
-            <p>Email: {user.email}</p>
-            <p>Phone: {user.phoneNumber}</p>
-            <p>Package: {user.package}</p>
+            <h3>{user.firstName}</h3>
+            <h3>{user.lastName}</h3>
             <p>TicketID: {user.TicketId}</p>
+            <p>Package: {user.package}</p>
+            <p>Gender: {user.gender}</p>
+            <p>Email: {user.email}</p>
+            <p>Admits: {user.quantity}</p>
             {/* Add more fields as needed */}
           </li>
         ))}
