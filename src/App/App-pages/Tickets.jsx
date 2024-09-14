@@ -94,7 +94,7 @@ const navigate = useNavigate();
     }, 5000);
     return;
    }
-      handlePaystackPayment()
+   handleSubmit()
     };
     
 
@@ -155,7 +155,7 @@ const navigate = useNavigate();
     };
 
     //
-    const handleSubmit = async (reference) => {
+    const handleSubmit = async () => {
       setShowPopup(true)
       const totalAmount = quantities[selectedPackage] * prices[selectedPackage];
       try {
@@ -166,7 +166,7 @@ const navigate = useNavigate();
           email,
           phoneNumber,
           gender,
-          reference: reference,
+          // reference: reference,
           package: selectedPackage,
           quantity: quantities[selectedPackage],
           totalAmount,
@@ -343,6 +343,9 @@ const navigate = useNavigate();
 
             </div>
 
+
+            {/* delete from here */}
+
             <button
             type={selectedPackage === "VVIP" && isVvipSoldOut ? "button" : "submit"}
             disabled={selectedPackage === "VVIP" && isVvipSoldOut}
@@ -365,11 +368,11 @@ const navigate = useNavigate();
             )}
           </button>
 
-          {selectedPackage === "VVIP" && (
+          {/* to here */}
+
             <p style={{ textAlign: "center", color: "#ff6f61", marginTop: "20px", fontWeight: "500" }}>
-              Contact 0812-952-6952 for VVIP access and Enquiries.
+             Tickets Available only at the gate
             </p>
-          )}
 
                 {errorMessage && (
             <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
