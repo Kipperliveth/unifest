@@ -225,7 +225,141 @@ const navigate = useNavigate();
 
   return (
     <div className="pagewidth">
-    <div className="contact">
+    <div className="contact">  <div className="ticket-form">
+
+        <div
+          className="form-right"
+        >
+            <div className="head">
+            <h2>Buy Tickets <IoTicketOutline className="ticket-icon"/></h2>
+            <p>Please Select the type of ticket you wish to purchase</p>
+            </div>
+
+            <div className="package-container">
+            <div
+                className={`package ${selectedPackage === 'Regular' ? 'selected' : ''}`}
+                onClick={() => handlePackageClick('Regular')}
+            >
+               Regular
+            </div>
+
+            <div
+                className={`package ${selectedPackage === 'Vip' ? 'selected' : ''}`}
+                onClick={() => handlePackageClick('Vip')}
+            >
+               VIP
+            </div>
+
+            <div
+                className={`package ${selectedPackage === 'VVIP' ? 'selected' : ''}`}
+                onClick={() => handlePackageClick('VVIP')}
+            >
+                VVIP
+            </div>
+
+            <div
+                className={`package noquantity ${selectedPackage? 'quantity' : ''}`}
+            >
+            {selectedPackage && (
+        <div className="quantity-selector">
+          <span>{selectedPackage}, Qty: </span>
+          <div className="qty">
+          <button onClick={() => handleQuantityChange(selectedPackage, -1)}>-</button>
+          <span>{quantities[selectedPackage]}</span>
+          <button onClick={() => handleQuantityChange(selectedPackage, 1)}>+</button>
+          </div>
+        </div>
+        )}
+            </div>
+            </div>
+            
+          <form onSubmit={check}>
+
+            <div className="top">
+              <input
+                 type="text"
+                 id="firstName"
+                 name="firstName"
+                 placeholder="First Name"
+                 value={firstName}
+                 onChange={(e) => setFirstName(e.target.value)}
+                required />
+              <input 
+               type="text"
+               id="lastName"
+               name="lastName"
+               placeholder="Last Name"
+               value={lastName}
+               onChange={(e) => setLastName(e.target.value)}
+                required />
+            </div>
+
+
+            <div className="bottom">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required/>
+
+              <input 
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="Enter your phone number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)} />
+
+              <label htmlFor="gender">Gender</label>
+             <select 
+              id="gender"
+              name="gender"
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              required>
+              <option value=""></option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            </select>
+
+
+              {/* <select>
+              <option value="">Select Gender</option>
+              <option value="Shirts">Male</option>
+              <option value="Vests">Female</option>
+            </select> */}
+
+            </div>
+
+
+            {/* delete from here */}
+
+            
+
+          {/* to here */}
+
+            <p style={{ textAlign: "center", color: "#ff6f61", marginTop: "20px", fontWeight: "500" }}>
+             Tickets Available only at the gate
+            </p>
+
+                {errorMessage && (
+            <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
+              {errorMessage}
+            </p>
+            )}
+
+
+
+            
+          </form>
+
+
+        </div>
+
+      </div>
       <div className="contact-header tickets">
       <div className="header">
 
@@ -369,7 +503,7 @@ const navigate = useNavigate();
         </div>
 
       </div>
-
+{/* 
       {regulardetails && (
       <div className='checkout-popup'>
 
@@ -392,9 +526,9 @@ const navigate = useNavigate();
 
         </div>
         </div>
-    )}
+    )} */}
 
-       {vvipdetails && (
+       {/* {vvipdetails && (
         <div className='checkout-popup'>
   
   
@@ -422,9 +556,9 @@ const navigate = useNavigate();
   
           </div>
           </div>
-      )}
+      )} */}
 
-    {vipdetails && (  
+    {/* {vipdetails && (  
       <div className='checkout-popup'>
 
 
@@ -449,63 +583,32 @@ const navigate = useNavigate();
 
         </div>
         </div>
-    )}
+    )} */}
 
-{showPopup && (
-<div className="popup">
+    {/* {showPopup && (
+    <div className="popup">
 
-  <div className="spinner">
-    <div></div>   
-    <div></div>    
-    <div></div>    
-    <div></div>    
-    <div></div>    
-    <div></div>    
-    <div></div>    
-    <div></div>    
-    <div></div>    
-    <div></div>    
-  </div>
-
-
-</div>
-)} 
-
-     
-
-    {completed && (
-      <div className='checkout-popup'>
-
-
-        <div className='ticketID'>
-
-        <div className="checkbox-wrapper">
-          <input defaultChecked={false} type="checkbox" />
-          <svg viewBox="0 0 35.6 35.6">
-            <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
-            <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
-            <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
-          </svg>
-                </div>
-
-      <h1>Ticket Purchased!</h1>
-      <h3>Ticket ID: {ticketId}</h3>
-      {/* <h3>Ticket ID: ymekhq5cvYsabWmNl99T</h3> */}
-      <button 
-       className={`button ${copyButtonText === "Copied" ? "copied" : ""}`}
-      onClick={copyToClipboard}>{copyButtonText}</button>
-
-
-      <p>Details of your ticket has been sent to your email.</p>
-
-     <div className='buttons'>
-          <button onClick={() => setCompleted(false)} className="a ">Buy again</button>
-          <button onClick={() => navigate('/')} className="a again">Back to website</button>
+      <div className="spinner">
+        <div></div>   
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
+        <div></div>    
       </div>
 
-        </div>
-        </div>
-    )} 
+
+    </div>
+    )}  */}
+
+
+        <p style={{ textAlign: "center", color: "#ff6f61", marginBlock: "10rem", fontWeight: "500" }}>
+             Tickets are Currently Unavailable
+            </p>
      
 
     </div>
@@ -514,3 +617,38 @@ const navigate = useNavigate();
 }
 
 export default Tickets
+
+
+// {completed && (
+//   <div className='checkout-popup'>
+
+
+//     <div className='ticketID'>
+
+//     <div className="checkbox-wrapper">
+//       <input defaultChecked={false} type="checkbox" />
+//       <svg viewBox="0 0 35.6 35.6">
+//         <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
+//         <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+//         <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
+//       </svg>
+//             </div>
+
+//   <h1>Ticket Purchased!</h1>
+//   <h3>Ticket ID: {ticketId}</h3>
+//   {/* <h3>Ticket ID: ymekhq5cvYsabWmNl99T</h3> */}
+//   <button 
+//    className={`button ${copyButtonText === "Copied" ? "copied" : ""}`}
+//   onClick={copyToClipboard}>{copyButtonText}</button>
+
+
+//   <p>Details of your ticket has been sent to your email.</p>
+
+//  <div className='buttons'>
+//       <button onClick={() => setCompleted(false)} className="a ">Buy again</button>
+//       <button onClick={() => navigate('/')} className="a again">Back to website</button>
+//   </div>
+
+//     </div>
+//     </div>
+// )} 

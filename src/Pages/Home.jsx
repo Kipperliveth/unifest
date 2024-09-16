@@ -78,16 +78,16 @@ function Home() {
             data-aos-once="true"
           >
             <h1 data-aos="zoom-in" data-aos-duration="800" data-aos-once="true">
-              The Biggest Party on Campus Returns!
+              The Biggest Party on Campus!
             </h1>
             <p
               data-aos-delay="300"
               data-aos="zoom-in" data-aos-duration="800" data-aos-once="true" 
              >
-              The VYBEZ Universe will be live
+              Brought to you by BIG VYBEZ NETWORK
              
             </p>
-          <CountdownTimer />
+          {/* <CountdownTimer /> */}
 
 
             <div
@@ -98,7 +98,7 @@ function Home() {
               data-aos-delay="400"
             >
               <button className="cta">
-                <NavLink to='/tickets' className='sspan'>Get Tickets</NavLink>
+                <NavLink to='/memories' className='sspan'>Experience UNIFEST</NavLink>
               </button>
             </div>
           </div>
@@ -392,7 +392,8 @@ function Home() {
         </div>
 
         <div className="sponsors-section">
-          <h1 className="sponsors-title">Meet our Sponsors from Last Year</h1>
+          <h1 className="sponsors-title">Meet our Sponsors</h1>
+          <h3 className="sponsors-title">2023</h3>
           <div className="sponsors-container">
             <img src={toscana} alt="toscana hotel"/>
             <img src={mavin} alt="mavin records"/>

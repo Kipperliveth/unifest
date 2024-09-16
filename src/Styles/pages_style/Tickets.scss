@@ -482,10 +482,12 @@
         width: 90vw;
         margin: 0 auto;
         margin-top: 2.5rem;
+
+        display: none;
     }
 
     .ticket-form{
-    display: flex;
+    // display: flex;
     justify-content: center;
     align-items: center;
 

@@ -314,11 +314,12 @@
         color: white;
         letter-spacing: 1px;
         font-size: xx-large;
+        line-height: 1.5;
     }
 
     p{
         color: white;
-        font-size: 18px;
+        font-size: 14px;
         font-weight: 500;
     }
 
@@ -903,6 +904,11 @@
             font-weight: 500;
             }
 
+            h3{
+                color: #323232;
+                margin-top: 2rem;
+            }
+
             a{
                 text-decoration: none;
                 color: #FF7E00;
@@ -924,7 +930,7 @@
                 display: flex;
                 align-items: center;
                 flex-wrap: wrap;
-                margin-block: 2rem;
+                margin-bottom: 2rem;
 
                 img{
                     width: 20%;
