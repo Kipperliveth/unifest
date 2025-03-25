@@ -148,6 +148,8 @@ function AnimatedRoutes() {
           }
         /> */}
 
+        <Route  path="/newsletters" element={<MasterclassMain />}/>
+
         {/* admin routes */}
         <Route
           path="/adminHome"

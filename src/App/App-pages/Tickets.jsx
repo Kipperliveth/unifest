@@ -606,7 +606,7 @@ const navigate = useNavigate();
     )}  */}
 
 
-        <p style={{ textAlign: "center", color: "#ff6f61", marginBlock: "10rem", fontWeight: "500" }}>
+        <p style={{ textAlign: "center", color: "#888", marginBlock: "8rem", fontWeight: "500" }}>
              Tickets are Currently Unavailable
             </p>
      

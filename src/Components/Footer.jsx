@@ -24,14 +24,21 @@ function Footer() {
     "/", "/marketplace", "/merch", "/comingsoon", 
     "/adminHome", "/adminNotifications", "/post", "/orders", "/cart", "/userProfile",
     "/notifications", "/uploads", "/profilePic",
-    "/myorders", "/gethelp","/adminlog", '/login', '/signup', '/memories', '/about', '/contact', '/reset', "/merch-preview", "/tickets",
+    "/myorders", "/gethelp","/adminlog", '/login', '/signup', '/memories', '/about', '/contact', '/reset', "/merch-preview", "/tickets", "/newsletters"
   ];
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);
 
   return (
     <div style={{ display: shouldHideComponent ? "none" : "block" }}>
-      <div className="footer-container">
+
+    <div
+      className={`footer-container ${
+        ["/newsletters", "/tickets"].includes(location.pathname) 
+          ? "newsletter-footer tickets-footer" 
+          : ""
+      }`}
+    >
         <div className="footer">
           <div className="footer-top">
 
@@ -66,7 +73,7 @@ function Footer() {
           </div>
 
           <div className="footer-bottom">
-            &copy; 2024 unifest
+            &copy; 2025 unifest
             <div className="misc">
               <NavLink id="terms">terms of use</NavLink> |
               <NavLink id="policies"> privacy policy</NavLink>

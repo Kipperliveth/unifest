@@ -277,7 +277,7 @@ function Orders() {
             deliveryFee: selectedOrder.deliveryFee,
             username: selectedOrder.username,
             timestamp: timestamp,
-            from_name: "UNIFEST Merch"
+            from_name: "Evanis Interiors"
             // other variables you want to include in your email template
           })
 
