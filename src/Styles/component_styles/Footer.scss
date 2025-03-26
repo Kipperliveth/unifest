@@ -102,17 +102,17 @@
 
 .newsletter-footer {
  margin-top: 2rem;
- 
+ display: none;
     .footer{
         border: none;
     }
   }
+
  .tickets-footer{
     margin-top: 0;
 
     .footer{
         border-top: 0.5px solid hsl(0, 0%, 83%);
-
     }
  } 
 

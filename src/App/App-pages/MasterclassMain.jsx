@@ -49,8 +49,8 @@ function MasterclassMain() {
 
           <div className="content">
 
-            <h1>Coming Soon</h1>
-            <p>Get Notified When the merch Store Launches.</p>
+            <h1>Join the Challenge 🎯</h1>
+            <p className="subtext">Subscribe today for your shot at exclusive freebies and VIP experiences, courtesy of our amazing brand partners!</p>
 
             <div
               className="sub-container"
@@ -65,13 +65,14 @@ function MasterclassMain() {
               </form>
             </div>
 
-
             <div className="form-socials">
                       <a href="https://www.instagram.com/unifest001?igsh=Y3UzY3U3Ym44dmh6"><FaInstagram className="icon" /></a>
                       <a href="https://x.com/unifest001?t=v1LY_RCY5_DHDN7XBiMzqA&s=09"><FaXTwitter className="icon" /></a>
                       <a  href="mailto:unifest12@gmail.com?subject=Unifest%20'24%20Inquiry"><MdMailOutline className="icon" /></a>
                       <a href="https://www.tiktok.com/@unifest001?_t=8nv0OSN4tUL&_r=1"><IoLogoTiktok className="icon" /></a>
                     </div>
+
+            <p className="small-text">Spots are limited—don’t miss out!</p>
           </div>
 
       </div>

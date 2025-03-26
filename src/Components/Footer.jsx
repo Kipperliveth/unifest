@@ -33,9 +33,9 @@ function Footer() {
     <div style={{ display: shouldHideComponent ? "none" : "block" }}>
 
     <div
-      className={`footer-container ${
-        ["/newsletters", "/tickets"].includes(location.pathname) 
-          ? "newsletter-footer tickets-footer" 
+      className={`footer-container tickets-footer ${
+        ["/newsletters"].includes(location.pathname) 
+          ? "newsletter-footer" 
           : ""
       }`}
     >
