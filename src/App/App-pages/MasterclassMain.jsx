@@ -5,11 +5,10 @@ import { FaSnapchat } from "react-icons/fa6";
 import { IoLogoTiktok } from "react-icons/io5";
 import { MdMailOutline } from "react-icons/md";
 import { txtdb } from "../../firebase-config";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { LuMailX } from "react-icons/lu";
 import { LuMailCheck } from "react-icons/lu";
 import { motion } from "framer-motion";
-
 
 function MasterclassMain() {
 
@@ -27,7 +26,7 @@ function MasterclassMain() {
     
     try {
       // Add the email to the Firestore database
-      await addDoc(collection(txtdb, 'subscribers'), { email });
+      await addDoc(collection(txtdb, 'newsubscribers'), { email });
       setStatus('Subscription successful!');
       console.log('Subscription successful!');
       setEmail('');
@@ -55,6 +54,44 @@ function MasterclassMain() {
   const itemVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
+  };
+  
+
+  //get emails
+  const exportSubscribersToCSV = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(txtdb, "subscribers"));
+      const subscribers = [];
+  
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        // Add both email and registerEmail fields if they exist
+        subscribers.push({ 
+          email: data.email || "", 
+          registerEmail: data.registerEmail || "" 
+        });
+      });
+  
+      // Convert array to CSV format
+      let csvContent = "data:text/csv;charset=utf-8,email,registerEmail\n";
+      subscribers.forEach((row) => {
+        csvContent += `${row.email},${row.registerEmail}\n`;
+      });
+  
+      // Create a download link
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "subscribers.csv");
+      document.body.appendChild(link);
+  
+      link.click(); // Trigger download
+      document.body.removeChild(link);
+  
+      console.log("CSV file generated successfully!");
+    } catch (error) {
+      console.error("Error exporting emails:", error);
+    }
   };
   
 
@@ -100,6 +137,8 @@ function MasterclassMain() {
     Spots are limited—don’t miss out!
   </motion.p>
 </motion.div>
+
+{/* <button onClick={exportSubscribersToCSV}>Download Subscribers CSV</button> */}
 
 
       </div>
@@ -168,6 +207,8 @@ function MasterclassMain() {
           </div>
           </div>
       )}
+
+      
      
       </div>
     </div>
