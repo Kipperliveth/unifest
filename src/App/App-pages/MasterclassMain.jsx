@@ -67,15 +67,15 @@ function MasterclassMain() {
         const data = doc.data();
         // Add both email and registerEmail fields if they exist
         subscribers.push({ 
+          registerEmail: data.registerEmail || "",
           email: data.email || "", 
-          registerEmail: data.registerEmail || "" 
         });
       });
   
       // Convert array to CSV format
       let csvContent = "data:text/csv;charset=utf-8,email,registerEmail\n";
       subscribers.forEach((row) => {
-        csvContent += `${row.email},${row.registerEmail}\n`;
+        csvContent += `${row.registerEmail}\n`;
       });
   
       // Create a download link
@@ -138,7 +138,7 @@ function MasterclassMain() {
   </motion.p>
 </motion.div>
 
-{/* <button onClick={exportSubscribersToCSV}>Download Subscribers CSV</button> */}
+<button onClick={exportSubscribersToCSV}>Download Subscribers CSV</button>
 
 
       </div>

@@ -149,7 +149,7 @@ function Navbar({ setShowPopup }) {
 
                   <NavLink to="/memories" onClick={toggleVisibilty}>
                 <li>
-                    Mermories
+                    Memories
                 <LuRewind className="icon" />
                 </li>
                   </NavLink>
