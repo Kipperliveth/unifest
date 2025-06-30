@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../stock/Unifest-logo-1.png";
+import logo from "../stock/logo.png";
 import { NavLink, useLocation } from "react-router-dom";
 import { RiMenu4Fill } from "react-icons/ri";
 import { MdCancel } from "react-icons/md";
@@ -53,9 +53,9 @@ function Navbar({ setShowPopup }) {
         <nav className=" navbar">
 
           <NavLink to="/" className="logo-container">
-            <img src={logo} alt="unifest-logo" />
+            <img src={logo} alt="unifest-logo"/>
             <div className="logo">
-              <p>UNI</p> FEST 
+              {/* <p>UNI</p> FEST  */}
             </div>
           </NavLink>
 

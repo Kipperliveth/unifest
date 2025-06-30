@@ -71,6 +71,7 @@ function Home() {
     <div className="pagewidth ">
       <div className="home">
         <div className="landing">
+          
           <div
             className="landing-content-container"
             data-aos="zoom-in"

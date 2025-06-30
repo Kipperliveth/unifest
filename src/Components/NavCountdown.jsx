@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 const NavCountdown = () => {
   const calculateTimeLeft = () => {
-    const targetTime = new Date('2024-09-13T23:00:00Z').getTime();
+    const targetTime = new Date('2025-08-02T23:00:00Z').getTime();
     const currentTime = new Date().getTime();
 
     if (currentTime >= targetTime) {

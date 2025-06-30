@@ -25,6 +25,8 @@
     background: #fff;
 
 
+
+
     .mobile-view{
         display: none;
     }
@@ -55,11 +57,13 @@
         color: #523d35;
         // margin-left: 1rem;
         align-items: center;
+        padding-block: .75rem;
         
         img{
-            width: 50px;
-            height: 50px;
-            padding-left: .8rem;
+            width: 90px;
+            // height: 50px;
+            // filter: invert(1);
+            padding-left: 1.5rem;
         }
 
         .logo{

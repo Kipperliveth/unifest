@@ -5,12 +5,12 @@ import {collection, addDoc, updateDoc} from "firebase/firestore";
 import { txtdb } from '../../firebase-config';
 import { useNavigate } from "react-router-dom";
 import emailjs from 'emailjs-com';
-
+import { FaRegCopy } from "react-icons/fa6";
 
 
 function Tickets() {
-  const [copyButtonText, setCopyButtonText] = useState("Copy Ticket ID");
-    const [selectedPackage, setSelectedPackage] = useState(null);
+  const [copyButtonText, setCopyButtonText] = useState("Copy");
+    const [selectedPackage, setSelectedPackage] = useState("Regular");
     const [regulardetails, setRegularDetails] = useState(false)
     const [vipdetails, setVipdetails] = useState(false)
     const [vvipdetails, setVvipdetails] = useState(false)
@@ -48,7 +48,7 @@ const navigate = useNavigate();
     });
 
     const prices = {
-      Regular: 5000,
+      Regular: 3500,
       Vip: 110000,
       VVIP: 250000,
     };
@@ -94,7 +94,8 @@ const navigate = useNavigate();
     }, 5000);
     return;
    }
-   handleSubmit()
+   handlePaystackPayment()
+
     };
     
 
@@ -135,8 +136,10 @@ const navigate = useNavigate();
     const Amount = quantities[selectedPackage] * prices[selectedPackage];
 
     const handlePaystackPayment = async () => {
-      const paystackPublicKey = "pk_live_d3ce6d705e141445156ba3ca5a51ec8738aa66d7";
+      // const paystackPublicKey = "pk_live_d3ce6d705e141445156ba3ca5a51ec8738aa66d7";
       //  const paystackPublicKey = "pk_live_3247756c59ed492b8f73ac45f270ef9949bb87e1";
+       const paystackPublicKey = "pk_test_3931dabec0e6f696bd5921a6dedb5d15f4b1865c";
+
     
       const handler = window.PaystackPop.setup({
         key: paystackPublicKey,
@@ -145,6 +148,7 @@ const navigate = useNavigate();
         currency: 'NGN', 
         callback: function(response) {
           handleSubmit(response.reference);
+          // handleSubmit();
         },
         onClose: function() {
           console.warn('Payment was not completed!')
@@ -155,7 +159,7 @@ const navigate = useNavigate();
     };
 
     //
-    const handleSubmit = async () => {
+    const handleSubmit = async (reference) => {
       setShowPopup(true)
       const totalAmount = quantities[selectedPackage] * prices[selectedPackage];
       try {
@@ -166,8 +170,8 @@ const navigate = useNavigate();
           email,
           phoneNumber,
           gender,
-          // reference: reference,
-          package: selectedPackage,
+          reference,
+          package: "Access Regular",
           quantity: quantities[selectedPackage],
           totalAmount,
         });
@@ -202,7 +206,7 @@ const navigate = useNavigate();
         setEmail("");
         setPhoneNumber("");
         setGender("");
-        setSelectedPackage(null);
+        setSelectedPackage("Regular");
         setQuantities({
           Regular: 1,
           VIP: 1,
@@ -225,141 +229,8 @@ const navigate = useNavigate();
 
   return (
     <div className="pagewidth">
-    <div className="contact">  <div className="ticket-form">
+    <div className="contact"> 
 
-        <div
-          className="form-right"
-        >
-            <div className="head">
-            <h2>Buy Tickets <IoTicketOutline className="ticket-icon"/></h2>
-            <p>Please Select the type of ticket you wish to purchase</p>
-            </div>
-
-            <div className="package-container">
-            <div
-                className={`package ${selectedPackage === 'Regular' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('Regular')}
-            >
-               Regular
-            </div>
-
-            <div
-                className={`package ${selectedPackage === 'Vip' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('Vip')}
-            >
-               VIP
-            </div>
-
-            <div
-                className={`package ${selectedPackage === 'VVIP' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('VVIP')}
-            >
-                VVIP
-            </div>
-
-            <div
-                className={`package noquantity ${selectedPackage? 'quantity' : ''}`}
-            >
-            {selectedPackage && (
-        <div className="quantity-selector">
-          <span>{selectedPackage}, Qty: </span>
-          <div className="qty">
-          <button onClick={() => handleQuantityChange(selectedPackage, -1)}>-</button>
-          <span>{quantities[selectedPackage]}</span>
-          <button onClick={() => handleQuantityChange(selectedPackage, 1)}>+</button>
-          </div>
-        </div>
-        )}
-            </div>
-            </div>
-            
-          <form onSubmit={check}>
-
-            <div className="top">
-              <input
-                 type="text"
-                 id="firstName"
-                 name="firstName"
-                 placeholder="First Name"
-                 value={firstName}
-                 onChange={(e) => setFirstName(e.target.value)}
-                required />
-              <input 
-               type="text"
-               id="lastName"
-               name="lastName"
-               placeholder="Last Name"
-               value={lastName}
-               onChange={(e) => setLastName(e.target.value)}
-                required />
-            </div>
-
-
-            <div className="bottom">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required/>
-
-              <input 
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="Enter your phone number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)} />
-
-              <label htmlFor="gender">Gender</label>
-             <select 
-              id="gender"
-              name="gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-              required>
-              <option value=""></option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            </select>
-
-
-              {/* <select>
-              <option value="">Select Gender</option>
-              <option value="Shirts">Male</option>
-              <option value="Vests">Female</option>
-            </select> */}
-
-            </div>
-
-
-            {/* delete from here */}
-
-            
-
-          {/* to here */}
-
-            <p style={{ textAlign: "center", color: "#ff6f61", marginTop: "20px", fontWeight: "500" }}>
-             Tickets Available only at the gate
-            </p>
-
-                {errorMessage && (
-            <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
-              {errorMessage}
-            </p>
-            )}
-
-
-
-            
-          </form>
-
-
-        </div>
-
-      </div>
       <div className="contact-header tickets">
       <div className="header">
 
@@ -374,8 +245,8 @@ const navigate = useNavigate();
           className="form-right"
         >
             <div className="head">
-            <h2>Buy Tickets <IoTicketOutline className="ticket-icon"/></h2>
-            <p>Please Select the type of ticket you wish to purchase</p>
+            <h2>Early Bird Tickets <IoTicketOutline className="ticket-icon"/></h2>
+            <p>Limited slots. Unlimited Vybes.</p>
             </div>
 
             <div className="package-container">
@@ -383,10 +254,25 @@ const navigate = useNavigate();
                 className={`package ${selectedPackage === 'Regular' ? 'selected' : ''}`}
                 onClick={() => handlePackageClick('Regular')}
             >
-               Regular
+
+              <div className="type">
+
+              <h6>
+                 Early Bird
+              </h6>
+                
+              <h1>   &#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}</h1>
+              </div>
+
+              <div className="qty">
+            <button onClick={() => handleQuantityChange(selectedPackage, -1)}>-</button>
+            <span>{quantities[selectedPackage]}</span>
+            <button onClick={() => handleQuantityChange(selectedPackage, 1)}>+</button>
             </div>
 
-            <div
+            </div>
+
+            {/* <div
                 className={`package ${selectedPackage === 'Vip' ? 'selected' : ''}`}
                 onClick={() => handlePackageClick('Vip')}
             >
@@ -398,9 +284,9 @@ const navigate = useNavigate();
                 onClick={() => handlePackageClick('VVIP')}
             >
                 VVIP
-            </div>
+            </div> */}
 
-            <div
+            {/* <div
                 className={`package noquantity ${selectedPackage? 'quantity' : ''}`}
             >
             {selectedPackage && (
@@ -413,7 +299,7 @@ const navigate = useNavigate();
           </div>
         </div>
         )}
-            </div>
+            </div> */}
             </div>
             
           <form onSubmit={check}>
@@ -480,13 +366,33 @@ const navigate = useNavigate();
 
             {/* delete from here */}
 
-            
+                    <button
+            type={selectedPackage === "VVIP" && isVvipSoldOut ? "button" : "submit"}
+            disabled={selectedPackage === "VVIP" && isVvipSoldOut}More actions
+            style={{
+              backgroundColor: selectedPackage === "VVIP" && isVvipSoldOut ? "#d3d3d3" : "",
+              color: selectedPackage === "VVIP" && isVvipSoldOut ? "#555" : "#fff",
+              cursor: selectedPackage === "VVIP" && isVvipSoldOut ? "not-allowed" : "pointer"
+            }}
+          >
+            {selectedPackage === "VVIP" && isVvipSoldOut ? (
+              <h3>Sold Out</h3>
+            ) : (
+              <h3>
+                Checkout {selectedPackage && (
+                  <div>
+                    &#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}
+                  </div>
+                )}
+              </h3>
+            )}
+          </button>
 
           {/* to here */}
 
-            <p style={{ textAlign: "center", color: "#ff6f61", marginTop: "20px", fontWeight: "500" }}>
-             Tickets Available only at the gate
-            </p>
+
+              <p style={{ color: '#888', textAlign: 'center', padding: '10px', fontWeight: '400', fontSize: '10px', lineHeight: '1.5' }}>Tickets are non-refundable and tied to the buyer’s name, except when multiple tickets are purchased.</p>
+          
 
                 {errorMessage && (
             <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
@@ -503,8 +409,10 @@ const navigate = useNavigate();
         </div>
 
       </div>
-{/* 
-      {regulardetails && (
+
+
+
+      {/* {regulardetails && (
       <div className='checkout-popup'>
 
 
@@ -585,7 +493,7 @@ const navigate = useNavigate();
         </div>
     )} */}
 
-    {/* {showPopup && (
+    {showPopup && (
     <div className="popup">
 
       <div className="spinner">
@@ -600,16 +508,58 @@ const navigate = useNavigate();
         <div></div>    
         <div></div>    
       </div>
+    </div>
+    )} 
 
+
+    {completed && (
+  <div className='checkout-popup'>
+
+
+    <div className='ticketID'>
+
+    <div className="checkbox-wrapper">
+      <input defaultChecked={false} type="checkbox" />
+      <svg viewBox="0 0 35.6 35.6">
+        <circle className="background" cx="17.8" cy="17.8" r="17.8"></circle>
+        <circle className="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+        <polyline className="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
+      </svg>
+            </div>
+
+  <h1>Ticket Purchased!</h1>
+  {/* <h3>Ticket ID: ymekhq5cvYsabWmNl99T</h3> */}
+
+  <div className="tix">
+
+  <h3>Ticket ID: {ticketId}</h3>  
+   <button 
+   className={`button ${copyButtonText === "Copied" ? "copied" : ""}`}
+  onClick={copyToClipboard}>{copyButtonText}</button>
+
+  </div>
+
+
+  <p className='details'> Details of your ticket have been sent to your email. </p>
+
+ <div className='buttons'>
+      <button onClick={() => navigate('/')} className="a again">Close</button>
+      <button onClick={() => setCompleted(false)} className="a ">Buy again</button>
+  </div>
+  <p className='dispute' style={{textAlign: 'center', padding: '10px', fontWeight: '400', fontSize: '10px', lineHeight: '1.5' }}>If you do not receive it within 5 minutes, please&nbsp;
+  
+  <a href="mailto:support@yourevent.com">click here to contact support</a> and raise a dispute.</p>
 
     </div>
-    )}  */}
+    </div>
+)} 
+    
 
-
+{/* 
         <p style={{ textAlign: "center", color: "#888", marginBlock: "8rem", fontWeight: "500" }}>
              Tickets are Currently Unavailable
             </p>
-     
+      */}
 
     </div>
   </div>

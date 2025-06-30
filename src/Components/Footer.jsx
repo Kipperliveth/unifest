@@ -4,7 +4,8 @@ import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoTiktok } from "react-icons/io5";
 import { MdMailOutline } from "react-icons/md";
-import logo from "../stock/Unifest-logo-1.png";
+import logo from "../stock/logo.png";
+
 
 function openTawkTo() {
   if (window.Tawk_API) {
@@ -44,9 +45,9 @@ function Footer() {
 
             <NavLink  onClick={handleScrollToTop} className="logo-container">
             <img src={logo} alt="evanis-interior-logo" />
-            <div className="logo">
+            {/* <div className="logo">
               <p>UNI</p> FEST 
-            </div>
+            </div> */}
           </NavLink>
 
             <div className="footer-links">
@@ -54,13 +55,13 @@ function Footer() {
                 <NavLink to="/contact#faqs">FAQS</NavLink>
               </li>
               <li>
-                <NavLink to='#' onClick={openTawkTo}>Get help</NavLink>
+                <NavLink to='#' onClick={openTawkTo}>Enquiries</NavLink>
               </li>
               <li>
                 <NavLink to='/merch-preview'>Merch</NavLink>
               </li>
               <li>
-                <NavLink to='/contact'>Contact</NavLink>
+                <NavLink to='/contact'>Volunteer</NavLink>
               </li>
             </div>
 
@@ -69,11 +70,11 @@ function Footer() {
                       <a href="https://x.com/unifest001?t=v1LY_RCY5_DHDN7XBiMzqA&s=09"><FaXTwitter className="icon" /></a>
                       <a  href="mailto:unifest12@gmail.com?subject=Unifest%20'24%20Inquiry"><MdMailOutline className="icon" /></a>
                       <a href="https://www.tiktok.com/@unifest001?_t=8nv0OSN4tUL&_r=1"><IoLogoTiktok className="icon" /></a>
-                    </div>
+             </div>
           </div>
 
           <div className="footer-bottom">
-            &copy; 2025 unifest
+             All rights reserved 2025, Unifest
             <div className="misc">
               <NavLink id="terms">terms of use</NavLink> |
               <NavLink id="policies"> privacy policy</NavLink>
