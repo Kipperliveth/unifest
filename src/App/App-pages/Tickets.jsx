@@ -164,7 +164,7 @@ const navigate = useNavigate();
       const totalAmount = quantities[selectedPackage] * prices[selectedPackage];
       try {
         emailjs.init("FFQYAzaYAjzv1DFb9")
-        const docRef =  await addDoc(collection(txtdb, 'tickets'), {
+        const docRef =  await addDoc(collection(txtdb, 'tickets25'), {
           firstName,
           lastName,
           email,
