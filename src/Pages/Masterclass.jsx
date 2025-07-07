@@ -6,7 +6,18 @@ import AOS from "aos";
 import "aos/dist/aos.js";
 import NavCountdown from "../Components/NavCountdown";
 import { IoTicketOutline } from "react-icons/io5";
-
+import smurImage from '../stock/backgrounds/smur.jpg';
+import annie from '../stock/backgrounds/IMG_8000.jpg';
+import anna from '../stock/backgrounds/DSC_5018.jpg';
+import grid2 from '../stock/backgrounds/grid2.jpg';
+import fun3 from '../stock/backgrounds/fun3.jpg';
+import bube from '../stock/backgrounds/IMG_7845.jpg';
+import guy from '../stock/backgrounds/IMG_7592.jpg';
+import spyce from '../stock/backgrounds/spyce.jpg';
+import crayon from '../stock/backgrounds/crayon.jpg';
+import drema from '../stock/backgrounds/DSC_4886.jpg';
+import jean from '../stock/backgrounds//DSC_4910.jpg';
+import girl from '../stock/backgrounds//DSC_4679.jpg';
 
 function Masterclass() {
   const [hasMounted, setHasMounted] = useState(false);
@@ -23,6 +34,22 @@ function Masterclass() {
       AOS.refresh();
     }
   }, [hasMounted]);
+
+ const images = [
+    { src: smurImage, alt: "Gallery Image 1" },
+    { src: annie, alt: "Gallery Image 5" },
+    { src: grid2, alt: "Gallery Image 4" },
+    { src: anna, alt: "Gallery Image 3" },
+    { src: bube, alt: "Gallery Image 6" },
+    { src: guy, alt: "Gallery Image 7" },
+    { src: jean, alt: "Gallery Image 11" },
+    { src: spyce, alt: "Gallery Image 8" },
+    { src: crayon, alt: "Gallery Image 9" },
+    { src: drema, alt: "Gallery Image 10" },
+    { src: fun3, alt: "Gallery Image2" },
+    { src: girl, alt: "Gallery Image 12" },
+  ];
+
 
   return (
     <div className="pagewidth">
@@ -45,7 +72,7 @@ function Masterclass() {
            data-aos="zoom-in"
            data-aos-duration="1000"
            data-aos-once="true"
-          >Highlights from UNIFEST <span>2023</span> </h3>
+          > <span>Highlights</span> from UNIFEST </h3>
             <h1
               data-aos="zoom-in"
               data-aos-duration="1000"
@@ -101,7 +128,7 @@ function Masterclass() {
         
         </div>
 
-        <div className="activities">
+        {/* <div className="activities">
               <div className="activities-left">
                 <div 
                   data-aos="zoom-in"
@@ -154,7 +181,7 @@ function Masterclass() {
                   className="pic"></div>
                 </div>
               </div>
-        </div>
+        </div> */}
 
         <div className="stage">
 
@@ -165,7 +192,7 @@ function Masterclass() {
         </div>
 
         <div className="see-more">
-          <h2>See More <span>Pictures</span> and Momements from <br /> UNIFEST 2023</h2>
+          <h2>See More <span>Pictures</span> and Momements from <br /> UNIFEST  </h2>
       
           <div className="see-more-container">
           <div className="left">
@@ -188,7 +215,40 @@ function Masterclass() {
 
         </div>
 
-        <div className="about-touch">
+        <div className="gallery-text">
+          <h1
+            data-aos="fade-in"
+            data-aos-duration="800"
+            data-aos-delay="200"
+            data-aos-once="true"
+          >
+           The <span>highlights</span>, the vybes, the unforgettable faces
+          </h1>
+
+        </div>
+
+    <div className="app-container">
+      <div className="gallery-wrapper">
+
+        <div className="masonry-grid">
+          {images.map((image, index) => (
+            <div key={index} className="masonry-item">
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="masonry-image"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "https://placehold.co/400x400/CCCCCC/000000?text=Image+Error";
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+       <div className="about-touch">
           <h1
             data-aos="zoom-in"
             data-aos-duration="800"
@@ -205,11 +265,12 @@ function Masterclass() {
             data-aos-once="true"
           >
             <NavLink to='/tickets' className="about-page-cta">
-              <div>UNIFEST 2024 Tickets</div>
+              <div>UNIFEST 2025 Tickets</div>
               <IoTicketOutline className="cta-insta" />
             </NavLink>
           </div>
         </div>
+
       </div>
     </div>
   );

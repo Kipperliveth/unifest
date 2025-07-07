@@ -206,7 +206,7 @@
     .box{
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    border: 1px solid #eee;
+    border: 1px solid hsl(0, 0%,50%);
 
     &:nth-child(1){
     width: 300px;
@@ -225,7 +225,7 @@
     bottom: -5rem;
     left: 10rem;
     z-index: 1;
-    background: url('../../stock/backgrounds/facepaint.jpg')no-repeat;
+    background: url('../../stock/backgrounds/smur.jpg')no-repeat;
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
@@ -240,7 +240,7 @@
     top: 2rem;
     left: 16rem;
     z-index: 2;
-       background: url('../../stock/backgrounds/games.jpg')no-repeat;
+       background: url('../../stock/backgrounds/DSC_5018.jpg')no-repeat;
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
@@ -265,6 +265,7 @@
 
         p{
             line-height: 1.7;
+            font-size: 14px;
         }
 
         .more-pics{
@@ -282,7 +283,7 @@
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;    
 
                 &:nth-child(1){
-                    background: url('../../stock/backgrounds/fun.jpg')no-repeat;
+                    background: url('../../stock/backgrounds/IMG_8005.jpg')no-repeat;
                     background-size: cover;
                     background-position: center;
                     background-blend-mode: overlay;
@@ -450,7 +451,7 @@
         justify-content: center;
         align-items: center;
         gap: .8rem;
-        margin-top: 9rem;
+        margin-block: 4rem;
 
 
         .about-page-cta{
@@ -484,7 +485,95 @@
             
         }
     }
+
+    .gallery-text{
+        margin: 0 auto;
+        margin-top: 6rem;
+        margin-bottom: 0;
+        width: 100%;
+        text-align: center;
+        // width: 90vw;
+        h1{
+            font-size: 25px;
+            line-height: 1.5;
+        }
+        span{
+            color: #FF7E00;
+        }
+    }
     
+//
+/* Base styles */
+
+.app-container {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.gallery-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.gallery-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+/* Masonry grid layout */
+.masonry-grid {
+  column-count: 2;
+  column-gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 4;
+  }
+}
+
+/* Masonry items */
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+//   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.masonry-item:hover {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Image styling */
+.masonry-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.masonry-item:hover .masonry-image {
+  transform: scale(1.03);
+}
 
 
 
@@ -562,10 +651,18 @@
 
     .masterclass-enroll{
         justify-content: center;
+        width: 100vw;
     
         .enroll-left{
-            width: 100%;
+            width: 90vw;
             font-size: 80%;
+
+            h3{
+                font-size: 12px;
+            }
+            h1{
+                font-size: 25px;
+            }
         }
 
          .enroll-right{
@@ -620,9 +717,7 @@
 .activities{
     display: flex !important;
    flex-direction: column-reverse;
-    // border: 1px solid red;
-    text-align: center;
-    // font-size: .8em;
+
 
     .activities-left{
         margin-top: 2rem;
@@ -656,9 +751,12 @@
     }
 
     .activities-right{
+        margin-top: 3rem;
 
         h1{
             padding-top: 0 !important;
+            font-size: 25px;
+            margin-bottom: .7rem;
         }
 
         width: 100%;

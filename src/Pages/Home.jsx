@@ -6,6 +6,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.js";
 import CountdownTimer from "../Components/CountdownTimer";
+import NavCountdown from "../Components/NavCountdown"
 import tesh from '../stock/backgrounds/tesh.png'
 import mavin from '../stock/backgrounds/mavin.png'
 import tekkon from '../stock/backgrounds/tekkon.png'
@@ -16,7 +17,8 @@ import { txtdb } from "../firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import { LuMailX } from "react-icons/lu";
 import { LuMailCheck } from "react-icons/lu";
-
+import { BsCalendar2Month } from "react-icons/bs";
+import { IoLocationOutline } from "react-icons/io5";
 
 function Home() {
   
@@ -89,6 +91,7 @@ function Home() {
              
             </p>
           {/* <CountdownTimer /> */}
+          <NavCountdown />
 
 
             <div
@@ -103,6 +106,7 @@ function Home() {
               </button>
             </div>
           </div>
+
         </div>
 
        
@@ -148,7 +152,7 @@ function Home() {
                 data-aos-once="true"
               >
                
-                The <span>Ultimate </span> university concert festival celebrating the vibrant spirit of our campus community
+              It’s more than a <span> concert</span> — it’s the one day everything comes alive.
               </h1>
 
               <p
@@ -157,7 +161,7 @@ function Home() {
                 data-aos-once="true"
                 data-aos-delay="300"
               >
-              Unifest is more than just a festival; it’s a celebration of music, creativity, and the unique culture that makes our university special.
+            Unifest is where the music hits different, the crowd feels like family, and the memories stick long after the lights go out. It’s the heartbeat of campus life.
               </p>
 
               <div
@@ -166,13 +170,16 @@ function Home() {
                 data-aos-once="true"
                 data-aos-delay="400"
               >
-                <NavLink to="/about" className="masterclass-cta">
-                  <p>Read more</p>
-                  <FaArrowRightLong />
+                <NavLink to="/about" className="masterclass-cta desktop">
+                  Read more
                 </NavLink>
               </div>
             </div>
           </div>
+
+          <NavLink to="/about" className="masterclass-cta mobile" >
+                  Read more
+          </NavLink>
         </div>
 
         <div className="about-section">
@@ -184,7 +191,7 @@ function Home() {
                 data-aos-delay="200"
                 data-aos-once="true"
               >
-                2023
+           We Did It in 2023. We Took It Further in 2024.
               </h3>
 
               <h1
@@ -193,8 +200,7 @@ function Home() {
                 data-aos-delay="300"
                 data-aos-once="true"
               >
-                <span>Last year,</span> Unifest brought an amazing Vybe and an unforgettable experience.
-
+              From <span>unforgettable</span> campus memories to show-stopping performances
               </h1>
 
               <p
@@ -203,7 +209,11 @@ function Home() {
                 data-aos-delay="400"
                 data-aos-once="true"
               >
-      We rocked the campus with performances from Nigeria’s A-list artists and our very own campus talents.
+            Unifest has been the heartbeat of student life two years in a row.
+
+            We brought the Vybe. Nigeria’s biggest artists shared the stage with homegrown campus stars and together, we made magic.
+
+            And guess what? We’re just getting started.
               </p>
 
               <div
@@ -212,7 +222,7 @@ function Home() {
                 data-aos-delay="600"
                 data-aos-once="true"
               >
-                <NavLink to="/memories">See UNIFEST 2023 in Pictures</NavLink>
+                <NavLink to="/memories" className="desktop">See UNIFEST in Pictures</NavLink>
               </div>
             </div>
 
@@ -225,9 +235,11 @@ function Home() {
             >
             </div>
           </div>
+          <NavLink to="/memories" className="mobile">See UNIFEST in Pictures</NavLink>
+
         </div>
 
-        <div className="this-year-section">
+        {/* <div className="this-year-section">
 
           <div className="this-year-container">
 
@@ -269,6 +281,51 @@ function Home() {
                 </div>
           </div>
 
+        </div> */}
+
+        <div className="info">
+
+          <div className="info-container">
+
+          <div className="head-text">
+            <h3>Every year's bigger and better than the last. <br /> <span style={{ color: "#FF7E00" }}>2025,</span> Get ready to Vybe with No Limits</h3>
+
+            <div className="datenvenue">
+            <p><BsCalendar2Month />2ND August 2025</p>
+            <p><IoLocationOutline />Old Convocation Arena</p>
+            </div>
+          </div>
+
+          <div className="pixels">
+
+              <div className="left">
+
+                <div className="longer-left">
+                  <div className="longer-left-img"></div>
+                </div>
+
+                <div className="shorter-right">
+                <div className="shorter-right-img1"></div>
+                <div className="shorter-right-img2"></div>
+                </div>
+
+              </div>
+
+
+              <div className="right">
+                <div className="shorter-left">
+                 <div className="shorter-left-img"></div>
+                </div>
+                  <div className="longer-right">
+                 <div className="longer-right-img1"></div>
+                 <div className="longer-right-img2"></div>
+                </div>
+              </div>
+              
+          </div>
+
+          </div>
+
         </div>
 
         <div className="landing tickets">
@@ -279,13 +336,13 @@ function Home() {
             data-aos-once="true"
           >
             <h1 data-aos="zoom-in" data-aos-duration="800" data-aos-once="true">
-            Be a part of this year's unforgettable moments.
+           This year's about to be a movie, don't miss your scene.
             </h1>
             <p
               data-aos-delay="300"
               data-aos="zoom-in" data-aos-duration="800" data-aos-once="true" 
              >
-              Click below to secure your spot and get your tickets now!
+             Grab your tickets now!
             </p>
 
 
@@ -388,20 +445,31 @@ function Home() {
             data-aos-once="true"
           >
             <NavLink to='/merch-preview' className='shop-span'>Get the Merch</NavLink>
-            <FaArrowRightLong className="ctaArrow special-icon" />
           </button>
         </div>
 
         <div className="sponsors-section">
           <h1 className="sponsors-title">Meet our Sponsors</h1>
-          <h3 className="sponsors-title">2023</h3>
-          <div className="sponsors-container">
-            <img src={toscana} alt="toscana hotel"/>
-            <img src={mavin} alt="mavin records"/>
-            <img src={audiomack} alt="audiomack"/>
-            <img src={tekkon} alt="tekkon"/>
-            <img src={tesh} alt="tesh interiors"/>
-          </div>
+
+         <div className="sponsors-scroll-wrapper">
+        <div className="sponsors-container">
+          <img src={toscana} alt="toscana hotel" />
+          <img src={mavin} alt="mavin records" />
+          <img src={audiomack} alt="audiomack" />
+          <img src={tekkon} alt="tekkon" />
+          <img src={tesh} alt="tesh interiors" />
+
+          {/* Duplicate for seamless loop */}
+          <img src={toscana} alt="toscana hotel" />
+          <img src={mavin} alt="mavin records" />
+          <img src={audiomack} alt="audiomack" />
+          <img src={tekkon} alt="tekkon" />
+          <img src={tesh} alt="tesh interiors" />
+        </div>
+      </div>
+
+      <p>Join the only student-powered festival that actually gets it.</p>
+
           <NavLink to='/contact'>Become a sponsor</NavLink>
         </div>
 
@@ -538,7 +606,7 @@ function Home() {
 
        <div className='buttons'>
             <button onClick={() => setApplicationClosed(false)} className="a">close</button>
-            <NavLink onClick={() => setApplicationClosed(false)} to='/tickets' className="a again">Get Tickets</NavLink>
+            <NavLink onClick={() => setApplicationClosed(false)} to='/tickets' className="a again">Get a ticket</NavLink>
         </div>
 
           </div>

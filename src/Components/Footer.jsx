@@ -74,7 +74,7 @@ function Footer() {
           </div>
 
           <div className="footer-bottom">
-             All rights reserved 2025, Unifest
+              © 2025 Big Vybez Network
             <div className="misc">
               <NavLink id="terms">terms of use</NavLink> |
               <NavLink id="policies"> privacy policy</NavLink>

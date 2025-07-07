@@ -115,7 +115,7 @@ function Contact() {
               data-aos-delay="400"
               data-aos-once="true"
             >
-          Have a question about the concert? We're happy to help! Send us a message using the form below, or stay updated on the latest news and announcements by following us on social media.
+          Have a question about the festival? We're happy to help! Send us a message using the form below, or stay updated on the latest news and announcements by following us on social media.
             </p>
 
             <div
@@ -187,7 +187,7 @@ function Contact() {
                   data-aos-delay="300"
                   data-aos-once="true"
                 >
-                  <input type="radio" id="one" name="item" />
+                  <input type="checkbox" id="one" name="item" />
                   <label htmlFor="one" className="title">
                     How can i purchase tickets?  
                   </label>
@@ -203,12 +203,12 @@ function Contact() {
                   data-aos-delay="400"
                   data-aos-once="true"
                 >
-                  <input type="radio" id="five" name="item" />
+                  <input type="checkbox" id="five" name="item" />
                   <label htmlFor="five" className="title">
-                   Where is the Unifest Venue located?
+                   Where is Unifest 2025 taking place?
                   </label>
                   <div className="acc-content">
-                 The venue for Unifest '24 is Olobo Premiere College, Opposite Uniport Main Gate. Get directions <NavLink>here</NavLink>                   </div>
+                 The venue for Unifest 2025 is the old convocation arena at the University of Port Harcourt Get directions <NavLink>here</NavLink>                   </div>
                 </div>
 
                 <div
@@ -218,13 +218,29 @@ function Contact() {
                   data-aos-delay="500"
                   data-aos-once="true"
                 >
-                  <input type="radio" id="three" name="item" />
+                  <input type="checkbox" id="three" name="item" />
                   <label htmlFor="three" className="title">
-                   What is the Concert date and time?
+                   What is the Festival's date and time?
                   </label>
                   <div className="acc-content">
-                   Unifest will take place on the 14th of sepetember at 12:00 PM
+                   Unifest 2025 will take place on the 2nd of August at 13:00 PM
                   </div>
+                </div>
+
+                       <div
+                  className="item"
+                  data-aos="fade-up"
+                  data-aos-duration="800"
+                  data-aos-delay="400"
+                  data-aos-once="true"
+                >
+                  <input type="checkbox" id="more" name="item" />
+                  <label htmlFor="more" className="title">
+                  Can I perform or showcase my talent?
+                  </label>
+                  <div className="acc-content">
+                   Absolutely! We love campus talent. Just reach out through the contact &nbsp; <NavLink>form</NavLink> &nbsp; to find out how you can be a part of the lineup or side attractions.           
+                   </div>
                 </div>
               </div>
 
@@ -236,12 +252,12 @@ function Contact() {
                   data-aos-delay="600"
                   data-aos-once="true"
                 >
-                  <input type="radio" id="four" name="item" />
+                  <input type="checkbox" id="four" name="item" />
                   <label htmlFor="four" className="title">
-                  Are there any age restrictions for the concert?
+                  Are there any age restrictions for the Festival?
                   </label>
                   <div className="acc-content">
-                  The concert is open to all ages, but children under 16 must be accompanied by an adult.
+                  The festival is open to all ages, but children under 16 must be accompanied by an adult.
                   </div>
                 </div>
 
@@ -252,12 +268,12 @@ function Contact() {
                   data-aos-delay="700"
                   data-aos-once="true"
                 >
-                  <input type="radio" id="six" name="item" />
+                  <input type="checkbox" id="six" name="item" />
                   <label htmlFor="six" className="title">
                   Will there be food and beverages available?
                   </label>
                   <div className="acc-content">
-                  Yes, there will be a variety of food and beverage vendors at the venue.
+                  Yes, there will be a variety of food and beverage vendors at the venue, including many of your favourite spots from around campus and beyond.
                   </div>
                 </div>
 
@@ -268,20 +284,40 @@ function Contact() {
                   data-aos-delay="800"
                   data-aos-once="true"
                 >
-                  <input type="radio" id="two" name="item" />
+                  <input type="checkbox" id="two" name="item" />
                   <label htmlFor="two" className="title">
                   Can I volunteer for the event?
                   </label>
                   <div className="acc-content">
-                  Yes, we welcome volunteers. Please send us a message to get started.
+                  Yes, we welcome volunteers. Please send us a message with the form above to get started.
                   </div>
+                </div>
+
+                       <div
+                  className="item"
+                  data-aos="fade-up"
+                  data-aos-duration="800"
+                  data-aos-delay="400"
+                  data-aos-once="true"
+                >
+                  <input type="checkbox" id="again" name="item" />
+                  <label htmlFor="again" className="title">
+                 What should I wear to Unifest?
+                  </label>
+                  <div className="acc-content">
+                     Come dressed to express! There's no strict dress code, but we recommend comfy, fun, and vibey outfits — and don’t forget your dancing shoes!               
+                   </div>
                 </div>
               </div>
             </div>
           </div>
+
         </section>
 
         <div className="about-touch">
+
+          <div className="about-touch-container">
+
           <h1
             data-aos="zoom-in"
             data-aos-duration="800"
@@ -302,7 +338,12 @@ function Contact() {
               <BiChat className="cta-insta" />
             </NavLink>
           </div>
+
+          </div>
+
         </div>
+
+
 
         {showPopup && (
         <div className="popup">

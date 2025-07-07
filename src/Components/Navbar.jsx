@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../stock/logo.png";
 import { NavLink, useLocation } from "react-router-dom";
 import { RiMenu4Fill } from "react-icons/ri";
@@ -17,6 +17,8 @@ function Navbar({ setShowPopup }) {
   };
 
   const location = useLocation();
+
+  const isMerchPreview = location.pathname === "/merch-preview";
 
   const hiddenPaths = [
     "/marketplace",
@@ -47,10 +49,28 @@ function Navbar({ setShowPopup }) {
 
   const shouldHideComponent = hiddenPaths.includes(location.pathname) || !allPaths.includes(location.pathname);
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    if (window.scrollY > 10) {
+      setIsScrolled(true);
+    } else {
+      setIsScrolled(false);
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
+
   return (
     <div style={{ display: shouldHideComponent ? "none" : "block" }}>
       <div className="navigation ">
-        <nav className=" navbar">
+   <nav className={`navbar 
+  ${isScrolled ? "scrolled" : ""} 
+  ${isMerchPreview ? "merch-navbar" : ""}`}>
 
           <NavLink to="/" className="logo-container">
             <img src={logo} alt="unifest-logo"/>

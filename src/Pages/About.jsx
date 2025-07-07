@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import aboutImage from "../stock/backgrounds/raygen.jpg";
-import reverse from "../stock/backgrounds/reverse.jpg";
+import aboutImage from "../stock/backgrounds/bayanni.jpg";
 import angel from "../stock/backgrounds/angel.jpg";
-import vend from "../stock/backgrounds/vend.jpg";
-import vip from "../stock/backgrounds/vip.jpg";
+import reverse from "../stock/backgrounds/DSC_3010.jpg";
+import vend from "../stock/backgrounds/IMG-20250214-WA0034.jpg";
+import vip from "../stock/backgrounds/IMG-20250214-WA0047.jpg";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import "aos/dist/aos.js";
@@ -58,7 +58,7 @@ function About({ setShowPopup }) {
               data-aos-delay="400"
               data-aos-once="true"
             >
-              About <span>UNIFEST</span>
+              What is <span>UNIFEST</span>
             </h1>
 
             <p
@@ -78,7 +78,6 @@ function About({ setShowPopup }) {
             >
               <NavLink to='/memories' className="about-page-cta">
                 <div>Experience Unifest</div>
-                <IoCameraOutline className="cta-insta" />
               </NavLink>
             </div>
           </div>
@@ -99,9 +98,17 @@ function About({ setShowPopup }) {
               data-aos-once="true"
              src={angel} alt="about-us" />
           </div>
+
+            <NavLink to='/memories' className="about-page-cta mobile">
+                <div>Experience Unifest</div>
+              </NavLink>
         </div>
 
         <div className="about-story cont">
+
+             <a href='#next-step' className="about-page-ctaa mobile">
+                Be a part of this Year's Unifest
+              </a>
 
           <div
             className="abt-story-right"
@@ -159,7 +166,7 @@ function About({ setShowPopup }) {
               data-aos-once="true"
             >
               <a href='#next-step' className="about-page-ctaa">
-                Become a part of this Year's Unifest
+                Be a part of this Year's Unifest
               </a>
             </div>
 
@@ -171,7 +178,7 @@ function About({ setShowPopup }) {
           <span className="values-header">
             <h1
             >
-              Get Involved with UNIFEST <br /> <span >This Year</span>
+              Ways to get involved <br /> <span >This Year</span>
             </h1>
            
           </span>
@@ -200,7 +207,7 @@ function About({ setShowPopup }) {
             >
               <h2 className="top-desc">Follow Our Socials</h2>
 
-              <h3 className="bottom-desc">Follow us for news and Updates</h3>
+              <h3 className="bottom-desc">Be in the Loop, Be in the Vybe</h3>
             </NavLink>
 
             <a
@@ -213,7 +220,7 @@ function About({ setShowPopup }) {
             >
               <h2 className="top-desc">Become a Sponsor</h2>
 
-              <h3 className="bottom-desc">Partner with us for Unifest '24</h3>
+              <h3 className="bottom-desc">Reach Students Where It Matters Most</h3>
             </a>
 
             <NavLink
@@ -239,13 +246,16 @@ function About({ setShowPopup }) {
             >
               <h2 className="top-desc">Buy the Merch</h2>
 
-              <h3 className="bottom-desc">Buy the officail Unifest '24 merch</h3>
+              <h3 className="bottom-desc">Buy the official Unifest merch</h3>
             </NavLink>
           </div>
 
         </div>
 
         <section id="next-step" className="next-step">
+
+          <div className="next-step-container">
+
           <h1
             data-aos="zoom-in"
             data-aos-duration="800"
@@ -262,9 +272,12 @@ function About({ setShowPopup }) {
             data-aos-delay="600"
             data-aos-once="true"
           >
-            <NavLink  to='/tickets' >Get Tickets</NavLink>
             <NavLink to='/contact'>Contact Us</NavLink>
+            <NavLink  to='/tickets' >Get Tickets</NavLink>
           </div>
+
+          </div>
+
         </section>
 
         {applicationClosed && (
