@@ -141,7 +141,7 @@ const navigate = useNavigate();
       //  const paystackPublicKey = "pk_test_3931dabec0e6f696bd5921a6dedb5d15f4b1865c";
 
        const paystackPublicKey = Amount < 10000
-    ? "pk_test_3931dabec0e6f696bd5921a6dedb5d15f4b1865c"  // for < ₦10,000
+    ? "pk_live_3247756c59ed492b8f73ac45f270ef9949bb87e1"  // for < ₦10,000
     : "pk_live_d3ce6d705e141445156ba3ca5a51ec8738aa66d7"; // for ₦10,000 and above
 
     
