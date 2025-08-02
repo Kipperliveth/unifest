@@ -366,7 +366,7 @@ const navigate = useNavigate();
 
             {/* delete from here */}
 
-                    <button
+                    {/* <button
             type={selectedPackage === "VVIP" && isVvipSoldOut ? "button" : "submit"}
             disabled={selectedPackage === "VVIP" && isVvipSoldOut}More actions
             style={{
@@ -386,7 +386,7 @@ const navigate = useNavigate();
                 )}
               </h3>
             )}
-          </button>
+          </button> */}
 
           {/* to here */}
 
@@ -555,11 +555,11 @@ const navigate = useNavigate();
 )} 
     
 
-{/* 
-        <p style={{ textAlign: "center", color: "#888", marginBlock: "8rem", fontWeight: "500" }}>
-             Tickets are Currently Unavailable
+
+        <p style={{ textAlign: "center", color: "#888", marginBlock: "1rem", fontWeight: "500" }}>
+             Tickets are Currently only availble at the gate
             </p>
-      */}
+     
 
     </div>
   </div>
