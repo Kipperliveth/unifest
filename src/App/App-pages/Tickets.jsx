@@ -239,259 +239,8 @@ const navigate = useNavigate();
         </div>
       </div>
 
-      <div className="ticket-form">
-
-        <div
-          className="form-right"
-        >
-            <div className="head">
-            <h2>Early Bird Tickets <IoTicketOutline className="ticket-icon"/></h2>
-            <p>Limited slots. Unlimited Vybes.</p>
-            </div>
-
-            <div className="package-container">
-            <div
-                className={`package ${selectedPackage === 'Regular' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('Regular')}
-            >
-
-              <div className="type">
-
-              <h6>
-                 Early Bird
-              </h6>
-                
-              <h1>   &#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}</h1>
-              </div>
-
-              <div className="qty">
-            <button onClick={() => handleQuantityChange(selectedPackage, -1)}>-</button>
-            <span>{quantities[selectedPackage]}</span>
-            <button onClick={() => handleQuantityChange(selectedPackage, 1)}>+</button>
-            </div>
-
-            </div>
-
-            {/* <div
-                className={`package ${selectedPackage === 'Vip' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('Vip')}
-            >
-               VIP
-            </div>
-
-            <div
-                className={`package ${selectedPackage === 'VVIP' ? 'selected' : ''}`}
-                onClick={() => handlePackageClick('VVIP')}
-            >
-                VVIP
-            </div> */}
-
-            {/* <div
-                className={`package noquantity ${selectedPackage? 'quantity' : ''}`}
-            >
-            {selectedPackage && (
-        <div className="quantity-selector">
-          <span>{selectedPackage}, Qty: </span>
-          <div className="qty">
-          <button onClick={() => handleQuantityChange(selectedPackage, -1)}>-</button>
-          <span>{quantities[selectedPackage]}</span>
-          <button onClick={() => handleQuantityChange(selectedPackage, 1)}>+</button>
-          </div>
-        </div>
-        )}
-            </div> */}
-            </div>
-            
-          <form onSubmit={check}>
-
-            <div className="top">
-              <input
-                 type="text"
-                 id="firstName"
-                 name="firstName"
-                 placeholder="First Name"
-                 value={firstName}
-                 onChange={(e) => setFirstName(e.target.value)}
-                required />
-              <input 
-               type="text"
-               id="lastName"
-               name="lastName"
-               placeholder="Last Name"
-               value={lastName}
-               onChange={(e) => setLastName(e.target.value)}
-                required />
-            </div>
 
 
-            <div className="bottom">
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email Address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required/>
-
-              <input 
-              type="tel"
-              id="phone"
-              name="phone"
-              placeholder="Enter your phone number"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)} />
-
-              <label htmlFor="gender">Gender</label>
-             <select 
-              id="gender"
-              name="gender"
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-              required>
-              <option value=""></option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            </select>
-
-
-              {/* <select>
-              <option value="">Select Gender</option>
-              <option value="Shirts">Male</option>
-              <option value="Vests">Female</option>
-            </select> */}
-
-            </div>
-
-
-            {/* delete from here */}
-
-                    {/* <button
-            type={selectedPackage === "VVIP" && isVvipSoldOut ? "button" : "submit"}
-            disabled={selectedPackage === "VVIP" && isVvipSoldOut}More actions
-            style={{
-              backgroundColor: selectedPackage === "VVIP" && isVvipSoldOut ? "#d3d3d3" : "",
-              color: selectedPackage === "VVIP" && isVvipSoldOut ? "#555" : "#fff",
-              cursor: selectedPackage === "VVIP" && isVvipSoldOut ? "not-allowed" : "pointer"
-            }}
-          >
-            {selectedPackage === "VVIP" && isVvipSoldOut ? (
-              <h3>Sold Out</h3>
-            ) : (
-              <h3>
-                Checkout {selectedPackage && (
-                  <div>
-                    &#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}
-                  </div>
-                )}
-              </h3>
-            )}
-          </button> */}
-
-          {/* to here */}
-
-
-              <p style={{ color: '#888', textAlign: 'center', padding: '10px', fontWeight: '400', fontSize: '10px', lineHeight: '1.5' }}>Tickets are non-refundable and tied to the buyer’s name, except when multiple tickets are purchased.</p>
-          
-
-                {errorMessage && (
-            <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
-              {errorMessage}
-            </p>
-            )}
-
-
-
-            
-          </form>
-
-
-        </div>
-
-      </div>
-
-
-
-      {/* {regulardetails && (
-      <div className='checkout-popup'>
-
-
-        <div className='checkout-container tickets'>
-
-      <h1>Regular Access -   &#8358;5,000</h1>
-
-        <ul>
-        <li>Access To The Festival</li>
-          <li>Access To Vendors At the Festival Venue</li>
-          <li>Participation in festival games and activities</li>
-          <li>You May Leave And Re-Enter The Festival At Any Time</li>
-          <li>Opportunity to win prizes through festival contests and raffles</li>
-        </ul>
-
-     <div className='buttons tickets'>
-          <button onClick={() => setRegularDetails(false)} className="a"> Close</button>
-      </div>
-
-        </div>
-        </div>
-    )} */}
-
-       {/* {vvipdetails && (
-        <div className='checkout-popup'>
-  
-  
-          <div className='checkout-container tickets'>
-  
-          
-      <h1>VVIP Access -   &#8358;250,000 (Table For 5)</h1>
-
-      <ul>
-        <li>5 Persons Access Only</li>
-        <li>1 Private car Park</li>
-        <li>Access To Special VIP Arena</li>
-        <li>Vip Entry and Sitting At The Festival</li>
-        <li>Complimentary Bottle Of Martini</li>
-        <li>Complimentary Bottle Of Martel</li>
-        <li>Complimentary Platter of Small Chops </li>
-        <li>Personal Waiter Assigned to The Vip Table</li>
-        <li>You May Leave And Re-Enter The Festival At Any Time</li>
-        <li>Mixer</li>
-      </ul>
-  
-       <div className='buttons tickets'>
-            <button onClick={() => setVvipdetails(false)} className="a"> Close</button>
-        </div>
-  
-          </div>
-          </div>
-      )} */}
-
-    {/* {vipdetails && (  
-      <div className='checkout-popup'>
-
-
-        <div className='checkout-container tickets'>
-
-      <h1>VIP Access - &#8358;110,000 (2 Persons)</h1>
-      
-        <ul>
-          <li>2 Persons Access Only</li>
-          <li>Access To Special VIP Arena</li>
-          <li>Vip Entry and Sitting At The Festival</li>
-          <li>Complimentary Bottle Of Martini</li>
-          <li>Complimentary Platter of Small Chops </li>
-          <li>Personal Waiter Assigned to The Vip Table</li>
-          <li>You May Leave And Re-Enter The Festival At Any Time</li>
-          <li>Mixer</li>
-        </ul>
-
-     <div className='buttons tickets'>
-          <button onClick={() => setVipdetails(false)} className="a"> Close</button>
-      </div>
-
-        </div>
-        </div>
-    )} */}
 
     {showPopup && (
     <div className="popup">
@@ -556,8 +305,8 @@ const navigate = useNavigate();
     
 
 
-        <p style={{ textAlign: "center", color: "#888", marginBlock: "1rem", fontWeight: "500" }}>
-             Tickets are Currently only availble at the gate
+        <p style={{ textAlign: "center", color: "#888", marginBlock: "8rem", fontWeight: "500" }}>
+             Tickets are currently unavailable
             </p>
      
 
@@ -602,3 +351,175 @@ export default Tickets
 //     </div>
 //     </div>
 // )} 
+
+
+      // <div className="ticket-form">
+
+      //   <div
+      //     className="form-right"
+      //   >
+      //       <div className="head">
+      //       <h2>Early Bird Tickets <IoTicketOutline className="ticket-icon"/></h2>
+      //       <p>Limited slots. Unlimited Vybes.</p>
+      //       </div>
+
+      //       <div className="package-container">
+      //       <div
+      //           className={`package ${selectedPackage === 'Regular' ? 'selected' : ''}`}
+      //           onClick={() => handlePackageClick('Regular')}
+      //       >
+
+      //         <div className="type">
+
+      //         <h6>
+      //            Early Bird
+      //         </h6>
+                
+      //         <h1>   &#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}</h1>
+      //         </div>
+
+      //         <div className="qty">
+      //       <button onClick={() => handleQuantityChange(selectedPackage, -1)}>-</button>
+      //       <span>{quantities[selectedPackage]}</span>
+      //       <button onClick={() => handleQuantityChange(selectedPackage, 1)}>+</button>
+      //       </div>
+
+      //       </div>
+
+      //       {/* <div
+      //           className={`package ${selectedPackage === 'Vip' ? 'selected' : ''}`}
+      //           onClick={() => handlePackageClick('Vip')}
+      //       >
+      //          VIP
+      //       </div>
+
+      //       <div
+      //           className={`package ${selectedPackage === 'VVIP' ? 'selected' : ''}`}
+      //           onClick={() => handlePackageClick('VVIP')}
+      //       >
+      //           VVIP
+      //       </div> */}
+
+      //       {/* <div
+      //           className={`package noquantity ${selectedPackage? 'quantity' : ''}`}
+      //       >
+      //       {selectedPackage && (
+      //   <div className="quantity-selector">
+      //     <span>{selectedPackage}, Qty: </span>
+      //     <div className="qty">
+      //     <button onClick={() => handleQuantityChange(selectedPackage, -1)}>-</button>
+      //     <span>{quantities[selectedPackage]}</span>
+      //     <button onClick={() => handleQuantityChange(selectedPackage, 1)}>+</button>
+      //     </div>
+      //   </div>
+      //   )}
+      //       </div> */}
+      //       </div>
+            
+      //     <form onSubmit={check}>
+
+      //       <div className="top">
+      //         <input
+      //            type="text"
+      //            id="firstName"
+      //            name="firstName"
+      //            placeholder="First Name"
+      //            value={firstName}
+      //            onChange={(e) => setFirstName(e.target.value)}
+      //           required />
+      //         <input 
+      //          type="text"
+      //          id="lastName"
+      //          name="lastName"
+      //          placeholder="Last Name"
+      //          value={lastName}
+      //          onChange={(e) => setLastName(e.target.value)}
+      //           required />
+      //       </div>
+
+
+      //       <div className="bottom">
+      //         <input
+      //           type="email"
+      //           id="email"
+      //           name="email"
+      //           placeholder="Email Address"
+      //           value={email}
+      //           onChange={(e) => setEmail(e.target.value)}
+      //           required/>
+
+      //         <input 
+      //         type="tel"
+      //         id="phone"
+      //         name="phone"
+      //         placeholder="Enter your phone number"
+      //         value={phoneNumber}
+      //         onChange={(e) => setPhoneNumber(e.target.value)} />
+
+      //         <label htmlFor="gender">Gender</label>
+      //        <select 
+      //         id="gender"
+      //         name="gender"
+      //         value={gender}
+      //         onChange={(e) => setGender(e.target.value)}
+      //         required>
+      //         <option value=""></option>
+      //       <option value="male">Male</option>
+      //       <option value="female">Female</option>
+      //       </select>
+
+
+      //         {/* <select>
+      //         <option value="">Select Gender</option>
+      //         <option value="Shirts">Male</option>
+      //         <option value="Vests">Female</option>
+      //       </select> */}
+
+      //       </div>
+
+
+      //       {/* delete from here */}
+
+      //               <button
+      //       type={selectedPackage === "VVIP" && isVvipSoldOut ? "button" : "submit"}
+      //       disabled={selectedPackage === "VVIP" && isVvipSoldOut}More actions
+      //       style={{
+      //         backgroundColor: selectedPackage === "VVIP" && isVvipSoldOut ? "#d3d3d3" : "",
+      //         color: selectedPackage === "VVIP" && isVvipSoldOut ? "#555" : "#fff",
+      //         cursor: selectedPackage === "VVIP" && isVvipSoldOut ? "not-allowed" : "pointer"
+      //       }}
+      //     >
+      //       {selectedPackage === "VVIP" && isVvipSoldOut ? (
+      //         <h3>Sold Out</h3>
+      //       ) : (
+      //         <h3>
+      //           Checkout {selectedPackage && (
+      //             <div>
+      //               &#8358;{(quantities[selectedPackage] * prices[selectedPackage]).toLocaleString()}
+      //             </div>
+      //           )}
+      //         </h3>
+      //       )}
+      //     </button>
+
+      //     {/* to here */}
+
+
+      //         <p style={{ color: '#888', textAlign: 'center', padding: '10px', fontWeight: '400', fontSize: '10px', lineHeight: '1.5' }}>Tickets are non-refundable and tied to the buyer’s name, except when multiple tickets are purchased.</p>
+          
+
+      //           {errorMessage && (
+      //       <p style={{ color: 'red', textAlign: 'center', padding: '10px', fontWeight: '500' }}>
+      //         {errorMessage}
+      //       </p>
+      //       )}
+
+
+
+            
+      //     </form>
+
+
+      //   </div>
+
+      // </div>
